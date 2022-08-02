@@ -2,12 +2,21 @@ package com.proj.pots;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
-@SpringBootApplication
-public class PotsApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(PotsApplication.class, args);
-	}
+@SpringBootApplication(exclude = SecurityAutoConfiguration.class)
+public class PotsApplication extends SpringBootServletInitializer {
+   
+   @Override
+   protected SpringApplicationBuilder createSpringApplicationBuilder() {
+      return super.createSpringApplicationBuilder();
+   }
+
+   public static void main(String[] args) {
+      SpringApplication.run(PotsApplication.class, args);
+   }
 
 }
