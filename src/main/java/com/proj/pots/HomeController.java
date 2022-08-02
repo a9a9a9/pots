@@ -11,4 +11,8 @@ public class HomeController {
 		return "test";
 	}
 	
+	@RequestMapping(value = "/partyMyInfo")
+	public String partyMyInfo() {
+		return "partyAdmin/partyMyInfo";
+	}
 }
