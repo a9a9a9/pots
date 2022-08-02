@@ -4,14 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>this is home</title>
+<title>Insert title here</title>
 </head>
 <body>
-new<br>
-<h1>this is home CHECK</h1>
-sang is in
-hyegyu is in
-chanwoo is in
 
 </body>
 </html>
