@@ -1,86 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:import url="partyIndex.jsp"/> 
+<c:import url="partyIndex.jsp"/>
+<link rel="stylesheet" href="https://buts.co.kr/plugin/jquery-ui/jquery-ui.css" type="text/css">
+<link rel="stylesheet" href="https://buts.co.kr/plugin/jquery-ui/style.css" type="text/css"> 
 <!-- body -->
 	<div class="partner-body">
-		
-
-<!-- 
-<div id="wrapper">
-	<nav class="navbar navbar-inverse navbar-fixed-top en" role="navigation">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="https://buts.co.kr/shop/partner/">
-				<span>
-					<img src="https://buts.co.kr/img/buts/logo_small.png" title="">
-				</span>
-			</a>
-		</div>
-
-		<div class="collapse navbar-collapse navbar-ex1-collapse">
-			<ul class="nav navbar-nav side-nav">
-									<li>
-						<a href="https://buts.co.kr/shop/partner/?ap=list">
-							<img src="https://buts.co.kr/img/buts/icon-group-manage-w.png" style="margin-left:5px;margin-right:5px;"/>
-						파티관리</a>
-					</li>
-					<li>
-						<a href="https://buts.co.kr/shop/partner/?ap=qalist">
-							<img src="https://buts.co.kr/img/buts/icon-inquiry-manage.png" style="margin-left:5px;margin-right:5px;"/>
-						 문의관리</a>
-					</li>
-					<li>
-						<a href="https://buts.co.kr/shop/partner/?ap=saleitem">
-							<img src="https://buts.co.kr/img/buts/icon-participant-manage.png" style="margin-left:5px;margin-right:5px;"/>
-						 참여정보</a>
-					</li>
-					<li>
-						<a href="https://buts.co.kr/shop/partner/?ap=order_cancel">
-							<img src="https://buts.co.kr/img/buts/icon-cancel-request.png" style="margin-left:5px;margin-right:5px;"/>
-						 취소요청</a>
-					</li>
-					<li class="active">
-						<a href="https://buts.co.kr/shop/partner/?ap=cancelitem">
-							<img src="https://buts.co.kr/img/buts/icon-cancel-list.png" style="margin-left:5px;margin-right:5px;"/>
-						취소내역</a>
-					</li>
-					<li>
-						<a href="https://buts.co.kr/shop/partner/?ap=paylist">
-							<img src="https://buts.co.kr/img/buts/icon-withdraw-manage.png" style="margin-left:5px;margin-right:5px;"/>
-						 출금관리</a>
-					</li>
-											</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="hidden-xs">
-					<a>
-					<img src="https://buts.co.kr/img/buts/icon-mypage-small.png" style="margin-left:5px;margin-right:5px;"/>
-						ㅇㅆㅇ					</a>
-				</li>
-								<li>
-					<a href="https://buts.co.kr"><i class="fa fa-shopping-cart fa-lg"></i> 벗츠</a>
-				</li>
-				<li>
-					<a href="https://buts.co.kr"><i class="fa fa-users fa-lg"></i> 커뮤니티</a>
-				</li>
-				<li>
-					<a href="https://buts.co.kr/bbs/logout.php">
-						<img src="https://buts.co.kr/img/buts/logout-small.png" style="margin-left:5px;margin-right:5px;"/>
-						로그아웃
-					</a>
-				</li>
-			</ul>
-		</div>
-	</nav>
-
-	<div id="page-wrapper"> -->
-<link rel="stylesheet" href="https://buts.co.kr/plugin/jquery-ui/jquery-ui.css" type="text/css">
-<link rel="stylesheet" href="https://buts.co.kr/plugin/jquery-ui/style.css" type="text/css">
 <script src="https://buts.co.kr/plugin/jquery-ui/jquery-ui.min.js"></script>
 <script>
 jQuery(function($){
