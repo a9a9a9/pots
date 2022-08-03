@@ -1,10 +1,45 @@
 package com.proj.pots;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HomeController {
+	
+	@RequestMapping(value = "/")
+	public String index(Model model) {
+		model.addAttribute("formpath", "home");
+		System.out.println("실행");
+		return "index";
+	}
+	
+	@RequestMapping(value = "/login")
+	public String login() {
+		return "member/login";
+	}
+	
+	@RequestMapping(value = "/findMy")
+	public String fingMy() {
+		return "member/findMy";
+	}
+	@RequestMapping(value = "/registerAgree")
+	public String registerAgree() {
+		return "member/registerAgree";
+	}
+	
+	@RequestMapping(value = "/eventMain")
+	public String eventMain() {
+		return "event/eventMain";
+	}
+	@RequestMapping(value = "/eventWin")
+	public String eventWin() {
+		return "event/eventWin";
+	}
+	@RequestMapping(value = "/eventEnd")
+	public String eventEnd() {
+		return "event/eventEnd";
+	}
 	
 	//common 폴더 파일
 	@RequestMapping(value = "/header")
