@@ -26,7 +26,7 @@
 </div>
 
 <div class="empty">
-	<div class="icon"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-big-glay.png" /></div>
+	<div class="icon"><img src="/img/icon-butsicon-big-glay.png" /></div>
 	<h5>등록된 문의가 없습니다.</h5>
 </div>
 
@@ -40,7 +40,7 @@ function more_iq(id) {
 </div><!-- /#wrapper -->
 
 <!-- JavaScript -->
-<script type="text/javascript" src="https://buts.co.kr/shop/partner/skin/Basic/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script>
 $(function () {
   var $window = $(window),

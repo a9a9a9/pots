@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:import url="partyIndex.jsp"/>
-<link rel="stylesheet" href="https://buts.co.kr/plugin/jquery-ui/jquery-ui.css" type="text/css">
-<link rel="stylesheet" href="https://buts.co.kr/plugin/jquery-ui/style.css" type="text/css"> 
-<!-- body -->
+<link rel="stylesheet" href="/css/partyAdmin/jquery-ui.css" type="text/css">
+<link rel="stylesheet" href="/css/partyAdmin/style.css" type="text/css"> 
+	<!-- body -->
 	<div class="partner-body">
-<script src="https://buts.co.kr/plugin/jquery-ui/jquery-ui.min.js"></script>
+<script src="/js/jquery-ui.min.js"></script>
 <script>
 jQuery(function($){
     $.datepicker.regional["ko"] = {
@@ -82,7 +82,7 @@ jQuery(function($){
 							<tr>
 				<td colspan="8">
 					<div class="empty">
-						<div class="icon"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-big-glay.png" /></div>
+						<div class="icon"><img src="/img/icon-butsicon-big-glay.png" /></div>
 						<h5>등록된 내용이 없습니다.</h5>
 					</div>
 				</td>
@@ -95,7 +95,7 @@ jQuery(function($){
 </div><!-- /#wrapper -->
 
 <!-- JavaScript -->
-<script type="text/javascript" src="https://buts.co.kr/shop/partner/skin/Basic/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script>
 $(function () {
   var $window = $(window),
