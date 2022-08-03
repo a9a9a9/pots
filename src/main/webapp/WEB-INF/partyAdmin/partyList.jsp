@@ -58,7 +58,7 @@
 	</select>
 	<input type="text" name="stx" value="" id="stx" class="search" placeholder="파티번호 검색어">
 	<button type="submit" class="button mini border button-purple">검색</button>
-	<a href="./?ap=item" class="button mini button-purple">파티생성</a>
+	<a href="partyCreate" class="button mini button-purple">파티생성</a>
 </div>
 
 </form>
