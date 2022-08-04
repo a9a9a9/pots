@@ -58,7 +58,7 @@
 	</select>
 	<input type="text" name="stx" value="" id="stx" class="search" placeholder="파티번호 검색어">
 	<button type="submit" class="button mini border button-purple">검색</button>
-	<a href="./?ap=item" class="button mini button-purple">파티생성</a>
+	<a href="partyCreate" class="button mini button-purple">파티생성</a>
 </div>
 
 </form>
@@ -116,7 +116,7 @@
 							<tr>
 				<td colspan="12">
 					<div class="empty">
-						<div class="icon"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-big-glay.png" /></div>
+						<div class="icon"><img src="/img/icon-butsicon-big-glay.png" /></div>
 						<h5>등록된 내용이 없습니다.</h5>
 					</div>
 				</td>
@@ -162,7 +162,7 @@ if(document.pressed == "선택마감") {
 </div><!-- /#wrapper -->
 
 <!-- JavaScript -->
-<script type="text/javascript" src="https://buts.co.kr/shop/partner/skin/Basic/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script>
 $(function () {
   var $window = $(window),
