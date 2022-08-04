@@ -32,28 +32,5 @@ public class PartyController {
 			return "partyAdmin/partyCreate";
 		}
 		
-		@RequestMapping(value = "/partyJoinList")
-		public String partyJoinList() {
-			return "partyAdmin/partyJoinList";
-		}
 		
-		@RequestMapping(value = "/partyList")
-		public String partyList() {
-			return "partyAdmin/partyList";
-		}
-		
-		@RequestMapping(value = "/partyCancel")
-		public String partyCancel() {
-			return "partyAdmin/partyCancel";
-		}
-		
-		@RequestMapping(value = "/partyCancelReq")
-		public String partyCancelReq() {
-			return "partyAdmin/partyCancelReq";
-		}
-		
-		@RequestMapping(value = "/partyCancelList")
-		public String partyCancelList() {
-			return "partyAdmin/partyCancelList";
-		}
 }
