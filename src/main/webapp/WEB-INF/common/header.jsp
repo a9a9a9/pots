@@ -6,7 +6,7 @@
 <title>Buts</title>
 
 <!-- css -->
-
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/member/default_shop.css">
 <link rel="stylesheet" href="/css/member/apms.css">
 <link rel="stylesheet" href="/css/member/bootstrap.css" type="text/css" class="thema-mode">
