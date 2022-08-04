@@ -2,89 +2,19 @@
     pageEncoding="UTF-8"%>
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:import url="partyIndex.jsp"/> 
+<script>
+window.onload=function(){
+	document.getElementById('partyBill').classList.add('active');
+}
+</script>
 <!-- body -->
 	<div class="partner-body">
-		
-
-<!-- 
-<div id="wrapper">
-	<nav class="navbar navbar-inverse navbar-fixed-top en" role="navigation">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="https://buts.co.kr/shop/partner/">
-				<span>
-					<img src="https://buts.co.kr/img/buts/logo_small.png" title="">
-				</span>
-			</a>
-		</div>
-
-		<div class="collapse navbar-collapse navbar-ex1-collapse">
-			<ul class="nav navbar-nav side-nav">
-									<li>
-						<a href="https://buts.co.kr/shop/partner/?ap=list">
-							<img src="https://buts.co.kr/img/buts/icon-group-manage-w.png" style="margin-left:5px;margin-right:5px;"/>
-						파티관리</a>
-					</li>
-					<li>
-						<a href="https://buts.co.kr/shop/partner/?ap=qalist">
-							<img src="https://buts.co.kr/img/buts/icon-inquiry-manage.png" style="margin-left:5px;margin-right:5px;"/>
-						 문의관리</a>
-					</li>
-					<li>
-						<a href="https://buts.co.kr/shop/partner/?ap=saleitem">
-							<img src="https://buts.co.kr/img/buts/icon-participant-manage.png" style="margin-left:5px;margin-right:5px;"/>
-						 참여정보</a>
-					</li>
-					<li>
-						<a href="https://buts.co.kr/shop/partner/?ap=order_cancel">
-							<img src="https://buts.co.kr/img/buts/icon-cancel-request.png" style="margin-left:5px;margin-right:5px;"/>
-						 취소요청</a>
-					</li>
-					<li>
-						<a href="https://buts.co.kr/shop/partner/?ap=cancelitem">
-							<img src="https://buts.co.kr/img/buts/icon-cancel-list.png" style="margin-left:5px;margin-right:5px;"/>
-						취소내역</a>
-					</li>
-					<li class="active">
-						<a href="https://buts.co.kr/shop/partner/?ap=paylist">
-							<img src="https://buts.co.kr/img/buts/icon-withdraw-manage.png" style="margin-left:5px;margin-right:5px;"/>
-						 출금관리</a>
-					</li>
-											</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="hidden-xs">
-					<a>
-					<img src="https://buts.co.kr/img/buts/icon-mypage-small.png" style="margin-left:5px;margin-right:5px;"/>
-						ㅇㅆㅇ					</a>
-				</li>
-								<li>
-					<a href="https://buts.co.kr"><i class="fa fa-shopping-cart fa-lg"></i> 벗츠</a>
-				</li>
-				<li>
-					<a href="https://buts.co.kr"><i class="fa fa-users fa-lg"></i> 커뮤니티</a>
-				</li>
-				<li>
-					<a href="https://buts.co.kr/bbs/logout.php">
-						<img src="https://buts.co.kr/img/buts/logout-small.png" style="margin-left:5px;margin-right:5px;"/>
-						로그아웃
-					</a>
-				</li>
-			</ul>
-		</div>
-	</nav>
-
-	<div id="page-wrapper"> -->
 
 <!-- [[ 파트너 출금관리 ]] -->
 <div class="title"><span class="text-purple">출금</span> 관리</div>
 
 <div class="form-half left">
-	<div class="table-list" style="border-top: 1px solid #7e69fe">
+	<div class="table-list" style="border-top: 1px solid #84cdcf">
 		<table>
 			<thead>
 			<tr>
@@ -142,7 +72,7 @@
 </div>
 
 <div class="form-half right form-half-withdraw">
-	<div class="table-list" style="border-top: 1px solid #7e69fe">
+	<div class="table-list" style="border-top: 1px solid #84cdcf">
 	<table>
 		<thead>
 		<tr>
@@ -268,7 +198,7 @@
 							<tr>
 				<td colspan="10">
 					<div class="empty">
-						<div class="icon"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-big-glay.png" /></div>
+						<div class="icon"><img src="/img/icon-butsicon-big-glay.png" /></div>
 						<h5>등록된 내용이 없습니다.</h5>
 					</div>
 				</td>
@@ -276,6 +206,60 @@
 			</tbody>
 	</table>
 </div>
+
+<!-- 등록된 내용이 있는 경우 -->
+<div class="table-list scroll padding">
+	<table>
+	<thead>
+		<tr>
+							<th scope="col">no</th>
+						<th scope="col">상태</th>
+			<th scope="col">접수번호</th>
+			<th scope="col">신청일</th>
+			<th scope="col">출금방법</th>
+			<th scope="col">신청금액(수수료)</th>
+			<th scope="col">실지급액</th>
+			<th scope="col">메모</th>
+			<th scope="col">비고</th>
+		</tr>
+	</thead>
+	<tbody>
+				<tr>
+			<td><span class="lightgrey">2</span></td>
+			<td>완료</td>
+			<td><span class="lightgrey">5325</span></td>
+			<td><span class="lightgrey">2022/07/18 16:52</span></td>
+			<td>통장입금</td>
+			<td>15,300원(0원)</td>
+			<td><span class="text-purple">15,300</span>원</td>
+			<td>
+							</td>
+			<td>
+							
+			</td>
+		</tr>
+				<tr>
+			<td><span class="lightgrey">1</span></td>
+			<td>취소</td>
+			<td><span class="lightgrey">5106</span></td>
+			<td><span class="lightgrey">2022/06/23 22:03</span></td>
+			<td>통장입금</td>
+			<td>7,470원(0원)</td>
+			<td><span class="text-purple">7,470</span>원</td>
+			<td>
+							</td>
+			<td>
+							
+			</td>
+		</tr>
+					</tbody>
+	</table>
+</div>
+<div class="page-number" style="border-top: 0">
+	<ul>
+		<li class="disabled"><a><i class="fa fa-angle-double-left"></i></a></li><li class="disabled"><a><i class="fa fa-angle-left"></i></a></li><li class="active"><a>1</a></li><li class="disabled"><a><i class="fa fa-angle-right"></i></a></li><li class="disabled"><a><i class="fa fa-angle-double-right"></i></a></li>	</ul>
+</div>
+<!-- 끝 -->
 
 <script>
 $(function () {
@@ -289,7 +273,7 @@ $(function () {
 </div><!-- /#wrapper -->
 
 <!-- JavaScript -->
-<script type="text/javascript" src="https://buts.co.kr/shop/partner/skin/Basic/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script>
 $(function () {
   var $window = $(window),

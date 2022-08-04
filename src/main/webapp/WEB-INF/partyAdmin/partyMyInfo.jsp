@@ -2,10 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:import url="partyIndex.jsp"/> 
+<script>
+window.onload=function(){
+	document.getElementById('partyMyInfo').classList.add('active');
+}
+</script>
 <style>
 body {
 	background-color: #efefef;
-} 
+}
 body, select, input, button {
 	font-family: 'Noto Sans KR', 'NanumGothic', '나눔고딕', ng, 'Malgun Gothic', Gulim, Dotum, Sans-Serif !important;
 }
@@ -50,7 +55,7 @@ input[type='text'] {
 </style>
 <body class="partner-body">
 <form class="form" role="form" name="fregister" id="fregister" action="https://buts.co.kr/shop/partner/register.update.php" onsubmit="return fregister_submit(this);" method="POST" enctype="multipart/form-data" autocomplete="off">
-<div class="dialog" style="border-top: 2px solid #7e69fe">
+<div class="dialog" style="border-top: 2px solid #84cdcf">
 	<div class="dialog-title"><span class="text-purple">파트너</span> 수정</div>
 	<div class="dialog-body" style="padding-top: 30px; border-top: 1px solid #333">
 					<input type="hidden" name="pt_partner" value="1">
