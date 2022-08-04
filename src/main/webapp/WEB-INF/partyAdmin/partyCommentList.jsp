@@ -7,11 +7,13 @@ window.onload=function(){
 	document.getElementById('partyCommentList').classList.add('active');
 }
 </script>
+
 <!-- body -->
-	<div class="partner-body">
+<div class="partner-body">
+
 <!-- [[ 파트너 문의관리 ]] -->
 <form class="form" role="form" name="flist">
-<input type="hidden" name="page" value="1">
+	<input type="hidden" name="page" value="1">
 </form>
 
 <div class="title"><span class="text-purple">댓글</span> 보기</div>
@@ -26,7 +28,7 @@ window.onload=function(){
 	  </tr>
 	</thead>
 	<tbody>
-			</tbody>
+	</tbody>
   </table>
 </div>
 
@@ -225,7 +227,8 @@ function more_iq(id) {
 function more_iq(id) {
 	$("#" + id).toggle();
 }
-</script>	</div><!-- /#page-wrapper -->
+</script>	
+</div><!-- /#page-wrapper -->
 </div><!-- /#wrapper -->
 
 <!-- JavaScript -->
