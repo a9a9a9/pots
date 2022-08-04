@@ -64,7 +64,7 @@
 									<td>
 										<div class="subject notice">
 											<a
-												href="https://buts.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=84">
+												href="${root}index?formpath=noticeBoardView">
 												[휴무일 안내] 8월 15일 휴무에 따른 정산일 변경 </a>
 										</div>
 									</td>
@@ -76,7 +76,7 @@
 									<td>
 										<div class="subject">
 											<a
-												href="https://buts.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=83">
+												href="${root}index?formpath=noticeBoardView">
 												모집 후 15일이 경과된 파티중 모집인원이 없는 파티 삭제 안내 </a>
 										</div>
 									</td>
@@ -88,7 +88,7 @@
 									<td>
 										<div class="subject">
 											<a
-												href="https://buts.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=82">
+												href="${root}index?formpath=noticeBoardView">
 												확인되지 않은 내용의 제목 사용에 대한 제재 안내 <span class="wr-icon wr-hot"></span>
 											</a>
 										</div>
@@ -101,7 +101,7 @@
 									<td>
 										<div class="subject">
 											<a
-												href="https://buts.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=81">
+												href="${root}index?formpath=noticeBoardView">
 												조인스프라임 서비스 종료 안내 <span class="wr-icon wr-hot"></span>
 											</a>
 										</div>
@@ -114,7 +114,7 @@
 									<td>
 										<div class="subject">
 											<a
-												href="https://buts.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=80">
+												href="${root}index?formpath=noticeBoardView">
 												판매자 출금신청 프로세스 변경으로 인한 출금중지 안내 <span class="wr-icon wr-hot"></span>
 											</a>
 										</div>
@@ -127,7 +127,7 @@
 									<td>
 										<div class="subject">
 											<a
-												href="https://buts.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=79">
+												href="${root}index?formpath=noticeBoardView">
 												[휴무일 안내] 6월 6일 휴무에 따른 정산일 변경 <span class="wr-icon wr-hot"></span>
 											</a>
 										</div>
@@ -140,7 +140,7 @@
 									<td>
 										<div class="subject">
 											<a
-												href="https://buts.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=78">
+												href="${root}index?formpath=noticeBoardView">
 												2022년 7월 신용등급 개편 및 출금방식 변경 안내 <span class="wr-icon wr-hot"></span>
 											</a>
 										</div>
@@ -153,7 +153,7 @@
 									<td>
 										<div class="subject">
 											<a
-												href="https://buts.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=77">
+												href="${root}index?formpath=noticeBoardView">
 												[휴무일 안내] 6월 1일 휴무에 따른 정산일 변경 <span class="wr-icon wr-hot"></span>
 											</a>
 										</div>
@@ -166,7 +166,7 @@
 									<td>
 										<div class="subject">
 											<a
-												href="https://buts.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=76">
+												href="${root}index?formpath=noticeBoardView">
 												[카테고리 추가 안내] 테니스TV, 케이크 <span class="wr-icon wr-hot"></span>
 											</a>
 										</div>
@@ -179,7 +179,7 @@
 									<td>
 										<div class="subject">
 											<a
-												href="https://buts.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=75">
+												href="${root}index?formpath=noticeBoardView">
 												파티모집시 + 추가 서비스에 대한 공지 <span class="wr-icon wr-hot"></span>
 											</a>
 										</div>
@@ -192,7 +192,7 @@
 									<td>
 										<div class="subject">
 											<a
-												href="https://buts.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=74">
+												href="${root}index?formpath=noticeBoardView">
 												계정정보 오류기재로 개인거래 유도 행위 <span class="wr-icon wr-hot"></span>
 											</a>
 										</div>
@@ -205,7 +205,7 @@
 									<td>
 										<div class="subject">
 											<a
-												href="https://buts.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=73">
+												href="${root}index?formpath=noticeBoardView">
 												채널톡 오픈 1:1상담은 이곳에서 <span class="wr-icon wr-hot"></span>
 											</a>
 										</div>
@@ -218,7 +218,7 @@
 									<td>
 										<div class="subject">
 											<a
-												href="https://buts.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=72">
+												href="${root}index?formpath=noticeBoardView">
 												벗츠 '아싸뵤리'님 운영 파티 이슈 안내 <span class="wr-icon wr-hot"></span>
 											</a>
 										</div>
@@ -231,7 +231,7 @@
 									<td>
 										<div class="subject">
 											<a
-												href="https://buts.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=71">
+												href="${root}index?formpath=noticeBoardView">
 												[안내] 5월 5일 공휴일에 따른 정산일 변경 <span class="wr-icon wr-hot"></span>
 											</a>
 										</div>
@@ -244,7 +244,7 @@
 									<td>
 										<div class="subject">
 											<a
-												href="https://buts.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=70">
+												href="${root}index?formpath=noticeBoardView">
 												벗츠의 미래를 함께 이끌어 나갈 열정적이며 훌륭한 당신을 기다립니다. <span
 												class="wr-icon wr-hot"></span>
 											</a>
