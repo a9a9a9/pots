@@ -6,7 +6,7 @@
 	<div class="wrap wrapper  ko">
 		<div class="body">
 			<div class="width-container" style="height: auto;">
-				<form class="form-horizontal register-form" role="form" id="fregisterform" name="fregisterform" action="https://buts.co.kr/bbs/register_form_update.php" onsubmit="return fregisterform_submit(this);" method="post" enctype="multipart/form-data" autocomplete="off">
+				<form class="form-horizontal register-form" role="form" id="fregisterform" name="fregisterform" action="${root}index?formpath=home" onsubmit="return fregisterform_submit(this);" method="post" enctype="multipart/form-data" autocomplete="off">
 					<input type="hidden" name="w" value="">
 					<input type="hidden" name="url" value="https://buts.co.kr/bbs/register_form.php">
 					<input type="hidden" name="pim" value=""> 
@@ -97,7 +97,7 @@
 							</ul>
 						</div>
 						<div class="button-align center">
-							<a href="https://buts.co.kr" class="button">취소</a>
+							<a href="${root}index?formpath=home" class="button">취소</a>
 							<button type="submit" id="btn_submit" class="button button-purple" accesskey="s">회원 가입</button>
 						</div>
 					</div>

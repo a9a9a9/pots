@@ -150,7 +150,7 @@ public class HomeController {
 		return "myMenu/myPoint";
 	}
 	
-	@RequestMapping(value = "/myPointCharge")
+	@RequestMapping(value = "myPointCharge")
 	public String myPointCharge() {
 		return "myMenu/myPointCharge";
 	}
@@ -191,5 +191,4 @@ public class HomeController {
 	public String faq4() {
 		return "myMenu/faq4";
 	}
-
 }
