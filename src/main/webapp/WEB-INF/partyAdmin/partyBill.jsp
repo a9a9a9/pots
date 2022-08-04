@@ -9,7 +9,7 @@
 <div class="title"><span class="text-purple">출금</span> 관리</div>
 
 <div class="form-half left">
-	<div class="table-list" style="border-top: 1px solid #7e69fe">
+	<div class="table-list" style="border-top: 1px solid #84cdcf">
 		<table>
 			<thead>
 			<tr>
