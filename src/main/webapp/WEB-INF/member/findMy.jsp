@@ -25,8 +25,6 @@
 <link rel="canonical" href="https://buts.co.kr/bbs/password_lost.php">
 <title>회원정보 찾기 &gt; Buts</title>
 <link rel="stylesheet" href="https://buts.co.kr/css/default.css?ver=180820">
-<link rel="stylesheet" href="https://buts.co.kr/css/apms.css?ver=180820">
-<link rel="stylesheet" href="https://buts.co.kr/assets/bs3/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="https://buts.co.kr/colorset.css" type="text/css">
 <link rel="stylesheet" href="https://buts.co.kr/skin/member/basic/style.css">
 <link rel="stylesheet" href="https://buts.co.kr/thema/Buts/colorset/Basic/popup.form.css?time=1659527346">

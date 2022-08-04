@@ -5,7 +5,7 @@
 <body class="responsive is-pc">
 	<div class="wrap wrapper  ko">
 		<div class="body" >
-			<div class="width-container" style="height: auto;">
+			<div class="width-container">
 			
 				<!-- [[ my page ]] -->
 				<div class="title-wrap mg-top-minus">
@@ -35,7 +35,7 @@
 							<div class="right">
 								<span class="icon"><img src="/img/icon-coin-star-big.png" alt="" /></span>
 								<span class="Rajdhani">530</span>
-								<a href="#" class="button mini button-purple">충전</a>
+								<a href="${root}index?formpath=myPointCharge" class="button mini button-purple">충전</a>
 							</div>
 						</div>
 					</div>
