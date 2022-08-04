@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet"> 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800" type="text/css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300,200,100" type="text/css">
 
@@ -13,6 +14,7 @@
 <link rel="stylesheet" href="/css/partyAdmin/bootstrap.min.css">
 <link rel="stylesheet" href="/css/partyAdmin/partner.css">
 <meta charset="UTF-8">
+
 <title>Buts</title>
 </head>
 <!--[if lte IE 8]>
