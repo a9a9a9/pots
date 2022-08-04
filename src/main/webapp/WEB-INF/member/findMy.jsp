@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:url var="root" value="/" />
 
 <head>
 <meta charset="utf-8">
@@ -58,6 +60,9 @@ var g5_purl = "https://buts.co.kr/bbs/password_lost.php";
 	href="https://buts.co.kr/js/font-awesome/css/font-awesome.min.css">
 </head>
 <body class="responsive is-pc">
+	<div class="wrap wrapper  ko">
+		<div class="body" >
+			<div class="width-container" style="height: auto;">
 	<h1
 		style="display: inline-block !important; position: absolute; top: 0; left: 0; margin: 0 !important; padding: 0 !important; font-size: 0; line-height: 0; border: 0 !important; overflow: hidden !important">
 		회원정보 찾기 &gt; Buts</h1>
@@ -194,5 +199,5 @@ $(function() {
 <![endif]-->
 
 
-
+</div></div></div>
 </body>
