@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet"> 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800" type="text/css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300,200,100" type="text/css">
 
@@ -13,12 +14,13 @@
 <link rel="stylesheet" href="/css/partyAdmin/bootstrap.min.css">
 <link rel="stylesheet" href="/css/partyAdmin/partner.css">
 <meta charset="UTF-8">
+
 <title>Buts</title>
 </head>
 <!--[if lte IE 8]>
 <script src="https://buts.co.kr/js/html5.js"></script>
 <![endif]-->
-<script type="text/javascript" async="" src="https://cdn.channel.io/plugin/ch-plugin-web.js" charset="UTF-8"></script><script>
+<script type="text/javascript" async="" src="/js/ch-plugin-web.js" charset="UTF-8"></script><script>
 // 자바스크립트에서 사용하는 전역변수 선언
 var g5_url       = "https://buts.co.kr";
 var g5_bbs_url   = "https://buts.co.kr/bbs";
@@ -33,14 +35,14 @@ var g5_responsive    = "1";
 var g5_cookie_domain = "";
 var g5_admin_url = "https://buts.co.kr/adm";
 </script>
-<script src="https://buts.co.kr/js/jquery-1.11.3.min.js"></script>
-<script src="https://buts.co.kr/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="/js/jquery-1.11.3.min.js"></script>
+<script src="/js/jquery-migrate-1.2.1.min.js"></script>
 <script src="https://buts.co.kr/lang/korean/lang.js?ver=180820"></script>
-<script src="https://buts.co.kr/js/common.js?ver=180820"></script>
-<script src="https://buts.co.kr/js/wrest.js?ver=180820"></script>
-<script src="https://buts.co.kr/js/placeholders.min.js"></script>
-<script src="https://buts.co.kr/js/apms.js?ver=180820"></script>
-<link rel="stylesheet" href="https://buts.co.kr/js/font-awesome/css/font-awesome.min.css">
+<script src="/js/common.js"></script>
+<script src="/js/wrest.js"></script>
+<script src="/js/placeholders.min.js"></script>
+<script src="/js/apms.js"></script>
+<link rel="stylesheet" href="/css/font-awesome.min.css">
 </head>
 <body class="responsive is-pc">
 
@@ -71,28 +73,28 @@ var g5_admin_url = "https://buts.co.kr/adm";
 	</div>
 
 	<!-- nav -->
-	<div class="partner-shade close"></div>
-	<div class="partner-nav close">
+	<div class="partner-shade"></div>
+	<div class="partner-nav">
 		<ul>
-						<li>
+			<li id="partyList" class="">
 				<a href="partyList"> 파티관리</a>
 			</li>
-			<li>
+			<li id="partyCommentList" class="">
 				<a href="partyCommentList"> 댓글보기</a>
 			</li>
-			<li>
+			<li id="partyJoinList" class="">
 				<a href="partyJoinList"> 참여정보</a>
 			</li>
-			<li>
+			<li id="partyCancelReq" class="">
 				<a href="partyCancelReq"> 취소요청</a>
 			</li>
-			<li>
+			<li id="partyCancelList" class="">
 				<a href="partyCancelList"> 취소내역</a>
 			</li>
-			<li>
+			<li id="partyBill" class="">
 				<a href="partyBill"> 출금관리</a>
 			</li>
-			<li>
+			<li id="partyMyInfo" class="">
 				<a href="partyMyInfo"> 정보수정</a>
 			</li>
 								</ul>

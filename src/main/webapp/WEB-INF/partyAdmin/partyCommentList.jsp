@@ -2,8 +2,41 @@
     pageEncoding="UTF-8"%>
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:import url="partyIndex.jsp"/> 
+<script>
+window.onload=function(){
+	document.getElementById('partyCommentList').classList.add('active');
+}
+</script>
 <!-- body -->
 	<div class="partner-body">
+<!-- [[ 파트너 문의관리 ]] -->
+<form class="form" role="form" name="flist">
+<input type="hidden" name="page" value="1">
+</form>
+
+<div class="title"><span class="text-purple">댓글</span> 보기</div>
+
+<div class="table-list scroll">
+  <table style="min-width: 1000px">
+	<thead>
+	  <tr>
+		<th width="10%" scope="col">문의자</th>
+		<th width="10%" scope="col">작성일</th>
+		<th scope="col">제목</th>
+	  </tr>
+	</thead>
+	<tbody>
+			</tbody>
+  </table>
+</div>
+
+<div class="empty">
+	<div class="icon"><img src="/img/icon-butsicon-big-glay.png" /></div>
+	<h5>등록된 문의가 없습니다.</h5>
+</div>
+
+<!-- 댓글이 있는 경우 -->
+<div class="partner-body">
 		
 
 <!-- 
@@ -60,7 +93,7 @@
 				<li class="hidden-xs">
 					<a>
 					<img src="https://buts.co.kr/img/buts/icon-mypage-small.png" style="margin-left:5px;margin-right:5px;"/>
-						ㅇㅆㅇ					</a>
+						에이구					</a>
 				</li>
 								<li>
 					<a href="https://buts.co.kr"><i class="fa fa-shopping-cart fa-lg"></i> 벗츠</a>
@@ -97,14 +130,94 @@
 	  </tr>
 	</thead>
 	<tbody>
+				<tr>
+			<td>고싶</td>
+			<td>
+				<span class="lightgrey">
+					2022-06-23					<br>
+					07:41:08				</span>
+			</td>	
+			<td>
+				<a href="./item.php?it_id=1655529789" class="item-name">
+					<span class="name">	네 로그인하려면 코드 받아야된대요</span>
+					<span class="lightgrey">디즈니플러스 한달찍먹 싸다쏴</span>
+				</a>
+			</td>
+		</tr>
+				<tr>
+			<td>고싶</td>
+			<td>
+				<span class="lightgrey">
+					2022-06-23					<br>
+					06:28:55				</span>
+			</td>	
+			<td>
+				<a href="./item.php?it_id=1655529789" class="item-name">
+					<span class="name"><i class="fa fa-lock orange"></i>	로그인하려니까 이메일확인이 필요하다는데 해결부탁드려요!</span>
+					<span class="lightgrey">디즈니플러스 한달찍먹 싸다쏴</span>
+				</a>
+			</td>
+		</tr>
+				<tr>
+			<td>퐁퐁잉</td>
+			<td>
+				<span class="lightgrey">
+					2021-11-12					<br>
+					10:38:50				</span>
+			</td>	
+			<td>
+				<a href="./item.php?it_id=1636677901" class="item-name">
+					<span class="name"><i class="fa fa-lock orange"></i>	참여하고싶습니다!!자리꽉찼나요??</span>
+					<span class="lightgrey">디즈니플러스 한달찍먹</span>
+				</a>
+			</td>
+		</tr>
+				<tr>
+			<td>레드</td>
+			<td>
+				<span class="lightgrey">
+					2021-11-12					<br>
+					10:38:04				</span>
+			</td>	
+			<td>
+				<a href="./item.php?it_id=1636677901" class="item-name">
+					<span class="name"><i class="fa fa-lock orange"></i>	혹시참여가능한가요</span>
+					<span class="lightgrey">디즈니플러스 한달찍먹</span>
+				</a>
+			</td>
+		</tr>
+				<tr>
+			<td>vader22</td>
+			<td>
+				<span class="lightgrey">
+					2021-11-12					<br>
+					10:08:27				</span>
+			</td>	
+			<td>
+				<a href="./item.php?it_id=1636677901" class="item-name">
+					<span class="name"><i class="fa fa-lock orange"></i>	인원이 다 찼나요?</span>
+					<span class="lightgrey">디즈니플러스 한달찍먹</span>
+				</a>
+			</td>
+		</tr>
 			</tbody>
   </table>
 </div>
 
-<div class="empty">
-	<div class="icon"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-big-glay.png" /></div>
-	<h5>등록된 문의가 없습니다.</h5>
+
+<div class="page-number" style="border-top: 0">
+	<ul>
+		<li class="disabled"><a><i class="fa fa-angle-double-left"></i></a></li><li class="disabled"><a><i class="fa fa-angle-left"></i></a></li><li class="active"><a>1</a></li><li class="disabled"><a><i class="fa fa-angle-right"></i></a></li><li class="disabled"><a><i class="fa fa-angle-double-right"></i></a></li>	</ul>
 </div>
+
+
+<script>
+function more_iq(id) {
+	$("#" + id).toggle();
+}
+</script>	</div>
+
+<!-- 끝 -->
 
 
 
@@ -116,7 +229,7 @@ function more_iq(id) {
 </div><!-- /#wrapper -->
 
 <!-- JavaScript -->
-<script type="text/javascript" src="https://buts.co.kr/shop/partner/skin/Basic/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script>
 $(function () {
   var $window = $(window),

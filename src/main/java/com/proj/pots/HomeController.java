@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 	
 	@RequestMapping(value = "/")
-	public String index(Model model) {
+	public String index(Model model) { 
 		model.addAttribute("formpath", "home");
 		return "index";
 	}
@@ -16,20 +16,6 @@ public class HomeController {
 	@RequestMapping(value = "index")
 	public void index(String formpath, Model model) {
 		model.addAttribute("formpath", formpath);
-	}
-	
-	@RequestMapping(value = "/login")
-	public String login() {
-		return "member/login";
-	}
-	
-	@RequestMapping(value = "/findMy")
-	public String fingMy() {
-		return "member/findMy";
-	}
-	@RequestMapping(value = "/registerAgree")
-	public String registerAgree() {
-		return "member/registerAgree";
 	}
 	
 	@RequestMapping(value = "/eventMain")
@@ -56,55 +42,117 @@ public class HomeController {
 		return "common/footer";
 	}
 	
-	//partyAdmin 폴더 파일
-	@RequestMapping(value = "/partyIndex")
-	public String partyIndex() {
-		return "partyAdmin/partyIndex";
+	//categories 폴더 파일
+	@RequestMapping(value ="/millie")
+	public String millie() {
+		return "categories/art/millie";
+	}
+
+	@RequestMapping(value ="/ridi")
+	public String ridi() {
+		return "categories/art/ridi";
+	}
+
+	@RequestMapping(value ="/spotify")
+	public String spotify() {
+		return "categories/art/spotify";
+	}
+
+	@RequestMapping(value ="/yes24")
+	public String yes24() {
+		return "categories/art/yes24";
 	}
 	
-	@RequestMapping(value = "/partyMyInfo")
-	public String partyMyInfo() {
-		return "partyAdmin/partyMyInfo";
+	@RequestMapping(value ="/membership")
+	public String membership() {
+		return "categories/etc/membership";
 	}
 	
-	@RequestMapping(value = "/partyBill")
-	public String partyBill() {
-		return "partyAdmin/partyBill";
+	@RequestMapping(value ="/msoffice")
+	public String msoffice() {
+		return "categories/etc/msoffice";
 	}
 	
-	@RequestMapping(value = "/partyCommentList")
-	public String partyCommentList() {
-		return "partyAdmin/partyCommentList";
+	@RequestMapping(value ="/nintendo")
+	public String nintendo() {
+		return "categories/game/nintendo";
 	}
 	
-	@RequestMapping(value = "/partyCreate")
-	public String partyCreate() {
-		return "partyAdmin/partyCreate";
+	@RequestMapping(value ="/xbox")
+	public String xbox() {
+		return "categories/game/xbox";
 	}
 	
-	@RequestMapping(value = "/partyJoinList")
-	public String partyJoinList() {
-		return "partyAdmin/partyJoinList";
+	@RequestMapping(value ="/disney")
+	public String disney() {
+		return "categories/video/disney";
 	}
 	
-	@RequestMapping(value = "/partyList")
-	public String partyList() {
-		return "partyAdmin/partyList";
+	@RequestMapping(value ="/netflix")
+	public String netflix() {
+		return "categories/video/netflix";
 	}
 	
-	@RequestMapping(value = "/partyCancel")
-	public String partyCancel() {
-		return "partyAdmin/partyCancel";
+	@RequestMapping(value ="/tiving")
+	public String tiving() {
+		return "categories/video/tiving";
 	}
 	
-	@RequestMapping(value = "/partyCancelReq")
-	public String partyCancelReq() {
-		return "partyAdmin/partyCancelReq";
+	@RequestMapping(value ="/watcha")
+	public String watcha() {
+		return "categories/video/watcha";
 	}
 	
-	@RequestMapping(value = "/partyCancelList")
-	public String partyCancelList() {
-		return "partyAdmin/partyCancelList";
+	@RequestMapping(value ="/wavve")
+	public String wavve() {
+		return "categories/video/wavve";
+	}
+	
+	@RequestMapping(value ="/youtube")
+	public String youtube() {
+		return "categories/video/youtube";
+	}
+	
+	//member 폴더 파일
+	@RequestMapping(value = "/findMy")
+	public String findMy() {
+		return "member/findMy";
+	}
+	
+	@RequestMapping(value = "/login")
+	public String login() {
+		return "member/login";
+	}
+	
+	@RequestMapping(value = "/registerAgree")
+	public String registerAgree() {
+		return "member/registerAgree";
+	}
+	
+	//myMenu 폴더 파일
+	@RequestMapping(value = "/faq")
+	public String faq() {
+		return "myMenu/faq";
+	}
+	
+	@RequestMapping(value = "/myPartyCreated")
+	public String myPartyCreated() {
+		return "myMenu/myPartyCreated";
+	}
+	
+	@RequestMapping(value = "/myPartyJoined")
+	public String myPartyJoined() {
+		return "myMenu/myPartyJoined";
+	}
+	
+	@RequestMapping(value = "/myPoint")
+	public String myPoint() {
+		return "myMenu/myPoint";
+	}
+	
+	@RequestMapping(value = "/myPointCharge")
+	public String myPointCharge() {
+		return "myMenu/myPointCharge";
 	}
 	
 	// 찬우
