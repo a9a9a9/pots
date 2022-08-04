@@ -44,8 +44,8 @@
 </div> -->
 
 		<div class="pevent-tab">
-			<a href="${root }index?formpath=eventMain" class="active">진행중 이벤트</a> 
-			<a href="${root }index?formpath=eventWin">당첨자 발표</a> 
+			<a href="${root }index?formpath=eventMain">진행중 이벤트</a> 
+			<a href="${root }index?formpath=eventWin" class="active">당첨자 발표</a> 
 			<a href="${root }index?formpath=eventEnd">종료된 이벤트</a>
 		</div>
 
