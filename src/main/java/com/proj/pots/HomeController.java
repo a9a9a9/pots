@@ -191,4 +191,12 @@ public class HomeController {
 	public String faq4() {
 		return "myMenu/faq4";
 	}
+	@RequestMapping(value = "communityBoardView")
+	public String communityBoardView() {
+		return "board/communityBoardView";
+	}
+	@RequestMapping(value = "noticeBoardView")
+	public String noticeBoardView() {
+		return "board/noticeBoardView";
+	}
 }
