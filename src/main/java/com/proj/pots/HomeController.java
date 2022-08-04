@@ -191,6 +191,7 @@ public class HomeController {
 	public String faq4() {
 		return "myMenu/faq4";
 	}
+<<<<<<< HEAD
 	@RequestMapping(value = "communityBoardView")
 	public String communityBoardView() {
 		return "board/communityBoardView";
@@ -198,5 +199,18 @@ public class HomeController {
 	@RequestMapping(value = "noticeBoardView")
 	public String noticeBoardView() {
 		return "board/noticeBoardView";
+=======
+	@RequestMapping(value = "communityBoard")
+	public String communityBoard() {
+		return "board/communityBoard";
+	}
+	@RequestMapping(value = "noticeBoard")
+	public String noticeBoard() {
+		return "board/noticeBoard";
+	}
+	@RequestMapping(value = "boardWrite")
+	public String boardWrite() {
+		return "board/boardWrite";
+>>>>>>> sang
 	}
 }

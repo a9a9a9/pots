@@ -60,9 +60,9 @@ var menu_subAt = "0";
 		<div class="topper">
 			<div class="width-container">
 			<div class="topper-menu">
-				<a href="#" class="v-bar">커뮤니티</a>
+				<a href="${root}index?formpath=communityBoard" class="v-bar">커뮤니티</a>
 				<a href="${root}index?formpath=eventMain" class="v-bar">이벤트</a>
-				<a href="#">공지사항</a>
+				<a href="${root}index?formpath=noticeBoard">공지사항</a>
 			</div>
 			</div>
 		</div>
