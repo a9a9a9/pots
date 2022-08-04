@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 	
 	@RequestMapping(value = "/")
-	public String index(Model model) {
+	public String index(Model model) { 
 		model.addAttribute("formpath", "home");
 		return "index";
 	}
@@ -16,20 +16,6 @@ public class HomeController {
 	@RequestMapping(value = "index")
 	public void index(String formpath, Model model) {
 		model.addAttribute("formpath", formpath);
-	}
-	
-	@RequestMapping(value = "/login")
-	public String login() {
-		return "member/login";
-	}
-	
-	@RequestMapping(value = "/findMy")
-	public String fingMy() {
-		return "member/findMy";
-	}
-	@RequestMapping(value = "/registerAgree")
-	public String registerAgree() {
-		return "member/registerAgree";
 	}
 	
 	@RequestMapping(value = "/eventMain")
@@ -138,24 +124,9 @@ public class HomeController {
 		return "member/login";
 	}
 	
-	@RequestMapping(value = "/memberInfo")
-	public String memberInfo() {
-		return "member/memberInfo";
-	}
-	
-	@RequestMapping(value = "/register")
-	public String register() {
-		return "member/register";
-	}
-	
 	@RequestMapping(value = "/registerAgree")
 	public String registerAgree() {
 		return "member/registerAgree";
-	}
-	
-	@RequestMapping(value = "/update")
-	public String update() {
-		return "member/findMy";
 	}
 	
 	//myMenu 폴더 파일
@@ -182,57 +153,6 @@ public class HomeController {
 	@RequestMapping(value = "/myPointCharge")
 	public String myPointCharge() {
 		return "myMenu/myPointCharge";
-	}
-	
-	//partyAdmin 폴더 파일
-	@RequestMapping(value = "/partyIndex")
-	public String partyIndex() {
-		return "partyAdmin/partyIndex";
-	}
-	
-	@RequestMapping(value = "/partyMyInfo")
-	public String partyMyInfo() {
-		return "partyAdmin/partyMyInfo";
-	}
-	
-	@RequestMapping(value = "/partyBill")
-	public String partyBill() {
-		return "partyAdmin/partyBill";
-	}
-	
-	@RequestMapping(value = "/partyCommentList")
-	public String partyCommentList() {
-		return "partyAdmin/partyCommentList";
-	}
-	
-	@RequestMapping(value = "/partyCreate")
-	public String partyCreate() {
-		return "partyAdmin/partyCreate";
-	}
-	
-	@RequestMapping(value = "/partyJoinList")
-	public String partyJoinList() {
-		return "partyAdmin/partyJoinList";
-	}
-	
-	@RequestMapping(value = "/partyList")
-	public String partyList() {
-		return "partyAdmin/partyList";
-	}
-	
-	@RequestMapping(value = "/partyCancel")
-	public String partyCancel() {
-		return "partyAdmin/partyCancel";
-	}
-	
-	@RequestMapping(value = "/partyCancelReq")
-	public String partyCancelReq() {
-		return "partyAdmin/partyCancelReq";
-	}
-	
-	@RequestMapping(value = "/partyCancelList")
-	public String partyCancelList() {
-		return "partyAdmin/partyCancelList";
 	}
 	
 	// 찬우
