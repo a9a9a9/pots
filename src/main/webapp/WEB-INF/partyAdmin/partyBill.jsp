@@ -207,6 +207,60 @@ window.onload=function(){
 	</table>
 </div>
 
+<!-- 등록된 내용이 있는 경우 -->
+<div class="table-list scroll padding">
+	<table>
+	<thead>
+		<tr>
+							<th scope="col">no</th>
+						<th scope="col">상태</th>
+			<th scope="col">접수번호</th>
+			<th scope="col">신청일</th>
+			<th scope="col">출금방법</th>
+			<th scope="col">신청금액(수수료)</th>
+			<th scope="col">실지급액</th>
+			<th scope="col">메모</th>
+			<th scope="col">비고</th>
+		</tr>
+	</thead>
+	<tbody>
+				<tr>
+			<td><span class="lightgrey">2</span></td>
+			<td>완료</td>
+			<td><span class="lightgrey">5325</span></td>
+			<td><span class="lightgrey">2022/07/18 16:52</span></td>
+			<td>통장입금</td>
+			<td>15,300원(0원)</td>
+			<td><span class="text-purple">15,300</span>원</td>
+			<td>
+							</td>
+			<td>
+							
+			</td>
+		</tr>
+				<tr>
+			<td><span class="lightgrey">1</span></td>
+			<td>취소</td>
+			<td><span class="lightgrey">5106</span></td>
+			<td><span class="lightgrey">2022/06/23 22:03</span></td>
+			<td>통장입금</td>
+			<td>7,470원(0원)</td>
+			<td><span class="text-purple">7,470</span>원</td>
+			<td>
+							</td>
+			<td>
+							
+			</td>
+		</tr>
+					</tbody>
+	</table>
+</div>
+<div class="page-number" style="border-top: 0">
+	<ul>
+		<li class="disabled"><a><i class="fa fa-angle-double-left"></i></a></li><li class="disabled"><a><i class="fa fa-angle-left"></i></a></li><li class="active"><a>1</a></li><li class="disabled"><a><i class="fa fa-angle-right"></i></a></li><li class="disabled"><a><i class="fa fa-angle-double-right"></i></a></li>	</ul>
+</div>
+<!-- 끝 -->
+
 <script>
 $(function () {
   $('[data-toggle="popover"]').popover()
