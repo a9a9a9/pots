@@ -138,6 +138,283 @@ jQuery(function($){
 </div>
 </div><!-- /#wrapper -->
 
+<!-- 등록된 내용이 있는 경우 -->
+<div class="table-list scroll">
+	<table style="min-width: 1000px">
+	<thead>
+		<tr>
+							<th scope="col">no</th>
+						<th scope="col">판매일</th>
+			<th scope="col">서비스명</th>
+			<th scope="col">구매자</th>
+			<th scope="col">상태</th>
+			<th scope="col">남은기간</th>
+			<th scope="col">결제금액</th>
+			<th scope="col">환불금액</th>
+			<th scope="col">수수료</th>
+			<th scope="col">총 판매금액</th>
+		</tr>
+	</thead>
+	<tbody>
+				<tr>
+			<td><span class="lightgrey">19</span></td>
+			<td>
+				<span class="lightgrey">
+					2022-08-01					<br>
+					20:45				</span>
+			</td>
+			<td>
+				<a href="https://buts.co.kr/shop/item.php?it_id=1659354235" class="item-name">
+				<span class="brand"><img src="https://buts.co.kr/thema/Buts/colorset/category/6040.jpg" alt=""></span>
+					<span class="name">kg</span>
+					<span class="lightgrey">파티번호 : 1659354235</span>
+				</a>
+			</td>
+			<td>
+				<strong>ㅇㅆㅇ</strong>
+			</td>
+            			<td>완료</td>
+							<td><strong>0</strong>일</td>		
+		
+						<td>20원</td>
+			<td><span class="text-red">0</span>원</td>
+			<td>0원(0%)</td>
+			<td><span class="text-purple">20</span>원</td>
+		</tr>
+				<tr>
+			<td><span class="lightgrey">18</span></td>
+			<td>
+				<span class="lightgrey">
+					2022-07-18					<br>
+					18:21				</span>
+			</td>
+			<td>
+				<a href="https://buts.co.kr/shop/item.php?it_id=1658071092" class="item-name">
+				<span class="brand"><img src="https://buts.co.kr/thema/Buts/colorset/category/1080.jpg" alt=""></span>
+					<span class="name">디즈니플러스 두달</span>
+					<span class="lightgrey">파티번호 : 1658071092</span>
+				</a>
+			</td>
+			<td>
+				<strong>뇌세포</strong>
+			</td>
+            			<td>사용중</td>
+							<td><strong>44</strong>일</td>		
+		
+						<td>5,490원</td>
+			<td><span class="text-red">0</span>원</td>
+			<td>0원(0%)</td>
+			<td><span class="text-purple">5,490</span>원</td>
+		</tr>
+				<tr>
+			<td><span class="lightgrey">17</span></td>
+			<td>
+				<span class="lightgrey">
+					2022-07-18					<br>
+					10:05				</span>
+			</td>
+			<td>
+				<a href="https://buts.co.kr/shop/item.php?it_id=1658071092" class="item-name">
+				<span class="brand"><img src="https://buts.co.kr/thema/Buts/colorset/category/1080.jpg" alt=""></span>
+					<span class="name">디즈니플러스 두달</span>
+					<span class="lightgrey">파티번호 : 1658071092</span>
+				</a>
+			</td>
+			<td>
+				<strong>허벌나</strong>
+			</td>
+            			<td>사용중</td>
+							<td><strong>44</strong>일</td>		
+		
+						<td>5,490원</td>
+			<td><span class="text-red">0</span>원</td>
+			<td>0원(0%)</td>
+			<td><span class="text-purple">5,490</span>원</td>
+		</tr>
+				<tr>
+			<td><span class="lightgrey">16</span></td>
+			<td>
+				<span class="lightgrey">
+					2022-06-18					<br>
+					17:55				</span>
+			</td>
+			<td>
+				<a href="https://buts.co.kr/shop/item.php?it_id=1655529789" class="item-name">
+				<span class="brand"><img src="https://buts.co.kr/thema/Buts/colorset/category/1080.jpg" alt=""></span>
+					<span class="name">디즈니플러스 한달찍먹 싸다쏴</span>
+					<span class="lightgrey">파티번호 : 1655529789</span>
+				</a>
+			</td>
+			<td>
+				<strong>Whatup</strong>
+			</td>
+            			<td>완료</td>
+							<td><strong>0</strong>일</td>		
+		
+						<td>2,610원</td>
+			<td><span class="text-red">0</span>원</td>
+			<td>0원(0%)</td>
+			<td><span class="text-purple">2,610</span>원</td>
+		</tr>
+				<tr>
+			<td><span class="lightgrey">15</span></td>
+			<td>
+				<span class="lightgrey">
+					2022-06-18					<br>
+					17:49				</span>
+			</td>
+			<td>
+				<a href="https://buts.co.kr/shop/item.php?it_id=1655529789" class="item-name">
+				<span class="brand"><img src="https://buts.co.kr/thema/Buts/colorset/category/1080.jpg" alt=""></span>
+					<span class="name">디즈니플러스 한달찍먹 싸다쏴</span>
+					<span class="lightgrey">파티번호 : 1655529789</span>
+				</a>
+			</td>
+			<td>
+				<strong>두다다</strong>
+			</td>
+            			<td>완료</td>
+							<td><strong>0</strong>일</td>		
+		
+						<td>2,610원</td>
+			<td><span class="text-red">0</span>원</td>
+			<td>0원(0%)</td>
+			<td><span class="text-purple">2,610</span>원</td>
+		</tr>
+				<tr>
+			<td><span class="lightgrey">14</span></td>
+			<td>
+				<span class="lightgrey">
+					2022-06-18					<br>
+					14:51				</span>
+			</td>
+			<td>
+				<a href="https://buts.co.kr/shop/item.php?it_id=1655529789" class="item-name">
+				<span class="brand"><img src="https://buts.co.kr/thema/Buts/colorset/category/1080.jpg" alt=""></span>
+					<span class="name">디즈니플러스 한달찍먹 싸다쏴</span>
+					<span class="lightgrey">파티번호 : 1655529789</span>
+				</a>
+			</td>
+			<td>
+				<strong>꾸움뻑</strong>
+			</td>
+            			<td>완료</td>
+							<td><strong>0</strong>일</td>		
+		
+						<td>2,610원</td>
+			<td><span class="text-red">0</span>원</td>
+			<td>0원(0%)</td>
+			<td><span class="text-purple">2,610</span>원</td>
+		</tr>
+				<tr>
+			<td><span class="lightgrey">13</span></td>
+			<td>
+				<span class="lightgrey">
+					2022-04-12					<br>
+					16:03				</span>
+			</td>
+			<td>
+				<a href="https://buts.co.kr/shop/item.php?it_id=1649722564" class="item-name">
+				<span class="brand"><img src="https://buts.co.kr/thema/Buts/colorset/category/1080.jpg" alt=""></span>
+					<span class="name">디즈니플러스 한달만</span>
+					<span class="lightgrey">파티번호 : 1649722564</span>
+				</a>
+			</td>
+			<td>
+				<strong>창문너머</strong>
+			</td>
+            			<td>완료</td>
+							<td><strong>0</strong>일</td>		
+		
+						<td>2,490원</td>
+			<td><span class="text-red">0</span>원</td>
+			<td>0원(0%)</td>
+			<td><span class="text-purple">2,490</span>원</td>
+		</tr>
+				<tr>
+			<td><span class="lightgrey">12</span></td>
+			<td>
+				<span class="lightgrey">
+					2022-04-12					<br>
+					14:07				</span>
+			</td>
+			<td>
+				<a href="https://buts.co.kr/shop/item.php?it_id=1649722564" class="item-name">
+				<span class="brand"><img src="https://buts.co.kr/thema/Buts/colorset/category/1080.jpg" alt=""></span>
+					<span class="name">디즈니플러스 한달만</span>
+					<span class="lightgrey">파티번호 : 1649722564</span>
+				</a>
+			</td>
+			<td>
+				<strong>lovegun07</strong>
+			</td>
+            			<td>완료</td>
+							<td><strong>0</strong>일</td>		
+		
+						<td>2,490원</td>
+			<td><span class="text-red">0</span>원</td>
+			<td>0원(0%)</td>
+			<td><span class="text-purple">2,490</span>원</td>
+		</tr>
+				<tr>
+			<td><span class="lightgrey">11</span></td>
+			<td>
+				<span class="lightgrey">
+					2022-04-12					<br>
+					13:52				</span>
+			</td>
+			<td>
+				<a href="https://buts.co.kr/shop/item.php?it_id=1649722564" class="item-name">
+				<span class="brand"><img src="https://buts.co.kr/thema/Buts/colorset/category/1080.jpg" alt=""></span>
+					<span class="name">디즈니플러스 한달만</span>
+					<span class="lightgrey">파티번호 : 1649722564</span>
+				</a>
+			</td>
+			<td>
+				<strong>첼로겉핥기</strong>
+			</td>
+            			<td>완료</td>
+							<td><strong>0</strong>일</td>		
+		
+						<td>2,490원</td>
+			<td><span class="text-red">0</span>원</td>
+			<td>0원(0%)</td>
+			<td><span class="text-purple">2,490</span>원</td>
+		</tr>
+				<tr>
+			<td><span class="lightgrey">10</span></td>
+			<td>
+				<span class="lightgrey">
+					2021-11-12					<br>
+					10:48				</span>
+			</td>
+			<td>
+				<a href="https://buts.co.kr/shop/item.php?it_id=1636677901" class="item-name">
+				<span class="brand"><img src="https://buts.co.kr/thema/Buts/colorset/category/1080.jpg" alt=""></span>
+					<span class="name">디즈니플러스 한달찍먹</span>
+					<span class="lightgrey">파티번호 : 1636677901</span>
+				</a>
+			</td>
+			<td>
+				<strong>마라55</strong>
+			</td>
+            			<td>완료</td>
+							<td><strong>0</strong>일</td>		
+		
+						<td>2,490원</td>
+			<td><span class="text-red">0</span>원</td>
+			<td>0원(0%)</td>
+			<td><span class="text-purple">2,490</span>원</td>
+		</tr>
+					</tbody>
+	</table>
+</div>
+<div class="page-number" style="border-top: 0">
+	<ul>
+		<li class="disabled"><a><i class="fa fa-angle-double-left"></i></a></li><li class="disabled"><a><i class="fa fa-angle-left"></i></a></li><li class="active"><a>1</a></li><li><a href="./?ap=saleitem&amp;&amp;page=2">2</a></li><li class="disabled"><a><i class="fa fa-angle-right"></i></a></li><li><a href="./?ap=saleitem&amp;&amp;page=2"><i class="fa fa-angle-double-right"></i></a></li>	</ul>
+</div>
+<!-- 끝 -->
+
 <!-- JavaScript -->
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script>
