@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-
+<body>
+	<div class="body">
 <div class="width-container">
 
 	<div class="mw-800 form-clause mg-top-minus">
@@ -1275,3 +1276,5 @@
 		gtag('config', 'AW-914988072');
 	</script>
 </div>
+</div>
+</body>
