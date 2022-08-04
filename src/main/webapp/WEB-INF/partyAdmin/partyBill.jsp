@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:import url="partyIndex.jsp"/> 
+<script>
+window.onload=function(){
+	document.getElementById('partyBill').classList.add('active');
+}
+</script>
 <!-- body -->
 	<div class="partner-body">
 
@@ -67,7 +72,7 @@
 </div>
 
 <div class="form-half right form-half-withdraw">
-	<div class="table-list" style="border-top: 1px solid #7e69fe">
+	<div class="table-list" style="border-top: 1px solid #84cdcf">
 	<table>
 		<thead>
 		<tr>
