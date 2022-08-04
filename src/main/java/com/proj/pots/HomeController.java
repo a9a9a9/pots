@@ -10,8 +10,12 @@ public class HomeController {
 	@RequestMapping(value = "/")
 	public String index(Model model) {
 		model.addAttribute("formpath", "home");
-		System.out.println("실행");
 		return "index";
+	}
+	
+	@RequestMapping(value = "index")
+	public void index(String formpath, Model model) {
+		model.addAttribute("formpath", formpath);
 	}
 	
 	@RequestMapping(value = "/login")
@@ -30,15 +34,15 @@ public class HomeController {
 	
 	@RequestMapping(value = "/eventMain")
 	public String eventMain() {
-		return "event/eventMain";
+		return "board/eventMain";
 	}
 	@RequestMapping(value = "/eventWin")
 	public String eventWin() {
-		return "event/eventWin";
+		return "board/eventWin";
 	}
 	@RequestMapping(value = "/eventEnd")
 	public String eventEnd() {
-		return "event/eventEnd";
+		return "board/eventEnd";
 	}
 	
 	//common 폴더 파일
@@ -101,5 +105,42 @@ public class HomeController {
 	@RequestMapping(value = "/partyCancelList")
 	public String partyCancelList() {
 		return "partyAdmin/partyCancelList";
+	}
+	
+	// 찬우
+	@RequestMapping(value = "memberInfo")
+	public String memberInfo() {
+		return "member/memberInfo";
+	}
+	
+	@RequestMapping(value = "update")
+	public String update() {
+		return "member/update";
+	}
+	
+	@RequestMapping(value = "pwConfirm")
+	public String pwConfirm() {
+		return "member/pwConfirm";
+	}
+	@RequestMapping(value = "register")
+	public String register() {
+		return "member/register";
+	}
+	
+	@RequestMapping(value = "faq1")
+	public String faq1() {
+		return "myMenu/faq1";
+	}
+	@RequestMapping(value = "faq2")
+	public String faq2() {
+		return "myMenu/faq2";
+	}
+	@RequestMapping(value = "faq3")
+	public String faq3() {
+		return "myMenu/faq3";
+	}
+	@RequestMapping(value = "faq4")
+	public String faq4() {
+		return "myMenu/faq4";
 	}
 }
