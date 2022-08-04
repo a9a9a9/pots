@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <!-- footer -->
-
 		<div class="footer">
 			<div class="width-container" style="height: 130px;">
 			<div class="padding-left">
