@@ -76,25 +76,25 @@ var g5_admin_url = "https://buts.co.kr/adm";
 	<div class="partner-shade"></div>
 	<div class="partner-nav">
 		<ul>
-						<li>
+			<li id="partyList" class="">
 				<a href="partyList"> 파티관리</a>
 			</li>
-			<li>
+			<li id="partyCommentList" class="">
 				<a href="partyCommentList"> 댓글보기</a>
 			</li>
-			<li>
+			<li id="partyJoinList" class="">
 				<a href="partyJoinList"> 참여정보</a>
 			</li>
-			<li>
+			<li id="partyCancelReq" class="">
 				<a href="partyCancelReq"> 취소요청</a>
 			</li>
-			<li>
+			<li id="partyCancelList" class="">
 				<a href="partyCancelList"> 취소내역</a>
 			</li>
-			<li>
+			<li id="partyBill" class="">
 				<a href="partyBill"> 출금관리</a>
 			</li>
-			<li>
+			<li id="partyMyInfo" class="">
 				<a href="partyMyInfo"> 정보수정</a>
 			</li>
 								</ul>

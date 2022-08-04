@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:import url="partyIndex.jsp"/> 
+<script>
+window.onload=function(){
+	document.getElementById('partyCreate').classList.add('active');
+}
+</script>
 <link rel="stylesheet" href="/css/partyAdmin/jquery-ui.css">
 <link rel="stylesheet" href="/css/partyAdmin/style.css">
 <!-- body -->

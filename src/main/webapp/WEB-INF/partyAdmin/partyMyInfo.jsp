@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:import url="partyIndex.jsp"/> 
+<script>
+window.onload=function(){
+	document.getElementById('partyMyInfo').classList.add('active');
+}
+</script>
 <style>
 body {
 	background-color: #efefef;
