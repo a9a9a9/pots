@@ -1,32 +1,11 @@
 package com.proj.pots.party.dto;
 
-public class PartyCommentDTO {
-
-	private int party_num;			//파티번호
-	private String id;				//아이디(이메일)
-	private String nick;			//닉네임
+public class PartyCommentDTO extends PartyDTO{
+	
 	private String comment;			//내용
 	private String comment_private;	//비밀글 여부			
 	private String comment_date;	//등록시간
 	
-	public int getParty_num() {
-		return party_num;
-	}
-	public void setParty_num(int party_num) {
-		this.party_num = party_num;
-	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public String getNick() {
-		return nick;
-	}
-	public void setNick(String nick) {
-		this.nick = nick;
-	}
 	public String getComment() {
 		return comment;
 	}
