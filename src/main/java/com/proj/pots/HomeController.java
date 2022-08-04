@@ -164,7 +164,7 @@ public class HomeController {
 	@RequestMapping(value = "update")
 	public String update() {
 		return "member/update";
-	}
+	} 
 	
 	@RequestMapping(value = "pwConfirm")
 	public String pwConfirm() {
@@ -191,6 +191,7 @@ public class HomeController {
 	public String faq4() {
 		return "myMenu/faq4";
 	}
+<<<<<<< Updated upstream
 	
 	@RequestMapping(value = "communityBoardView")
 	public String communityBoardView() {
@@ -200,6 +201,9 @@ public class HomeController {
 	public String noticeBoardView() {
 		return "board/noticeBoardView";
 	}
+=======
+
+>>>>>>> Stashed changes
 	@RequestMapping(value = "communityBoard")
 	public String communityBoard() {
 		return "board/communityBoard";
@@ -211,5 +215,14 @@ public class HomeController {
 	@RequestMapping(value = "boardWrite")
 	public String boardWrite() {
 		return "board/boardWrite";
+	}
+	@RequestMapping(value = "communityBoardView")
+	public String communityBoardView() {
+		return "board/communityBoardView";
+	}
+	@RequestMapping(value = "noticeBoardView")
+	public String noticeBoardView() {
+		return "board/noticeBoardView";
+
 	}
 }
