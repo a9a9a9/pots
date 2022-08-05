@@ -212,4 +212,5 @@ public class HomeController {
 	public String boardWrite() {
 		return "board/boardWrite";
 	}
+	
 }
