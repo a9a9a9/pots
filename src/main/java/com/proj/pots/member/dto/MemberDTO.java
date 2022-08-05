@@ -8,7 +8,7 @@ public class MemberDTO {
 	private String tel;
 	private int profile;
 	private int point;
-	private String persnal_num;
+	private String personal_num;
 	private String account_name;
 	private String account_num;
 	private String joined_date;
@@ -55,11 +55,11 @@ public class MemberDTO {
 	public void setPoint(int point) {
 		this.point = point;
 	}
-	public String getPersnal_num() {
-		return persnal_num;
+	public String getPersonal_num() {
+		return personal_num;
 	}
-	public void setPersnal_num(String persnal_num) {
-		this.persnal_num = persnal_num;
+	public void setPersonal_num(String persnal_num) {
+		this.personal_num = persnal_num;
 	}
 	public String getAccount_name() {
 		return account_name;
