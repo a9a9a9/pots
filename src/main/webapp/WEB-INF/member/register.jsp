@@ -6,15 +6,7 @@
 	<div class="wrap wrapper  ko">
 		<div class="body">
 			<div class="width-container" style="height: auto;">
-				<form class="form-horizontal register-form" role="form" id="fregisterform" name="fregisterform" action="${root}index?formpath=home" onsubmit="return fregisterform_submit(this);" method="post" enctype="multipart/form-data" autocomplete="off">
-					<input type="hidden" name="w" value="">
-					<input type="hidden" name="url" value="https://buts.co.kr/bbs/register_form.php">
-					<input type="hidden" name="pim" value=""> 
-					<input type="hidden" name="agree" value="1">
-					<input type="hidden" name="agree2" value="1">
-					<input type="hidden" name="cert_type" value="">
-					<input type="hidden" name="cert_no" value="">
-					<input type="hidden" name="mb_sex" value="">	
+				<form class="form-horizontal register-form" role="form" id="fregisterform" name="fregisterform" action="memberProc" onsubmit="return fregisterform_submit(this);" method="post" enctype="multipart/form-data" autocomplete="off">
 				
 					<div class="mw-800 form-signup mg-top-minus">
 						<div class="h3">아이디/비밀번호</div>
@@ -22,7 +14,7 @@
 							<ul class="form-list">
 							<li>
 								<span class="subject">ㆍ 아이디</span>
-								<input type="text" name="mb_id" value="" id="reg_mb_id" required  placeholder="아이디" minlength="3" maxlength="20">
+								<input type="text" name="id" value="" id="id" required  placeholder="아이디" minlength="3" maxlength="20">
 								<span class="lightgrey inline-break">영문자, 숫자, _ 입력 가능, 최소 3글자 입력해주세요</span>
 							</li>
 							<li>
