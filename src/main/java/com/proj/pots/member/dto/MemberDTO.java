@@ -5,7 +5,6 @@ public class MemberDTO {
 	private String pw;
 	private String name;
 	private String nick;
-	private String email;
 	private String tel;
 	private int profile;
 	private int point;
@@ -37,12 +36,6 @@ public class MemberDTO {
 	}
 	public void setNick(String nick) {
 		this.nick = nick;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
 	}
 	public String getTel() {
 		return tel;
