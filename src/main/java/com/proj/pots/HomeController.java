@@ -150,7 +150,7 @@ public class HomeController {
 		return "myMenu/myPoint";
 	}
 	
-	@RequestMapping(value = "/myPointCharge")
+	@RequestMapping(value = "myPointCharge")
 	public String myPointCharge() {
 		return "myMenu/myPointCharge";
 	}
@@ -164,7 +164,7 @@ public class HomeController {
 	@RequestMapping(value = "update")
 	public String update() {
 		return "member/update";
-	}
+	} 
 	
 	@RequestMapping(value = "pwConfirm")
 	public String pwConfirm() {
@@ -190,5 +190,27 @@ public class HomeController {
 	@RequestMapping(value = "faq4")
 	public String faq4() {
 		return "myMenu/faq4";
+	}
+	@RequestMapping(value = "communityBoard")
+	public String communityBoard() {
+		return "board/communityBoard";
+	}
+	@RequestMapping(value = "noticeBoard")
+	public String noticeBoard() {
+		return "board/noticeBoard";
+	}
+	@RequestMapping(value = "boardWrite")
+	public String boardWrite() {
+		return "board/boardWrite";
+	}
+
+	@RequestMapping(value = "communityBoardView")
+	public String communityBoardView() {
+		return "board/communityBoardView";
+	}
+	@RequestMapping(value = "noticeBoardView")
+	public String noticeBoardView() {
+		return "board/noticeBoardView";
+
 	}
 }

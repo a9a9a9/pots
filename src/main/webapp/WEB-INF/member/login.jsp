@@ -11,17 +11,15 @@
 		<div class="width-container">
 			<div class="mw-400 form-pd form-login">
 				<form class="form" role="form" name="flogin"
-					action="https://buts.co.kr/bbs/login_check.php"
-					onsubmit="return flogin_submit(this);" method="post">
+					action="loginProc" method="post">
 					<div class="login-logo">
-						<img
-							src="https://buts.co.kr/thema/Buts/colorset/Basic/img/big-butslogo.png" alt="">
+						<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/big-butslogo.png" alt="">
 					</div>
 					<div class="login-input">
-						<input type="text" name="mb_id" id="login_id" required="" maxlength="20" placeholder="아이디를 입력하세요">
+						<input type="text" name="id" id="id" required="" maxlength="20" placeholder="아이디를 입력하세요">
 					</div>
 					<div class="login-input">
-						<input type="password" name="mb_password" id="login_pw" required="" maxlength="20" placeholder="패스워드를 입력하세요">
+						<input type="password" name="pw" id="pw" required="" maxlength="20" placeholder="패스워드를 입력하세요">
 					</div>
 					<div class="login-option">
 						<div class="input-check">
@@ -53,35 +51,10 @@
 						src="https://buts.co.kr/thema/Buts/colorset/Basic/img/btn-sns-login-kakao.png"
 						alt=""> 카카오 계정으로 로그인 하기
 					</a>
-<!-- 					<script> -->
-// 						jQuery(function($) {
-// 							$(".sns-wrap")
-// 									.on(
-// 											"click",
-// 											"a.social_link",
-// 											function(e) {
-// 												e.preventDefault();
-// 												var pop_url = $(this).attr(
-// 														"href");
-// 												var newWin = window
-// 														.open(
-// 																pop_url,
-// 																"social_sing_on",
-// 																"location=0,status=0,scrollbars=1,width=600,height=500");
-// 												if (!newWin
-// 														|| newWin.closed
-// 														|| typeof newWin.closed == 'undefined')
-// 													alert('브라우저에서 팝업이 차단되어 있습니다. 팝업 활성화 후 다시 시도해 주세요.');
-// 												return false;
-// 											});
-// 						});
-<!-- 					</script> -->
+
 				</div>
 
 			</div>
-			
-			
-		<!-- .width-container -->
 	</div>
 </div>
 
