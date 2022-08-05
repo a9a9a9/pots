@@ -6,7 +6,7 @@
 	<div class="wrap wrapper  ko">
 		<div class="body">
 			<div class="width-container" style="height: auto;">
-				<form class="form-horizontal register-form" role="form" id="fregisterform" name="fregisterform" action="memberProc" onsubmit="return fregisterform_submit(this);" method="post" enctype="multipart/form-data" autocomplete="off">
+				<form class="form-horizontal register-form" id="fregisterform" name="fregisterform" action="memberProc" method="post" enctype="multipart/form-data" autocomplete="off">
 				
 					<div class="mw-800 form-signup mg-top-minus">
 						<div class="h3">아이디/비밀번호</div>
@@ -14,7 +14,7 @@
 							<ul class="form-list">
 							<li>
 								<span class="subject">ㆍ 아이디(이메일)</span>
-								<input type="text" name="id" value="" id="id" required  placeholder="이메일주소" minlength="3" maxlength="20">
+								<input type="text" name="id" value="" id="id" required  placeholder="이메일주소" size="70" maxlength="100">
 							</li>
 							<li>
 								<span class="subject">ㆍ 비밀번호</span>
@@ -39,32 +39,26 @@
 							<li>
 								<span class="subject">ㆍ 닉네임</span>
 								<input type="text" name="nick" value="" id="nick" required placeholder="닉네임" size="10" maxlength="20">
-								<span class="lightgrey inline-break">공백없이 한글, 영문, 숫자만 입력 가능 (닉네임은 월 30일에 1회 변경 가능합니다)</span>
-							</li>
-							<li>
-								<span class="subject">ㆍ 이메일</span>
-								<input type="hidden" name="old_email" value="">
-								<input type="text" name="mb_email" value="" id="reg_mb_email" required placeholder="이메일" size="70" maxlength="100">
+								<span class="lightgrey inline-break">공백없이 한글, 영문, 숫자만 입력 가능</span>
 							</li>
 							<li>
 								<span class="subject">ㆍ 휴대폰 번호</span>
-								<input type="text" name="mb_hp" value="" id="reg_mb_hp"  required placeholder="휴대폰 번호" maxlength="20">
-								<input type="hidden" name="old_mb_hp" value="">
+								<input type="text" name="tel" value="" id="tel"  required placeholder="휴대폰 번호" maxlength="20">
 							</li>
 							</ul>
 						</div>
 						<div class="h3"><span class="text-purple">기타</span> 입력</div>
 						<div class="form-round signup">
 							<ul class="form-list">
-							<li>
+							<!-- <li>
 								<span class="subject">ㆍ 프로필 사진</span>
 								<div class="input-file">
 									<label class="button round border button-purple" for="reg_mb_img">파일 선택</label>
-									<input type="file" name="mb_img" id="reg_mb_img" onchange="$('.file-name').val(window.FileReader ? $(this)[0].files[0].name : $(this).val().split('/').pop().split('\\').pop());" />
+									<input type="file" name="profile" id="profile" />
 									<input class="file-name" value="선택된 파일 없음" disabled="disabled" />
 								</div>
 								<div class="lightgrey break">이미지는 60px X 60px 사이즈에 최적화 / gif, jpg, png파일만 가능하며 용량 5MB 이하만 등록됩니다.</div>
-							</li>
+							</li> -->
 							<li>
 								<span class="subject">ㆍ 이메일 수신</span>
 								<div class="input-check input-checkbox">
@@ -78,11 +72,6 @@
 									<input type="checkbox" name="mb_sms" value="1" id="reg_mb_sms" checked />
 									<label for="reg_mb_sms">휴대폰으로 정보를 받겠습니다.</label>
 								</div>
-							</li>
-							<li>
-								<span class="subject">ㆍ 추천인 아이디</span>
-								<input type="text" name="mb_recommend" id="reg_mb_recommend" placeholder="추천인 아이디" />
-								<span class="lightgrey inline-break">추천인 ID를 적어주시면 500P가 지급되며, 추천 받은사람도 500P가 지급됩니다.</span>
 							</li>
 							</ul>
 						</div>
