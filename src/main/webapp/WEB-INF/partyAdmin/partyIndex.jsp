@@ -13,7 +13,10 @@
 <link rel="stylesheet" href="/css/partyAdmin/basic.css">
 <link rel="stylesheet" href="/css/partyAdmin/bootstrap.min.css">
 <link rel="stylesheet" href="/css/partyAdmin/partner.css">
-<meta charset="UTF-8">
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
 
 <title>Buts</title>
 </head>
@@ -37,12 +40,14 @@ var g5_admin_url = "https://buts.co.kr/adm";
 </script>
 <script src="/js/jquery-1.11.3.min.js"></script>
 <script src="/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="/js/jquery-ui.min.js"></script>
 <script src="https://buts.co.kr/lang/korean/lang.js?ver=180820"></script>
 <script src="/js/common.js"></script>
 <script src="/js/wrest.js"></script>
 <script src="/js/placeholders.min.js"></script>
 <script src="/js/apms.js"></script>
-<link rel="stylesheet" href="/css/font-awesome.min.css">
+<script src="/js/bootstrap.min.js"></script>
+<!-- <link rel="stylesheet" href="/css/font-awesome.min.css"> -->
 </head>
 <body class="responsive is-pc">
 
@@ -56,17 +61,17 @@ var g5_admin_url = "https://buts.co.kr/adm";
 		</a>
 		<ul class="partner-menu">
 			<li class="v-bar right">
-				<a>ㅇㅆㅇ</a>
+				<a>${session.nick}</a>
 			</li>
 			 
 			<li class="v-bar right" style="color:#fff;">
 				개인 파티장
 			</li>
 						<li class="v-bar right">
-				<a href="https://buts.co.kr">벗츠</a>
+				<a href="main">팟츠</a>
 			</li>
 			<li>
-				<a href="https://buts.co.kr/bbs/logout.php">로그아웃</a>
+				<a href="logout">로그아웃</a>
 			</li>
 		</ul>
 		<a href="" class="partner-toggle"><span class="line"></span></a>

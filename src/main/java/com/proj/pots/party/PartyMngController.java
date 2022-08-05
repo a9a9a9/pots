@@ -1,7 +1,11 @@
 package com.proj.pots.party;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.proj.pots.party.dto.PartyRegDTO;
+
 
 @Controller
 public class PartyMngController {
@@ -25,5 +29,18 @@ public class PartyMngController {
 	public String partyCancelList() {
 		return "partyAdmin/partyCancelList";
 	}
+	
+	@RequestMapping(value = "/partytest")
+	public String partytest() {
+		return "partyAdmin/partytest";
+	}
+	
+	@PostMapping(value = "/partyReg")
+	public String partyReg(PartyRegDTO partyDto) {
+		System.out.println(partyDto.getParty_charge());
+		System.out.println(partyDto.getParty_start());
+		return "partyAdmin/partyCreate";
+	}
+	
 
 }
