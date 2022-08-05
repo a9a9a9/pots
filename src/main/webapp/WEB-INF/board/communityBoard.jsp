@@ -271,8 +271,8 @@
 									class="fa fa-angle-double-right"></i></a></li>
 						</ul>
 					</div>
-					<div class="header-right" style="position: relative; float: right;" >
-						<a href="${root}index?formpath=boardWrite" class="header-login">글쓰기</a></li>
+					<div class="header-right" style=" position: relative; float: right;">
+						<a href="${root}index?formpath=boardWrite" class="button small border button-purple">글쓰기</a></li>
 					</div>
 
 					<div class="button-align right mg-top-0"></div>
