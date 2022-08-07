@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.proj.pots.login.service.ILoginService;
-import com.proj.pots.member.dto.MemberDTO;
+import com.proj.pots.member.dto.LoginDTO;
 
 @Controller
 public class LoginController {
 	@Autowired private ILoginService loginService;
 	
-	@PostMapping(value = "loginProc")
-	public String loginProc(MemberDTO login, Model model) {
+	@PostMapping(value = "loginProc") 
+	public String loginProc(LoginDTO login, Model model) {
 		String msg = loginService.loginProc(login);
 		if(msg.equals("로그인 성공")) {
 			return "redirect:/index?formpath=home";

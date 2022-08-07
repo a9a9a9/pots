@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:url var="root" value="/" />
 
-
 <body class="responsive is-pc">
 	<div class="wrap wrapper  ko">
 		<div class="body">
@@ -271,7 +270,9 @@
 									class="fa fa-angle-double-right"></i></a></li>
 						</ul>
 					</div>
-					<div class="header-right" style=" position: relative; float: right;">
+
+					<div class="header-right" style="position: relative; float: right;" >
+
 						<a href="${root}index?formpath=boardWrite" class="button small border button-purple">글쓰기</a></li>
 					</div>
 
