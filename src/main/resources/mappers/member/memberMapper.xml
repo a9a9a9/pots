@@ -4,7 +4,7 @@
 <mapper namespace="com.proj.pots.membership.dao.IMemberDAO">
 
 	<select id="isExistId" parameterType="String" resultType="int">
-		SELECT count(*) FROM member WHERE id=#{id}
+		SELECT count(id) FROM login WHERE id=#{id}
 	</select>
 	
 	<insert id="insertLogin" parameterType="LoginDTO">
@@ -12,6 +12,6 @@
 	</insert>
 	
 	<insert id="insertMember" parameterType="MemberDTO">
-		INSERT INTO member VALUES(#{id}, #{nick}, #{name}, #{tel}, #{profile}, #{point}, #{joined_date})
+		INSERT INTO member VALUES(#{id}, #{nick}, #{name}, #{tel}, #{profile}, #{point}, now())
 	</insert>
 </mapper>

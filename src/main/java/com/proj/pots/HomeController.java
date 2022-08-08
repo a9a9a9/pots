@@ -213,4 +213,12 @@ public class HomeController {
 		return "board/noticeBoardView";
 
 	}
+	@RequestMapping(value = "profile")
+	public String profile() {
+		return "member/profile";
+	}
+	@RequestMapping(value = "main")
+	public String main() {
+		return "main";
+	}
 }
