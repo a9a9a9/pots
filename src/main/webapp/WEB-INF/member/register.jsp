@@ -1,13 +1,26 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:url var="root" value="/" />
+<script>
+	var req;
+	function isExistId(){
+		req = new XMLHttpRequest();
+		req.onreadystatechange = printMsg;
+		req.open('post', 'isExistId');
+		req.send(document.getElementById('id').value);
+	}
+</script>
 
 <body class="responsive is-pc">
 	<div class="wrap wrapper  ko">
 		<div class="body">
 			<div class="width-container" style="height: auto;">
+				<c:if test="${not empty msg }">
+						<script>
+							alert("${msg}");
+						</script>
+				</c:if>
 				<form class="form-horizontal register-form" id="fregisterform" name="fregisterform" action="memberProc" method="post" enctype="multipart/form-data" autocomplete="off">
-				
 					<div class="mw-800 form-signup mg-top-minus">
 						<div class="h3">아이디/비밀번호</div>
 						<div class="form-round signup">
@@ -15,6 +28,7 @@
 							<li>
 								<span class="subject">ㆍ 아이디(이메일)</span>
 								<input type="text" name="id" value="" id="id" required  placeholder="이메일주소" size="70" maxlength="100">
+								<input type="button" id="win_hp_cert" class="button round button-purple phone" value="중복 확인" onclick="isExistId()">
 							</li>
 							<li>
 								<span class="subject">ㆍ 비밀번호</span>
@@ -32,9 +46,6 @@
 							<li>
 								<span class="subject">ㆍ 이름</span>
 								<input type="text" id="name" name="name" value="" required  placeholder="이름" size="10">
-								<button type="button" id="win_hp_cert" class="button round button-purple phone">휴대폰 본인확인</button>
-								<div class="lightgrey break"><span class="text-purple">[휴대폰 본인확인 완료]</span> 휴대폰 번호는 인증한 휴대폰 번호와 동일하게 자동 입력 됩니다.</div>
-									<noscript>본인확인을 위해서는 자바스크립트 사용이 가능해야합니다.</noscript>
 							</li>
 							<li>
 								<span class="subject">ㆍ 닉네임</span>

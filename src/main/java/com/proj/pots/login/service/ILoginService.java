@@ -1,7 +1,8 @@
 package com.proj.pots.login.service;
 
-import com.proj.pots.member.dto.MemberDTO;
+import com.proj.pots.member.dto.LoginDTO;
 
 public interface ILoginService {
-	String loginProc(MemberDTO login);
+	
+	String loginProc(LoginDTO login);
 }

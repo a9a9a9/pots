@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.proj.pots.member.dto.LoginDTO;
 import com.proj.pots.member.dto.MemberDTO;
 import com.proj.pots.membership.dao.IMemberDAO;
 
@@ -21,21 +22,23 @@ public class MemberService {
 		if(count == 1)
 			return "중복 아이디 입니다.";
 		return "사용 가능한 아이디입니다.";
-	}
+	} 
 	
 	public String memberProc(MemberDTO member) {
+		LoginDTO login = member;
 		
-		if(member.getId() == null || member.getId().isEmpty())
+		if(login.getId() == null || login.getId().isEmpty())
 			return "아이디를 입력하세요.";
-		if(member.getPw() == null || member.getPw().isEmpty())
+		if(login.getPw() == null || login.getPw().isEmpty())
 			return "비밀번호를 입력하세요.";
-		if(memberDao.isExistId(member.getId()) > 0)
+		if(memberDao.isExistId(login.getId()) > 0)
 			return "중복 아이디 입니다.";
 		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String securePw = encoder.encode(member.getPw());
 		member.setPw(securePw);
 		
+		memberDao.insertLogin(login);
 		memberDao.insertMember(member);
 		return "가입 완료";
 	}
