@@ -7,7 +7,11 @@
 		SELECT count(*) FROM member WHERE id=#{id}
 	</select>
 	
+	<insert id="insertLogin" parameterType="LoginDTO">
+		INSERT INTO login VALUES(#{id}, #{pw})
+	</insert>
+	
 	<insert id="insertMember" parameterType="MemberDTO">
-		INSERT INTO member VALUES(#{id}, #{nick}, #{pw}, #{name},  #{tel}, #{profile, jdbcType=integer}, #{point, jdbcType=integer}, #{joined_date, jdbcType=datetime}, #{personal_num, jdbcType=varchar}, #{account_name, jdbcType=varchar}, #{account_num, jdbcType=varchar})
+		INSERT INTO member VALUES(#{id}, #{nick}, #{name}, #{tel}, #{profile}, #{point}, #{joined_date})
 	</insert>
 </mapper>
