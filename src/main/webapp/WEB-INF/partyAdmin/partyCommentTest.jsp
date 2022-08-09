@@ -26,7 +26,8 @@
 		</c:forEach>
 	</tbody>
 </table>
- 
+
+<!-- 
 <table style="min-width: 1000px">
 	<thead>
 	  <tr>
@@ -47,7 +48,7 @@
 		</c:forEach>
 	</tbody>
 </table>
-<!--  
+  
 <table style="min-width: 1000px">
 	<thead>
 	  <tr>
