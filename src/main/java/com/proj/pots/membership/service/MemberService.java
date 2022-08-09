@@ -56,6 +56,10 @@ public class MemberService {
 		
 		memberDao.updateLogin(login);
 		memberDao.updateMember(member);
+		session.setAttribute("name", member.getName());
+		session.setAttribute("nick", member.getNick());
+		session.setAttribute("tel", member.getTel());
+		session.setAttribute("profile", member.getProfile());
 		return "수정 완료";
 	}
 	
@@ -92,6 +96,15 @@ public class MemberService {
 			return "비밀번호가 다릅니다.";
 
 		return "확인 완료";
+	}
+
+	public String profileUpdateProc(MemberDTO member) {
+		if (member.getId() == null || member.getId().isEmpty())
+			return "로그인 필요";
+		
+		memberDao.profileUpdate(member);
+		session.setAttribute("profile", member.getProfile());
+		return "사진 저장";
 	}
 	
 }

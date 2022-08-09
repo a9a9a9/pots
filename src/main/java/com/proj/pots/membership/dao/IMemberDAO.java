@@ -24,4 +24,6 @@ public interface IMemberDAO {
 	int updateLogin(LoginDTO login);
 	
 	int updateMember(MemberDTO member);
+	
+	int profileUpdate(MemberDTO member);
 }

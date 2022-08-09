@@ -25,7 +25,7 @@ public class MemberController {
 		String msg = memberService.isExistId(id);
 		return msg;
 	}
-	
+
 	@RequestMapping(value = "memberProc")
 	public String memberProc(MemberDTO member, Model model, RedirectAttributes ra) {
 		String msg = memberService.memberProc(member);
@@ -49,6 +49,19 @@ public class MemberController {
 			return "forward:/index?formpath=update";
 		}
 	}
+	
+	@RequestMapping(value = "profileUpdateProc")
+	public String profileUpdateProc(HttpSession session, MemberDTO member, Model model, RedirectAttributes ra) {
+		member.setId((String)session.getAttribute("id"));
+		String msg = memberService.profileUpdateProc(member);
+		if(msg.equals("사진 저장")) {
+			ra.addFlashAttribute("msg",msg);
+			return "redirect:/profile";
+		}
+		model.addAttribute("msg",msg);
+		return "forward:/profile";
+	}
+	
 	@RequestMapping(value = "memberInfoProc")
 	public String memberInfo(HttpSession session, Model model) {
 		String sessionId = (String)session.getAttribute("id");
@@ -86,4 +99,5 @@ public class MemberController {
 		ra.addFlashAttribute("msg", msg);
 		return "redirect:/index?formpath=updateCheck";
 	}
+	
 }

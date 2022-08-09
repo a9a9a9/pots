@@ -36,4 +36,8 @@
 	<update id="updateMember" parameterType="MemberDTO">
 		UPDATE member SET name=#{name}, nick=#{nick}, tel=#{tel}, profile=#{profile} WHERE id=#{id}
 	</update>
+	
+	<update id="profileUpdate" parameterType="MemberDTO">
+		UPDATE member SET profile=#{profile} WHERE id=#{id}
+	</update>
 </mapper>

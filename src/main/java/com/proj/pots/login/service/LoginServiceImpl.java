@@ -8,11 +8,14 @@ import org.springframework.stereotype.Service;
 
 import com.proj.pots.login.dao.ILoginDAO;
 import com.proj.pots.member.dto.LoginDTO;
+import com.proj.pots.member.dto.MemberDTO;
+import com.proj.pots.membership.dao.IMemberDAO;
 
 @Service
 public class LoginServiceImpl implements ILoginService{
 	@Autowired private ILoginDAO loginDao;
 	@Autowired private HttpSession session;
+	@Autowired private IMemberDAO memberDao;
 	
 	@Override
 	public String loginProc(LoginDTO login) {
@@ -28,6 +31,11 @@ public class LoginServiceImpl implements ILoginService{
 		
 		if(check != null && encoder.matches(login.getPw(), check.getPw())) {
 			session.setAttribute("id", check.getId());
+			MemberDTO member = memberDao.memberInfo(check.getId());
+			session.setAttribute("nick", member.getNick());
+			session.setAttribute("profile", member.getProfile());
+			session.setAttribute("point", member.getPoint());
+			session.setAttribute("tel", member.getTel());
 			System.out.println(login.getId());
 			System.out.println(login.getPw());
 			System.out.println(check.getId());

@@ -85,6 +85,14 @@
 										<input type="image" src="/img/profile2.png" disabled="disabled"><br>
 										<input type="radio" name="profile" id="profile" value="2" style="margin:5px 18px;" />
 									</div>
+									<div class="profile_select" style="margin-right: 20px; float: left;">
+										<input type="image" src="/img/profile3.png" disabled="disabled"><br>
+										<input type="radio" name="profile" id="profile" value="3" style="margin:5px 18px;" />
+									</div>
+									<div class="profile_select" style="margin-right: 20px; float: left;">
+										<input type="image" src="/img/profile4.png" disabled="disabled"><br>
+										<input type="radio" name="profile" id="profile" value="4" style="margin:5px 18px;" />
+									</div>
 								</div>
 							</li>
 								<li>
