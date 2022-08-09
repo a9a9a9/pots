@@ -5,9 +5,18 @@
 <c:set var="now" value="<%=new java.util.Date()%>" />
 <c:set var="sysDate"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd" /></c:set> 
 <c:import url="partyIndex.jsp" />
-<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script> -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+    integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
+    integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/datepicker/jquery-ui.css">
+  <script src="datepicker/jquery-ui.min.js"></script>
   
 <script>
 	window.onload = function() {
@@ -16,38 +25,133 @@
 </script>
 
 <!-- body -->
-<link rel="stylesheet" href="/css/partyAdmin/jquery-ui.css">
-<link rel="stylesheet" href="/css/partyAdmin/style.css">
 
 		<div class="partner-body">
 
-			<script>
-				jQuery(function($) {
-					$.datepicker.regional["ko"] = {
-						closeText : "닫기",
-						prevText : "이전달",
-						nextText : "다음달",
-						currentText : "오늘",
-						monthNames : [ "1월(JAN)", "2월(FEB)", "3월(MAR)",
-								"4월(APR)", "5월(MAY)", "6월(JUN)", "7월(JUL)",
-								"8월(AUG)", "9월(SEP)", "10월(OCT)", "11월(NOV)",
-								"12월(DEC)" ],
-						monthNamesShort : [ "1월", "2월", "3월", "4월", "5월", "6월",
-								"7월", "8월", "9월", "10월", "11월", "12월" ],
-						dayNames : [ "일", "월", "화", "수", "목", "금", "토" ],
-						dayNamesShort : [ "일", "월", "화", "수", "목", "금", "토" ],
-						dayNamesMin : [ "일", "월", "화", "수", "목", "금", "토" ],
-						weekHeader : "Wk",
-						dateFormat : "yymmdd",
-						firstDay : 0,
-						isRTL : false,
-						showMonthAfterYear : true,
-						yearSuffix : ""
-					};
-					$.datepicker.setDefaults($.datepicker.regional["ko"]);
-				});
-			</script>
-			<style>
+<script>
+		jQuery(function($) {
+			$.datepicker.regional["ko"] = {
+				closeText : "닫기",
+				prevText : "이전달",
+				nextText : "다음달",
+				currentText : "오늘",
+				monthNames : [ "1월(JAN)", "2월(FEB)", "3월(MAR)",
+						"4월(APR)", "5월(MAY)", "6월(JUN)", "7월(JUL)",
+						"8월(AUG)", "9월(SEP)", "10월(OCT)", "11월(NOV)",
+						"12월(DEC)" ],
+				monthNamesShort : [ "1월", "2월", "3월", "4월", "5월", "6월",
+						"7월", "8월", "9월", "10월", "11월", "12월" ],
+				dayNames : [ "일", "월", "화", "수", "목", "금", "토" ],
+				dayNamesShort : [ "일", "월", "화", "수", "목", "금", "토" ],
+				dayNamesMin : [ "일", "월", "화", "수", "목", "금", "토" ],
+				weekHeader : "Wk",
+				dateFormat : "yymmdd",
+				firstDay : 0,
+				isRTL : false,
+				showMonthAfterYear : true,
+				yearSuffix : ""
+			};
+			$.datepicker.setDefaults($.datepicker.regional["ko"]);
+		});
+		
+
+		$(function() {
+			$("#pt_day").datepicker({
+				changeMonth : true,
+				changeYear : true,
+				dateFormat : "yy-mm-dd",
+				showButtonPanel : true,
+				yearRange : "c-99:c+99",
+				minDate : "+2d",
+				maxDate : "+365d"
+			});
+		});
+		
+		function check_cash() {
+			var i_it_price = $.trim($("#it_price").val());
+			var i_it_stock_qty = $.trim($("#it_stock_qty").val());
+			var i_start_day = $.trim($("#start_day").val());
+			var i_pt_day = $.trim($("#pt_day").val());
+			var pt_type = '2';
+			var i_sum;
+			var regNumbers = /^[0-9]*$/;
+			if (!regNumbers.test(i_it_stock_qty)) {
+				alert("인원은 숫자만 입력할 수 있습니다.");
+				return false;
+			}
+			if (!regNumbers.test(i_it_price)) {
+				alert("참여금액은 숫자만 입력할 수 있습니다.");
+				return false;
+			}
+			if(i_it_price == "") {
+				document.getElementById("i_cash_c").innerHTML = "금액을 입력해 주세요.";
+				return false;
+			}
+			if(i_it_stock_qty == "0"){
+				document.getElementById("i_cash_c").innerHTML = "인원을 선택해 주세요.";
+				return false;
+			}
+			if(i_pt_day == "종료날짜"){
+				document.getElementById("i_cash_c").innerHTML = "종료날짜를 선택해 주세요.";
+				return false;
+			}
+			console.log("명수", i_it_stock_qty);
+			var sendData =  {
+					"i_it_price" : i_it_price,
+					"i_it_stock_qty" : i_it_stock_qty,
+					"i_start_day" : i_start_day,
+					"i_pt_day" : i_pt_day
+				}
+			console.log(sendData);
+			
+			$.ajax({
+			    url:'check_cash'
+			    , method : 'POST'
+			    , contentType: 'application/json'
+			    ,data : JSON.stringify(sendData)
+			   	, dataType : 'json'
+			    ,  success :function(resp){
+			        var ppl = i_it_stock_qty + "인";
+			        $("#sp_count").html(ppl);
+			        var cash = resp["msg"] + "원";
+			        $("#i_cash_c").html(cash);
+			    }
+			})
+
+			
+			
+
+		} 
+
+		function check_day() {
+			var i_start_day = $.trim($("#start_day").val());
+			var i_pt_day = $.trim($("#pt_day").val());
+			var sendData = {"start_pt_day" : i_start_day, "end_pt_day" : i_pt_day};
+			
+			if(i_pt_day == "종료날짜") {
+				document.getElementById("lb_enddate").innerHTML = "종료날짜를 선택해 주세요.";
+				return false;
+			}
+			
+			$.ajax({
+			    url:'check_day'
+			    , method : 'POST'
+			    , contentType: 'application/json'
+			   	, data: JSON.stringify(sendData)
+			   	, dataType : 'json'
+			    ,  success :function(resp){
+			        var respData = "총 " + resp["msg"] + "일"
+			        $("#lb_enddate").html(respData);
+			    }
+			})
+		
+		}
+		
+		
+</script>
+
+  
+<style>
 .new_win {
 	line-height: 1.4;
 	overflow: hidden;
@@ -164,7 +268,7 @@
 								</li>
 								<li>
 									<div class="subject">ㆍ 모집인원</div> 
-									<select name="party_member" id="it_stock_qty" class="width-100" value="">
+									<select name="party_member" id="it_stock_qty" class="width-100">
 										<option value="0">본인제외</option>
 										<option value="0">0</option>
 										<option value="1">1</option>
@@ -201,7 +305,7 @@
 								<li>
 									<div class="subject w100">ㆍ 진행 기간</div> 
 									<input type="text" name="party_start" id="start_day" value="${sysDate }" class="width-100" readonly="" size="8" maxlength="8"> ~
-									<input type="text" name="party_end" value="종료날짜" id="pt_day">
+									<input type="text" name="pt_day" value="종료날짜" id="pt_day" style="width:100px;" required="" size="8" maxlength="8">
 									<button type="button" id="btn_enddate" class="button round button-purple" onclick="check_day()">
 									기간확인</button> 
 									<span id="lb_enddate" class="text-purple"></span>
@@ -252,6 +356,7 @@
 						<input type="submit" value="등록" class="button button-purple" accesskey="s">
 					</div>
 					<script>
+					
 						var f = document.fitemform;
 
 
@@ -845,107 +950,7 @@
 							}
 						}
 
-						function check_cash() {
-							var i_it_price = $.trim($("#it_price").val());
-							var i_it_stock_qty = $.trim($("#it_stock_qty")
-									.val());
-							var i_start_day = $.trim($("#start_day").val());
-							var i_pt_day = $.trim($("#pt_day").val());
-							var pt_type = '2';
-							var i_sum;
-							var regNumbers = /^[0-9]*$/;
-							if (!regNumbers.test(i_it_stock_qty)) {
-								alert("인원은 숫자만 입력할 수 있습니다.");
-								return false;
-							}
-							if (!regNumbers.test(i_it_price)) {
-								alert("참여금액은 숫자만 입력할 수 있습니다.");
-								return false;
-							}
-							var ajax_url = "https://buts.co.kr/shop/partner/ajax.checkcash.php";
-
-							$.ajax({
-								type : "POST",
-								url : ajax_url,
-								data : {
-									'i_it_price' : i_it_price,
-									'i_it_stock_qty' : i_it_stock_qty,
-									'i_start_day' : i_start_day,
-									'i_pt_day' : i_pt_day,
-									'pt_type' : pt_type
-								},
-								cache : false,
-								async : false,
-								dataType : "json",
-								success : function(data, textStatus) {
-									error = data.error;
-								}
-							});
-							document.getElementById("i_cash_c").innerHTML = error
-									+ " 원";
-							document.getElementById("sp_count").innerHTML = $
-									.trim($("#it_stock_qty").val())
-									+ "인";
-
-						}
-
-						function check_day() {
-							var i_start_day = $.trim($("#start_day").val());
-							var i_pt_day = $.trim($("#pt_day").val());
-							var ajax_url = "https://buts.co.kr/shop/partner/ajax.check_day.php";
-
-							$.ajax({
-								type : "POST",
-								url : ajax_url,
-								data : {
-									'start_pt_day' : i_start_day,
-									'end_pt_day' : i_pt_day
-								},
-								cache : false,
-								async : false,
-								dataType : "json",
-								success : function(data, textStatus) {
-									error = data.error;
-								}
-							});
-							document.getElementById("lb_enddate").innerHTML = "총 "
-									+ error + "일";
-						}
-
-						function check_idpw() {
-							var var_pt_link1 = $("#pt_link1").val();
-							var var_pt_link2 = $("#pt_link2").val();
-
-							if (var_pt_link1 == "") {
-								alert("ID를 입력해 주세요.");
-								return false;
-							}
-
-							if (var_pt_link2 == "") {
-								alert("PW를 입력해 주세요.");
-								return false;
-							}
-
-							var var_it_id = '';
-							var ajax_url = "https://buts.co.kr/shop/partner/ajax.set_idpw.php";
-
-							$.ajax({
-								type : "POST",
-								url : ajax_url,
-								data : {
-									'v_it_id' : var_it_id,
-									'v_pt_link1' : var_pt_link1,
-									'v_pt_link2' : var_pt_link2
-								},
-								cache : false,
-								async : false,
-								dataType : "json",
-								success : function(data) {
-								}
-							});
-							alert("변경되었습니다.");
-						}
-
+						
 						function fn_check(val_c) {
 							var default_chk = '';
 							var var_display = '';
@@ -1010,17 +1015,7 @@
 							}
 						}
 
-						$(function() {
-							$("#pt_day").datepicker({
-								changeMonth : true,
-								changeYear : true,
-								dateFormat : "yy-mm-dd",
-								showButtonPanel : true,
-								yearRange : "c-99:c+99",
-								minDate : "+2d",
-								maxDate : "+365d"
-							});
-						});
+						
 					</script>
 				</form>
 			</div>
