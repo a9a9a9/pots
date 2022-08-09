@@ -11,6 +11,8 @@
 		alert(result);
 	}else if(result === "탈퇴 완료"){
 		alert(result);
+	}else if(result === "수정 완료"){
+		alert(result);
 	}
 </script>
 </head>

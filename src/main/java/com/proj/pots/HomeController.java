@@ -221,4 +221,8 @@ public class HomeController {
 	public String main() {
 		return "main";
 	}
+	@RequestMapping(value = "updateCheck")
+	public String updateCheck() {
+		return "member/updateCheck";
+	}
 }

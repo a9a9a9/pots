@@ -45,6 +45,20 @@ public class MemberService {
 		return "가입 완료";
 	}
 
+	public String updateProc(MemberDTO member) {
+		LoginDTO login = member;
+		if(login.getPw() == null || login.getPw().isEmpty())
+			return "비밀번호를 입력하세요.";
+		
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String securePw = encoder.encode(login.getPw());
+		login.setPw(securePw);
+		
+		memberDao.updateLogin(login);
+		memberDao.updateMember(member);
+		return "수정 완료";
+	}
+	
 	public MemberDTO memberInfo(String id) {
 		MemberDTO member = memberDao.memberInfo(id);
 		return member;
@@ -65,6 +79,19 @@ public class MemberService {
 		memberDao.deleteMember(id);
 		session.invalidate();
 		return "탈퇴 완료";
+	}
+
+	public String updateCheckProc(LoginDTO check) {
+		String id = (String)session.getAttribute("id");
+		
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		LoginDTO login = memberDao.memberPassword(id);
+		if(login == null)
+			return "아이디 없음";
+		if(encoder.matches(check.getPw(), login.getPw()) == false)
+			return "비밀번호가 다릅니다.";
+
+		return "확인 완료";
 	}
 	
 }

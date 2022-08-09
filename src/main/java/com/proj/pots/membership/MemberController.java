@@ -38,6 +38,17 @@ public class MemberController {
 		}
 	}
 	
+	@RequestMapping(value = "updateProc")
+	public String updateProc(MemberDTO member, Model model, RedirectAttributes ra) {
+		String msg = memberService.updateProc(member);
+		if(msg.equals("수정 완료")) {
+			ra.addFlashAttribute("msg", msg);
+			return "redirect:/index?formpath=main";
+		}else {
+			model.addAttribute("msg",msg);
+			return "forward:/index?formpath=update";
+		}
+	}
 	@RequestMapping(value = "memberInfoProc")
 	public String memberInfo(HttpSession session, Model model) {
 		String sessionId = (String)session.getAttribute("id");
@@ -59,5 +70,20 @@ public class MemberController {
 			model.addAttribute("msg", msg);
 			return "forward:/index?formpath=memberDelete";
 		}
+	}
+	
+	@RequestMapping(value = "updateCheckProc")
+	public String updateCheckProc(LoginDTO check, Model model, HttpSession session, RedirectAttributes ra) {
+		String msg = memberService.updateCheckProc(check);
+		String sessionId = (String)session.getAttribute("id");
+		if(sessionId == "" || sessionId == null) {
+			return "redirect:/index?formpath=login";
+		}
+		if(msg.equals("확인 완료")) {
+			model.addAttribute("member", memberService.memberInfo(sessionId));
+			return "forward:index?formpath=update";
+		}
+		ra.addFlashAttribute("msg", msg);
+		return "redirect:/index?formpath=updateCheck";
 	}
 }

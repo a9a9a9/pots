@@ -69,7 +69,7 @@
 					</div>
 					
 					<div class="text-right">
-						<a href="#" class="button round button-purple">정보수정</a>
+						<a href="${root}index?formpath=updateCheck" class="button round button-purple">정보수정</a>
 						<a href="${root}index?formpath=memberDelete" class="button round border button-purple leave-me">탈퇴하기</a>
 					</div>
 				</div>
