@@ -2,13 +2,13 @@ package com.proj.pots.party.dto;
 
 public class CommentListDTO {
 
-	private PartyDTO party;
+	private PartyRegDTO party;
 	private PartyCommentDTO party_comment;
 	
-	public PartyDTO getParty() {
+	public PartyRegDTO getParty() {
 		return party;
 	}
-	public void setParty(PartyDTO party) {
+	public void setParty(PartyRegDTO party) {
 		this.party = party;
 	}
 	public PartyCommentDTO getParty_comment() {
