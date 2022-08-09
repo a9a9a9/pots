@@ -14,4 +14,19 @@
 	<insert id="insertMember" parameterType="MemberDTO">
 		INSERT INTO member VALUES(#{id}, #{nick}, #{name}, #{tel}, #{profile}, #{point}, now())
 	</insert>
+	
+	<select id="memberInfo" resultType="MemberDTO">
+		SELECT * FROM member WHERE id=#{id}
+	</select>
+	
+	<select id="memberPassword" resultType="LoginDTO" parameterType="String">
+		SELECT * FROM login WHERE id=#{id}
+	</select>
+	
+	<delete id="deleteLogin" parameterType="String">
+		DELETE FROM login WHERE id=#{id}
+	</delete>
+	<delete id="deleteMember" parameterType="String">
+		DELETE FROM member WHERE id=#{id}
+	</delete>
 </mapper>

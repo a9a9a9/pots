@@ -44,4 +44,27 @@ public class MemberService {
 		memberDao.insertMember(member);
 		return "가입 완료";
 	}
+
+	public MemberDTO memberInfo(String id) {
+		MemberDTO member = memberDao.memberInfo(id);
+		return member;
+	}
+
+	public String deleteCheckProc(LoginDTO check) {
+		String id = (String)session.getAttribute("id");
+		
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		LoginDTO login = memberDao.memberPassword(id);
+		
+		if(login == null)
+			return "아이디 없음";
+		if(encoder.matches(check.getPw(), login.getPw()) == false)
+			return "비밀번호가 다릅니다.";
+		
+		memberDao.deleteLogin(id);
+		memberDao.deleteMember(id);
+		session.invalidate();
+		return "탈퇴 완료";
+	}
+	
 }
