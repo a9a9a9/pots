@@ -15,6 +15,6 @@ public interface IPartyViewService {
 	
 	ArrayList<PartyRegDTO> partyProc(Model model);
 
-	ArrayList<CommentListDTO> partyCommentList(Model model);
+//	ArrayList<CommentListDTO> partyCommentList(Model model);
 
 }

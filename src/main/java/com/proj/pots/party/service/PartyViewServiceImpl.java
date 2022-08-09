@@ -31,10 +31,10 @@ public class PartyViewServiceImpl implements IPartyViewService{
 		return partyList;  
 	}
 	
-	@Override
-	public ArrayList<CommentListDTO> partyCommentList(Model model) {
-		ArrayList<CommentListDTO> comment = mapper.partyCommentList();
-		model.addAttribute("comment", comment);
-		return comment; 
-	}
+//	@Override
+//	public ArrayList<CommentListDTO> partyCommentList(Model model) {
+//		ArrayList<CommentListDTO> comment = mapper.partyCommentList();
+//		model.addAttribute("comment", comment);
+//		return comment; 
+//	}
 }

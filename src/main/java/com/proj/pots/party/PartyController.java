@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.proj.pots.party.dto.CommentListDTO;
 import com.proj.pots.party.dto.PartyCommentDTO;
 import com.proj.pots.party.dto.PartyDTO;
 import com.proj.pots.party.dto.PartyRegDTO;
@@ -25,8 +26,11 @@ public class PartyController {
 		
 		ArrayList<PartyRegDTO> partyList =service.partyProc(model);
 		model.addAttribute("partyList", partyList);
+		
+//		ArrayList<CommentListDTO> comment = service.partyCommentList(model);
+//		model.addAttribute("comment", comment);
 		return "partyAdmin/partyCommentTest";  
-	} 
+	}  
 
 	//partyAdmin 폴더 파일
 		@RequestMapping(value = "/partyIndex")

@@ -16,6 +16,6 @@ public interface IPartyViewDAO {
 	
 	public ArrayList<PartyRegDTO> partyProc();
 	
-	public ArrayList<CommentListDTO> partyCommentList();
+//	public ArrayList<CommentListDTO> partyCommentList(); 
 
 }
