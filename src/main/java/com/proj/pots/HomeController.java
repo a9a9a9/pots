@@ -166,9 +166,9 @@ public class HomeController {
 		return "member/update";
 	} 
 	
-	@RequestMapping(value = "pwConfirm")
+	@RequestMapping(value = "memberDelete")
 	public String pwConfirm() {
-		return "member/pwConfirm";
+		return "member/memberDelete";
 	}
 	@RequestMapping(value = "register")
 	public String register() {
@@ -212,5 +212,13 @@ public class HomeController {
 	public String noticeBoardView() {
 		return "board/noticeBoardView";
 
+	}
+	@RequestMapping(value = "profile")
+	public String profile() {
+		return "member/profile";
+	}
+	@RequestMapping(value = "main")
+	public String main() {
+		return "main";
 	}
 }

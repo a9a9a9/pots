@@ -5,12 +5,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.proj.pots.member.dto.LoginDTO;
 import com.proj.pots.member.dto.MemberDTO;
 import com.proj.pots.membership.dao.IMemberDAO;
 
 @Service
+@Transactional
 public class MemberService {
 	@Autowired IMemberDAO memberDao;
 	@Autowired HttpSession session;
@@ -35,11 +37,34 @@ public class MemberService {
 			return "중복 아이디 입니다.";
 		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		String securePw = encoder.encode(member.getPw());
-		member.setPw(securePw);
+		String securePw = encoder.encode(login.getPw());
+		login.setPw(securePw);
 		
 		memberDao.insertLogin(login);
 		memberDao.insertMember(member);
 		return "가입 완료";
 	}
+
+	public MemberDTO memberInfo(String id) {
+		MemberDTO member = memberDao.memberInfo(id);
+		return member;
+	}
+
+	public String deleteCheckProc(LoginDTO check) {
+		String id = (String)session.getAttribute("id");
+		
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		LoginDTO login = memberDao.memberPassword(id);
+		
+		if(login == null)
+			return "아이디 없음";
+		if(encoder.matches(check.getPw(), login.getPw()) == false)
+			return "비밀번호가 다릅니다.";
+		
+		memberDao.deleteLogin(id);
+		memberDao.deleteMember(id);
+		session.invalidate();
+		return "탈퇴 완료";
+	}
+	
 }
