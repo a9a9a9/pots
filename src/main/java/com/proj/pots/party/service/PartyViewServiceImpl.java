@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.proj.pots.party.dao.IPartyViewDAO;
+import com.proj.pots.party.dto.CommentListDTO;
 import com.proj.pots.party.dto.PartyCommentDTO;
 import com.proj.pots.party.dto.PartyDTO;
 import com.proj.pots.party.dto.PartyRegDTO;
@@ -28,5 +29,12 @@ public class PartyViewServiceImpl implements IPartyViewService{
 		ArrayList<PartyRegDTO> partyList = mapper.partyProc();
 		model.addAttribute("partyList", partyList);
 		return partyList;  
+	}
+	
+	@Override
+	public ArrayList<CommentListDTO> partyCommentList(Model model) {
+		ArrayList<CommentListDTO> comment = mapper.partyCommentList();
+		model.addAttribute("comment", comment);
+		return comment; 
 	}
 }
