@@ -13,5 +13,4 @@ public interface IMemberDAO {
 	
 	void insertMember(MemberDTO member);
 	
-	
 }
