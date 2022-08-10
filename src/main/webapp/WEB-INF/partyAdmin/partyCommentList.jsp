@@ -27,7 +27,7 @@ window.onload=function(){
 	  </tr>
 	</thead>
 	<tbody>
-	<c:forEach var="comment" items="${commentList }">
+	<c:forEach var="comment" items="${list }">
 		<c:choose>
 			<c:when test="${empty comment }">
 				<div class="empty">
@@ -43,42 +43,19 @@ window.onload=function(){
 					</td>
 					<td>
 						<a href="" class="item-name">
-							<span class="name">${comment.comment }</span>
-							<!-- <span class="lightgrey"> title </span> -->
-						</a>
-					</td>
-				</tr>
-			</c:otherwise>
-			</c:choose>
-		</c:forEach> 
-	</tbody>
-  </table>
-  <table style="min-width: 1000px">
-	<thead>
-	  <tr>
-		<th width="10%" scope="col">문의자</th>
-		<th width="10%" scope="col">작성일</th>
-		<th scope="col">제목</th>
-	  </tr>
-	</thead>
-	<tbody>
-	<c:forEach var="comment" items="${commentList }">
-		<c:choose>
-			<c:when test="${empty comment }">
-				<div class="empty">
-					<div class="icon"><img src="/img/icon-butsicon-big-glay.png" /></div>
-					<h5>등록된 문의가 없습니다.</h5>
-				</div>
-			</c:when>
-			<c:otherwise>
-				<tr>
-					<td>${comment.nick }</td>
-					<td>
-						<span class="lightgrey">${comment.comment_date }</span>
-					</td>
-					<td>
-						<a href="" class="item-name">
-							<span class="name">${comment.comment }</span>
+							<span class="name"> 
+								<c:choose>
+									<c:when test="${comment.comment_private == 1}">
+										<i class="fa fa-lock orange"></i>
+										${comment.comment }<br>
+										<span class="lightgrey"> ${comment.party_title } </span>
+									</c:when>
+									<c:otherwise>
+										${comment.comment }<br>
+										<span class="lightgrey"> ${comment.party_title } </span>
+									</c:otherwise>
+								</c:choose>
+							</span>
 							<!-- <span class="lightgrey"> title </span> -->
 						</a>
 					</td>
@@ -89,10 +66,26 @@ window.onload=function(){
 	</tbody>
   </table>
 </div>
-
 <div class="page-number" style="border-top: 0">
 	<ul>
-		<li class="disabled"><a><i class="fa fa-angle-double-left"></i></a></li><li class="disabled"><a><i class="fa fa-angle-left"></i></a></li><li class="active"><a>1</a></li><li class="disabled"><a><i class="fa fa-angle-right"></i></a></li><li class="disabled"><a><i class="fa fa-angle-double-right"></i></a></li>	</ul>
+		<li class="disabled">
+			<a><i class="fa fa-angle-double-left"></i></a>
+		</li>
+		
+		<li class="disabled">
+			<a><i class="fa fa-angle-left"></i></a>
+		</li>
+		<li class="active">
+			<a>1</a>
+		</li>
+		<li class="disabled">
+			<a><i class="fa fa-angle-right"></i></a>
+		</li>
+		
+		<li class="disabled">
+			<a><i class="fa fa-angle-double-right"></i></a>
+		</li>	
+		</ul>
 </div>
 
 

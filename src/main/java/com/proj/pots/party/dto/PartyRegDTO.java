@@ -1,5 +1,7 @@
 package com.proj.pots.party.dto;
 
+import java.util.ArrayList;
+
 public class PartyRegDTO extends PartyDTO{
 	
 	private String party_regdate;		//파티생성날짜

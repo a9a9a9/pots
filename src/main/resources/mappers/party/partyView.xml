@@ -2,50 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.proj.pots.party.dao.IPartyViewDAO">
-	
-	<!--
-		SELECT potsdb.party.party_title, potsdb.party_comment.nick, potsdb.party_comment.comment_date, potsdb.party_comment.comment
-		FROM potsdb.party, potsdb.party_comment
-		WHERE potsdb.party.party_num = potsdb.party_comment.party_num AND potsdb.party.id='user1'; 
-	 -->
-	
-<!--  	
-	<resultMap type="PartyRegDTO" id="party">
-		<id property="party_num" column="party_num" />
-		<id property="party_title" column="party_title" />
-	</resultMap>
-	
-	<resultMap type="PartyCommentDTO" id="party_comment">
-		<id property="id" column="id"/>
-		<id property="nick" column="nick" />
-		<id property="comment" column="comment" />
-		<id property="comment_date" column="comment_date" />
-	</resultMap> 
-	
-	<resultMap type="CommentListDTO" id="comment">
-		<collection property="party" resultMap="party" />
-		<collection property="party_comment" resultMap="party_comment" />
-	</resultMap>
-	
-	<select id="partyCommentList" resultMap="comment">
-		SELECT * 
-		FROM party, party_comment
-		WHERE party.party_num = party_comment.party_num AND party.id = 'user1';
-	</select>
-	
--->
-	
-	<select id="commentProc" parameterType="PartyCommentDTO" resultType="PartyCommentDTO">
-		SELECT *
-		FROM party_comment
-		ORDER BY comment_date DESC
-		<!-- 로그인페이지-파티관리페이지 연결 시 WHERE id=#{id} 추가 -->
-	</select>
-	
-	<select id="partyProc" parameterType="PartyRegDTO" resultType="PartyRegDTO" >
-		SELECT *
-		FROM party
-		WHERE id = 'admin'
-	</select>
+	 
+	 <resultMap type="com.proj.pots.party.dto.PartyRegDTO" id="PartyRegDTO">
+	 	<result column="party_num" property="party_num" />
+	 	<result column="id" property="id" />
+	 	<result column="party_title" property="party_title" />
+	 </resultMap>
+	 
+	 <resultMap type="com.proj.pots.party.dto.PartyCommentDTO" id="PartyCommentDTO">
+	 	<result column="no_cmnt" property="no_cmnt" />
+	 	<result column="party_num" property="party_num" />
+	 	<result column="nick" property="nick" />
+	 	<result column="comment" property="comment" />
+	 	<result column="comment_date" property="comment_date" />
+	 	<!-- <collection property="PartyRegDTO" resultMap="PartyRegDTO" /> -->
+	 </resultMap>
+	 
+	 
+	 
+	 <select id="comment" parameterType="String" resultMap="PartyCommentDTO">
+	 	SELECT a.nick, a.comment_date, a.comment, a.comment_private, b.party_title
+	 	FROM party_comment as a
+	 	JOIN party as b
+	 	ON a.party_num = b.party_num AND b.id = 'admin' <!-- id 세션 값 --> 
+	 	ORDER BY comment_date DESC 
+	 </select>
 	
 </mapper>
