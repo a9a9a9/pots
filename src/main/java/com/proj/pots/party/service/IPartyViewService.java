@@ -12,6 +12,6 @@ import com.proj.pots.party.dto.PartyRegDTO;
 
 public interface IPartyViewService { 
 
-	ArrayList<PartyCommentDTO> comment();
+	ArrayList<PartyCommentDTO> comment(String id);
 		 
 }

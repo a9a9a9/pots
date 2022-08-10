@@ -6,14 +6,7 @@ public class PartyCommentDTO extends PartyRegDTO{
 	private String comment;			//내용
 	private String comment_private;	//비밀글 여부			
 	private String comment_date;	//등록시간
-//	private PartyRegDTO partyRegDto;
-//	
-//	public PartyRegDTO getPartyRegDto() {
-//		return partyRegDto;
-//	}
-//	public void setPartyRegDto(PartyRegDTO partyRegDto) {
-//		this.partyRegDto = partyRegDto;
-//	}
+	
 	public int getNo_cmnt() {
 		return no_cmnt;
 	}

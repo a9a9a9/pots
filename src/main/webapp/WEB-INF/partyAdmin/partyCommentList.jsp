@@ -27,9 +27,11 @@ window.onload=function(){
 	  </tr>
 	</thead>
 	<tbody>
-	<c:forEach var="comment" items="${list }">
+	<%-- <c:set var="paging" value="${ paging}"/> --%>
+	
+	<c:forEach var="comment" items="${list }" begin="${paging.start }" end="${paging.end }">
 		<c:choose>
-			<c:when test="${empty comment }">
+			<c:when test="${empty comment }" >
 				<div class="empty">
 					<div class="icon"><img src="/img/icon-butsicon-big-glay.png" /></div>
 					<h5>등록된 문의가 없습니다.</h5>
@@ -68,23 +70,37 @@ window.onload=function(){
 </div>
 <div class="page-number" style="border-top: 0">
 	<ul>
+	
 		<li class="disabled">
-			<a><i class="fa fa-angle-double-left"></i></a>
+			<a href = "/partyCommentList?nowPage=1"><i class="fa fa-angle-double-left"></i></a>
 		</li>
 		
 		<li class="disabled">
-			<a><i class="fa fa-angle-left"></i></a>
+			<a href = "/partyCommentList?nowPage=${paging.nowPage -1}"><i class="fa fa-angle-left"></i></a>
 		</li>
-		<li class="active">
-			<a>1</a>
-		</li>
+		
+		<c:forEach begin="1" end="${paging.endPage }" var="p">
+			<c:choose>
+				<c:when test="${p == paging.nowPage }">
+					<li class="active">
+						<a>${p }</a>
+					</li>
+				</c:when>
+				<c:when test="${p != paging.nowPage }">
+					<li><a href="/partyCommentList?nowPage=${p }">${p }</a></li>
+				</c:when>
+			</c:choose>
+		</c:forEach>	
+		
 		<li class="disabled">
-			<a><i class="fa fa-angle-right"></i></a>
+			<a href = "/partyCommentList?nowPage=${paging.nowPage + 1}"><i class="fa fa-angle-right"></i></a>
 		</li>
 		
 		<li class="disabled">
-			<a><i class="fa fa-angle-double-right"></i></a>
-		</li>	
+			<a href = "/partyCommentList?nowPage=${paging.endPage}"><i class="fa fa-angle-double-right"></i></a>
+		</li>
+		
+		
 		</ul>
 </div>
 

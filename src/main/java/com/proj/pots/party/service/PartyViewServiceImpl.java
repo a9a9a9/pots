@@ -10,19 +10,11 @@ import com.proj.pots.party.dto.PartyCommentDTO;
 @Service
 public class PartyViewServiceImpl implements IPartyViewService{
 
-	@Autowired IPartyViewDAO mapper;
+	@Autowired IPartyViewDAO mapper; 
 	
 	@Override
-	public ArrayList<PartyCommentDTO> comment() {
-		String id = "admin";
+	public ArrayList<PartyCommentDTO> comment(String id) {
 		ArrayList<PartyCommentDTO> list = mapper.comment(id);
-//		ArrayList<PartyCommentDTO> list = new ArrayList<>();
-//		for(int i = 0;i<5;i++) {
-//			PartyCommentDTO party = new PartyCommentDTO();
-//			party.setComment("comment" + i);
-//			list.add(party);
-//		}
-		
 		return list;  
 	}
 	
