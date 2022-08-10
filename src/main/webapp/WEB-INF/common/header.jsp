@@ -117,7 +117,12 @@
 								<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-myimg.png" alt="">
 							</div>
 							<div class="name">
+<<<<<<< Updated upstream
 								<div>${sessionScope.nick }</div> <a href="${root }logout" class="header-logout"> 
+=======
+								${sessionScope.nick } 
+								<a href="${root }logout" class="header-logout"> 
+>>>>>>> Stashed changes
 									<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/img-input-text-reste-copy.png"
 									srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/img-input-text-reste-copy.png 2x" alt="">
 								</a>

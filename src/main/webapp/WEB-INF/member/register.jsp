@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:url var="root" value="/" />
 <script>
 	var result = "${msg}";
 	if(result === "중복 아이디 입니다."){
@@ -36,6 +35,11 @@
 	
 </script>
 
+		<c:if test="${not empty msg }">
+			<script>
+				alert("${msg}");
+			</script>
+		</c:if>
 <body class="responsive is-pc">
 	<div class="wrap wrapper  ko">
 		<div class="body">

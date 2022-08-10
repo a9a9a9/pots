@@ -8,14 +8,17 @@ import org.springframework.stereotype.Service;
 
 import com.proj.pots.login.dao.ILoginDAO;
 import com.proj.pots.member.dto.LoginDTO;
+
 import com.proj.pots.member.dto.MemberDTO;
+
 import com.proj.pots.membership.dao.IMemberDAO;
 
 @Service
 public class LoginServiceImpl implements ILoginService{
 	@Autowired private ILoginDAO loginDao;
-	@Autowired private HttpSession session;
 	@Autowired private IMemberDAO memberDao;
+	@Autowired private HttpSession session;
+//	@Autowired private IMemberDAO memberDao;
 	
 	@Override
 	public String loginProc(LoginDTO login) {

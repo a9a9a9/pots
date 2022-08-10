@@ -199,20 +199,20 @@ public class HomeController {
 	public String noticeBoard() {
 		return "board/noticeBoard";
 	}
-	@RequestMapping(value = "boardWrite")
-	public String boardWrite() {
-		return "board/boardWrite";
-	}
-
-	@RequestMapping(value = "communityBoardView")
-	public String communityBoardView() {
-		return "board/communityBoardView";
-	}
-	@RequestMapping(value = "noticeBoardView")
-	public String noticeBoardView() {
-		return "board/noticeBoardView";
-
-	}
+//	@RequestMapping(value = "boardWrite")
+//	public String boardWrite() {
+//		return "board/boardWrite";
+//	}
+//
+//	@RequestMapping(value = "communityBoardView")
+//	public String communityBoardView() {
+//		return "board/communityBoardView";
+//	}
+//	@RequestMapping(value = "noticeBoardView")
+//	public String noticeBoardView() {
+//		return "board/noticeBoardView";
+//
+//	}
 	@RequestMapping(value = "profile")
 	public String profile() {
 		return "member/profile";
