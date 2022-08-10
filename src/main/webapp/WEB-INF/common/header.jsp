@@ -61,7 +61,20 @@
 <script src="https://buts.co.kr/thema/Buts/assets/js/sly.min.js"></script>
 <script src="https://buts.co.kr/thema/Buts/assets/js/custom.js"></script>
 <script src="https://buts.co.kr/thema/Buts/assets/js/buts.js"></script>
-
+<script>
+	function showProfile(){
+		var width = 550;
+		var height = 340;
+		
+		var left = (window.screen.width / 2) - (width/2);
+		var top = (window.screen.height / 4);
+		
+		var windowStatus = 'width='+width+', height='+height+', left='+left+', top='+top;
+		
+		const profileUrl = "profile"
+		window.open(profileUrl, "", windowStatus);
+	}
+</script>
 </head>
 <!-- topper -->
 
@@ -90,9 +103,9 @@
 				</c:when>
 			
 			<c:otherwise>
-					<a href="https://buts.co.kr/bbs/myphoto.php" target="_blank"
-						class="header-user win_memo"> <span class="picture"> 
-						<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-myimg.png" 	alt="">
+					<a class="header-user win_memo" href="javascript:void(0);" onclick="showProfile()"> 
+					<span class="picture"> 
+						<img src="/img/profile${sessionScope.profile}.png" 	alt="">
 					</span> <span class="arrow">
 					<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/mymenu-arrow.png" alt=""></span>
 					</a>
@@ -104,7 +117,7 @@
 								<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-myimg.png" alt="">
 							</div>
 							<div class="name">
-								<div>${member.nick }</div> <a href="${root }logout" class="header-logout"> 
+								<div>${sessionScope.nick }</div> <a href="${root }logout" class="header-logout"> 
 									<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/img-input-text-reste-copy.png"
 									srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/img-input-text-reste-copy.png 2x" alt="">
 								</a>
@@ -152,7 +165,7 @@
 										 <a href="https://buts.co.kr/bbs/point_buts.php">벗</a></span> 
 										 <span class="right"> 
 										 <a href="https://buts.co.kr/bbs/point_buts.php">
-										 <span class="price Rajdhani">540</span></a> 
+										 <span class="price Rajdhani">${sessionScope.point}</span></a> 
 										 <a href="https://buts.co.kr/shop/order_point_form.php"
 											class="charge fill">충전</a>
 										</span>
@@ -179,7 +192,7 @@
 						</div>
 						<div class="block">
 							<ul class="menu">
-								<li><a href="#">회원정보확인</a></li>
+								<li><a href="memberInfoProc">회원정보확인</a></li>
 								<li><a href="#">결제내역 조회</a></li>
 							</ul>
 						</div>

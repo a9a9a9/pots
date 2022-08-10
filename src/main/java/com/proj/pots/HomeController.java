@@ -166,9 +166,9 @@ public class HomeController {
 		return "member/update";
 	} 
 	
-	@RequestMapping(value = "pwConfirm")
+	@RequestMapping(value = "memberDelete")
 	public String pwConfirm() {
-		return "member/pwConfirm";
+		return "member/memberDelete";
 	}
 	@RequestMapping(value = "register")
 	public String register() {
@@ -220,5 +220,9 @@ public class HomeController {
 	@RequestMapping(value = "main")
 	public String main() {
 		return "main";
+	}
+	@RequestMapping(value = "updateCheck")
+	public String updateCheck() {
+		return "member/updateCheck";
 	}
 }
