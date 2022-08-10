@@ -17,6 +17,5 @@ public class PartyViewServiceImpl implements IPartyViewService{
 		ArrayList<PartyCommentDTO> list = mapper.comment(id);
 		return list;  
 	}
-	
 
 }

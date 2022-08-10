@@ -27,8 +27,6 @@ window.onload=function(){
 	  </tr>
 	</thead>
 	<tbody>
-	<%-- <c:set var="paging" value="${ paging}"/> --%>
-	
 	<c:forEach var="comment" items="${list }" begin="${paging.start }" end="${paging.end }">
 		<c:choose>
 			<c:when test="${empty comment }" >
@@ -58,7 +56,6 @@ window.onload=function(){
 									</c:otherwise>
 								</c:choose>
 							</span>
-							<!-- <span class="lightgrey"> title </span> -->
 						</a>
 					</td>
 				</tr>
@@ -70,7 +67,6 @@ window.onload=function(){
 </div>
 <div class="page-number" style="border-top: 0">
 	<ul>
-	
 		<li class="disabled">
 			<a href = "/partyCommentList?nowPage=1"><i class="fa fa-angle-double-left"></i></a>
 		</li>
@@ -99,9 +95,7 @@ window.onload=function(){
 		<li class="disabled">
 			<a href = "/partyCommentList?nowPage=${paging.endPage}"><i class="fa fa-angle-double-right"></i></a>
 		</li>
-		
-		
-		</ul>
+	</ul>
 </div>
 
 

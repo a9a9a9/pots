@@ -43,7 +43,6 @@ public class PartyController {
 			int total = list.size();			
 			int cntPerPage = 2;
 			
-	
 			if (nowPage == null) {
 				nowPage = "1";
 			}else {
