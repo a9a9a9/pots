@@ -12,9 +12,11 @@ public class PartyRegDTO extends PartyDTO{
 	private String party_tel;			//연락처
 	private String party_start;			//진행기간 시작날짜
 	private String party_end;			//진행기간 종료날짜
-	private String party_charge;		//참여금액
+	private int party_charge;		//참여금액
 	private String party_adult;			//19세 이상
 	private String party_notice;		//공지사항
+	private String party_available;     //파티모집가능여부
+	
 	
 	public String getParty_regdate() {
 		return party_regdate;
@@ -76,10 +78,10 @@ public class PartyRegDTO extends PartyDTO{
 	public void setParty_end(String party_end) {
 		this.party_end = party_end;
 	}
-	public String getParty_charge() {
+	public int getParty_charge() {
 		return party_charge;
 	}
-	public void setParty_charge(String party_charge) {
+	public void setParty_charge(int party_charge) {
 		this.party_charge = party_charge;
 	}
 	public String getParty_adult() {
@@ -93,6 +95,12 @@ public class PartyRegDTO extends PartyDTO{
 	}
 	public void setParty_notice(String party_notice) {
 		this.party_notice = party_notice;
+	}
+	public String getParty_available() {
+		return party_available;
+	}
+	public void setParty_available(String party_available) {
+		this.party_available = party_available;
 	}
 
 }

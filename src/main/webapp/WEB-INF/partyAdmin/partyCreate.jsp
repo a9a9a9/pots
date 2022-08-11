@@ -118,9 +118,6 @@
 			    }
 			})
 
-			
-			
-
 		} 
 
 		function check_day() {
@@ -232,8 +229,8 @@
 
 				<div style="clear: both;"></div>
 
-				<form name="fitemform" action="partyReg" method="post" enctype="MULTIPART/FORM-DATA" autocomplete="off" onsubmit="return fitemformcheck(this)">
-
+				<form name="fitemform" action="partyReg" method="post">
+				<input type="hidden" name="id" value="${session.id }"/>
 					<!-- [[ 파트너 서비스 등록 ]] -->
 
 					<div class="title">
@@ -255,7 +252,7 @@
 										</select>
 									</div>
 									<div class="bo_w_select write_div">
-										<select name="party_subservic" id="ca_id" required="" onchange="category_sub_change2(this.form)" class="width-200">
+										<select name="party_subservice" id="ca_id" required="" onchange="category_sub_change2(this.form)" class="width-200">
 											<option value="">기본 분류를 먼저 선택하세요</option>
 										</select>
 									</div>
@@ -268,7 +265,7 @@
 								</li>
 								<li>
 									<div class="subject">ㆍ 모집인원</div> 
-									<select name="party_member" id="it_stock_qty" class="width-100">
+									<select name="party_member" id="it_stock_qty" class="width-100" value="">
 										<option value="0">본인제외</option>
 										<option value="0">0</option>
 										<option value="1">1</option>
@@ -305,7 +302,7 @@
 								<li>
 									<div class="subject w100">ㆍ 진행 기간</div> 
 									<input type="text" name="party_start" id="start_day" value="${sysDate }" class="width-100" readonly="" size="8" maxlength="8"> ~
-									<input type="text" name="pt_day" value="종료날짜" id="pt_day" style="width:100px;" required="" size="8" maxlength="8">
+									<input type="text" name="party_end" value="종료날짜" id="pt_day" style="width:100px;" required="" size="8" maxlength="8">
 									<button type="button" id="btn_enddate" class="button round button-purple" onclick="check_day()">
 									기간확인</button> 
 									<span id="lb_enddate" class="text-purple"></span>
@@ -326,7 +323,7 @@
 								<li>
 									<div class="subject w100">ㆍ 기본 규칙</div> 
 									<span class="input-check"> 
-										<input type="checkbox" id="chk_a" name="party_adult"> 
+										<input type="checkbox" id="chk_a" name="party_adult" value="1"> 
 										<label for="chk_a">19세 이상</label>
 									</span> 
 								</li>
@@ -353,7 +350,7 @@
 
 					<div class="button-align centerbutton-align center">
 						<a href="./?&amp;sca=&amp;ap=list&amp;page="class="button border button-purple">목록</a> 
-						<input type="submit" value="등록" class="button button-purple" accesskey="s">
+						<input type="submit" value="등록" class="button button-purple">
 					</div>
 					<script>
 					
