@@ -104,7 +104,7 @@ input[type='text'] {
 }
 </style>
 
-<form class="form" name="fregister" id="fregister" action="insertAccount" method="post">
+<form class="form" name="fregister" id="fregister" action="" method="post">
 <div class="dialog" style="border-top: 2px solid #84cdcf">
 	<div class="dialog-title"><span class="text-purple">파트너</span> 신청</div>
 	<div class="dialog-body" style="padding-top: 30px; border-top: 1px solid #333">
