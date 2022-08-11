@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.proj.pots.party.dao.IPartyViewDAO">
+
+	<select id="comment" parameterType="String" resultType="PartyCommentDTO">
+	 	SELECT a.nick, a.comment_date, a.comment, a.comment_private, b.party_title
+	 	FROM party_comment as a
+	 	JOIN party as b
+	 	ON a.party_num = b.party_num AND b.id = #{id} AND a.id != #{id}<!-- id 세션 값 --> 
+	 	ORDER BY comment_date DESC 
+	 </select>
+	 	 
+</mapper>
