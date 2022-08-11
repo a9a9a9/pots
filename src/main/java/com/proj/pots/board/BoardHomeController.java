@@ -21,7 +21,7 @@ public class BoardHomeController {
 		return url;
 	}
 	
-	@RequestMapping(value = "/communityBoardView")
+	@RequestMapping(value = "/view")
 	public String view() {
 		String url = checkSession("board/communityBoardView");
 		return url;

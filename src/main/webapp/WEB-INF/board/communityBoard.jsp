@@ -2,7 +2,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:url var="root" value="/" />
-
+ <script>
+	$("document").ready(function (){
+		$("div.subject notice").css("cursor", "pointer").click(function(){
+			let no = $(this).attr("id");
+			location.href='viewProc?writeNo=' + no;
+/* 			$("#writeNo").val(no);
+			$("#f").attr("action", "${root}viewProc");
+			$("#f").submit(); */
+		});
+ </script>
 <body class="responsive is-pc">
 	<div class="wrap wrapper  ko">
 		<div class="body">
@@ -61,8 +70,7 @@
 									<td>
 									<!-- 제목 -->
 										<div class="subject notice" id="${list.square_num}">
-											<a href="${root}index?formpath=communityBoardView" >${list.square_title }</a>
-										</div>
+										${list.square_title } </div>
 									</td>
 									<!-- 작성일  -->
 									<td>${list.square_date }</td> 
