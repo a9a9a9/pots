@@ -3,8 +3,8 @@
 
 <mapper namespace="com.proj.pots.login.dao.ILoginDAO">
 
-	<select id="loginProc" parameterType="MemberDTO" resultType="MemberDTO">
-		SELECT * FROM member WHERE id=#{id}
+	<select id="loginProc" parameterType="LoginDTO" resultType="LoginDTO">
+		SELECT * FROM login WHERE id=#{id}
 	</select>
 	
 </mapper>
