@@ -22,6 +22,7 @@ public class BoardServiceImpl implements IBoardService {
 	@Autowired IBoardDAO mapper;
 	@Autowired HttpSession session;
 	
+	
 	@Override
 	public void writeProc(MultipartHttpServletRequest req) {
 		String id = (String)session.getAttribute("id");
@@ -36,9 +37,8 @@ public class BoardServiceImpl implements IBoardService {
 		board.setSquare_content(content);		
 		board.setSquare_view(0);
 		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd hh:mm");
 		board.setSquare_date(sdf.format(date));
-		
 		mapper.writeProc(board);
 }
 
@@ -49,11 +49,15 @@ public class BoardServiceImpl implements IBoardService {
 		map.put("select", select);
 		
 		int totalCount = mapper.boardCount(map); 
-		int pageBlock = 3;
+		int pageBlock = 7;
 		int end = currentPage * pageBlock;
 		int begin = end+1 - pageBlock;
-
+		
+//		BoardDTO board = new BoardDTO();
+		
 		ArrayList<BoardDTO> boardList = mapper.boardProc(begin, end, select, search);
+//		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd");
+//		sdf.format(board.getSquare_date());
 		model.addAttribute("boardList", boardList);
 
 		String url = req.getContextPath() + "/boardProc?";

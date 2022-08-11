@@ -29,17 +29,20 @@ public class BoardController {
 	public String boardProc(Model model, @RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage,
 			String search, String select, HttpServletRequest req ) {
 		service.boardProc(model, currentPage, search, select, req);
-		return "forward:/index?formpath=communityBoard";
+		return "forward:/index?formpath=board";
 	}
 	
 	@RequestMapping(value = "viewProc")
 	public String viewProc(@RequestParam(value = "writeNo", required = false) String writeNo, Model model) {
+		System.out.println(writeNo);
 		if(writeNo == null || writeNo == "")
-			return "forward:/index?formpath=communityBoard";
+		
+			return "forward:/index?formpath=board";
 		
 		int no = Integer.parseInt(writeNo);
 		service.viewProc(no, model);
 		service.upNum(no);
-		return "forward:/index?formpath=communityBoardView";
+		System.out.println(writeNo);
+		return "forward:/index?formpath=view";
 }
 }

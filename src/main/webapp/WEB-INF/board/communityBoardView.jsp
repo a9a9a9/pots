@@ -8,25 +8,25 @@
 			<div class="width-container">
 				<div class="title-wrap border">
 					<div class="title">
-						<a href="" class="text">공지사항</a>
+						<a href="" class="text">게시글</a>
 					</div>
 				</div>
 				
 				<div class="table-row">
-					<div class="subject">모집 후 15일이 경과된 파티중 모집인원이 없는 파티 삭제 안내</div>
+					<div class="subject">${board.square_title }</div>
 				</div>
 				
 				<div class="table-row">
 					<!-- 이미지 -->
 					<span class="picture"><img src="/img/butsadm.gif" class="photo" alt=""></span>
 					<!-- 작성자 -->
-					<span class="v-bar"><span class="sv_member">${sessionScope.id }</span></span>
+					<span class="v-bar"><span class="sv_member">${board.nick }</span></span>
 					<!-- 댓글 -->
 					<span class="v-bar">댓글 <span class="text-purple">0</span></span>
 					<!-- 조회수 -->
 					<span class="v-bar">조회수 <span class="text-purple">${sessionScope.square_view }</span></span>
 					<!-- 작성일 -->
-					<div class="right">${sessionScope.square_date }</div> 
+					<div class="right">${board.square_date }</div> 
 				</div>
 				
 				<div class="table-view-article">
@@ -49,6 +49,7 @@
 					</div>
 				</div>
 			</div>
+		</div>
 		</div>
 	</div>
 </body>
