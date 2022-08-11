@@ -32,6 +32,7 @@ public class PartyMngController {
 	
 	@RequestMapping(value = "/partyList")
 	public String partyList() {
+		String id = "admin";
 		return "partyAdmin/partyList";
 	}
 	
