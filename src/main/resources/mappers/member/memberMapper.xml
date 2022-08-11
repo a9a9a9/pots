@@ -29,4 +29,15 @@
 	<delete id="deleteMember" parameterType="String">
 		DELETE FROM member WHERE id=#{id}
 	</delete>
+	
+	<update id="updateLogin" parameterType="LoginDTO">
+		UPDATE login SET pw=#{pw} WHERE id=#{id}
+	</update>
+	<update id="updateMember" parameterType="MemberDTO">
+		UPDATE member SET name=#{name}, nick=#{nick}, tel=#{tel}, profile=#{profile} WHERE id=#{id}
+	</update>
+	
+	<update id="profileUpdate" parameterType="MemberDTO">
+		UPDATE member SET profile=#{profile} WHERE id=#{id}
+	</update>
 </mapper>

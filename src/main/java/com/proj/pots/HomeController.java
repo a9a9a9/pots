@@ -191,7 +191,7 @@ public class HomeController {
 	public String faq4() {
 		return "myMenu/faq4";
 	}
-	@RequestMapping(value = "communityBoard")
+	@RequestMapping(value = "board")
 	public String communityBoard() {
 		return "board/communityBoard";
 	}
@@ -199,20 +199,20 @@ public class HomeController {
 	public String noticeBoard() {
 		return "board/noticeBoard";
 	}
-	@RequestMapping(value = "boardWrite")
-	public String boardWrite() {
-		return "board/boardWrite";
-	}
-
-	@RequestMapping(value = "communityBoardView")
-	public String communityBoardView() {
-		return "board/communityBoardView";
-	}
-	@RequestMapping(value = "noticeBoardView")
-	public String noticeBoardView() {
-		return "board/noticeBoardView";
-
-	}
+//	@RequestMapping(value = "boardWrite")
+//	public String boardWrite() {
+//		return "board/boardWrite";
+//	}
+//
+//	@RequestMapping(value = "communityBoardView")
+//	public String communityBoardView() {
+//		return "board/communityBoardView";
+//	}
+//	@RequestMapping(value = "noticeBoardView")
+//	public String noticeBoardView() {
+//		return "board/noticeBoardView";
+//
+//	}
 	@RequestMapping(value = "profile")
 	public String profile() {
 		return "member/profile";
@@ -220,5 +220,9 @@ public class HomeController {
 	@RequestMapping(value = "main")
 	public String main() {
 		return "main";
+	}
+	@RequestMapping(value = "updateCheck")
+	public String updateCheck() {
+		return "member/updateCheck";
 	}
 }

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.proj.pots.board.dao.IBoardDAO">
+
+	<insert id="writeProc" parameterType="BoardDTO">
+		<selectKey keyProperty="square_num" resultType="int" order="BEFORE">
+			SELECT nvl(max(square_num), 0)+1 FROM board_square
+		</selectKey>
+		INSERT INTO board_square VALUES( #{square_num}, #{id}, #{square_title}, #{square_content}, #{square_view}, #{square_date}, #{nick})
+	</insert>
+	
+	<select id="viewProc" resultType="BoardDTO" parameterType="int">
+		SELECT * FROM board_square WHERE square_num=#{square_num}
+	</select>
+	
+	<update id="upNum" parameterType="int" >
+		UPDATE board_square SET square_view=square_view+1 WHERE square_num=#{square_num}
+	</update>
+	
+	<select id="boardProc" resultType="BoardDTO">
+		SELECT B.* FROM(
+         SELECT ROW_NUMBER() OVER(ORDER BY square_num) AS rn, A.* FROM(
+            SELECT * FROM board_square
+            <choose>
+               <when test="sel == 'nick'">WHERE nick LIKE '%'||#{search}||'%'</when>
+               <when test="sel == 'square_title'">WHERE square_title LIKE '%'||#{search}||'%'</when>
+            </choose>
+            ORDER BY square_num DESC
+         )A
+      )B WHERE rn BETWEEN #{b} and #{e}
+	</select>
+	<select id="boardCount" resultType="int"  parameterType="HashMap">
+		SELECT count(*) FROM board_square 
+		<choose>
+			<when test="select == 'id'">WHERE id LIKE '%'||#{search}||'%'</when>
+			<when test="select == 'nick'">WHERE nick LIKE '%'||#{search}||'%'</when>
+			<when test="select == 'square_title'">WHERE square_title LIKE '%'||#{search}||'%'</when>
+		</choose>
+	</select>
+	<update id="modifyProc" parameterType="BoardDTO" >
+		UPDATE board_square SET square_title=#{square_title}, square_content=#{square_content} WHERE square_num=#{square_num}
+	</update>
+	<delete id="deleteProc" parameterType="int">
+		DELETE FROM board_square WHERE square_num=#{square_num}
+	</delete>	
+	<select id="getFileName" parameterType="int" resultType="String">
+		SELECT filename FROM board_square WHERE square_num=#{square_num}
+	</select>
+	</mapper>

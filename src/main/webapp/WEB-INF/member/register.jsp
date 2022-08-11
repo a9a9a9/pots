@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:url var="root" value="/" />
 <script>
 	var result = "${msg}";
 	if(result === "중복 아이디 입니다."){
@@ -34,20 +33,13 @@
 		}
 	}
 	
-	function showProfile(){
-		var width = 540;
-		var height = 450;
-		
-		var left = (window.screen.width / 2) - (width/2);
-		var top = (window.screen.height / 4);
-		
-		var windowStatus = 'width='+width+', height='+height+', left='+left+', top='+top;
-		
-		const url = "${root}profile"
-		window.open(url, "", windowStatus);
-	}
 </script>
 
+		<c:if test="${not empty msg }">
+			<script>
+				alert("${msg}");
+			</script>
+		</c:if>
 <body class="responsive is-pc">
 	<div class="wrap wrapper  ko">
 		<div class="body">
@@ -108,6 +100,14 @@
 									<div class="profile_select" style="margin-right: 20px; float: left;">
 										<input type="image" src="/img/profile2.png" disabled="disabled"><br>
 										<input type="radio" name="profile" id="profile" value="2" style="margin:5px 18px;" />
+									</div>
+									<div class="profile_select" style="margin-right: 20px; float: left;">
+										<input type="image" src="/img/profile3.png" disabled="disabled"><br>
+										<input type="radio" name="profile" id="profile" value="3" style="margin:5px 18px;" />
+									</div>
+									<div class="profile_select" style="margin-right: 20px; float: left;">
+										<input type="image" src="/img/profile4.png" disabled="disabled"><br>
+										<input type="radio" name="profile" id="profile" value="4" style="margin:5px 18px;" />
 									</div>
 								</div>
 							</li>

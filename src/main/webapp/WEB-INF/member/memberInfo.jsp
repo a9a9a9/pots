@@ -6,6 +6,7 @@
 		location.href = 'index?formpath=login';
 	</script>
 </c:if>
+
 <body class="responsive is-pc">
 	<div class="wrap wrapper  ko">
 		<div class="body" >
@@ -23,9 +24,9 @@
 					<div class="pd-left">
 						<div class="picture">
 							<div class="image">
-								<img src="/img/icon-myimg.png" alt="" />	
+								<img src="/img/profile${member.profile}.png" alt="" />	
 							</div>
-							<a href="#" class="button mini border win_memo">사진등록</a>
+							<a href="javascript:void(0);" onclick="showProfile()" class="button mini border win_memo">사진변경</a>
 						</div>
 						<div class="profile">
 							<span class="name"><a href="javascript:;" onClick="showSideView(this, 'cucksdn', 'bcu0709', '', '');"><span class="member"> ${member.nick}</span></a></span>
@@ -54,8 +55,8 @@
 								<span class="normal">${sessionScope.id}</span>
 							</li>
 							<li>
-								<div class="subject">ㆍ 닉네임</div>
-								<span class="normal">${member.nick}</span>
+								<div class="subject">ㆍ 이름</div>
+								<span class="normal">${member.name}</span>
 							</li>
 							<li>
 								<div class="subject">ㆍ 연락처</div>
@@ -69,7 +70,7 @@
 					</div>
 					
 					<div class="text-right">
-						<a href="#" class="button round button-purple">정보수정</a>
+						<a href="${root}index?formpath=updateCheck" class="button round button-purple">정보수정</a>
 						<a href="${root}index?formpath=memberDelete" class="button round border button-purple leave-me">탈퇴하기</a>
 					</div>
 				</div>
