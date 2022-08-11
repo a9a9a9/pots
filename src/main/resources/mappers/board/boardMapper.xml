@@ -20,15 +20,15 @@
 	
 	<select id="boardProc" resultType="BoardDTO">
 		SELECT B.* FROM(
-			SELECT A.*, @ROWNUM:=@ROWNUM+1 AS rn FROM(
-				SELECT * FROM board_square
-				<choose>
-					<when test="sel == 'nick'">WHERE nick LIKE '%'||#{search}||'%'</when>
-					<when test="sel == 'square_title'">WHERE square_title LIKE '%'||#{search}||'%'</when>
-				</choose>
-				 ORDER BY square_num DESC 
-			)A
-		)B WHERE rn BETWEEN #{b} and #{e}
+         SELECT ROW_NUMBER() OVER(ORDER BY square_num) AS rn, A.* FROM(
+            SELECT * FROM board_square
+            <choose>
+               <when test="sel == 'nick'">WHERE nick LIKE '%'||#{search}||'%'</when>
+               <when test="sel == 'square_title'">WHERE square_title LIKE '%'||#{search}||'%'</when>
+            </choose>
+            ORDER BY square_num DESC
+         )A
+      )B WHERE rn BETWEEN #{b} and #{e}
 	</select>
 	<select id="boardCount" resultType="int"  parameterType="HashMap">
 		SELECT count(*) FROM board_square 

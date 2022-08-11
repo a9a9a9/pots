@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:url var="root" value="/" />
 
 <body class="responsive is-pc">
@@ -32,24 +33,16 @@
 								</button>
 							</form>
 						</div>
-					</div>
+					</div> 
 				</div>
 
-				<form name="fboardlist" id="fboardlist"
-					action="./board_list_update.php"
-					onsubmit="return fboardlist_submit(this);" method="post"
-					role="form" class="form">
-					<input type="hidden" name="bo_table" value="notice"> 
-					<input type="hidden" name="sfl" value=""> 
-					<input type="hidden" name="stx" value=""> 
-					<input type="hidden" name="spt" value=""> 
-					<input type="hidden" name="sca" value="">
-					<input type="hidden" name="sst" value="wr_num, wr_reply"> 
-					<input type="hidden" name="sod" value=""> 
-					<input type="hidden" name="page" value="1"> 
-					<input type="hidden" name="sw" 	value="">
-
 					<div class="table-list list-wrap">
+<form id="f" method="post" >
+	<input type="hidden" id="writeNo" name="writeNo"/>
+	<input type=hidden name="proc" value="deletes" />
+	<input type=hidden name="formpath" value="delete" />
+					
+
 						<table>
 
 							<thead>
@@ -61,25 +54,25 @@
 								</tr>
 							</thead>
 							<tbody>
-							<c:forEach var="list" items="${squarelist }">
+							<c:forEach var="list" items="${boardList }">
 								<tr class="active">
-									
 									<!-- 번호 -->
-									<td class="pc-table" style="width: 10%">${square.num }</td>
+									<td class="pc-table" style="width: 10%">${list.square_num }</td>
 									<td>
 									<!-- 제목 -->
-										<div class="subject notice">
-											<a href="${root}index?formpath=communityBoardView">${square.title }</a>
+										<div class="subject notice" id="${list.square_num}">
+											<a href="${root}index?formpath=communityBoardView" >${list.square_title }</a>
 										</div>
 									</td>
 									<!-- 작성일  -->
-									<td>${square.date }</td> 
+									<td>${list.square_date }</td> 
 									<!-- 조회수 -->
-									<td class="pc-table" style="width: 10%">${square.view }</td>
+									<td class="pc-table" style="width: 10%">${list.square_view }</td>
 								</tr>
 						</c:forEach>
 							</tbody>
 						</table>
+					</form> 
 					</div>
 					<div class="write-right" style="position: relative; float: right;" >
 					<br><br><br>
@@ -88,12 +81,11 @@
 
 					<div class="button-align right mg-top-0"></div>
 
-				</form>
 
 			</div>
 
-
 		</div>
 
+				
 	</div>
 </body>
