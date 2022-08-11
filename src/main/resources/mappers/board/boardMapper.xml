@@ -20,11 +20,10 @@
 	
 	<select id="boardProc" resultType="BoardDTO">
 		SELECT B.* FROM(
-			SELECT rownum rn, A.* FROM(
+			SELECT A.*, @ROWNUM:=@ROWNUM+1 AS rn FROM(
 				SELECT * FROM board_square
 				<choose>
-					<when test="sel == 'id'">WHERE id LIKE '%'||#{search}||'%'</when>
-					<when test="select == 'nick'">WHERE nick LIKE '%'||#{search}||'%'</when>
+					<when test="sel == 'nick'">WHERE nick LIKE '%'||#{search}||'%'</when>
 					<when test="sel == 'square_title'">WHERE square_title LIKE '%'||#{search}||'%'</when>
 				</choose>
 				 ORDER BY square_num DESC 

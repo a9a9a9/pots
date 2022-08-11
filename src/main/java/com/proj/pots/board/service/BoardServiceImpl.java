@@ -25,8 +25,7 @@ public class BoardServiceImpl implements IBoardService {
 	@Override
 	public void writeProc(MultipartHttpServletRequest req) {
 		String id = (String)session.getAttribute("id");
-//		String nick = (String)session.getAttribute("nick");
-		String nick = req.getParameter("nick");
+		String nick = (String)session.getAttribute("nick");
 		String title = req.getParameter("square_title");
 		String content= req.getParameter("square_content");
 		
