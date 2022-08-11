@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -25,13 +25,15 @@
 <meta property="og:url" content="https://buts.co.kr/shop/partner/register.php" />
 <link rel="canonical" href="https://buts.co.kr/shop/partner/register.php" />
 <title>파트너 신청 > Buts</title>
-<link rel="stylesheet" href="https://buts.co.kr/css/default_shop.css?ver=180820">
-<link rel="stylesheet" href="https://buts.co.kr/css/apms.css?ver=180820">
-<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800" type="text/css">
-<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Raleway:300,200,100" type="text/css">
-<link rel="stylesheet" href="https://buts.co.kr/shop/partner/skin/Basic/style.css" type="text/css" >
-<link rel="stylesheet" href="https://buts.co.kr/thema/Buts/colorset/Basic/popup.form.css?time=1660202067" >
-<link rel="stylesheet" href="https://buts.co.kr/css/level/basic.css?ver=180820">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet"> 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800" type="text/css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300,200,100" type="text/css">
+
+<link rel="stylesheet" href="/css/partyAdmin/admin.sub.css">
+<link rel="stylesheet" href="/css/partyAdmin/apms.css">
+<link rel="stylesheet" href="/css/partyAdmin/basic.css">
+<link rel="stylesheet" href="/css/partyAdmin/bootstrap.min.css">
+<link rel="stylesheet" href="/css/partyAdmin/partner.css">
 <!--[if lte IE 8]>
 <script src="https://buts.co.kr/js/html5.js"></script>
 <![endif]-->
@@ -50,14 +52,6 @@ var g5_responsive    = "1";
 var g5_cookie_domain = "";
 var g5_purl = "https://buts.co.kr/shop/partner/register.php";
 </script>
-<script src="https://buts.co.kr/js/jquery-1.11.3.min.js"></script>
-<script src="https://buts.co.kr/js/jquery-migrate-1.2.1.min.js"></script>
-<script src="https://buts.co.kr/lang/korean/lang.js?ver=180820"></script>
-<script src="https://buts.co.kr/js/common.js?ver=180820"></script>
-<script src="https://buts.co.kr/js/wrest.js?ver=180820"></script>
-<script src="https://buts.co.kr/js/placeholders.min.js"></script>
-<script src="https://buts.co.kr/js/apms.js?ver=180820"></script>
-<link rel="stylesheet" href="https://buts.co.kr/js/font-awesome/css/font-awesome.min.css">
 </head>
 <body class="responsive is-pc">
 	<h1 style="display:inline-block !important;position:absolute;top:0;left:0;margin:0 !important;padding:0 !important;font-size:0;line-height:0;border:0 !important;overflow:hidden !important">
@@ -110,8 +104,8 @@ input[type='text'] {
 }
 </style>
 
-<form class="form" role="form" name="fregister" id="fregister" action="https://buts.co.kr/shop/partner/register.update.php" onsubmit="return fregister_submit(this);" method="POST" enctype="multipart/form-data" autocomplete="off">
-<div class="dialog" style="border-top: 2px solid #7e69fe">
+<form class="form" name="fregister" id="fregister" action="insertAccount" method="post">
+<div class="dialog" style="border-top: 2px solid #84cdcf">
 	<div class="dialog-title"><span class="text-purple">파트너</span> 신청</div>
 	<div class="dialog-body" style="padding-top: 30px; border-top: 1px solid #333">
 					<input type="hidden" name="pt_partner" value="1">
@@ -119,31 +113,28 @@ input[type='text'] {
 				<ul class="dialog-form">
 			<li>
 				<span class="subject">ㆍ 모집유형</span>
-				<select name="pt_type" id="pt_type" required style="width: 100%; max-width: 232px"  onchange="fn_type(this.form)"  value="">
-					<option value="">파트너 유형을 선택해 주세요.</option>
-											<option value="1" >전문파티장</option>
-																<option value="2" >개인파티장</option>
-									</select>
+				<input type="text" name="pt_type" id="pt_type" placeholder="모집유형" style="width: 100%; max-width: 200px" disabled="disabled" value="개인파티장" required />						
 			</li>
 			<li>
 				<label>* 개인파티장은 수수료가 없습니다.(한달에 한번만 각 서비스 등록가능)</label>				
 			</li>
 			<li>
+				<input type="hidden" name="id" id="pt_name" placeholder="아이디" style="width: 100%; max-width: 200px" disabled="disabled" value="${member.id }" required />
 				<span class="subject">ㆍ 이름</span>
-				<input type="text" name="pt_name" id="pt_name" placeholder="이름" style="width: 100%; max-width: 200px" disabled="disabled" value="김가현" required />
+				<input type="text" name="name" id="pt_name" placeholder="이름" style="width: 100%; max-width: 200px" disabled="disabled" value="${member.name }" required />
 			</li>
 			<li>
 				<span class="subject">ㆍ 연락처</span>
-				<input type="text" name="pt_hp" id="pt_hp" placeholder="연락처를 입력해 주세요." style="width: 100%; max-width: 200px" disabled="disabled" value="010-9668-0853" required>
+				<input type="text" name="tel" id="pt_hp" placeholder="연락처를 입력해 주세요." style="width: 100%; max-width: 200px" disabled="disabled" value="${member.tel }" required>
 			</li>
+		
 			<li id="li_saupja">
 				<span class="subject">ㆍ 주민번호</span>
-				<input type="text" name="pt_company_saupja" id="pt_company_saupja" style="width: 100%; max-width: 200px"  placeholder="주민등록 번호입력" value="">
+				<input type="text" name="personal_num" id="pt_company_saupja" style="width: 100%; max-width: 200px"  placeholder="주민등록 번호입력" value="">
 			</li>
-						
 			<li>
 				<span class="subject">ㆍ 출금계좌</span>
-				<select name="pt_bank_name" required style="width: 100%; max-width: 232px; margin-bottom: 2px;"  value="">
+				<select name="account_name" required style="width: 100%; max-width: 232px; margin-bottom: 2px;"  value="">
 					<option value="">은행을 선택해 주세요.</option>
 						<option value="국민은행" >국민은행</option>
 						<option value="기업은행" >기업은행</option>
@@ -201,7 +192,7 @@ input[type='text'] {
 						<option value="BNK투자증권" >BNK투자증권</option>
 						<option value="NH투자증권" >NH투자증권</option>
 				</select>
-				<input type="text" name="pt_bank_account" id="pt_bank_account" style="width: 100%; max-width: 200px;" required placeholder="계좌번호를 입력해 주세요."  value="">
+				<input type="text" name="account_num" id="pt_bank_account" style="width: 100%; max-width: 200px;" required placeholder="계좌번호를 입력해 주세요."  value="">
 			</li>
 		</ul>
 		<div class="dialog-caution">
@@ -259,7 +250,7 @@ input[type='text'] {
 		*/
 
 		if (confirm("파트너 등록을 신청하시겠습니까?")) {
-			f.action = "https://buts.co.kr/shop/partner/register.update.php";
+			f.action = "http://localhost/partyList";
 			return true;
 		}
 
