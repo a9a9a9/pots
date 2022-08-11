@@ -117,12 +117,8 @@
 								<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-myimg.png" alt="">
 							</div>
 							<div class="name">
-<<<<<<< Updated upstream
 								<div>${sessionScope.nick }</div> <a href="${root }logout" class="header-logout"> 
-=======
-								${sessionScope.nick } 
 								<a href="${root }logout" class="header-logout"> 
->>>>>>> Stashed changes
 									<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/img-input-text-reste-copy.png"
 									srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/img-input-text-reste-copy.png 2x" alt="">
 								</a>
@@ -144,17 +140,26 @@
 								</a>
 							</div>
 							<div class="buttons">
-								<a href="#">파티관리</a>
+								<c:choose>
+									<c:when test="${sessionScope.partner eq 'true'}">
+										<a href="partnerRegister">파티장신청</a>
+									</c:when>
+									<c:otherwise>
+										<a href="partyList">파티관리</a>
+									</c:otherwise>
+								</c:choose>
 							</div>
 						</div>
 						<div class="block">
 							<ul class="menu">
-								<li><a href="https://buts.co.kr/shop/list_my.php?ca_id=10"
+								<li><a href="#"
 									style="color: #7e69fe;">참여중인 파티</a></li>
-								<li><a
-									href="https://buts.co.kr/shop/list_partner.php?ca_id=10">생성한
-										파티</a></li>
-
+								<c:choose>
+									<c:when test="${sessionScope.partner eq 'true'}">
+										<li><a href="#">생성한 파티</a></li>
+									</c:when>
+								</c:choose>
+								
 							</ul>
 						</div>
 						<div class="block">
@@ -173,23 +178,6 @@
 										 <span class="price Rajdhani">${sessionScope.point}</span></a> 
 										 <a href="https://buts.co.kr/shop/order_point_form.php"
 											class="charge fill">충전</a>
-										</span>
-									</div>
-								</li>
-								<li>
-									<div class="point">
-										<span class="icon">
-										<a href="https://buts.co.kr/bbs/up_buts.php">
-										<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-up.png"
-												srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/icon-up.png 2x"
-												alt=""></a></span> 
-										<span>
-											<a href="#">파티 UP</a></span>
-										 <span class="right"> 
-										 <a href="#">
-										 <span class="price Rajdhani">0</span></a> 
-										 <span>개</span> 
-										 <a href="#" class="charge">충전</a>
 										</span>
 									</div>
 								</li>
