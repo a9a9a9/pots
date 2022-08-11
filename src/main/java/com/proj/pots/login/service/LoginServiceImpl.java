@@ -12,6 +12,7 @@ import com.proj.pots.member.dto.LoginDTO;
 import com.proj.pots.member.dto.MemberDTO;
 
 import com.proj.pots.membership.dao.IMemberDAO;
+import com.proj.pots.party.dto.PartnerInfoDTO;
 
 @Service
 public class LoginServiceImpl implements ILoginService{
@@ -34,21 +35,22 @@ public class LoginServiceImpl implements ILoginService{
 		
 		if(check != null && encoder.matches(login.getPw(), check.getPw())) {
 			session.setAttribute("id", check.getId());
+			
 			MemberDTO member = memberDao.memberInfo(check.getId());
 			session.setAttribute("nick", member.getNick());
 			session.setAttribute("profile", member.getProfile());
 			session.setAttribute("point", member.getPoint());
 			session.setAttribute("tel", member.getTel());
-			System.out.println(login.getId());
-			System.out.println(login.getPw());
-			System.out.println(check.getId());
-			System.out.println(check.getPw());
+			
+			PartnerInfoDTO partner = loginDao.checkPartner(check.getId());
+			if(partner != null)
+				session.setAttribute("partner", "true");
+			else
+				session.setAttribute("partner", "false");
+			
 			return "로그인 성공";
 		}else
-			System.out.println(login.getId());
-			System.out.println(login.getPw());
-			System.out.println(check.getId());
-			System.out.println(check.getPw());
 			return "아이디 또는 비밀번호를 확인하세요.";
 	}
+	
 }
