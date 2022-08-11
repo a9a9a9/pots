@@ -23,6 +23,17 @@
 		#{party_available})   
 	</insert>
 	
+	<select id="partyList" resultType="PartyListDTO">
+		SELECT a.*, b.party_count AS party_now_member 
+		FROM 
+			(SELECT * FROM party WHERE id=#{id}) 
+			a 
+		LEFT JOIN 
+			(SELECT party_num, count(*) AS party_count FROM party_member GROUP BY party_num) 
+			b 
+		ON a.party_num = b.party_num;
+	</select>
+	
 	
 	
 </mapper>
