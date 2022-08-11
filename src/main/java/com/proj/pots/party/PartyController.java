@@ -58,10 +58,6 @@ public class PartyController {
 			return "partyAdmin/partyCommentList";
 		}
 		
-		@RequestMapping(value = "/partyCreate")
-		public String partyCreate() {
-			return "partyAdmin/partyCreate";
-		}
 		
 		
 }

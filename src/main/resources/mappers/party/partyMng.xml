@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.proj.pots.party.dao.IPartyMngDAO">
+	
+	<insert id="insertParty" parameterType="PartyRegDTO" useGeneratedKeys="true">
+		INSERT INTO party (id, party_regdate, party_service, party_subservice, party_title, party_member, party_id, party_pw, party_tel, party_start, party_end, party_charge, party_adult, party_notice, party_available)
+		VALUES (
+		#{id},
+		#{party_regdate}, 		
+		#{party_service}, 		
+		#{party_subservice}, 	
+		#{party_title}, 			
+		#{party_member}, 			
+		#{party_id}, 			
+		#{party_pw}, 			
+		#{party_tel}, 			
+		#{party_start}, 			
+		#{party_end}, 			
+		#{party_charge}, 		
+		#{party_adult}, 			
+		#{party_notice}, 		
+		#{party_available})   
+	</insert>
+	
+	
+	
+</mapper>
