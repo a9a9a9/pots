@@ -38,7 +38,9 @@ public class BoardServiceImpl implements IBoardService {
 		board.setSquare_view(0);
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd hh:mm");
-		board.setSquare_date(sdf.format(date));
+		String dateConvert = sdf.format(date);
+		
+		board.setSquare_date(dateConvert);
 		mapper.writeProc(board);
 }
 
@@ -49,15 +51,12 @@ public class BoardServiceImpl implements IBoardService {
 		map.put("select", select);
 		
 		int totalCount = mapper.boardCount(map); 
-		int pageBlock = 7;
+		int pageBlock = 5;
 		int end = currentPage * pageBlock;
 		int begin = end+1 - pageBlock;
 		
-//		BoardDTO board = new BoardDTO();
-		
 		ArrayList<BoardDTO> boardList = mapper.boardProc(begin, end, select, search);
-//		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd");
-//		sdf.format(board.getSquare_date());
+		
 		model.addAttribute("boardList", boardList);
 
 		String url = req.getContextPath() + "/boardProc?";
@@ -72,9 +71,9 @@ public class BoardServiceImpl implements IBoardService {
 
 	@Override
 	public void viewProc(int square_num, Model model) {
-		BoardDTO board = mapper.viewProc(square_num);
-		model.addAttribute("board", board);
-		
+//		BoardDTO board = mapper.viewProc(square_num);
+//		model.addAttribute("board", board);
+		model.addAttribute("board",mapper.viewProc(square_num));
 	}
 
 	@Override

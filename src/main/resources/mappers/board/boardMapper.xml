@@ -23,21 +23,22 @@
          SELECT ROW_NUMBER() OVER(ORDER BY square_num) AS rn, A.* FROM(
             SELECT * FROM board_square
             <choose>
-               <when test="sel == 'nick'">WHERE nick LIKE '%'||#{search}||'%'</when>
-               <when test="sel == 'square_title'">WHERE square_title LIKE '%'||#{search}||'%'</when>
+               <when test="sel == 'nick'">WHERE nick LIKE CONCAT('%',#{search},'%')</when>
+               <when test="sel == 'title'">WHERE square_title LIKE CONCAT('%',#{search},'%')</when>
             </choose>
             ORDER BY square_num DESC
          )A
       )B WHERE rn BETWEEN #{b} and #{e}
 	</select>
+	
 	<select id="boardCount" resultType="int"  parameterType="HashMap">
 		SELECT count(*) FROM board_square 
 		<choose>
-			<when test="select == 'id'">WHERE id LIKE '%'||#{search}||'%'</when>
 			<when test="select == 'nick'">WHERE nick LIKE '%'||#{search}||'%'</when>
-			<when test="select == 'square_title'">WHERE square_title LIKE '%'||#{search}||'%'</when>
+			<when test="select == 'title'">WHERE square_title LIKE '%'||#{search}||'%'</when>
 		</choose>
 	</select>
+	
 	<update id="modifyProc" parameterType="BoardDTO" >
 		UPDATE board_square SET square_title=#{square_title}, square_content=#{square_content} WHERE square_num=#{square_num}
 	</update>

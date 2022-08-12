@@ -24,12 +24,13 @@
 					<!-- 댓글 -->
 					<span class="v-bar">댓글 <span class="text-purple">0</span></span>
 					<!-- 조회수 -->
-					<span class="v-bar">조회수 <span class="text-purple">${sessionScope.square_view }</span></span>
+					<span class="v-bar">조회수 <span class="text-purple">${board.square_view }</span></span>
 					<!-- 작성일 -->
 					<div class="right">${board.square_date }</div> 
 				</div>
 				
-				<div class="table-view-article">
+				<div class="table-view-article" style="min-height: 0px;">
+					<p style="min-height: 500px;">${board.square_content}</p>
 <!-- 					<p><span style="color:#333333;font-family:'Noto Sans KR', NanumGothic, '나눔고딕', ng, 'Malgun Gothic', Gulim, Dotum, sans-serif;font-size:17px;background-color:#ffffff;">안녕하세요. 벗츠 운영팀입니다.</span></p> -->
 <!-- 					<p style="margin-bottom:10px;padding:0px;color:#333333;font-family:'Noto Sans KR', NanumGothic, '나눔고딕', ng, 'Malgun Gothic', Gulim, Dotum, sans-serif;font-size:17px;background-color:#ffffff;"> <br></p> -->
 <!-- 					<p style="margin-bottom:10px;padding:0px;color:#333333;font-family:'Noto Sans KR', NanumGothic, '나눔고딕', ng, 'Malgun Gothic', Gulim, Dotum, sans-serif;font-size:17px;background-color:#ffffff;">현재 다수의 파티장님들이 파티 모집 후 15일이 경과된 파티를 계속해서</p> -->
@@ -43,9 +44,10 @@
 <!-- 					<p style="margin-bottom:10px;padding:0px;color:#333333;font-family:'Noto Sans KR', NanumGothic, '나눔고딕', ng, 'Malgun Gothic', Gulim, Dotum, sans-serif;font-size:17px;background-color:#ffffff;">감사합니다.</p></div> -->
 				
 				<div class="button-align right border">
-					<div class="float-left">
-						<a href="#" class="button small border button-purple">이전</a>
-						<a href="#" class="button small border button-purple">다음</a>
+					<div class="float-left" style="float:right;">
+						<a href="${root}boardProc" class="button small border button-purple">목록</a>
+						<a href="#" class="button small border button-purple">수정</a>
+						<a href="#" class="button small border button-purple">삭제</a>
 					</div>
 				</div>
 			</div>

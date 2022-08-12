@@ -20,4 +20,5 @@ public interface IBoardDAO {
 	void upNum(int square_num);
 
 	public int boardCount(HashMap<String, Object> map);
+	
 }
