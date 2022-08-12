@@ -34,15 +34,12 @@ public class BoardController {
 	
 	@RequestMapping(value = "viewProc")
 	public String viewProc(@RequestParam(value = "writeNo", required = false) String writeNo, Model model) {
-		System.out.println(writeNo);
 		if(writeNo == null || writeNo == "")
-		
 			return "forward:/index?formpath=board";
 		
 		int no = Integer.parseInt(writeNo);
 		service.viewProc(no, model);
 		service.upNum(no);
-		System.out.println(writeNo);
 		return "forward:/index?formpath=view";
 }
 }

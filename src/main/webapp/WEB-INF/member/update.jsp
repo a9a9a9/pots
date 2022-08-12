@@ -79,19 +79,19 @@
 									<!-- <a href="javascript:showProfile()" class="button round border button-purple">파일 선택</a> -->
 									<div class="profile_select" style="margin-right: 20px; float: left;">
 										<input type="image" src="/img/profile1.png" disabled="disabled"><br>
-										<input type="radio" name="profile" id="profile" value="1" checked="checked" style="margin:5px 18px;" />
+										<input type="radio" name="profile" id="profile" value="1" checked="checked" style="margin:5px 23px;" />
 									</div>
 									<div class="profile_select" style="margin-right: 20px; float: left;">
 										<input type="image" src="/img/profile2.png" disabled="disabled"><br>
-										<input type="radio" name="profile" id="profile" value="2" style="margin:5px 18px;" />
+										<input type="radio" name="profile" id="profile" value="2" style="margin:5px 23px;" />
 									</div>
 									<div class="profile_select" style="margin-right: 20px; float: left;">
 										<input type="image" src="/img/profile3.png" disabled="disabled"><br>
-										<input type="radio" name="profile" id="profile" value="3" style="margin:5px 18px;" />
+										<input type="radio" name="profile" id="profile" value="3" style="margin:5px 23px;" />
 									</div>
 									<div class="profile_select" style="margin-right: 20px; float: left;">
 										<input type="image" src="/img/profile4.png" disabled="disabled"><br>
-										<input type="radio" name="profile" id="profile" value="4" style="margin:5px 18px;" />
+										<input type="radio" name="profile" id="profile" value="4" style="margin:5px 23px;" />
 									</div>
 								</div>
 							</li>

@@ -81,7 +81,7 @@
 <div class="topper">
 	<div class="width-container">
 		<div class="topper-menu">
-			<a href="boardProc" class="v-bar">커뮤니티</a>
+			<a href="${root}boardProc" class="v-bar">커뮤니티</a>
 			<a href="${root}index?formpath=eventMain" class="v-bar">이벤트</a> <a
 				href="${root}index?formpath=noticeBoard">공지사항</a>
 		</div>
@@ -118,7 +118,6 @@
 							</div>
 							<div class="name">
 								<div>${sessionScope.nick }</div> <a href="${root }logout" class="header-logout"> 
-								<a href="${root }logout" class="header-logout"> 
 									<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/img-input-text-reste-copy.png"
 									srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/img-input-text-reste-copy.png 2x" alt="">
 								</a>
