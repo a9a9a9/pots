@@ -4,33 +4,19 @@
 	var result = "${msg}";
 	if(result === "중복 아이디 입니다."){
 		alert(result);
-	}else if(result === "아이디를 입력하세요."){
-		alert(result);
-	}else if(result === "비밀번호를 입력하세요."){
-		alert(result);
 	}
 	
 	var req;
-	function isExistId(){
+	function isExistsnsId(){
 		req = new XMLHttpRequest();
 		req.onreadystatechange = printMsg;
-		req.open('post', 'isExistId');
+		req.open('post', 'isExistsnsId');
 		req.send(document.getElementById('id').value);
 	}
 	
 	function printMsg(){
 		var msg = document.getElementById('msg');
 		msg.innerHTML = req.responseText;
-	}
-	function pwCheck(){
-		var pw1 = document.getElementById('pw').value;
-		var pw2 = document.getElementById('pwConfirm').value;
-		var result = document.getElementById('pwCheck');
-		if(pw1 == pw2){
-			result.innerHTML = "비밀번호 일치"
-		}else{
-			result.innerHTML = "비밀번호 불일치"
-		}
 	}
 // 	var kakaoCheck = "${sessionScope.name}";
 // 		if(kakaoCheck === null) {
@@ -47,7 +33,7 @@
 	<div class="wrap wrapper  ko">
 		<div class="body">
 			<div class="width-container" style="height: auto;">
-				<form class="form-horizontal register-form" id="fregisterform" name="fregisterform" action="memberProc" method="post" enctype="multipart/form-data" autocomplete="off">
+				<form class="form-horizontal register-form" id="fregisterform" name="fregisterform" action="snsProc" method="post" enctype="multipart/form-data" autocomplete="off">
 					<div class="mw-800 form-signup mg-top-minus">	
 						
 					
@@ -56,28 +42,18 @@
 							<ul class="form-list">
 							<li>
 								<span class="subject">ㆍ 아이디(이메일)</span>
-								<input type="text" name="id"id="id" required  placeholder="이메일주소" size="70" maxlength="100">
-								<input type="button" id="win_hp_cert" class="button round button-purple phone" value="중복 확인" onclick="isExistId()">
+								<input type="text" name="id" value="${sessionScope.id }" id="id" disabled="disabled" placeholder="이메일주소" size="70" maxlength="100">
+								<input type="button" id="win_hp_cert" class="button round button-purple phone" value="중복 확인" onclick="isExistsnsId()"> 
 								<font color="#7e69fe" id="msg" style="margin-left:10px;">${msg}</font>
-							</li>
-							<li>
-								<span class="subject">ㆍ 비밀번호</span>
-								<input type="password" name="pw" id="pw" required class="form-control input-sm" onkeyup="pwCheck()" placeholder="비밀번호" minlength="3" maxlength="20">
-							</li>
-							<li>
-								<span class="subject">ㆍ 비밀번호 확인</span>
-								<input type="password" name="pwConfirm" id="pwConfirm" onkeyup="pwCheck()" required class="form-control input-sm" placeholder="비밀번호 확인" minlength="3" maxlength="20" style="display: inline;">
-								<font color="#7e69fe" id="pwCheck" style="margin-left:5px;"></font>
 							</li>
 							</ul>
 						</div>
-						
 						<div class="h3"><span class="text-purple">내 정보</span> 입력</div>
 						<div class="form-round signup">
 							<ul class="form-list">
 							<li>
 								<span class="subject">ㆍ 이름</span>
-								<input type="text" id="name" name="name" required  placeholder="이름" size="10">
+								<input type="text" id="name" name="name" value="${sessionScope.name }"  disabled="disabled" placeholder="이름" size="10">
 							</li>
 							<li>
 								<span class="subject">ㆍ 닉네임</span>
@@ -134,7 +110,8 @@
 							</ul>
 						</div>
 						<div class="button-align center">
-							<a href="${root}index?formpath=main" class="button">취소</a>
+<!-- 							<a href="reset" class="button">취소</a> -->
+							<button type="reset"  class="button">취소</button>
 							<button type="submit" id="btn_submit" class="button button-purple" accesskey="s">회원 가입</button>
 						</div>
 					</div>

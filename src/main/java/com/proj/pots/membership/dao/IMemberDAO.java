@@ -8,6 +8,8 @@ import com.proj.pots.member.dto.MemberDTO;
 @Mapper
 public interface IMemberDAO {
 	int isExistId(String id);
+	
+	int isExistsnsId(String id);
 
 	int insertLogin(LoginDTO login);
 	
