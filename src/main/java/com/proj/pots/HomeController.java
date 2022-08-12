@@ -174,6 +174,10 @@ public class HomeController {
 	public String register() {
 		return "member/register";
 	}
+	@RequestMapping(value = "snsRegister")
+	public String snsRegister() {
+		return "member/snsRegister";
+	}
 	
 	@RequestMapping(value = "faq1")
 	public String faq1() {

@@ -11,7 +11,14 @@ public class MemberDTO extends LoginDTO{
 //	private String account_name;
 //	private String account_num;
 	private String joined_date;
+	private int sns; 
 	
+	public int getSns() {
+		return sns;
+	}
+	public void setSns(int sns) {
+		this.sns = sns;
+	}
 	public String getId() {
 		return id;
 	}

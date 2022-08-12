@@ -56,13 +56,17 @@
 						title="네이버"> <img
 						src="https://buts.co.kr/thema/Buts/colorset/Basic/img/btn-sns-login-naver.png"
 						alt=""> 네이버 계정으로 로그인 하기
-					</a> <a href="javascrip:;"
-						onclick="nwindow('https://buts.co.kr/plugin/social/popup.php?provider=kakao&amp;url=https://buts.co.kr/bbs/login.php')"
+					</a> 
+					<a href="https://kauth.kakao.com/oauth/authorize?
+							client_id=0070664f6956225934aebb37c784f4ed&
+							redirect_uri=http://localhost/kakaoLogin&
+							response_type=code"
 						style="margin-left: 0px; margin-top: 5px; width: 100%;"
-						class="kakao sns-kakao" title="카카오"> <img
-						src="https://buts.co.kr/thema/Buts/colorset/Basic/img/btn-sns-login-kakao.png"
-						alt=""> 카카오 계정으로 로그인 하기
+						class="kakao sns-kakao" title="카카오"> 
+						<img src="//k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg"
+						alt=" ">카카오 계정으로 로그인 하기
 					</a>
+
 
 				</div>
 

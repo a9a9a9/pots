@@ -25,6 +25,12 @@ public class MemberService {
 			return "중복 아이디 입니다.";
 		return "사용 가능한 아이디입니다.";
 	} 
+	public String isExistsnsId(String id) {
+		int count = memberDao.isExistsnsId(id);
+		if(count == 1)
+			return "중복 아이디 입니다.";
+		return "사용 가능한 아이디입니다.";
+	} 
 	
 	public String memberProc(MemberDTO member) {
 		LoginDTO login = member;
@@ -41,6 +47,16 @@ public class MemberService {
 		login.setPw(securePw);
 		
 		memberDao.insertLogin(login);
+		memberDao.insertMember(member);
+		return "가입 완료";
+	}
+	public String snsProc(MemberDTO member) {
+		
+		if(member.getId() == null || member.getId().isEmpty())
+			return "아이디를 입력하세요.";
+		if(memberDao.isExistsnsId(member.getId()) > 0) 
+			return "중복 아이디 입니다.";
+		
 		memberDao.insertMember(member);
 		return "가입 완료";
 	}
