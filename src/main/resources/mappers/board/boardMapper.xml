@@ -55,6 +55,9 @@
 		UPDATE board_square SET square_title=#{square_title}, square_content=#{square_content} WHERE square_num=#{square_num}
 	</update>
 	
+	<delete id="commentDelete" parameterType="int">
+		DELETE FROM board_comment WHERE comment_num=#{comment_num}
+	</delete>	
 	<delete id="deleteProc" parameterType="int">
 		DELETE FROM board_square WHERE square_num=#{square_num}
 	</delete>	

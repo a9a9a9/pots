@@ -8,9 +8,7 @@
  </style>
  <script>
  	var result = "${msg}";
- 	if(result === "수정 완료"){
- 		alert("수정 완료");
- 	}else if(result === "삭제 성공"){
+ 	if(result === "삭제 성공"){
  		alert("삭제 완료");
  	}
  </script>

@@ -29,9 +29,9 @@ public class BoardController {
 	@RequestMapping(value = "commentProc")
 	public String commentProc(CommentDTO com, Model model) {
 		service.commentProc(com);
-		return "forward:boardProc";
+		int writeNo = com.getSquare_num();
+		return "forward:viewProc?writeNo="+writeNo;
 	}
-	
 	@RequestMapping(value = "boardProc")
 	public String boardProc(Model model, @RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage,
 			String search, String select, HttpServletRequest req ) {
@@ -57,15 +57,22 @@ public class BoardController {
 			return "forward:/index?formpath=modify";
 		}
 		model.addAttribute("msg","수정 완료");
-		return "forward:boardProc";
+		int writeNo = board.getSquare_num();
+		return "forward:viewProc?writeNo="+writeNo;
 	}
 	
+	@RequestMapping(value = "commentDelete")
+	public String commentDelete(String cNum, String bNum) {
+		int cNo = Integer.parseInt(cNum);
+		service.commentDelete(cNo);
+		
+		return "forward:viewProc?writeNo="+bNum;
+	}
 	@RequestMapping(value = "deleteProc")
 	public String deleteProc(BoardDTO board, String pw, Model model) {
 		boolean check = service.deleteProc(board, pw);
 		if(check == false) {
 			model.addAttribute("board",board);
-			System.out.println(board.getSquare_num());
 			return "forward:/index?formpath=delete";
 		}
 		model.addAttribute("msg","삭제 성공");

@@ -24,4 +24,6 @@ public interface IBoardService {
 	boolean deleteProc(BoardDTO board, String pw);
 
 	void commentProc(CommentDTO com);
+
+	boolean commentDelete(int comment_num);
 }

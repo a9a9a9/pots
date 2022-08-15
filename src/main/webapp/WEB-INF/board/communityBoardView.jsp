@@ -2,6 +2,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:url var="root" value="/" />
 
+<script>
+ 	var result = "${msg}";
+ 	if(result === "수정 완료"){
+ 		alert("게시글 수정 완료");
+ 	}
+ </script>
 <style>
 	.board_content{
 		min-height: 500px; background-color: #ffffff; font-size: 17px;
@@ -85,19 +91,40 @@
 		   				 
 		  		<div class="comment-list">
 		        <ul>
+		        	<c:set var="nick1" value="${sessionScope.nick}"/>
 		        	<c:forEach var="c_list" items="${commentList}">
-	                   <li>
-	                        <div class="picture">
-	                        <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png" alt="" />
-	                        </div>
-	                        <div class="balloon">
-	                        	<div class="speech">${c_list.comment_content }</div>
-	                        </div>
-	                        <div class="option">
-	                        <span class="v-bar">${c_list.nick}</span>
-	                        <span >${c_list.comment_date }</span>
-	                        </div>
-	                    </li>
+						<c:set var="nick2" value="${c_list.nick}"/>
+						<c:choose>
+						<c:when test="${nick1 eq nick2}">
+		                    <li class="right">
+	                            <div class="picture">
+	                            <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png" alt="" />
+	                            </div>
+	                            <div class="balloon">
+	                            <div class="speech"><span>${c_list.comment_content }</span></div>
+	                            </div>
+	                            <div class="option">
+	                            <span class="v-bar">${c_list.nick}</span>
+	                            <span >${c_list.comment_date }</span>
+	                            <a href="${root}commentDelete?cNum=${c_list.comment_num}&bNum=${board.square_num}" >삭제</a> 
+	                            </div>
+	                        </li>
+	                    </c:when>
+	                    <c:otherwise>
+	                        <li>
+		                        <div class="picture">
+		                        <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png" alt="" />
+		                        </div>
+		                        <div class="balloon">
+		                        	<div class="speech">${c_list.comment_content }</div>
+		                        </div>
+		                        <div class="option">
+		                        <span class="v-bar">${c_list.nick}</span>
+		                        <span >${c_list.comment_date }</span>
+		                        </div>
+		                    </li>
+                        </c:otherwise>
+                        </c:choose>
                     </c:forEach>
              	 </ul>
   				</div>

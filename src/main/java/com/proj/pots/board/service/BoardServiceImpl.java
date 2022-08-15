@@ -94,6 +94,13 @@ public class BoardServiceImpl implements IBoardService {
 		return true;
 	}
 	@Override
+	public boolean commentDelete(int comment_num) {
+		int result = mapper.commentDelete(comment_num);
+		if(result == 0)
+			return false;
+		return true;
+	}
+	@Override
 	public boolean deleteProc(BoardDTO board, String pw) {
 		boolean check = pwCheck(pw);
 		if(check == false)

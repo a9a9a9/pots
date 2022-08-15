@@ -29,5 +29,7 @@ public interface IBoardDAO {
 	public void commentProc(CommentDTO com);
 
 	public ArrayList<CommentDTO> commentListProc(int square_num);
+
+	public int commentDelete(int comment_num);
 	
 }

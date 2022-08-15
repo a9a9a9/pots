@@ -40,7 +40,7 @@
 						<textarea class="board_content" name="square_content" placeholder="내용 작성">${board.square_content }</textarea>
 						<div class="button-align right border">
 							<div class="float-left" style="float: right;">
-								<a href="${root}boardProc" class="button small border button-purple">취소</a> 
+								<a href="${root}viewProc?writeNo=${board.square_num}" class="button small border button-purple">취소</a> 
 								<input type=submit value='수정' class="button small border button-purple" style="width: 100px; "/>
 							</div>
 						</div>
