@@ -196,7 +196,7 @@ public class HomeController {
 		return "myMenu/faq4";
 	}
 	@RequestMapping(value = "board")
-	public String communityBoard() {
+	public String board() {
 		return "board/communityBoard";
 	}
 	@RequestMapping(value = "noticeBoard")
