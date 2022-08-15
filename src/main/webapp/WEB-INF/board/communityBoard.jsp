@@ -1,19 +1,18 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
 <c:url var="root" value="/" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+ <style>
+ 	.page_position a{padding-right: 5px;}
+ </style>
  <script>
-// 	$("document").ready(function (){
-// 		$("div.subject notice").css("cursor", "pointer").click(function(){
-// 			let no = $(this).attr("id");
-			
-// 			location.href='viewProc?writeNo=' + no;
-// /* 			$("#writeNo").val(no);
-// 			$("#f").attr("action", "${root}viewProc");
-// 			$("#f").submit(); */
-// 		});
+ 	var result = "${msg}";
+ 	if(result === "수정 완료"){
+ 		alert("수정 완료");
+ 	}else if(result === "삭제 성공"){
+ 		alert("삭제 완료");
+ 	}
  </script>
 <body class="responsive is-pc">
 	<div class="wrap wrapper  ko">
@@ -76,8 +75,10 @@
 						</c:forEach>
 							</tbody>
 						</table>
-					</form> 
-					${page}
+					</form>
+					<div class="page_position" style="text-align: center; font-size: 15px; margin-top: 10px;">
+						${page}
+					</div>
 					</div>
 					
 					<div class="write-right" style="position: relative; float: right;" >

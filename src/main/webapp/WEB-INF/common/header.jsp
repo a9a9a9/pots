@@ -1,10 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <html lang="ko">
 <head>
 <title>Buts</title>
-
 <!-- css -->
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
@@ -39,7 +37,7 @@
 <script src="https://buts.co.kr/js/jquery-1.11.3.min.js"></script>
 <script src="https://buts.co.kr/js/jquery-migrate-1.2.1.min.js"></script>
 <script src="https://buts.co.kr/lang/korean/lang.js?ver=180820"></script>
-<script src="https://buts.co.kr/js/common.js?ver=180820"></script>
+<script src="/js/common.js"></script>
 <script src="https://buts.co.kr/js/wrest.js?ver=180820"></script>
 <script src="https://buts.co.kr/js/placeholders.min.js"></script>
 <script src="https://buts.co.kr/js/apms.js?ver=180820"></script>
@@ -105,9 +103,9 @@
 			<c:otherwise>
 					<a class="header-user win_memo" href="javascript:void(0);" onclick="showProfile()"> 
 					<span class="picture"> 
-						<img src="/img/profile${sessionScope.profile}.png" 	alt="">
+						<img src="/img/profile${sessionScope.profile}.png" >
 					</span> <span class="arrow">
-					<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/mymenu-arrow.png" alt=""></span>
+					<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/mymenu-arrow.png" ></span>
 					</a>
 
 					<div class="header-shade" style="display: none"></div>

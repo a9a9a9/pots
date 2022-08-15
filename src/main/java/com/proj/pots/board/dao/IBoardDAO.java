@@ -20,5 +20,9 @@ public interface IBoardDAO {
 	void upNum(int square_num);
 
 	public int boardCount(HashMap<String, Object> map);
+
+	public int modifyProc(BoardDTO board);
+
+	public int deleteProc(int square_num);
 	
 }

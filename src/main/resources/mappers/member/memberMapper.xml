@@ -12,7 +12,7 @@
 	</insert>
 	
 	<insert id="insertMember" parameterType="MemberDTO">
-		INSERT INTO member VALUES(#{id}, #{nick}, #{name}, #{tel}, #{profile}, #{point}, now())
+		INSERT INTO member VALUES(#{id}, #{nick}, #{name}, #{tel}, #{profile}, #{point}, now(), #{sns})
 	</insert>
 	
 	<select id="memberInfo" resultType="MemberDTO">

@@ -42,10 +42,8 @@
 	<update id="modifyProc" parameterType="BoardDTO" >
 		UPDATE board_square SET square_title=#{square_title}, square_content=#{square_content} WHERE square_num=#{square_num}
 	</update>
+	
 	<delete id="deleteProc" parameterType="int">
 		DELETE FROM board_square WHERE square_num=#{square_num}
 	</delete>	
-	<select id="getFileName" parameterType="int" resultType="String">
-		SELECT filename FROM board_square WHERE square_num=#{square_num}
-	</select>
 	</mapper>

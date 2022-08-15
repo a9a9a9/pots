@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.proj.pots.member.dto.BoardDTO;
+
 
 public interface IBoardService {
 
@@ -15,6 +17,10 @@ public interface IBoardService {
 	void viewProc(int square_num, Model model);
 
 	void upNum(int square_num);
+
+	boolean modifyProc(BoardDTO board);
+
+	boolean deleteProc(BoardDTO board, String pw);
 
 
 }

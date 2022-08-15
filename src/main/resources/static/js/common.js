@@ -591,10 +591,10 @@ $(function(){
         return false;
     });
 
-    $(".win_memo").click(function() {
-        win_memo(this.href);
-        return false;
-    });
+//    $(".win_memo").click(function() {
+//        win_memo(this.href);
+//        return false;
+//    });
 
     $(".win_email").click(function() {
         win_email(this.href);
