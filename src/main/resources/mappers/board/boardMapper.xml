@@ -46,8 +46,8 @@
 	<select id="boardCount" resultType="int"  parameterType="HashMap">
 		SELECT count(*) FROM board_square 
 		<choose>
-			<when test="select == 'nick'">WHERE nick LIKE '%'||#{search}||'%'</when>
-			<when test="select == 'title'">WHERE square_title LIKE '%'||#{search}||'%'</when>
+			<when test="select == 'nick'">WHERE nick LIKE CONCAT('%',#{search},'%')</when>
+			<when test="select == 'title'">WHERE square_title LIKE CONCAT('%',#{search},'%')</when>
 		</choose>
 	</select>
 	
