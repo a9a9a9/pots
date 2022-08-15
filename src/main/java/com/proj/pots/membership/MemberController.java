@@ -1,5 +1,7 @@
 package com.proj.pots.membership;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.proj.pots.member.dto.LoginDTO;
 import com.proj.pots.member.dto.MemberDTO;
+import com.proj.pots.membership.service.KakaoService;
 import com.proj.pots.membership.service.MemberService;
 
 @Controller
@@ -25,7 +28,13 @@ public class MemberController {
 		String msg = memberService.isExistId(id);
 		return msg;
 	}
-	
+	@PostMapping(value = "isExistsnsId", produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public String isExistsnsId(@RequestBody(required = false) String id) {
+		String msg = memberService.isExistsnsId(id); 
+		return msg;
+	}
+
 	@RequestMapping(value = "memberProc")
 	public String memberProc(MemberDTO member, Model model, RedirectAttributes ra) {
 		String msg = memberService.memberProc(member);
@@ -36,6 +45,42 @@ public class MemberController {
 			model.addAttribute("msg", msg);
 			return "forward:/index?formpath=register";
 		}
+	}
+	@RequestMapping(value = "snsProc")
+	public String snsProc(MemberDTO member, Model model, RedirectAttributes ra) {
+		member.setSns(1);
+		String msg = memberService.snsProc(member);
+		if(msg.equals("가입 완료")) {
+			ra.addFlashAttribute("msg", msg);
+			return "redirect:/index?formpath=main";
+		}else {
+			model.addAttribute("msg", msg);
+			return "forward:/index?formpath=snsRegister";
+		}
+	}
+	
+	@RequestMapping(value = "updateProc")
+	public String updateProc(MemberDTO member, Model model, RedirectAttributes ra) {
+		String msg = memberService.updateProc(member);
+		if(msg.equals("수정 완료")) {
+			ra.addFlashAttribute("msg", msg);
+			return "redirect:/index?formpath=main";
+		}else {
+			model.addAttribute("msg",msg);
+			return "forward:/index?formpath=update";
+		}
+	}
+	
+	@RequestMapping(value = "profileUpdateProc")
+	public String profileUpdateProc(HttpSession session, MemberDTO member, Model model, RedirectAttributes ra) {
+		member.setId((String)session.getAttribute("id"));
+		String msg = memberService.profileUpdateProc(member);
+		if(msg.equals("사진 저장")) {
+			ra.addFlashAttribute("msg",msg);
+			return "redirect:/profile";
+		}
+		model.addAttribute("msg",msg);
+		return "forward:/profile";
 	}
 	
 	@RequestMapping(value = "memberInfoProc")
@@ -60,4 +105,34 @@ public class MemberController {
 			return "forward:/index?formpath=memberDelete";
 		}
 	}
+	
+	@RequestMapping(value = "updateCheckProc")
+	public String updateCheckProc(LoginDTO check, Model model, HttpSession session, RedirectAttributes ra) {
+		String msg = memberService.updateCheckProc(check);
+		String sessionId = (String)session.getAttribute("id");
+		if(sessionId == "" || sessionId == null) {
+			return "redirect:/index?formpath=login";
+		}
+		if(msg.equals("확인 완료")) {
+			model.addAttribute("member", memberService.memberInfo(sessionId));
+			return "forward:index?formpath=update";
+		}
+		ra.addFlashAttribute("msg", msg);
+		return "redirect:/index?formpath=updateCheck";
+	}
+	
+	@Autowired private KakaoService kakaoService;
+	@RequestMapping("kakaoRegister")
+	public String kakaoLogin(String code, HttpSession session) {
+		System.out.println("code : " + code);
+		String accessToken = kakaoService.getAccessToken(code);
+		HashMap<String, String> map = kakaoService.getUserInfo(accessToken);
+		System.out.println("이름 : " + map.get("name"));
+		System.out.println("아이디 : " + map.get("id"));
+		session.setAttribute("id", map.get("id"));
+		session.setAttribute("name", map.get("name"));
+		session.setAttribute("accessToken", accessToken);
+		return "redirect:/index?formpath=snsRegister";
+	}
+	
 }

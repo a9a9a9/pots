@@ -1515,6 +1515,13 @@ input[type='password']:disabled {
   right: 0;
   z-index: 1;
 }
+.write-right{
+  right: 20px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
 
 a.header-login {
   position: relative;
@@ -1812,6 +1819,11 @@ a.header-login {
     line-height: 40px;
   }
   .header-right {
+    left: 0;
+    right: auto;
+    width: 100%;
+  }
+  .write-right{
     left: 0;
     right: auto;
     width: 100%;
