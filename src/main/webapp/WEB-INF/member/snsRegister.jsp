@@ -42,7 +42,7 @@
 							<ul class="form-list">
 							<li>
 								<span class="subject">ㆍ 아이디(이메일)</span>
-								<input type="text" name="id" value="${sessionScope.id }" id="id" disabled="disabled" placeholder="이메일주소" size="70" maxlength="100">
+								<input type="text" name="id" value="${sessionScope.id }" id="id" readonly placeholder="이메일주소" size="70" maxlength="100">
 								<input type="button" id="win_hp_cert" class="button round button-purple phone" value="중복 확인" onclick="isExistsnsId()"> 
 								<font color="#7e69fe" id="msg" style="margin-left:10px;">${msg}</font>
 							</li>
@@ -53,7 +53,7 @@
 							<ul class="form-list">
 							<li>
 								<span class="subject">ㆍ 이름</span>
-								<input type="text" id="name" name="name" value="${sessionScope.name }"  disabled="disabled" placeholder="이름" size="10">
+								<input type="text" id="name" name="name" value="${sessionScope.name }"  readonly placeholder="이름" size="10">
 							</li>
 							<li>
 								<span class="subject">ㆍ 닉네임</span>

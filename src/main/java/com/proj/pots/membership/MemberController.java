@@ -132,7 +132,6 @@ public class MemberController {
 		session.setAttribute("id", map.get("id"));
 		session.setAttribute("name", map.get("name"));
 		session.setAttribute("accessToken", accessToken);
-		session.setAttribute("accessToken", accessToken );
 		return "redirect:/index?formpath=snsRegister";
 	}
 	
