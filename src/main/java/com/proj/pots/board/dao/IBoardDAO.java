@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.proj.pots.member.dto.BoardDTO;
+import com.proj.pots.member.dto.CommentDTO;
 
 
 @Mapper
@@ -24,5 +25,9 @@ public interface IBoardDAO {
 	public int modifyProc(BoardDTO board);
 
 	public int deleteProc(int square_num);
+
+	public void commentProc(CommentDTO com);
+
+	public ArrayList<CommentDTO> commentListProc(int square_num);
 	
 }

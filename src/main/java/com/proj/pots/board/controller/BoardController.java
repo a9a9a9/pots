@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.proj.pots.board.service.IBoardService;
 import com.proj.pots.member.dto.BoardDTO;
+import com.proj.pots.member.dto.CommentDTO;
 
 @Controller
 public class BoardController {
@@ -23,6 +24,11 @@ public class BoardController {
 	@RequestMapping(value = "writeProc")
 	public String writeProc(MultipartHttpServletRequest multi) {
 		service.writeProc(multi);
+		return "forward:boardProc";
+	}
+	@RequestMapping(value = "commentProc")
+	public String commentProc(CommentDTO com, Model model) {
+		service.commentProc(com);
 		return "forward:boardProc";
 	}
 	

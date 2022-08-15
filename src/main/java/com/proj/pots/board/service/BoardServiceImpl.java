@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
  
 import com.proj.pots.board.dao.IBoardDAO;
 import com.proj.pots.member.dto.BoardDTO;
+import com.proj.pots.member.dto.CommentDTO;
 import com.proj.pots.member.dto.LoginDTO;
 import com.proj.pots.membership.dao.IMemberDAO;
 
@@ -45,8 +46,11 @@ public class BoardServiceImpl implements IBoardService {
 		
 		board.setSquare_date(dateConvert);
 		mapper.writeProc(board);
-}
-
+	}
+	@Override
+	public void commentProc(CommentDTO com) {
+		mapper.commentProc(com);
+	}
 	@Override
 	public void boardProc(Model model, int currentPage, String search, String select, HttpServletRequest req) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -59,9 +63,7 @@ public class BoardServiceImpl implements IBoardService {
 		int begin = end+1 - pageBlock;
 		
 		ArrayList<BoardDTO> boardList = mapper.boardProc(begin, end, select, search);
-		
 		model.addAttribute("boardList", boardList);
-
 		String url = req.getContextPath() + "/boardProc?";
 		if(select != null) { 
 			url+="select="+select+"&";
@@ -74,6 +76,8 @@ public class BoardServiceImpl implements IBoardService {
 
 	@Override
 	public void viewProc(int square_num, Model model) {
+		ArrayList<CommentDTO> commentList = mapper.commentListProc(square_num);
+		model.addAttribute("commentList", commentList);
 		model.addAttribute("board", mapper.viewProc(square_num));
 	}
 

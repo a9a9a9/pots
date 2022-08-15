@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.proj.pots.member.dto.BoardDTO;
+import com.proj.pots.member.dto.CommentDTO;
 
 
 public interface IBoardService {
@@ -22,5 +23,5 @@ public interface IBoardService {
 
 	boolean deleteProc(BoardDTO board, String pw);
 
-
+	void commentProc(CommentDTO com);
 }

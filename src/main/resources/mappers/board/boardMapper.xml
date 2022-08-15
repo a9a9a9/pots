@@ -10,6 +10,13 @@
 		INSERT INTO board_square VALUES( #{square_num}, #{id}, #{square_title}, #{square_content}, #{square_view}, #{square_date}, #{nick})
 	</insert>
 	
+	<insert id="commentProc" parameterType="CommentDTO">
+		<selectKey keyProperty="comment_num" resultType="int" order="BEFORE">
+			SELECT nvl(max(comment_num), 0)+1 FROM board_comment
+		</selectKey>
+		INSERT INTO board_comment VALUES( #{square_num}, #{id}, #{comment_num}, #{comment_content}, DATE_FORMAT(now(), '%y-%m-%d %H:%i'), #{nick})
+	</insert>
+	
 	<select id="viewProc" resultType="BoardDTO" parameterType="int">
 		SELECT * FROM board_square WHERE square_num=#{square_num}
 	</select>
@@ -18,9 +25,14 @@
 		UPDATE board_square SET square_view=square_view+1 WHERE square_num=#{square_num}
 	</update>
 	
+	<select id="commentListProc" resultType="CommentDTO">
+		SELECT * FROM board_comment WHERE square_num=#{square_num}
+	</select>
+	
 	<select id="boardProc" resultType="BoardDTO">
 		SELECT B.* FROM(
-         SELECT ROW_NUMBER() OVER(ORDER BY square_num) AS rn, A.* FROM(
+         SELECT ROW_NUMBER() OVER(ORDER BY square_num) AS rn, 
+         A.* FROM(
             SELECT * FROM board_square
             <choose>
                <when test="sel == 'nick'">WHERE nick LIKE CONCAT('%',#{search},'%')</when>
