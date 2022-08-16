@@ -2,6 +2,13 @@ package com.proj.pots.party.dto;
 
 public class PartyBillDTO extends PartyDTO{
 
+	private int bill_total;	//판매총액
+	private int bill_paid; //지급금액
+	private int bill_now;//미발생금
+	private int bill_request; //지급요청
+	private int bill_available; //출금가능
+	
+	
 	private String bill_state;
 	private int bill_num;
 	private String bill_date;
@@ -11,10 +18,43 @@ public class PartyBillDTO extends PartyDTO{
 	private String bill_memo;
 	private String bill_etc;
 	
+	
+	public int getBill_total() {
+		return bill_total;
+	}
+	public void setBill_total(int bill_total) {
+		this.bill_total = bill_total;
+	}
+	public int getBill_paid() {
+		return bill_paid;
+	}
+	public void setBill_paid(int bill_paid) {
+		this.bill_paid = bill_paid;
+	}
+	public int getBill_now() {
+		return bill_now;
+	}
+	public void setBill_now(int bill_now) {
+		this.bill_now = bill_now;
+	}
+	public int getBill_request() {
+		return bill_request;
+	}
+	public void setBill_request(int bill_request) {
+		this.bill_request = bill_request;
+	}
+	public int getBill_available() {
+		return bill_available;
+	}
+	public void setBill_available(int bill_available) {
+		this.bill_available = bill_available;
+	}
+	
+	
 	public String getBill_state() {
 		return bill_state;
 	}
-	public void setBill_sate(String bill_state) {
+	public void setBill_state(String bill_state) {
 		this.bill_state = bill_state;
 	}
 	public int getBill_num() {

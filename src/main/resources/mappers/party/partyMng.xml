@@ -89,9 +89,11 @@
 				AND b.mystartday BETWEEN #{start} AND #{end} 
 			</if>
         ORDER BY b.mystartday DESC;
-
-	
 	</select>
+		 
+	 <select id="bill" parameterType="String" resultType="PartyBillDTO">
+	 	SELECT * FROM party_bill WHERE id = #{id}
+	 </select>
 	
 	
 	

@@ -25,12 +25,6 @@ public class PartyViewServiceImpl implements IPartyViewService{
 	@Autowired private HttpSession session;
 	
 	@Override
-	public ArrayList<PartyBillDTO> bill(String id) {
-		ArrayList<PartyBillDTO> bill = partyViewDao.bill(id);
-		return bill;
-	}
-	
-	@Override
 	public ArrayList<PartyCommentDTO> comment(String id) {
 		ArrayList<PartyCommentDTO> list = partyViewDao.comment(id);
 		return list;  
@@ -46,11 +40,11 @@ public class PartyViewServiceImpl implements IPartyViewService{
 	public PartnerInfoDTO selectAccount(String id) {
 		PartnerInfoDTO partner = partyViewDao.selectAccount(id); 
 		return partner;
-	}
+	} 
 	
 	@Override
 	public PartyRegDTO selectParty(Integer party_num) {
-		PartyRegDTO party = partyViewDao.selectParty(party_num);
+		PartyRegDTO party = partyViewDao.selectParty(party_num); 
 		return party;
 	}
 	

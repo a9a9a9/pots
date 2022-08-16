@@ -229,7 +229,7 @@ window.onload=function(){
 				<c:forEach var="bill" items="${bill }" begin="${paging.start }" end="${paging.end }">
 					<tr>
 						<td><span class="lightgrey">1</span></td>
-						<td>${bill.bill_sate }</td>  
+						<td>${bill.bill_state }</td>  
 						<td><span class="lightgrey">${bill.bill_num }</span></td>
 						<td><span class="lightgrey">${bill.bill_date }</span></td>
 						<td>${bill.bill_method }</td>

@@ -26,8 +26,6 @@ public interface IPartyViewDAO {
 		
 	void updateAccount(PartnerInfoDTO partner);  
 	
-	ArrayList<PartyBillDTO> bill(String id);
-	
 	ArrayList<PartyParDTO> par(String id);
 	
 }

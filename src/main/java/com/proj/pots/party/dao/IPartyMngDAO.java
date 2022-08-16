@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.proj.pots.party.dto.PartyBillDTO;
 import com.proj.pots.party.dto.PartyListDTO;
 import com.proj.pots.party.dto.PartyMemberDTO;
 import com.proj.pots.party.dto.PartyRegDTO;
@@ -21,5 +22,7 @@ public interface IPartyMngDAO {
 	ArrayList<PartyMemberDTO> partyJoinList(String id);
 	
 	ArrayList<PartyMemberDTO> partyJoinSearch(Map<String, String> map);
+	
+	ArrayList<PartyBillDTO> bill(String id);
 	
 }
