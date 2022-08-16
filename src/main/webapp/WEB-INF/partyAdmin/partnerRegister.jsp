@@ -34,6 +34,7 @@
 <link rel="stylesheet" href="/css/partyAdmin/basic.css">
 <link rel="stylesheet" href="/css/partyAdmin/bootstrap.min.css">
 <link rel="stylesheet" href="/css/partyAdmin/partner.css">
+
 <!--[if lte IE 8]>
 <script src="https://buts.co.kr/js/html5.js"></script>
 <![endif]-->
@@ -52,6 +53,8 @@ var g5_responsive    = "1";
 var g5_cookie_domain = "";
 var g5_purl = "https://buts.co.kr/shop/partner/register.php";
 </script>
+<script src="/js/partnerregister.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 </head>
 <body class="responsive is-pc">
 	<h1 style="display:inline-block !important;position:absolute;top:0;left:0;margin:0 !important;padding:0 !important;font-size:0;line-height:0;border:0 !important;overflow:hidden !important">
@@ -103,8 +106,7 @@ input[type='text'] {
 	}
 }
 </style>
-
-<form class="form" name="fregister" id="fregister" action="" method="post">
+<form class="form" name="fregister" id="fregister" action="accountInsertProc" method="post" onsubmit="return fregister_submit(this);">
 <div class="dialog" style="border-top: 2px solid #84cdcf">
 	<div class="dialog-title"><span class="text-purple">파트너</span> 신청</div>
 	<div class="dialog-body" style="padding-top: 30px; border-top: 1px solid #333">
@@ -113,7 +115,11 @@ input[type='text'] {
 				<ul class="dialog-form">
 			<li>
 				<span class="subject">ㆍ 모집유형</span>
-				<input type="text" name="pt_type" id="pt_type" placeholder="모집유형" style="width: 100%; max-width: 200px" disabled="disabled" value="개인파티장" required />						
+				<!-- <input type="text" name="pt_type" id="pt_type" style="width: 100%; max-width: 200px" disabled="disabled" value="개인파티장" required /> -->
+				<select name="pt_type" id="pt_type" required style="width: 100%; max-width: 232px"  onchange="fn_type(this.form)"  value="">
+					<option value="">파트너 유형을 선택해 주세요.</option>
+											<option value="1" selected>개인파티장</option>
+									</select>						
 			</li>
 			<li>
 				<label>* 개인파티장은 수수료가 없습니다.(한달에 한번만 각 서비스 등록가능)</label>				
@@ -271,9 +277,7 @@ input[type='text'] {
 		}
 	}
 </script>
-
 <!-- JavaScript -->
-<script type="text/javascript" src="https://buts.co.kr/shop/partner/skin/Basic/assets/js/bootstrap.min.js"></script>
 <!-- ie6,7에서 사이드뷰가 게시판 목록에서 아래 사이드뷰에 가려지는 현상 수정 -->
 <!--[if lte IE 7]>
 <script>

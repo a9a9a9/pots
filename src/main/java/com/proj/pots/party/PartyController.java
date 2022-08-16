@@ -7,15 +7,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.proj.pots.membership.service.MemberService;
 import com.proj.pots.party.dto.PageVO;
 import com.proj.pots.party.dto.PartnerInfoDTO;
+import com.proj.pots.party.dto.PartyBillDTO;
 import com.proj.pots.party.dto.PartyCommentDTO;
 import com.proj.pots.party.service.IPartyViewService;
 
@@ -32,25 +29,63 @@ public class PartyController {
 			return "partyAdmin/partyIndex";
 		}
 		
+		@RequestMapping(value = "accountInsertProc")
+		public String accountInsertProc(Model model, PartnerInfoDTO partner) {
+			String id = "user55";
+			partner.setId(id);
+			service.accountInsertProc(partner);
+			model.addAttribute("member", memberService.memberInfo(id));
+			return "partyAdmin/partyList";
+					
+		}
+		
 		@RequestMapping(value = "/partnerRegister")
-		public String partnerRegister(Model model, PartnerInfoDTO partner) {
-			//String id = (String)session.getAttribute("id");
-			String id = "admin";
+		public String partnerRegister(Model model, String id) {
+			id = "user55";
 			model.addAttribute("member", memberService.memberInfo(id));
 			return "partyAdmin/partnerRegister";
 		}
-		
-		@RequestMapping(value = "/partyMyInfo")
-		public String partyMyInfo(Model model) {
+
+	
+		@RequestMapping(value = "accountModifyProc")
+		public String accountModifyProc(Model model, PartnerInfoDTO partner) {
 			//String id = (String)session.getAttribute("id");
 			String id = "user1";
+			partner.setId(id);
+			service.accountModifyProc(partner); 
+			model.addAttribute("member", memberService.memberInfo(id));
+			model.addAttribute("partner", service.selectAccount(id));
+			return "partyAdmin/partyMyInfo";
+		}
+		
+		@RequestMapping(value = "/partyMyInfo")
+		public String partyMyInfo(Model model, String id) {
+			//String id = (String)session.getAttribute("id");
+			id = "user1";
 			model.addAttribute("member", memberService.memberInfo(id));
 			model.addAttribute("partner", service.selectAccount(id));
 			return "partyAdmin/partyMyInfo";
 		}
 		
 		@RequestMapping(value = "/partyBill")
-		public String partyBill() {
+		public String partyBill(Model model, String id, String nowPage, PageVO vo) {
+			id = "admin";
+			ArrayList<PartyBillDTO> bill = service.bill(id);
+			int total = bill.size();			
+			int cntPerPage = 2;
+			
+			if (nowPage == null) {
+				nowPage = "1";
+			}else {
+				int nowInt = Integer.parseInt(nowPage);
+				if(nowInt < 1)
+					nowPage = "1";
+			}
+		
+			vo = new PageVO(total, Integer.parseInt(nowPage), cntPerPage);
+			model.addAttribute("paging", vo);
+			model.addAttribute("bill", bill);
+			model.addAttribute("partner", service.selectAccount(id));
 			return "partyAdmin/partyBill";
 		}
 		
@@ -76,7 +111,5 @@ public class PartyController {
 			
 			return "partyAdmin/partyCommentList";
 		}
-		
-		
 		
 }
