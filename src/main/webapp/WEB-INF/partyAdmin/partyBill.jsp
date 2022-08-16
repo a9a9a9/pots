@@ -83,7 +83,7 @@ window.onload=function(){
 		<tr>
 			<td>
 				<span class="subject">입금 계좌</span>
-				<input type="text" class="account" disabled placeholder="신한은행 110486730257 " />
+				<input type="text" class="account" disabled placeholder="${partner.account_name } ${partner.account_num}"/>
 				<!-- <input type="text" class="account" placeholder="농협 8732-0204-056137" /> -->
 			</td>
 		</tr>
@@ -179,88 +179,106 @@ window.onload=function(){
 		return false;
 	}
 </script>
-
-<div class="table-list scroll padding">
-	<table >
-	<thead>
-		<tr>
+<c:choose>
+	<c:when test="${empty bill}">
+		<div class="table-list scroll padding">
+			<table>
+				<thead>
+					<tr>
 						<th scope="col">상태</th>
-			<th scope="col">접수번호</th>
-			<th scope="col">신청일</th>
-			<th scope="col">출금방법</th>
-			<th scope="col">신청금액(수수료)</th>
-			<th scope="col">실지급액</th>
-			<th scope="col">메모</th>
-			<th scope="col">비고</th>
-		</tr>
-	</thead>
-	<tbody>
-							<tr>
+						<th scope="col">접수번호</th>
+						<th scope="col">신청일</th>
+						<th scope="col">출금방법</th>
+						<th scope="col">신청금액(수수료)</th>
+						<th scope="col">실지급액</th>
+						<th scope="col">메모</th>
+						<th scope="col">비고</th>
+					</tr>
+			</thead>
+			<tbody>
+				<tr>
 				<td colspan="10">
 					<div class="empty">
 						<div class="icon"><img src="/img/icon-butsicon-big-glay.png" /></div>
 						<h5>등록된 내용이 없습니다.</h5>
 					</div>
 				</td>
-			</tr>
+				</tr>
 			</tbody>
-	</table>
-</div>
-
-<!-- 등록된 내용이 있는 경우 -->
-<div class="table-list scroll padding">
-	<table>
-	<thead>
-		<tr>
-							<th scope="col">no</th>
-						<th scope="col">상태</th>
-			<th scope="col">접수번호</th>
-			<th scope="col">신청일</th>
-			<th scope="col">출금방법</th>
-			<th scope="col">신청금액(수수료)</th>
-			<th scope="col">실지급액</th>
-			<th scope="col">메모</th>
-			<th scope="col">비고</th>
-		</tr>
-	</thead>
-	<tbody>
+		</table>
+	</div>
+	</c:when>
+	<c:otherwise>
+		<!-- 등록된 내용이 있는 경우 -->
+		<div class="table-list scroll padding">
+		<table>
+			<thead>
 				<tr>
-			<td><span class="lightgrey">2</span></td>
-			<td>완료</td>
-			<td><span class="lightgrey">5325</span></td>
-			<td><span class="lightgrey">2022/07/18 16:52</span></td>
-			<td>통장입금</td>
-			<td>15,300원(0원)</td>
-			<td><span class="text-purple">15,300</span>원</td>
-			<td>
-							</td>
-			<td>
-							
-			</td>
-		</tr>
-				<tr>
-			<td><span class="lightgrey">1</span></td>
-			<td>취소</td>
-			<td><span class="lightgrey">5106</span></td>
-			<td><span class="lightgrey">2022/06/23 22:03</span></td>
-			<td>통장입금</td>
-			<td>7,470원(0원)</td>
-			<td><span class="text-purple">7,470</span>원</td>
-			<td>
-							</td>
-			<td>
-							
-			</td>
-		</tr>
-					</tbody>
-	</table>
-</div>
+					<th scope="col">no</th>
+					<th scope="col">상태</th>
+					<th scope="col">접수번호</th>
+					<th scope="col">신청일</th>
+					<th scope="col">출금방법</th>
+					<th scope="col">신청금액(수수료)</th>
+					<th scope="col">실지급액</th>
+					<th scope="col">메모</th>
+					<th scope="col">비고</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="bill" items="${bill }" begin="${paging.start }" end="${paging.end }">
+					<tr>
+						<td><span class="lightgrey">1</span></td>
+						<td>${bill.bill_sate }</td>  
+						<td><span class="lightgrey">${bill.bill_num }</span></td>
+						<td><span class="lightgrey">${bill.bill_date }</span></td>
+						<td>${bill.bill_method }</td>
+						<td>${bill.bill_charge }</td>
+						<td><span class="text-purple">${bill.bill_pay }</span>원</td>
+						<td>${bill.bill_memo }</td>
+						<td>${bill.bill_etc }</td>
+					</tr>
+				</c:forEach>		
+			</tbody>
+		</table>
+	</div>
+	<!-- 끝 -->
+	</c:otherwise>
+</c:choose>
+<c:if test="${not empty bill}" >
 <div class="page-number" style="border-top: 0">
 	<ul>
-		<li class="disabled"><a><i class="fa fa-angle-double-left"></i></a></li><li class="disabled"><a><i class="fa fa-angle-left"></i></a></li><li class="active"><a>1</a></li><li class="disabled"><a><i class="fa fa-angle-right"></i></a></li><li class="disabled"><a><i class="fa fa-angle-double-right"></i></a></li>	</ul>
+		<li class="disabled">
+			<a href = "/partyCommentList?nowPage=1"><i class="fa fa-angle-double-left"></i></a>
+		</li>
+		
+		<li class="disabled">
+			<a href = "/partyCommentList?nowPage=${paging.nowPage -1}"><i class="fa fa-angle-left"></i></a>
+		</li>
+		
+		<c:forEach begin="1" end="${paging.endPage }" var="p">
+			<c:choose>
+				<c:when test="${p == paging.nowPage }">
+					<li class="active">
+						<a>${p }</a>
+					</li>
+				</c:when>
+				<c:when test="${p != paging.nowPage }">
+					<li><a href="/partyCommentList?nowPage=${p }">${p }</a></li>
+				</c:when>
+			</c:choose>
+		</c:forEach>	
+		
+		<li class="disabled">
+			<a href = "/partyCommentList?nowPage=${paging.nowPage + 1}"><i class="fa fa-angle-right"></i></a>
+		</li>
+		
+		<li class="disabled">
+			<a href = "/partyCommentList?nowPage=${paging.endPage}"><i class="fa fa-angle-double-right"></i></a>
+		</li>
+	</ul>
 </div>
-<!-- 끝 -->
-
+</c:if>
 <script>
 $(function () {
   $('[data-toggle="popover"]').popover()

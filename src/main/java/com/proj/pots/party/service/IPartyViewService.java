@@ -8,18 +8,25 @@ import org.springframework.ui.Model;
 
 import com.proj.pots.member.dto.MemberDTO;
 import com.proj.pots.party.dto.PartnerInfoDTO;
+import com.proj.pots.party.dto.PartyBillDTO;
 import com.proj.pots.party.dto.PartyCommentDTO;
 import com.proj.pots.party.dto.PartyDTO;
+import com.proj.pots.party.dto.PartyParDTO;
 import com.proj.pots.party.dto.PartyRegDTO;
 
 public interface IPartyViewService { 
 	
 	public ArrayList<PartyCommentDTO> comment(String id);
 	
-	public MemberDTO memberInfo(String id);
+	public MemberDTO memberInfo(String id); 
 
 	PartnerInfoDTO selectAccount(String id);
+	
+	PartyRegDTO selectParty(Integer party_num);
+	
+	public String accountInsertProc(PartnerInfoDTO partner);
+	
+	public ArrayList<PartyBillDTO> bill(String id);
 
-//	PartnerInfoDTO updateAccount(String id);
-
+	public String accountModifyProc(PartnerInfoDTO partner);
 }

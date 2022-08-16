@@ -18,53 +18,63 @@ window.onload=function(){
 
 <div class="title"><span class="text-purple">댓글</span> 보기</div>
 <div class="table-list scroll">
-  <table style="min-width: 1000px">
-	<thead>
-	  <tr>
-		<th width="10%" scope="col">문의자</th>
-		<th width="10%" scope="col">작성일</th>
-		<th scope="col">제목</th>
-	  </tr>
-	</thead>
-	<tbody>
-	<c:forEach var="comment" items="${list }" begin="${paging.start }" end="${paging.end }">
-		<c:choose>
-			<c:when test="${empty comment }" >
-				<div class="empty">
-					<div class="icon"><img src="/img/icon-butsicon-big-glay.png" /></div>
-					<h5>등록된 문의가 없습니다.</h5>
-				</div>
-			</c:when>
-			<c:otherwise>
-				<tr>
-					<td>${comment.nick }</td>
-					<td>
-						<span class="lightgrey">${comment.comment_date }</span>
-					</td>
-					<td>
-						<a href="" class="item-name">
-							<span class="name"> 
-								<c:choose>
-									<c:when test="${comment.comment_private == 1}">
-										<i class="fa fa-lock orange"></i>
-										${comment.comment }<br>
-										<span class="lightgrey"> ${comment.party_title } </span>
-									</c:when>
-									<c:otherwise>
-										${comment.comment }<br>
-										<span class="lightgrey"> ${comment.party_title } </span>
-									</c:otherwise>
-								</c:choose>
-							</span>
-						</a>
-					</td>
-				</tr>
-			</c:otherwise>
-			</c:choose>
-		</c:forEach> 
-	</tbody>
-  </table>
+	<c:choose>
+		<c:when test="${empty list}" >
+			<table style="min-width: 1000px">
+				<thead>
+				  <tr>
+					<th width="10%" scope="col">문의자</th>
+					<th width="10%" scope="col">작성일</th>
+					<th scope="col">제목</th>
+				  </tr>
+				</thead>
+			</table>
+			<div class="empty">
+				<div class="icon"><img src="/img/icon-butsicon-big-glay.png" /></div>
+				<h5>등록된 문의가 없습니다.</h5>
+			</div>
+		</c:when>
+		<c:otherwise>
+			<table style="min-width: 1000px">
+				<thead>
+			  	<tr>
+					<th width="10%" scope="col">문의자</th>
+					<th width="10%" scope="col">작성일</th>
+					<th scope="col">제목</th>
+			  	</tr>
+				</thead>
+			<tbody>
+				<c:forEach var="comment" items="${list }" begin="${paging.start }" end="${paging.end }">
+					<tr>
+						<td>${comment.nick }</td>
+						<td>
+							<span class="lightgrey">${comment.comment_date }</span>
+						</td>
+						<td>
+							<a href="" class="item-name">
+								<span class="name"> 
+									<c:choose>
+										<c:when test="${comment.comment_private == 1}">
+											<i class="fa fa-lock orange"></i>
+											${comment.comment }<br>
+											<span class="lightgrey"> ${comment.party_title } </span>
+										</c:when>
+										<c:otherwise>
+											${comment.comment }<br>
+											<span class="lightgrey"> ${comment.party_title } </span>
+										</c:otherwise>
+									</c:choose>
+								</span>
+							</a>
+						</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</c:otherwise>
+</c:choose> 
 </div>
+<c:if test="${not empty list}" >
 <div class="page-number" style="border-top: 0">
 	<ul>
 		<li class="disabled">
@@ -97,7 +107,7 @@ window.onload=function(){
 		</li>
 	</ul>
 </div>
-
+</c:if>
 
 <script>
 function more_iq(id) {
