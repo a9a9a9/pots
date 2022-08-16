@@ -13,11 +13,20 @@
 				class="naver sns-naver" title="네이버"> <img
 				src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-sns-never-on.png"
 				alt="">네이버로 회원가입 하기
-			</a> <a href="javascrip:;"
-				onclick="nwindow('https://buts.co.kr/plugin/social/popup.php?provider=kakao&amp;url=https://buts.co.kr/bbs/register.php')"
-				class="kakao sns-kakao" title="카카오"> <img
-				src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-sns-kakao-on.png"
-				alt="">카카오톡으로 회원가입 하기
+			</a> 
+<!-- 			<a href="javascrip:;" -->
+<!-- 				onclick="nwindow('https://buts.co.kr/plugin/social/popup.php?provider=kakao&amp;url=https://buts.co.kr/bbs/register.php')" -->
+<!-- 				class="kakao sns-kakao" title="카카오"> <img -->
+<!-- 				src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-sns-kakao-on.png" -->
+<!-- 				alt="">카카오톡으로 회원가입 하기 -->
+<!-- 			</a> -->
+			<a href="https://kauth.kakao.com/oauth/authorize?
+					client_id=0070664f6956225934aebb37c784f4ed&
+					redirect_uri=http://localhost/kakaoRegister&
+					response_type=code"
+					class="kakao sns-kakao"" title="카카오"> 
+					<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-sns-kakao-on.png"
+					alt=" ">카카오톡으로 회원가입 하기
 			</a>
 
 			<script>

@@ -174,6 +174,10 @@ public class HomeController {
 	public String register() {
 		return "member/register";
 	}
+	@RequestMapping(value = "snsRegister")
+	public String snsRegister() {
+		return "member/snsRegister";
+	}
 	
 	@RequestMapping(value = "faq1")
 	public String faq1() {
@@ -192,7 +196,7 @@ public class HomeController {
 		return "myMenu/faq4";
 	}
 	@RequestMapping(value = "board")
-	public String communityBoard() {
+	public String board() {
 		return "board/communityBoard";
 	}
 	@RequestMapping(value = "noticeBoard")

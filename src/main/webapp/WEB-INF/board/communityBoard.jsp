@@ -1,16 +1,16 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:url var="root" value="/" />
+
+ <style>
+ 	.page_position a{padding-right: 5px;}
+ </style>
  <script>
-	$("document").ready(function (){
-		$("div.subject notice").css("cursor", "pointer").click(function(){
-			let no = $(this).attr("id");
-			location.href='viewProc?writeNo=' + no;
-/* 			$("#writeNo").val(no);
-			$("#f").attr("action", "${root}viewProc");
-			$("#f").submit(); */
-		});
+ 	var result = "${msg}";
+ 	if(result === "삭제 성공"){
+ 		alert("삭제 완료");
+ 	}
  </script>
 <body class="responsive is-pc">
 	<div class="wrap wrapper  ko">
@@ -22,23 +22,16 @@
 					</div>
 					<div class="title-right">
 						<div class="search-bar">
-							<form name="fsearch" method="get" role="form">
-								<input type="hidden" name="bo_table" value="notice"> 
-								<input type="hidden" name="sca" value=""> 
-								<input type="hidden" name="sop" value="and"> 
+							<form action="${root}boardProc" method="post">
 								<!-- 검색 -->
-								<select name="sfl" id="sfl">
-									<option value="wr_subject">제목</option>
-<!-- 									<option value="wr_content">내용</option> -->
-<!-- 									<option value="wr_subject||wr_content">제목+내용</option> -->
-									<option value="mb_id,1">닉네임</option>
-<!-- 									<option value="mb_id,0">회원아이디(코)</option> -->
-<!-- 									<option value="wr_name,1">글쓴이</option> -->
-<!-- 									<option value="wr_name,0">글쓴이(코)</option> -->
-								</select> <input type="text" name="stx" value="" required="" id="stx"
-									maxlength="20" placeholder="검색어를 입력해 주세요">
-								<button type="submit" class="submit">
-									<img src="#" alt="">
+								<select name="select">
+									<option value="">전체</option>
+									<option value="title">제목</option>
+									<option value="nick">닉네임</option>
+								</select> 
+								<input type="text" name="search" placeholder="검색어를 입력해 주세요">
+								<button type="submit" class="submit" name="searchBtn">
+									<img src="/img/search.png">
 								</button>
 							</form>
 						</div>
@@ -46,10 +39,10 @@
 				</div>
 
 					<div class="table-list list-wrap">
-<form id="f" method="post" >
-	<input type="hidden" id="writeNo" name="writeNo"/>
-	<input type=hidden name="proc" value="deletes" />
-	<input type=hidden name="formpath" value="delete" />
+					<form id="f" method="post" >
+						<input type="hidden" id="writeNo" name="writeNo"/>
+						<input type=hidden name="proc" value="deletes" />
+						<input type=hidden name="formpath" value="delete" />
 					
 
 						<table>
@@ -70,18 +63,22 @@
 									<td>
 									<!-- 제목 -->
 										<div class="subject notice" id="${list.square_num}">
-										${list.square_title } </div>
+										<a href="viewProc?writeNo=${list.square_num}">${list.square_title }</a> </div>
 									</td>
 									<!-- 작성일  -->
-									<td>${list.square_date }</td> 
+									<td><c:out value="${fn:substring(list.square_date, 0, 6)}"/></td> 
 									<!-- 조회수 -->
 									<td class="pc-table" style="width: 10%">${list.square_view }</td>
 								</tr>
 						</c:forEach>
 							</tbody>
 						</table>
-					</form> 
+					</form>
+					<div class="page_position" style="text-align: center; font-size: 15px; margin-top: 10px;">
+						${page}
 					</div>
+					</div>
+					
 					<div class="write-right" style="position: relative; float: right;" >
 					<br><br><br>
 						<a href="${root}index?formpath=boardWrite" class="button small border button-purple">글쓰기</a>
