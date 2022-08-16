@@ -55,6 +55,44 @@
 			;
 	</select>
 	
+	<select id="partyJoinList" resultType="PartyMemberDTO">
+		SELECT b.nick, b.mycharge, b.mystartday, a.party_num, a.party_service, a.party_subservice, a.party_title, a.party_charge, a.party_available, a.party_end
+			FROM 
+				(SELECT * FROM party WHERE id=#{id})
+				a 
+			LEFT JOIN 
+				party_member
+				b 
+			ON a.party_num = b.party_num 
+	        WHERE b.id IS NOT NULL 
+	        ORDER BY mystartday DESC;
+	</select>
+	
+	<select id="partyJoinSearch" parameterType="Map" resultType="PartyMemberDTO">
+		SELECT b.nick, b.mycharge, b.mystartday, a.party_num, a.party_service, a.party_subservice, a.party_title, a.party_charge, a.party_available, a.party_end
+		FROM 
+			(SELECT * FROM party WHERE id=#{id})
+			a 
+		LEFT JOIN 
+			party_member
+			b 
+		ON a.party_num = b.party_num 
+        WHERE b.id IS NOT NULL 
+        	<choose>
+				<when test="sel1 == 'ser'">AND a.party_service=#{keynum} </when>
+				<when test="sel1 == 'sub'">AND a.party_subservice=#{keynum}</when>
+			</choose>
+			<if test="!keyword.equals('')">
+				AND a.party_num LIKE CONCAT('%',${keyword},'%')
+			</if>
+			<if test="!start.equals('')">
+				AND b.mystartday BETWEEN #{start} AND #{end} 
+			</if>
+        ORDER BY b.mystartday DESC;
+
+	
+	</select>
+	
 	
 	
 </mapper>

@@ -14,9 +14,6 @@
 	<!-- [[ 파트너 파티 관리 ]] -->
 
 	<form class="form" role="form" name="flist" action="partySearch" method="GET">
-		<input type="hidden" name="ap" value=""> 
-		<input type="hidden" name="save_stx" value=""> 
-		<input type="hidden" name="sort" value="">
 
 		<div class="partner-well">
 			<select name="sel1" id="sca">

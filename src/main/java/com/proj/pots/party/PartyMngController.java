@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.proj.pots.party.dto.PageVO;
 import com.proj.pots.party.dto.PartyListDTO;
+import com.proj.pots.party.dto.PartyMemberDTO;
 import com.proj.pots.party.dto.PartyRegDTO;
 import com.proj.pots.party.service.PartyMngService;
 
@@ -31,7 +32,30 @@ public class PartyMngController {
 	@Autowired HttpSession session;
 	
 	@RequestMapping(value = "/partyJoinList")
-	public String partyJoinList() {
+	public String partyJoinList(Model model, String nowPage, PageVO vo) throws ParseException {
+		// 리스트 가져오기
+		String id = "admin";
+		// String id = (String) session.getAtrribute("id");
+		ArrayList<PartyMemberDTO> list = mngSvc.partyJoinList(id);
+		
+		// 페이지 
+		int total = list.size();			
+		int cntPerPage = 3;
+		
+		if (nowPage == null) {
+			nowPage = "1";
+		}else {
+			int nowInt = Integer.parseInt(nowPage);
+			if(nowInt < 1)
+				nowPage = "1";
+		}
+	
+		vo = new PageVO(total, Integer.parseInt(nowPage), cntPerPage);
+		
+		
+		model.addAttribute("paging", vo);
+		
+		model.addAttribute("list", list);
 		return "partyAdmin/partyJoinList";
 	}
 	
@@ -63,6 +87,61 @@ public class PartyMngController {
 		return "partyAdmin/partyList";
 	}
 	
+	@RequestMapping(value="joinSearch")
+	public String joinSearch(String fr_date, String to_date, String sel, String searchWord, Model model, PageVO vo, String nowPage) throws ParseException {
+		System.out.println(fr_date + " " + to_date + " "  + sel + " "  + searchWord);
+		
+		
+		if(fr_date.equals("") || to_date.equals("")) {
+			if(fr_date.equals("") && to_date.equals("")) {
+				if(sel.equals("") && searchWord.equals("")) {
+					return"redirect:/partyJoinList";
+				}
+			}else {
+				return"redirect:/partyJoinList";
+			}
+		}
+		
+		//String id = "admin";
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", "admin");
+		map.put("keyword", searchWord);
+		map.put("start", fr_date);
+		map.put("end", to_date);
+		
+		if(!sel.equals("")) {
+			if(sel.length() == 2) {
+				map.put("sel1", "ser");
+				map.put("keynum", sel);
+			}else if(sel.length() == 4) {
+				map.put("sel1", "sub");
+				map.put("keynum", sel);
+			}
+		}
+		
+		
+		ArrayList<PartyMemberDTO> list = mngSvc.joinSearch(map);
+		
+		// 페이지 
+		int total = list.size();			
+		int cntPerPage = 10;
+		
+		if (nowPage == null) {
+			nowPage = "1";
+		}else {
+			int nowInt = Integer.parseInt(nowPage);
+			if(nowInt < 1)
+				nowPage = "1";
+		}
+	
+		vo = new PageVO(total, Integer.parseInt(nowPage), cntPerPage);
+		
+		
+		model.addAttribute("paging", vo);
+		
+		model.addAttribute("list", list);
+		return "partyAdmin/partyJoinList";
+	}
 	
 	@RequestMapping(value = "/partyCancelReq")
 	public String partyCancelReq() {

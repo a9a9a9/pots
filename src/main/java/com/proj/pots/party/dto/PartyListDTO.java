@@ -6,14 +6,6 @@ public class PartyListDTO extends PartyRegDTO{
 	private int party_now_member;
 	private int party_left_member;
 	private String party_left_date;
-	
-	
-//	public PartyListDTO() {
-//	}
-//	
-//	public PartyListDTO(PartyRegDTO partyRegDto) {
-//		
-//	}
 
 	public String getParty_total_charge() {
 		return party_total_charge;

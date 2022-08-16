@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.proj.pots.party.dao.IPartyMngDAO;
 import com.proj.pots.party.dto.PartyListDTO;
+import com.proj.pots.party.dto.PartyMemberDTO;
 import com.proj.pots.party.dto.PartyRegDTO;
 
 @Service
@@ -147,6 +148,35 @@ public class PartyMngService {
 		
 		return list;
 	}
+
+	public ArrayList<PartyMemberDTO> partyJoinList(String id) throws ParseException {
+		ArrayList<PartyMemberDTO> list = mngDao.partyJoinList(id);
+		if(list != null) {
+			for(PartyMemberDTO m : list) {
+				String party_left_date = check_today(m.getParty_end());
+				m.setParty_left_date(party_left_date);
+				int money = Integer.parseInt(m.getMycharge());
+				String format = String.format("%,d", money);
+				m.setMycharge(format);
+			}
+		}
+		return list;
+	}
+
+	public ArrayList<PartyMemberDTO> joinSearch(Map<String, String> map) throws ParseException {
+		ArrayList<PartyMemberDTO>list = mngDao.partyJoinSearch(map);
+		if(list != null) {
+			for(PartyMemberDTO m : list) {
+				String party_left_date = check_today(m.getParty_end());
+				m.setParty_left_date(party_left_date);
+				int money = Integer.parseInt(m.getMycharge());
+				String format = String.format("%,d", money);
+				m.setMycharge(format);
+			}
+		}
+		return list;
+	}
+
 
 
 }
