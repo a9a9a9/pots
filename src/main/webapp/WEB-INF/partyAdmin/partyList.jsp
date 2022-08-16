@@ -76,11 +76,11 @@
 	<form class="form" role="form" name="fitemlistupdate" method="post"
 		action="./itemlistupdate.php"
 		onsubmit="return fitemlist_submit(this);" autocomplete="off">
-		<input type="hidden" name="ap" value=""> <input type="hidden"
+		<!-- <input type="hidden" name="ap" value=""> <input type="hidden"
 			name="sca" value=""> <input type="hidden" name="sst" value="">
 		<input type="hidden" name="sod" value=""> <input type="hidden"
 			name="sfl" value=""> <input type="hidden" name="stx" value="">
-		<input type="hidden" name="page" value="1">
+		<input type="hidden" name="page" value="1"> -->
 
 		<div class="table-list scroll">
 			<table>
@@ -210,7 +210,10 @@
 		</div>
 
 	</form>
-	
+	<c:set var="URL" value="${pageContext.request.queryString}" />
+	<div>정보: ${URL }</div>
+	<c:set var="URL2" value="${pageContext.request.servletPath}" />
+	<div>정보: ${URL2 }</div>
 	
 
 	<script>

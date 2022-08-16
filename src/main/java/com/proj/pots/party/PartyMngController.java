@@ -39,7 +39,7 @@ public class PartyMngController {
 	public String partyList(Model model, String nowPage, PageVO vo) throws ParseException {
 		// 리스트 가져오기
 		String id = "admin";
-		// String id = session.getAtrribute("id");
+		// String id = (String) session.getAtrribute("id");
 		ArrayList<PartyListDTO> list = mngSvc.partyList(id);
 		System.out.println(list);
 		// 페이지 
@@ -144,10 +144,15 @@ public class PartyMngController {
 	}
 
 	@RequestMapping(value="partySearch")
-	public String partySearch(String sel1, String sel2, String searchWord) {
+	public String partySearch
+			(String sel1, String sel2, String searchWord, Model model, String nowPage, PageVO vo) 
+				throws ParseException {
+		
 		System.out.println("sel1: " +sel1 + " sel2: " + sel2 + " sw: " + searchWord);
 		
 		Map<String, String> searchMap = new HashMap<String, String>();
+		searchMap.put("id", "admin");
+		//searchMap.put("id", (String) session.getAttribute("id"));
 		
 		if(!sel1.equals("")) {
 			if(sel1.length() == 2) {
@@ -173,6 +178,27 @@ public class PartyMngController {
 			
 		System.out.println(searchMap.get("keynum") + " " + searchMap.get("sel2") + " " + searchMap.get("keyword"));	
 		
+		ArrayList<PartyListDTO> list = mngSvc.partySearch(searchMap);
+		
+		// 페이징
+		int total = list.size();			
+		int cntPerPage = 2;
+		
+		if (nowPage == null) {
+			nowPage = "1";
+		}else {
+			int nowInt = Integer.parseInt(nowPage);
+			if(nowInt < 1)
+				nowPage = "1";
+		}
+	
+		vo = new PageVO(total, Integer.parseInt(nowPage), cntPerPage);
+		
+		
+		model.addAttribute("paging", vo);
+				
+				
+		model.addAttribute("list", list);
 		return "partyAdmin/partyList";
 		
 	}

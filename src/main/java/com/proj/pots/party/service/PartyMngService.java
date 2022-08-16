@@ -2,6 +2,7 @@ package com.proj.pots.party.service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -80,7 +81,32 @@ public class PartyMngService {
 	// 파티 리스트 불러오는 메서드
 	public ArrayList<PartyListDTO> partyList(String id) throws ParseException {
 		ArrayList<PartyListDTO> partyList = mngDao.partyList(id);
-		for(PartyListDTO p : partyList) {
+		if(partyList != null)
+			partyList = listSetter(partyList);
+		
+		return partyList;
+	}
+	
+	// 파티 삽입
+	public void insert(PartyRegDTO partyDto) {
+		mngDao.insertParty(partyDto);
+		System.out.println("wellThrough");
+		
+	}
+	
+	public ArrayList<PartyListDTO> partySearch(Map<String, String> map) throws ParseException {
+		ArrayList<PartyListDTO> list = mngDao.partySearch(map);
+		if(list != null)
+			list = listSetter(list);
+		System.out.println("List  " + list);
+		
+		return list;
+		
+	}
+	
+	public ArrayList<PartyListDTO> listSetter(ArrayList<PartyListDTO> list) throws ParseException {
+		
+		for(PartyListDTO p : list) {
 			String party_total_charge = 
 						check_total_charge(p.getParty_start(), p.getParty_end(), p.getParty_charge());
 			if(party_total_charge != null)
@@ -119,18 +145,8 @@ public class PartyMngService {
 			else p.setParty_subservice("#기타");
 		}
 		
-		return partyList;
+		return list;
 	}
-	
-	// 파티 삽입
-	public void insert(PartyRegDTO partyDto) {
-		mngDao.insertParty(partyDto);
-		System.out.println("wellThrough");
-		
-	}
-	
-//	public ArrayList<PartyListDTO> seachParty() {
-//		
-//	}
+
 
 }
