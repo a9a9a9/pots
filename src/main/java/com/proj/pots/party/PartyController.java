@@ -67,28 +67,6 @@ public class PartyController {
 			return "partyAdmin/partyMyInfo";
 		}
 		
-		@RequestMapping(value = "/partyBill")
-		public String partyBill(Model model, String id, String nowPage, PageVO vo) {
-			id = "admin";
-			ArrayList<PartyBillDTO> bill = service.bill(id);
-			int total = bill.size();			
-			int cntPerPage = 2;
-			
-			if (nowPage == null) {
-				nowPage = "1";
-			}else {
-				int nowInt = Integer.parseInt(nowPage);
-				if(nowInt < 1)
-					nowPage = "1";
-			}
-		
-			vo = new PageVO(total, Integer.parseInt(nowPage), cntPerPage);
-			model.addAttribute("paging", vo);
-			model.addAttribute("bill", bill);
-			model.addAttribute("partner", service.selectAccount(id));
-			return "partyAdmin/partyBill";
-		}
-		
 		@RequestMapping(value = "/partyCommentList")
 		public String partyCommentList(Model model,String nowPage, PageVO vo) {
 			//String id = (String)session.getAttribute("id");

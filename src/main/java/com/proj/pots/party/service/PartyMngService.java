@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.proj.pots.party.dao.IPartyMngDAO;
+import com.proj.pots.party.dto.PartyBillDTO;
 import com.proj.pots.party.dto.PartyListDTO;
 import com.proj.pots.party.dto.PartyMemberDTO;
 import com.proj.pots.party.dto.PartyRegDTO;
@@ -18,6 +19,11 @@ import com.proj.pots.party.dto.PartyRegDTO;
 @Service
 public class PartyMngService {
 	@Autowired IPartyMngDAO mngDao;
+	
+	public ArrayList<PartyBillDTO> bill(String id) {
+		ArrayList<PartyBillDTO> bill = mngDao.bill(id);
+		return bill;
+	}
 
 	public String check_day(String party_start, String party_end) throws ParseException {
 		String count = "";

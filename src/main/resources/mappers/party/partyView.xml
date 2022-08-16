@@ -26,10 +26,6 @@
 	 	WHERE id = #{id}
 	 </update>
 	 
-	 <select id="bill" parameterType="String" resultType="PartyBillDTO">
-	 	SELECT * FROM party_bill WHERE id = #{id}
-	 </select>
-	 
 	 <select id="selectParty" parameterType="int" resultType="PartyRegDTO">
 	 	SELECT * FROM party WHERE party_num = #{party_num}
 	 </select> 

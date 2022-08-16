@@ -16,7 +16,7 @@ import com.proj.pots.party.dto.PartyRegDTO;
 
 public interface IPartyViewService { 
 	
-	public ArrayList<PartyCommentDTO> comment(String id);
+	public ArrayList<PartyCommentDTO> comment(String id); 
 	
 	public MemberDTO memberInfo(String id); 
 
@@ -25,8 +25,6 @@ public interface IPartyViewService {
 	PartyRegDTO selectParty(Integer party_num);
 	
 	public String accountInsertProc(PartnerInfoDTO partner);
-	
-	public ArrayList<PartyBillDTO> bill(String id);
 
 	public String accountModifyProc(PartnerInfoDTO partner);
 }
