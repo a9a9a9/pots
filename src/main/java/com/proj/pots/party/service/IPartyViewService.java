@@ -22,6 +22,8 @@ public interface IPartyViewService {
 
 	PartnerInfoDTO selectAccount(String id);
 	
+	PartyRegDTO selectParty(Integer party_num);
+	
 	public String accountInsertProc(PartnerInfoDTO partner);
 	
 	public ArrayList<PartyBillDTO> bill(String id);

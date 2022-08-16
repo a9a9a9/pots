@@ -112,4 +112,13 @@ public class PartyController {
 			return "partyAdmin/partyCommentList";
 		}
 		
+		@RequestMapping(value = "/partyOrder")
+		public String partyOrder(Model model, Integer party_num) {
+			String id = "user4";
+			party_num = 1;
+			model.addAttribute("member", memberService.memberInfo(id));
+			model.addAttribute("party", service.selectParty(party_num));
+			return "partyAdmin/partyOrder";
+		}
+		
 }

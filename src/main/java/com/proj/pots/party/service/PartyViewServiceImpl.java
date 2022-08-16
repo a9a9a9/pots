@@ -15,6 +15,7 @@ import com.proj.pots.party.dto.PartnerInfoDTO;
 import com.proj.pots.party.dto.PartyBillDTO;
 import com.proj.pots.party.dto.PartyCommentDTO;
 import com.proj.pots.party.dto.PartyParDTO;
+import com.proj.pots.party.dto.PartyRegDTO;
 
 @Service
 public class PartyViewServiceImpl implements IPartyViewService{
@@ -45,6 +46,12 @@ public class PartyViewServiceImpl implements IPartyViewService{
 	public PartnerInfoDTO selectAccount(String id) {
 		PartnerInfoDTO partner = partyViewDao.selectAccount(id); 
 		return partner;
+	}
+	
+	@Override
+	public PartyRegDTO selectParty(Integer party_num) {
+		PartyRegDTO party = partyViewDao.selectParty(party_num);
+		return party;
 	}
 	
 	@Override
