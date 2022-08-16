@@ -25,7 +25,4 @@ public interface IPartyViewDAO {
 	void insertAccount(PartnerInfoDTO partner);
 		
 	void updateAccount(PartnerInfoDTO partner);  
-	
-	ArrayList<PartyParDTO> par(String id);
-	
 }

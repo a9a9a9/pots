@@ -7,7 +7,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.proj.pots.membership.service.MemberService;
 import com.proj.pots.party.dto.PageVO;
@@ -46,18 +49,17 @@ public class PartyController {
 			return "partyAdmin/partnerRegister";
 		}
 
-	
-		@RequestMapping(value = "accountModifyProc")
-		public String accountModifyProc(Model model, PartnerInfoDTO partner) {
-			//String id = (String)session.getAttribute("id");
-			String id = "user1";
+		@RequestMapping(value = "accountModifyProc") 
+		public String accountModifyProc(Model model, PartnerInfoDTO partner) { 
+			//String id = (String)session.getAttribute("id"); 
+			String id = "user1"; 
 			partner.setId(id);
-			service.accountModifyProc(partner); 
-			model.addAttribute("member", memberService.memberInfo(id));
-			model.addAttribute("partner", service.selectAccount(id));
-			return "partyAdmin/partyMyInfo";
-		}
-		
+			service.accountModifyProc(partner);  
+			model.addAttribute("member", memberService.memberInfo(id)); 
+			model.addAttribute("partner", service.selectAccount(id)); 
+			return "partyAdmin/partyMyInfo"; 
+		} 
+	
 		@RequestMapping(value = "/partyMyInfo")
 		public String partyMyInfo(Model model, String id) {
 			//String id = (String)session.getAttribute("id");

@@ -60,10 +60,9 @@ public class PartyViewServiceImpl implements IPartyViewService{
 	
 	@Override
 	public String accountModifyProc(PartnerInfoDTO partner) {
-		partner.setId(partner.getId());
-		session.setAttribute("persnonal_num", partner.getPersonal_num());
-		session.setAttribute("account_name", partner.getAccount_name());
-		session.setAttribute("account_num", partner.getAccount_num());
+		partner.setPersonal_num(partner.getPersonal_num()); 
+		partner.setAccount_name(partner.getAccount_name());
+		partner.setAccount_num(partner.getAccount_num());
 		partyViewDao.updateAccount(partner);
 		return "수정 완료";
 	}
