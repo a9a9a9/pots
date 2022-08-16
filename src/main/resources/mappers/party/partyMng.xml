@@ -34,6 +34,26 @@
 		ON a.party_num = b.party_num;
 	</select>
 	
+	<select id="partySearch" parameterType="Map" resultType="PartyListDTO">
+		SELECT a.*, b.party_count AS party_now_member 
+			FROM 
+				(SELECT * FROM party WHERE id=#{id} 
+					<choose>
+						<when test="sel1 == 'ser'">AND party_service=#{keynum}</when>
+						<when test="sel1 == 'sub'">AND party_subservice=#{keynum}</when>
+					</choose>
+					<choose>
+						<when test="sel2 == 'num'">AND party_num CONCAT('%',#{keyword},'%')</when>
+						<when test="sel2 == 'id'">AND party_id CONCAT('%',#{keyword},'%')</when>
+					</choose>
+					ORDER BY party_num DESC
+				) a 
+			LEFT JOIN 
+				(SELECT party_num, count(*) AS party_count FROM party_member GROUP BY party_num) 
+				b 
+			ON a.party_num = b.party_num ;
+	</select>
+	
 	
 	
 </mapper>

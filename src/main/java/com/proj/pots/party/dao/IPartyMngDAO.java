@@ -1,6 +1,7 @@
 package com.proj.pots.party.dao;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -13,5 +14,7 @@ public interface IPartyMngDAO {
 	void insertParty(PartyRegDTO regDto);
 	
 	ArrayList<PartyListDTO> partyList(String id);
+	
+	ArrayList<PartyListDTO> partySearch(Map<String, String> searchMap);
 	
 }

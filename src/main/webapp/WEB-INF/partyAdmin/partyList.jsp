@@ -13,13 +13,13 @@
 
 	<!-- [[ 파트너 파티 관리 ]] -->
 
-	<form class="form" role="form" name="flist">
+	<form class="form" role="form" name="flist" action="partySearch" method="GET">
 		<input type="hidden" name="ap" value=""> 
 		<input type="hidden" name="save_stx" value=""> 
 		<input type="hidden" name="sort" value="">
 
 		<div class="partner-well">
-			<select name="sca" id="sca">
+			<select name="sel1" id="sca">
 				<option value="">카테고리</option>
 				<option value="10">영상</option>
 				<option value="1010">&nbsp;&nbsp;&nbsp;#넷플릭스</option>
@@ -43,14 +43,15 @@
 			
 			<script>
 				document.getElementById("sca").value = "";
+				
 			</script>
 			
-			<select name="sfl" id="sfl">
-				<option value="a.it_id">파티번호</option>
-				<option value="a.pt_link1">계정ID</option>
+			<select name="sel2" id="sfl">
+				<option value="num">파티번호</option>
+				<option value="id">계정ID</option>
 			</select> 
 			
-			<input type="text" name="stx" value="" id="stx" class="search" placeholder="파티번호 검색어">
+			<input type="text" name="searchWord" value="" id="stx" class="search" placeholder="파티번호 검색어">
 			<button type="submit" class="button mini border button-purple">검색</button>
 			<a href="partyCreate" class="button mini button-purple">파티생성</a>
 		</div>
@@ -100,8 +101,12 @@
 						<th width="15%" scope="col">관리</th>
 					</tr>
 				</thead>
-				<!-- 등록된 내용이 없는 경우 -->
 				<tbody>
+			
+			<c:choose>
+				<c:when test="${empty list }" >
+				<!-- 등록된 내용이 없는 경우 -->
+				
 					<tr>
 						<td colspan="12">
 							<div class="empty">
@@ -112,45 +117,87 @@
 							</div>
 						</td>
 					</tr>
-				</tbody>
 				
-				
-				
-				
-				
+				</c:when>
+				<c:otherwise>
 				
 				<!-- 등록된 내용이 있는 경우 -->
-				<tbody>
-					<tr>
-						<td>
-							<div class="input-check" style="margin-right: -8px;">
-								<input type="checkbox" name="chk[]" value="0" id="chk_0">
-								<label for="chk_0"></label>
-							</div> 
-							<input type="hidden" name="it_id[0]" value="1659354235">
-						</td>
-						<td>
-							<a href="partyMain?party_num=${ party_num}" class="item-name"> 
-							<span class="brand">
-							<img src="img/1.jpg" alt=""></span> 
-							<span class="name">${ party_title}</span> 
-							<span class="lightgrey"> 파티번호 : ${ party_num} / ${ party_service} / ${ party_subservice} </span>
-						</a></td>
-						<td><strong>0</strong>원(<strong>${ party_charge}</strong>원)</td>
-						<td><strong>0명(총 1명)</strong></td>
-						<td><strong>0</strong>일</td>
-
-						<td><span class="lightgrey"> 종료 </span></td>
-						<td class="text-center">2022-08-01 20:45:01</td>
-						<td class="text-center">
-							<a href="./?ap=item&amp;w=c&amp;it_id=1659354235&amp;fn=2&amp;ca_id=6040" class="button round border button-red">복사</a>
-						</td>
-					</tr>
-					
+					<c:forEach var="pl" items="${list }" begin="${paging.start }" end="${paging.end }" varStatus="vs">
+						<tr>
+								<td>
+									<div class="input-check" style="margin-right: -8px;">
+										<input type="checkbox" name="chk[]" value="${vs.index }" id="chk_${vs.index }">
+										<label for="chk_${vs.index }"></label>
+									</div> 
+									<input type="hidden" name="it_id[${vs.index }]" value="${pl.party_num }">
+								</td>
+								<td>
+									<a href="partyMain?party_num=${ pl.party_num}" class="item-name"> 
+									<span class="brand">
+									<img src="/img/1.jpg" alt=""></span> 
+									<span class="name">${ pl.party_title}</span> 
+									<span class="lightgrey"> 파티번호 : ${ pl.party_num} / ${ pl.party_service} / ${ pl.party_subservice} </span>
+								</a></td>
+								<td><strong>${pl.party_total_charge }</strong>원(<strong>${ pl.party_charge}</strong>원)</td>
+								<td><strong>${pl.party_left_member }명(총 ${pl.party_member }명)</strong></td>
+								<td><strong>${pl.party_left_date }</strong>일</td>
+								<c:choose>
+									<c:when test="${pl.party_left_date <= 0 }">
+										<td><span class="lightgrey"> 종료 </span></td>
+									
+									</c:when>
+									<c:otherwise>
+										<td><span class="lightgrey"> ${pl.party_end } </span></td>
+									</c:otherwise>
+								</c:choose>
+								
+								<td class="text-center">${pl.party_regdate }</td>
+								<td class="text-center">
+									<a href="#" class="button round border button-red">복사</a>
+								</td>
+							</tr>
+						</c:forEach>
+				</c:otherwise>
+			</c:choose>
 				</tbody>
 			</table>
 		</div>
-
+		
+		<c:set var="paging" value="${paging }"/>
+		<c:if test="${not empty list }">
+		<div class="page-number" style="border-top: 0">
+			<ul>
+				<li class="disabled">
+					<a href = "/partyList?nowPage=1"><i class="fa fa-angle-double-left"></i></a>
+				</li>
+				
+				<li class="disabled">
+					<a href = "/partyList?nowPage=${paging.nowPage -1}"><i class="fa fa-angle-left"></i></a>
+				</li>
+				
+				<c:forEach begin="1" end="${paging.endPage }" var="p">
+					<c:choose>
+						<c:when test="${p == paging.nowPage }">
+							<li class="active">
+								<a>${p }</a>
+							</li>
+						</c:when>
+						<c:when test="${p != paging.nowPage }">
+							<li><a href="/partyList?nowPage=${p }">${p }</a></li>
+						</c:when>
+					</c:choose>
+				</c:forEach>	
+				
+				<li class="disabled">
+					<a href = "/partyList?nowPage=${paging.nowPage + 1}"><i class="fa fa-angle-right"></i></a>
+				</li>
+				
+				<li class="disabled">
+					<a href = "/partyList?nowPage=${paging.endPage}"><i class="fa fa-angle-double-right"></i></a>
+				</li>
+			</ul>
+		</div>
+		</c:if>
 
 
 		<div class="button-align left mg-top-0">

@@ -3,12 +3,15 @@ package com.proj.pots.party;
 import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.proj.pots.party.dto.PageVO;
+import com.proj.pots.party.dto.PartyListDTO;
 import com.proj.pots.party.dto.PartyRegDTO;
 import com.proj.pots.party.service.PartyMngService;
 
@@ -31,10 +36,33 @@ public class PartyMngController {
 	}
 	
 	@RequestMapping(value = "/partyList")
-	public String partyList() {
+	public String partyList(Model model, String nowPage, PageVO vo) throws ParseException {
+		// 리스트 가져오기
 		String id = "admin";
+		// String id = session.getAtrribute("id");
+		ArrayList<PartyListDTO> list = mngSvc.partyList(id);
+		System.out.println(list);
+		// 페이지 
+		int total = list.size();			
+		int cntPerPage = 2;
+		
+		if (nowPage == null) {
+			nowPage = "1";
+		}else {
+			int nowInt = Integer.parseInt(nowPage);
+			if(nowInt < 1)
+				nowPage = "1";
+		}
+	
+		vo = new PageVO(total, Integer.parseInt(nowPage), cntPerPage);
+		
+		
+		model.addAttribute("paging", vo);
+		model.addAttribute("list", list);
+		
 		return "partyAdmin/partyList";
 	}
+	
 	
 	@RequestMapping(value = "/partyCancelReq")
 	public String partyCancelReq() {
@@ -46,12 +74,13 @@ public class PartyMngController {
 		return "partyAdmin/partyCancelList";
 	}
 	
+	// 시험 페이지
 	@RequestMapping(value = "/partytest")
 	public String partytest() {
 		return "partyAdmin/partytest";
 	}
 	
-	
+	// 파티 생성 시 날짜일수 확인 (ajax)
 	@ResponseBody
 	@RequestMapping(value="check_day", method=RequestMethod.POST)
 	public Map<String,String> check_day(@RequestBody Map<String,String> map ) throws ParseException{
@@ -62,6 +91,7 @@ public class PartyMngController {
 	    return map;
 	}
 	
+	// 파티 생성 시 금액 확인 (ajax)
 	@ResponseBody
 	@RequestMapping(value="check_cash", method=RequestMethod.POST)
 	public Map<String,String> check_cash(@RequestBody Map<String,String> map ) throws ParseException{
@@ -85,12 +115,13 @@ public class PartyMngController {
 	    return map;
 	}
 	
-
+	// 파티 생성 페이지
 	@GetMapping(value = "/partyCreate")
 	public String partyCreate() {
 		return "partyAdmin/partyCreate";
 	}
 	
+	// 파티 생성 등록
 	@PostMapping(value = "partyReg")
 	public String partyReg(PartyRegDTO partyDto) {
 		// 등록 날짜 및 시간 구하기
@@ -112,6 +143,39 @@ public class PartyMngController {
 		return "partyAdmin/partyList";
 	}
 
+	@RequestMapping(value="partySearch")
+	public String partySearch(String sel1, String sel2, String searchWord) {
+		System.out.println("sel1: " +sel1 + " sel2: " + sel2 + " sw: " + searchWord);
+		
+		Map<String, String> searchMap = new HashMap<String, String>();
+		
+		if(!sel1.equals("")) {
+			if(sel1.length() == 2) {
+				searchMap.put("sel1", "ser");
+				searchMap.put("keynum", sel1);
+			}else if(sel1.length() == 4) {
+				searchMap.put("sel1", "sub");
+				searchMap.put("keynum", sel1);
+			}
+				
+		}
+		else {
+			if(searchWord == null)
+			return "redirect:/partyList";
+		}
+		
+		
+		if(sel2 != null) searchMap.put("sel2", sel2);
+		else searchMap.put("sel2", "id");
+		
+		if(searchWord != null)
+			searchMap.put("keyword", searchWord);
+			
+		System.out.println(searchMap.get("keynum") + " " + searchMap.get("sel2") + " " + searchMap.get("keyword"));	
+		
+		return "partyAdmin/partyList";
+		
+	}
 	
 	
 
