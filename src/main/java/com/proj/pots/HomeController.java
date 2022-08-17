@@ -43,6 +43,23 @@ public class HomeController {
 	}
 	
 	//categories 폴더 파일
+	@RequestMapping(value = "/video")
+	public String video() {
+		return "categories/video/video";
+	}
+	@RequestMapping(value = "/art")
+	public String art() {
+		return "categories/art/art";
+	}
+	@RequestMapping(value = "/game")
+	public String game() {
+		return "categories/game/game";
+	}
+	@RequestMapping(value = "/etc")
+	public String etc() {
+		return "categories/etc/etc";
+	}
+	
 	@RequestMapping(value ="/millie")
 	public String millie() {
 		return "categories/art/millie";

@@ -19,7 +19,7 @@ public class LoginController {
 	public String loginProc(LoginDTO login, Model model) {
 		String msg = loginService.loginProc(login);
 		if(msg.equals("로그인 성공")) {
-			return "redirect:/index?formpath=home";
+			return "redirect:/index?formpath=main";
 		}
 		model.addAttribute("msg", msg);
 		return "forward:/index?formpath=login";
@@ -29,7 +29,7 @@ public class LoginController {
 	public String logout(Model model, HttpSession session) {
 		session.invalidate();
 		model.addAttribute("msg", "로그 아웃");
-		return "forward:index?formpath=home";
+		return "forward:index?formpath=main";
 	}
 	
 }

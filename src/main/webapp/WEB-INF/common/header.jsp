@@ -91,7 +91,7 @@
 <div class="header">
 	<div class="width-container">
 		<div class="header-logo">
-			<a href="${root}index?formpath=home">
+			<a href="${root}index?formpath=main">
 			<img src="/img/logo.png" srcset="/img/logo2.png 2x" alt="" /></a>
 		</div>
 		<div class="header-right">
@@ -114,8 +114,7 @@
 							<div class="picture mobile">
 								<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-myimg.png" alt="">
 							</div>
-							<div class="name">
-								<div>${sessionScope.nick }</div> <a href="${root }logout" class="header-logout"> 
+							<div class="name"> ${sessionScope.nick } <a href="${root }logout" class="header-logout"> 
 									<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/img-input-text-reste-copy.png"
 									srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/img-input-text-reste-copy.png 2x" alt="">
 								</a>
@@ -200,7 +199,7 @@
 
 	<div class="header-menu pc">
 		<ul>
-			<li class="menu-li off"><a href="#" class="menu-a">
+			<li class="menu-li off"><a href="${root}index?formpath=video" class="menu-a">
 					<!-- 영상 -->영상 <span class="menu_new"></span>
 			</a>
 				<div class="sub-menu" style="display: none">
@@ -231,7 +230,7 @@
 					</div>
 				</div></li>
 
-			<li class="menu-li off"><a href="#" class="menu-a">
+			<li class="menu-li off"><a href="${root}index?formpath=art" class="menu-a">
 					<!-- 영상 -->도서/음악
 			</a>
 				<div class="sub-menu" style="display: none">
@@ -256,7 +255,7 @@
 					</div>
 				</div></li>
 
-			<li class="menu-li off"><a href="#" class="menu-a">
+			<li class="menu-li off"><a href="${root}index?formpath=game" class="menu-a">
 					<!-- 영상 -->게임
 			</a>
 				<div class="sub-menu" style="display: none">
@@ -279,7 +278,7 @@
 					</div>
 				</div></li>
 
-			<li class="menu-li off"><a href="#" class="menu-a">
+			<li class="menu-li off"><a href="${root}index?formpath=etc" class="menu-a">
 					<!-- 영상 -->기타
 			</a>
 

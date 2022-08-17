@@ -720,7 +720,7 @@
 				<label for="agree21">개인정보처리방침 안내 내용에 동의합니다.</label>
 			</div>
 			<div class="button-align center">
-				<a href="${root}index?formpath=home" class="button">취소</a>
+				<a href="${root}index?formpath=main" class="button">취소</a>
 				<button type="submit" class="button button-purple">회원가입</button>
 			</div>
 		</form>
