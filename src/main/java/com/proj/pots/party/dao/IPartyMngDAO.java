@@ -24,5 +24,8 @@ public interface IPartyMngDAO {
 	ArrayList<PartyMemberDTO> partyJoinSearch(Map<String, String> map);
 	
 	ArrayList<PartyBillDTO> bill(String id);
+
+	PartyListDTO partySelect(String party_num);
 	
+	ArrayList<PartyMemberDTO> partyMember(String party_num);
 }
