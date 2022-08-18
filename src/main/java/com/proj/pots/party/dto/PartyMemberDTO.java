@@ -1,14 +1,14 @@
 package com.proj.pots.party.dto;
 
-public class PartyMemberDTO extends PartyDTO{
+public class PartyMemberDTO extends PartyListDTO{
 
-	private int mycharge;		//결제한 금액
+	private String mycharge;		//결제한 금액
 	private String mystartday;	//파티 가입일
 	
-	public int getMycharge() {
+	public String getMycharge() {
 		return mycharge;
 	}
-	public void setMycharge(int mycharge) {
+	public void setMycharge(String mycharge) {
 		this.mycharge = mycharge;
 	}
 	public String getMystartday() {

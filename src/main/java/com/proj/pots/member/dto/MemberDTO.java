@@ -19,6 +19,7 @@ public class MemberDTO extends LoginDTO{
 	public void setSns(int sns) {
 		this.sns = sns;
 	}
+	
 	public String getId() {
 		return id;
 	}
