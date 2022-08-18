@@ -183,6 +183,63 @@ public class PartyMngService {
 		return list;
 	}
 
+	public PartyListDTO partyInfo(String party_num) throws ParseException {
+		PartyListDTO partyInfo = mngDao.partySelect(party_num);
+		if(partyInfo != null) {
+			
+			//남은일수 계산
+			String party_left_date = check_today(partyInfo.getParty_end());
+			partyInfo.setParty_left_date(party_left_date);
+			
+			// 남은 일수에서 일 평균 차지 계산하여 합계
+			int daily = partyInfo.getParty_charge();
+			int leftday = Integer.parseInt(party_left_date);
+			String total = String.format("%,d", daily*leftday);
+			partyInfo.setParty_total_charge(total);
+			
+			// 남은 인원수 계산
+			int left = partyInfo.getParty_member() - partyInfo.getParty_left_member();
+			partyInfo.setParty_left_member(left);
+			
+			//서비스 한글명으로 바꾸기
+			System.out.println(partyInfo.getParty_service());
+			if(partyInfo.getParty_service().equals("10")) partyInfo.setParty_service("영상");
+			else if (partyInfo.getParty_service().equals("20")) partyInfo.setParty_service("도서/음악");
+			else if (partyInfo.getParty_service().equals("30")) partyInfo.setParty_service("게임");
+			else partyInfo.setParty_service("기타");
+			
+			if(partyInfo.getParty_subservice().equals("1010")) partyInfo.setParty_subservice("#넷플릭스");
+			else if(partyInfo.getParty_subservice().equals("1020")) partyInfo.setParty_subservice("#왓챠");
+			else if(partyInfo.getParty_subservice().equals("1030")) partyInfo.setParty_subservice("#유튜브");
+			else if(partyInfo.getParty_subservice().equals("1040")) partyInfo.setParty_subservice("#웨이브");
+			else if(partyInfo.getParty_subservice().equals("1050")) partyInfo.setParty_subservice("#티빙");
+			else if(partyInfo.getParty_subservice().equals("1080")) partyInfo.setParty_subservice("#디즈니");
+			else if(partyInfo.getParty_subservice().equals("2010")) partyInfo.setParty_subservice("#리디북스");
+			else if(partyInfo.getParty_subservice().equals("2020")) partyInfo.setParty_subservice("#밀리의서재");
+			else if(partyInfo.getParty_subservice().equals("2030")) partyInfo.setParty_subservice("#YES24");
+			else if(partyInfo.getParty_subservice().equals("2040")) partyInfo.setParty_subservice("#스포티파이");
+			else if(partyInfo.getParty_subservice().equals("3010")) partyInfo.setParty_subservice("#닌텐도온라인");
+			else if(partyInfo.getParty_subservice().equals("3050")) partyInfo.setParty_subservice("#XBOX");
+			else if(partyInfo.getParty_subservice().equals("6050")) partyInfo.setParty_subservice("#멤버쉽");
+			else if(partyInfo.getParty_subservice().equals("6010")) partyInfo.setParty_subservice("#MSOffice");
+			else partyInfo.setParty_subservice("#기타");
+		}
+		
+		return partyInfo;
+	}
+	
+	public ArrayList<PartyMemberDTO> partyMember(String party_num) throws ParseException {
+		ArrayList<PartyMemberDTO> members = mngDao.partyMember(party_num);
+		for(PartyMemberDTO m : members) {
+			String start = m.getMystartday();
+			String tmp = start.substring(0,9);
+			m.setMystartday(tmp);
+		}
+		
+		
+		return members;
+	}
+
 
 
 }

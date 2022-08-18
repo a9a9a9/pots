@@ -282,6 +282,41 @@ public class PartyMngController {
 		
 	}
 	
+	@RequestMapping(value="/partyMain") 
+	public String partyMain(String party_num, Model model) throws ParseException {
+		party_num = "1";
+		int joined = 0;
+		
+		PartyListDTO info = mngSvc.partyInfo(party_num);
+		model.addAttribute("info", info);
+		//int total = info.getParty_member();
+		System.out.println("model1 complete");
+		
+		ArrayList<PartyMemberDTO> members = mngSvc.partyMember(party_num);
+		model.addAttribute("list", members);
+		System.out.println("model2 complete");
+		
+		
+		if(members != null) {
+			joined = members.size();
+			if(members.size() == info.getParty_left_member()) {
+				joined = 100;
+			}
+		}
+		model.addAttribute("joined", joined);
+		
+//		String memberCheck = "";
+//		String id = (String) session.getAttribute("id");
+//		if(id.equals(info.getNick())) memberCheck = "checked";
+//		for(PartyMemberDTO m : members) {
+//			if(id.equals(m.getNick())) memberCheck = "checked";
+//		}
+		model.addAttribute("memberChk", "");
+		
+		
+		return "partyRecruit/partyMain";
+		
+	}
 	
 
 }
