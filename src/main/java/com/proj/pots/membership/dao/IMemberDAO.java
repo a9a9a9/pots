@@ -28,4 +28,6 @@ public interface IMemberDAO {
 	int updateMember(MemberDTO member);
 	
 	int profileUpdate(MemberDTO member);
+
+	int isExistNick(String nick);
 }

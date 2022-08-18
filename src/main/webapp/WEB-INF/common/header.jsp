@@ -114,10 +114,7 @@
 							<div class="picture mobile">
 								<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-myimg.png" alt="">
 							</div>
-							<div class="name"> ${sessionScope.nick } <a href="${root }logout" class="header-logout"> 
-									<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/img-input-text-reste-copy.png"
-									srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/img-input-text-reste-copy.png 2x" alt="">
-								</a>
+							<div class="name"> ${sessionScope.nick }
 							</div>
 							<!--
 								<div class="credit-percent">
@@ -187,6 +184,7 @@
 						</div>
 						<div class="block">
 							<ul class="menu">
+								<li><a href="${root }logout">로그아웃</a></li>
 								<li><a href="#">FAQ</a></li>
 								<li><a href="javascript:ChannelIO('showMessenger');">1:1문의하기</a></li>
 							</ul>

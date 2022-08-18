@@ -7,6 +7,7 @@
 		<div class="body">
 			<div class="width-container">
 				<div id="sct_hhtml" style="background-color:#242424;"></div>
+				
 				<div class="title">벗츠 추천 영상</div>
 				<div class="recommand-list">
 					<a href="http://www.youtube.com/watch?v=U9q-iiHgWPk" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/U9q-iiHgWPk/mqdefault.jpg" alt="" /></a>
@@ -16,35 +17,26 @@
 				</div>
 				
 				<div class="title-wrap">
-				
-				
-					<div class="title">
-					<a href="./list.php?ca_id=10" class="text">영상</a>		</div>
+					<div class="title"><a href="./list.php?ca_id=10" class="text">영상</a></div>
 					<div class="title-right"><a href="https://buts.co.kr/shop/partner/?ap=item&w=&fn=2" class="button border round button-purple">파티 만들기</a></div>
 				</div>
+				
 				<div class="item-list">
-					
 					<div class="item-row">
-						<div class="item-type">
-							넷플릭스 프리미엄	
-						</div>
-						<div class="item-title">
-							파티모집 같이봐요					</div>
+						<div class="item-type">넷플릭스 프리미엄</div>
+						<div class="item-title">파티모집 같이봐요</div>
 						<div class="item-members">
-																<span class="item-member"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small-glay.png" alt="" /></span>
-																					<span class="item-member"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small-glay.png" alt="" /></span>
-																					<span class="item-member"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small-glay.png" alt="" /></span>
-																					<span class="item-member"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small-glay.png" alt="" /></span>
-																					<span class="item-member"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small-glay.png" alt="" /></span>
-														</div>
-						<div class="item-info">
-							<div class="item-date">
-								22.09.14<span class="pc-inline">까지</span>(<strong>28</strong>일)
-							</div>
-							<div class="item-price"><span class="Rajdhani">4,200</span>원</div>
+							<span class="item-member"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small-glay.png" alt="" /></span>
+							<span class="item-member"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small-glay.png" alt="" /></span>
+							<span class="item-member"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small-glay.png" alt="" /></span>
+							<span class="item-member"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small-glay.png" alt="" /></span>
+							<span class="item-member"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small-glay.png" alt="" /></span>
 						</div>
-								<a href="./item.php?it_id=1660697034&amp;ca_id=10&amp;page=1" class="item-button"></a>
-							</div>
+						
+						<div class="item-info">
+							<div class="item-date">22.09.14<span class="pc-inline">까지</span>(<strong>28</strong>일)</div>
+							<div class="item-price"><span class="Rajdhani">4,200</span>원</div>
+						</div><a href="./item.php?it_id=1660697034&amp;ca_id=10&amp;page=1" class="item-button"></a></div>
 				
 					<div class="item-row">
 						<div class="item-type">
