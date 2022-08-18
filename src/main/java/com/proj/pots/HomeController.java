@@ -9,7 +9,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/")
 	public String index(Model model) { 
-		model.addAttribute("formpath", "home");
+		model.addAttribute("formpath", "main");
 		return "index";
 	}
 	
