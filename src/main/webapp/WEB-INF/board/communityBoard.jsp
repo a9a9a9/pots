@@ -3,9 +3,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:url var="root" value="/" />
 
- <style>
- 	.page_position a{padding-right: 5px;}
- </style>
+<style>
+	.page-number img{max-width: 36%;}
+</style>
  <script>
  	var result = "${msg}";
  	if(result === "삭제 성공"){
@@ -74,11 +74,11 @@
 							</tbody>
 						</table>
 					</form>
-					<div class="page_position" style="text-align: center; font-size: 15px; margin-top: 10px;">
+					
+					<div class="page-number">
 						${page}
 					</div>
-					</div>
-					
+
 					<div class="write-right" style="position: relative; float: right;" >
 					<br><br><br>
 						<a href="${root}index?formpath=boardWrite" class="button small border button-purple">글쓰기</a>
@@ -86,11 +86,8 @@
 
 					<div class="button-align right mg-top-0"></div>
 
-
+				</div>
 			</div>
-
 		</div>
-
-				
 	</div>
 </body>
