@@ -2,5 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.proj.pots.main.dao.IPartyPageDAO">
-
+	<select id="videoProc" resultType="PartyListDTO">
+		SELECT * FROM party WHERE party_service=10;
+	</select>
 </mapper>

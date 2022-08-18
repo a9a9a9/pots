@@ -185,7 +185,7 @@
 						<div class="block">
 							<ul class="menu">
 								<li><a href="${root }logout">로그아웃</a></li>
-								<li><a href="#">FAQ</a></li>
+								<li><a href="${root }index?formpath=faq1">FAQ</a></li>
 								<li><a href="javascript:ChannelIO('showMessenger');">1:1문의하기</a></li>
 							</ul>
 						</div>
@@ -197,7 +197,7 @@
 
 	<div class="header-menu pc">
 		<ul>
-			<li class="menu-li off"><a href="${root}index?formpath=video" class="menu-a">
+			<li class="menu-li off"><a href="${root}videoProc" class="menu-a">
 					<!-- 영상 -->영상 <span class="menu_new"></span>
 			</a>
 				<div class="sub-menu" style="display: none">
