@@ -10,6 +10,8 @@ import com.proj.pots.member.dto.MemberDTO;
 import com.proj.pots.party.dto.PartnerInfoDTO;
 import com.proj.pots.party.dto.PartyBillDTO;
 import com.proj.pots.party.dto.PartyCommentDTO;
+import com.proj.pots.party.dto.PartyListDTO;
+import com.proj.pots.party.dto.PartyMemberDTO;
 import com.proj.pots.party.dto.PartyParDTO;
 import com.proj.pots.party.dto.PartyRegDTO;
 
@@ -21,8 +23,16 @@ public interface IPartyViewDAO {
 	PartnerInfoDTO selectAccount(String id);
 	
 	PartyRegDTO selectParty(int party_num);
-	
-	void insertAccount(PartnerInfoDTO partner);
 		
-	void updateAccount(PartnerInfoDTO partner);  
+	void insertAccount(PartnerInfoDTO partner); 
+		
+	void updateAccount(PartnerInfoDTO partner);
+	
+	void insertPartyMember(PartyMemberDTO partyMember);
+
+	PartyRegDTO partyDay(Integer party_num); 
+	
+	PartyListDTO partyAvailableChk(int party_num);
+
+	void updateParty(int party_num);
 }

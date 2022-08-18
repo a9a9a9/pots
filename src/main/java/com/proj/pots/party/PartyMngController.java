@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.proj.pots.party.dto.PageVO;
+import com.proj.pots.party.dto.PartyBillDTO;
 import com.proj.pots.party.dto.PartyListDTO;
 import com.proj.pots.party.dto.PartyMemberDTO;
 import com.proj.pots.party.dto.PartyRegDTO;
@@ -282,6 +283,7 @@ public class PartyMngController {
 		
 	}
 	
+<<<<<<< Updated upstream
 	@RequestMapping(value="/partyMain") 
 	public String partyMain(String party_num, Model model) throws ParseException {
 		party_num = "1";
@@ -317,6 +319,30 @@ public class PartyMngController {
 		return "partyRecruit/partyMain";
 		
 	}
+=======
+	@RequestMapping(value = "/partyBill")
+	public String partyBill(Model model, String id, String nowPage, PageVO vo) {
+		id = "admin";
+		ArrayList<PartyBillDTO> bill = mngSvc.bill(id);
+		int total = bill.size();			
+		int cntPerPage = 2;
+		
+		if (nowPage == null) {
+			nowPage = "1";
+		}else {
+			int nowInt = Integer.parseInt(nowPage);
+			if(nowInt < 1)
+				nowPage = "1";
+		}
+	
+		vo = new PageVO(total, Integer.parseInt(nowPage), cntPerPage);
+		model.addAttribute("paging", vo);
+		model.addAttribute("bill", bill);
+		model.addAttribute("partner", mngSvc.selectAccount(id));
+		return "partyAdmin/partyBill";
+	}
+	
+>>>>>>> Stashed changes
 	
 
 }

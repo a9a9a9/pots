@@ -2,6 +2,7 @@ package com.proj.pots.party;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.proj.pots.membership.service.MemberService;
 import com.proj.pots.party.dto.PageVO;
 import com.proj.pots.party.dto.PartnerInfoDTO;
-import com.proj.pots.party.dto.PartyBillDTO;
 import com.proj.pots.party.dto.PartyCommentDTO;
+import com.proj.pots.party.dto.PartyMemberDTO;
 import com.proj.pots.party.service.IPartyViewService;
 
 @Controller
@@ -30,6 +31,19 @@ public class PartyController {
 		@RequestMapping(value = "/partyIndex")
 		public String partyIndex() {
 			return "partyAdmin/partyIndex";
+		}
+		
+		@RequestMapping(value = "partyMemberInsertProc")
+		public String partyMemberInsertProc(PartyMemberDTO partyMember, Model model, RedirectAttributes ra) {
+			String id="user55";
+			partyMember.setId(id);
+			int party_num = partyMember.getParty_num();
+			String msg = service.partyMemberInsertProc(partyMember, party_num);
+			if(msg.equals("신청불가")) {
+				ra.addFlashAttribute("msg", "<script>alert('이미 모집이 완료된 파티입니다.')</script>");
+				return "redirect:/";
+			}
+			return "redirect:/";
 		}
 		
 		@RequestMapping(value = "accountInsertProc")
@@ -92,13 +106,19 @@ public class PartyController {
 			return "partyAdmin/partyCommentList";
 		}
 		
+		@RequestMapping(value = "/partyMain")
+		public String partyMain() {
+			return "partyRecruit/partyMain";
+		}
+		
 		@RequestMapping(value = "/partyOrder")
 		public String partyOrder(Model model, Integer party_num) {
-			String id = "user4";
 			party_num = 1;
+			String id = "user55";
 			model.addAttribute("member", memberService.memberInfo(id));
 			model.addAttribute("party", service.selectParty(party_num));
-			return "partyAdmin/partyOrder";
+			model.addAttribute("day", service.partyDay(party_num));
+			return "partyRecruit/partyOrder";
 		}
 		
 }

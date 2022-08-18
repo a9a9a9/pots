@@ -17,6 +17,9 @@ public class PartyRegDTO extends PartyDTO{
 	private String party_notice;		//공지사항
 	private String party_available;     //파티모집가능여부
 	
+	private String  diff;
+	private String logo;
+	
 	
 	public String getParty_regdate() {
 		return party_regdate;
@@ -102,5 +105,18 @@ public class PartyRegDTO extends PartyDTO{
 	public void setParty_available(String party_available) {
 		this.party_available = party_available;
 	}
+	public String getDiff() {
+		return diff;
+	}
+	public void setDiff(String diff) {
+		this.diff = diff;
+	}
+	public String getLogo() {
+		return logo;
+	}
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
+	
 
 }
