@@ -15,12 +15,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.proj.pots.member.dto.LoginDTO;
 import com.proj.pots.member.dto.MemberDTO;
+import com.proj.pots.membership.dao.IMemberDAO;
 import com.proj.pots.membership.service.KakaoService;
 import com.proj.pots.membership.service.MemberService;
 
 @Controller
 public class MemberController {
 	@Autowired private MemberService memberService;
+	@Autowired IMemberDAO memberDao;
+
 	
 	@PostMapping(value = "isExistId", produces = "application/json; charset=UTF-8")
 	@ResponseBody
@@ -123,17 +126,27 @@ public class MemberController {
 	
 	@Autowired private KakaoService kakaoService;
 	@RequestMapping("kakaoRegister")
-	public String kakaoLogin(String code, HttpSession session) {
+	public String kakaoRegister(String code, HttpSession session, MemberDTO member) {
 		System.out.println("code : " + code);
 		String accessToken = kakaoService.getAccessToken(code);
 		HashMap<String, String> map = kakaoService.getUserInfo(accessToken);
 		System.out.println("이름 : " + map.get("name"));
 		System.out.println("아이디 : " + map.get("id"));
-		session.setAttribute("id", map.get("id"));
-		session.setAttribute("name", map.get("name"));
+		
+		int kakaoid = memberDao.isExistsnsId(map.get("id"));
+		member = memberDao.memberInfo(map.get("id"));
+		
+		if(kakaoid == 1) {
+			session.setAttribute("id", map.get("id"));
+			session.setAttribute("nick", member.getNick());
+			session.setAttribute("accessToken", accessToken);
+			return "redirect:/index?formpath=main";
+		}else {
+		session.setAttribute("kakaoid", map.get("kakaoid"));
+		session.setAttribute("kakaoname", map.get("kakaoname"));
 		session.setAttribute("accessToken", accessToken);
-		session.setAttribute("accessToken", accessToken );
 		return "redirect:/index?formpath=snsRegister";
+	}
 	}
 	
 }

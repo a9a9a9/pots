@@ -16,7 +16,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 @Service
-public class KakaoService {
+public class KakaoLoginService {
 
    public String getAccessToken(String code) {
       String accessToken = "";
@@ -24,7 +24,7 @@ public class KakaoService {
       try {
          String sendMessage = "grant_type=authorization_code" 
         		 + "&client_id=0070664f6956225934aebb37c784f4ed"
-        		 + "&redirect_uri=http://localhost/kakaoRegister"
+        		 + "&redirect_uri=http://localhost/kakaoLogin"
         		 + "&code=" + code;
 
          URL url = new URL(reqURL); // POST 요청에 필요로 요구하는 파라미터 스트림을 통해 전송
@@ -109,11 +109,9 @@ public class KakaoService {
            JsonObject profile = kakao_account.getAsJsonObject().get("profile").getAsJsonObject();
            String nickname = profile.getAsJsonObject().get("nickname").getAsString();
            String email = kakao_account.getAsJsonObject().get("email").getAsString();
-           
+
            userInfo.put("name", nickname);
            userInfo.put("id", email);
-           userInfo.put("kakaoname", nickname);
-           userInfo.put("kakaoid", email);
            
        } catch (IOException e) {
            e.printStackTrace();
