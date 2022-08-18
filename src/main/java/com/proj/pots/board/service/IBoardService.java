@@ -5,6 +5,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.proj.pots.member.dto.BoardDTO;
+import com.proj.pots.member.dto.CommentDTO;
+
 
 public interface IBoardService {
 
@@ -16,5 +19,11 @@ public interface IBoardService {
 
 	void upNum(int square_num);
 
+	boolean modifyProc(BoardDTO board);
 
+	boolean deleteProc(BoardDTO board, String pw);
+
+	void commentProc(CommentDTO com);
+
+	boolean commentDelete(int comment_num);
 }

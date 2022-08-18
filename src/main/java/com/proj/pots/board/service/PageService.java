@@ -8,21 +8,30 @@ public class PageService {
 			blockCnt++;
 		
 		String result = "";
-		if(currentPage != 1)
-			// /quiz/memberListProc?currentPage=
-			result+="<a href='"+url+(currentPage-1)+"'> [이전] </a>";
-			
-		for(int i = 1;i <= blockCnt; i++) {
-			if(currentPage == i)
-				result+="<b>";
-			// /quiz/memberListProc?currentPage=
-			result+="<a href='"+url+i+"'> "+ i +" </a>";
-			if(currentPage == i)
-				result+="</b>";
-		}
+		result+="<ul><li><a href='"+url+(1)+"'><img src='/img/double_arrow_left.png' /></a></li>";
 		
-		if(currentPage!=blockCnt) 
-			result+="<a href='"+url+(currentPage+1)+"'> [다음] </a>";
+		int beforePage = currentPage-1;
+		
+		if(beforePage < 2) 
+			beforePage = 1;
+		
+		result+="<li><a href='"+url+beforePage+"'><img src='/img/arrow_left.png' /></a></li>";
+		
+		for(int i = 1;i <= blockCnt; i++) {
+			result+="<li ";
+			if(currentPage == i)
+				result+=" class='active'";
+			// /quiz/memberListProc?currentPage=
+			result+="><a href='"+url+i+"'> "+ i +" </a>";
+			result+="</li>";
+		}
+		int afterPage = currentPage+1;
+		
+		if(afterPage >= blockCnt)
+			afterPage = blockCnt;
+		result+="<li><a href='"+url+afterPage+"'><img src='/img/arrow_right.png' /></a></li>";
+		result+="<li><a href='"+url+(blockCnt)+"'><img src='/img/double_arrow_right.png' /></a></li></ul>";
+		
 		return result;
 	}
 }
