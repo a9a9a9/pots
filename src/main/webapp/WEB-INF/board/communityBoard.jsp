@@ -1,19 +1,16 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
 <c:url var="root" value="/" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<style>
+	.page-number img{max-width: 36%;}
+</style>
  <script>
-// 	$("document").ready(function (){
-// 		$("div.subject notice").css("cursor", "pointer").click(function(){
-// 			let no = $(this).attr("id");
-			
-// 			location.href='viewProc?writeNo=' + no;
-// /* 			$("#writeNo").val(no);
-// 			$("#f").attr("action", "${root}viewProc");
-// 			$("#f").submit(); */
-// 		});
+ 	var result = "${msg}";
+ 	if(result === "삭제 성공"){
+ 		alert("삭제 완료");
+ 	}
  </script>
 <body class="responsive is-pc">
 	<div class="wrap wrapper  ko">
@@ -76,10 +73,12 @@
 						</c:forEach>
 							</tbody>
 						</table>
-					</form> 
-					${page}
-					</div>
+					</form>
 					
+					<div class="page-number">
+						${page}
+					</div>
+
 					<div class="write-right" style="position: relative; float: right;" >
 					<br><br><br>
 						<a href="${root}index?formpath=boardWrite" class="button small border button-purple">글쓰기</a>
@@ -87,11 +86,8 @@
 
 					<div class="button-align right mg-top-0"></div>
 
-
+				</div>
 			</div>
-
 		</div>
-
-				
 	</div>
 </body>

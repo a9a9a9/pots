@@ -1,6 +1,5 @@
 package com.proj.pots.board;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,6 @@ public class BoardHomeController {
 			return "member/login";
 		return url;
 	}
-	
 	@RequestMapping(value = "/view")
 	public String view() {
 		String url = checkSession("board/communityBoardView");
@@ -32,28 +30,17 @@ public class BoardHomeController {
 		return url;
 	}
 
-	@RequestMapping(value = "modifyForm")
+	@RequestMapping(value = "modify")
 	public String modify(Model model, BoardDTO board) { 
-		String url = checkSession("board/modifyForm");
+		String url = checkSession("board/boardModify");
 		model.addAttribute("board", board); //modifyForm.jsp에서 출력할 데이터
 		return url;
 	}
 
-	@RequestMapping(value = "communityboarddelete")
-	public String delete(Model model, String proc, HttpServletRequest req) {
-		String url = checkSession("board/communityboarddelete");
-		System.out.println("delete proc : " + proc);
-		if(proc == null) {
-			return "forward:boardProc";
-		}
-		
-		if(proc.equals("deleteProc")) {
-			model.addAttribute("no", req.getParameter("no"));
-		}else {
-			model.addAttribute("checks", req.getParameterValues("checks"));
-		}
-		
-		model.addAttribute("proc", proc);
+	@RequestMapping(value = "delete")
+	public String delete(Model model, BoardDTO board) {
+		String url = checkSession("board/boardDelete");
+		model.addAttribute("board", board);
 		return url;
 	}
 
