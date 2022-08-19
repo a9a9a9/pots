@@ -32,4 +32,5 @@ public interface IPartyViewService {
 	public String accountModifyProc(PartnerInfoDTO partner);
 	
 	public String partyMemberInsertProc(PartyMemberDTO partyMember, int party_num);
+	
 }
