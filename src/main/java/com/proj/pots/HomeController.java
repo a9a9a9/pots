@@ -246,4 +246,8 @@ public class HomeController {
 	public String updateCheck() {
 		return "member/updateCheck";
 	}
+	@RequestMapping(value = "partyOrderInfo")
+	public String partyOrderInfo() {
+		return "partyRecruit/partyOrderInfo";
+	}
 }

@@ -172,8 +172,7 @@
 									<span> 개인사정 환불 불가 </span>
 									<span> 위반 시 강제 조치 </span>
 					</div>
-		<div class="text">${p.party_notice }
-</div>
+		<div class="text"><pre>${p.party_notice }</pre></div>
 
 <form name="fitem" method="post" action="https://buts.co.kr/shop/cartupdate.php" role="form" onsubmit="return fitem_submit(this);">
 	<input type="hidden" name="it_id[]" value="1656867366">

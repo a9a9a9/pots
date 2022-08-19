@@ -37,7 +37,6 @@ public class PartyMngService {
 			count = "0";
 		
 		System.out.println(count + days);
-		
 		return count;
 	}
 	
