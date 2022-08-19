@@ -19,6 +19,8 @@ public class PartyRegDTO extends PartyDTO{
 	
 	private String  diff;
 	private String logo;
+	private int pay;
+	private int plus;
 	
 	
 	public String getParty_regdate() {
@@ -116,6 +118,18 @@ public class PartyRegDTO extends PartyDTO{
 	}
 	public void setLogo(String logo) {
 		this.logo = logo;
+	}
+	public int getPay() {
+		return pay;
+	}
+	public void setPay(int pay) {
+		this.pay = pay;
+	}
+	public int getPlus() {
+		return plus;
+	}
+	public void setPlus(int plus) {
+		this.plus = plus;
 	}
 	
 

@@ -164,9 +164,9 @@ var g5_purl = "https://buts.co.kr/shop/orderform.php?sw_direct=1";
 					</div>
 				</td>
 				<td><strong>${day.diff }</strong>일</td>
-				<td><strong>${day.diff * party.party_charge }</strong>원</td>
-				<td><strong>0</strong>원</td>
-				<td><span class="Rajdhani">${day.diff * party.party_charge }</span>원</td> 
+				<td><strong>${day.diff * party.party_charge }</strong>원</td> 
+				<td><strong>${day.plus}</strong>원</td>
+				<td><span class="Rajdhani">${(day.diff * party.party_charge) + day.plus}</span>원</td>  
 				
 			</tr>
 		</tbody>
@@ -291,7 +291,7 @@ var g5_purl = "https://buts.co.kr/shop/orderform.php?sw_direct=1";
 			<div class="right">
 				<span class="input-check input-radio">
 					<input type="radio" id="od_settle_bank" name="od_settle_case" value="무통장"  />
-					<label for="od_settle_bank" onclick="$('.account').show();setTimeout(function(){$('#od_deposit_name').val('이혜규')}, 10);">계좌이체</label>
+					<label for="od_settle_bank" onclick="$('.account').show();setTimeout(function(){$('#od_deposit_name').val('${member.name}')}, 10);">계좌이체</label>
 				</span>
 			</div>
 			<div class="account text-right" style="display: none">
