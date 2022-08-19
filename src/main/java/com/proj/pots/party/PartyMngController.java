@@ -146,7 +146,7 @@ public class PartyMngController {
 	
 	@RequestMapping(value = "/partyCancelReq")
 	public String partyCancelReq() {
-		return "partyAdmin/partyCancelReq";
+		return "/index";
 	}
 	
 	@RequestMapping(value = "/partyCancelList")
@@ -286,7 +286,7 @@ public class PartyMngController {
 <<<<<<< Updated upstream
 	@RequestMapping(value="/partyMain") 
 	public String partyMain(String party_num, Model model) throws ParseException {
-		party_num = "1";
+		party_num = "2";
 		int joined = 0;
 		
 		PartyListDTO info = mngSvc.partyInfo(party_num);

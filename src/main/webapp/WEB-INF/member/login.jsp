@@ -59,7 +59,7 @@
 					</a> 
 					<a href="https://kauth.kakao.com/oauth/authorize?
 							client_id=0070664f6956225934aebb37c784f4ed&
-							redirect_uri=http://localhost/kakaoLogin&
+							redirect_uri=http://localhost/kakaoRegister&
 							response_type=code"
 						style="margin-left: 0px; margin-top: 5px; width: 100%;"
 						class="kakao sns-kakao" title="카카오"> 

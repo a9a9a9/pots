@@ -24,7 +24,7 @@
 					client_id=0070664f6956225934aebb37c784f4ed&
 					redirect_uri=http://localhost/kakaoRegister&
 					response_type=code"
-					class="kakao sns-kakao"" title="카카오"> 
+					class="kakao sns-kakao" title="카카오"> 
 					<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-sns-kakao-on.png"
 					alt=" ">카카오톡으로 회원가입 하기
 			</a>
@@ -65,7 +65,7 @@
 				<span class="text-purple">약관</span> 동의
 			</div>
 			<div class="form-round scroll">
-				<style>
+<style>
 .page-content {
 	line-height: 22px;
 	word-break: keep-all;
@@ -729,7 +729,7 @@
 				<label for="agree21">개인정보처리방침 안내 내용에 동의합니다.</label>
 			</div>
 			<div class="button-align center">
-				<a href="${root}index?formpath=home" class="button">취소</a>
+				<a href="${root}index?formpath=main" class="button">취소</a>
 				<button type="submit" class="button button-purple">회원가입</button>
 			</div>
 		</form>
