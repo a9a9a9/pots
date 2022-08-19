@@ -12,8 +12,10 @@ import com.proj.pots.member.dto.MemberDTO;
 import com.proj.pots.membership.dao.IMemberDAO;
 import com.proj.pots.party.dao.IPartyViewDAO;
 import com.proj.pots.party.dto.PartnerInfoDTO;
+import com.proj.pots.party.dto.PartyMemberDTO;
 import com.proj.pots.party.dto.PartyBillDTO;
 import com.proj.pots.party.dto.PartyCommentDTO;
+import com.proj.pots.party.dto.PartyListDTO;
 import com.proj.pots.party.dto.PartyParDTO;
 import com.proj.pots.party.dto.PartyRegDTO;
 
@@ -40,32 +42,105 @@ public class PartyViewServiceImpl implements IPartyViewService{
 	public PartnerInfoDTO selectAccount(String id) {
 		PartnerInfoDTO partner = partyViewDao.selectAccount(id); 
 		return partner;
-	} 
+	}
+	
+	@Override
+	public PartyRegDTO partyDay(Integer party_num) {
+		PartyRegDTO day = partyViewDao.partyDay(party_num); 
+		return day;
+	}
 	
 	@Override
 	public PartyRegDTO selectParty(Integer party_num) {
 		PartyRegDTO party = partyViewDao.selectParty(party_num); 
+		
+		if(party.getParty_service().equals("10")) party.setParty_service("영상");
+		else if (party.getParty_service().equals("20")) party.setParty_service("도서/음악");
+		else if (party.getParty_service().equals("30")) party.setParty_service("게임");
+		else party.setParty_service("기타");
+		
+		if(party.getParty_subservice().equals("1010")) {
+			party.setParty_subservice("넷플릭스"); 
+			party.setLogo("/img/partylogo/netflix.png"); 
+		} else if(party.getParty_subservice().equals("1020")) {
+			party.setParty_subservice("왓챠");
+			party.setLogo("/img/partylogo/watcha.png"); 
+		} else if(party.getParty_subservice().equals("1030")) {
+			party.setParty_subservice("유튜브");
+			party.setLogo("/img/partylogo/youtube.png"); 
+		} else if(party.getParty_subservice().equals("1040")) {
+			party.setParty_subservice("WAVVE");
+			party.setLogo("/img/partylogo/wavve.png"); 
+		} else if(party.getParty_subservice().equals("1050")) {
+			party.setParty_subservice("티빙");
+			party.setLogo("/img/partylogo/tiving.png"); 
+		} else if(party.getParty_subservice().equals("1080")) {
+			party.setParty_subservice("디즈니");
+			party.setLogo("/img/partylogo/disney.png"); 
+		} else if(party.getParty_subservice().equals("2010")) {
+			party.setParty_subservice("리디북스");
+			party.setLogo("/img/partylogo/ridi.png"); 
+		} else if(party.getParty_subservice().equals("2020")) {
+			party.setParty_subservice("밀리의서재");
+			party.setLogo("/img/partylogo/millie.png"); 
+		} else if(party.getParty_subservice().equals("2030")) {
+			party.setParty_subservice("YES24");
+			party.setLogo("/img/partylogo/yes24.png"); 
+		} else if(party.getParty_subservice().equals("2040")) {
+			party.setParty_subservice("스포티파이");
+			party.setLogo("/img/partylogo/spotify.png"); 
+		} else if(party.getParty_subservice().equals("3010")) {
+			party.setParty_subservice("닌텐도온라인");
+			party.setLogo("/img/partylogo/nintendo.png"); 
+		} else if(party.getParty_subservice().equals("3050")) {
+			party.setParty_subservice("XBOX");
+			party.setLogo("/img/partylogo/xbox.png"); 
+		} else if(party.getParty_subservice().equals("6050")) {
+			party.setParty_subservice("멤버쉽");
+			party.setLogo("/img/partylogo/membership.png"); 
+		} else if(party.getParty_subservice().equals("6010")) {
+			party.setParty_subservice("MSOffice");
+			party.setLogo("/img/partylogo/office365.png"); 
+		}
+		else {
+			party.setParty_subservice("#기타");
+			party.setLogo("/img/partylogo/membership.png"); 
+		} 	
+		
 		return party;
 	}
 	
 	@Override
 	public String accountInsertProc(PartnerInfoDTO partner) {
-		partner.setId(partner.getId());
-		partner.setPersonal_num(partner.getPersonal_num()); 
-		partner.setAccount_name(partner.getAccount_name());
-		partner.setAccount_num(partner.getAccount_num());
+		
 		partyViewDao.insertAccount(partner);
 		return "파트너 가입 완료";
 	}
 	
 	@Override
 	public String accountModifyProc(PartnerInfoDTO partner) {
-		partner.setId(partner.getId());
-		session.setAttribute("persnonal_num", partner.getPersonal_num());
-		session.setAttribute("account_name", partner.getAccount_name());
-		session.setAttribute("account_num", partner.getAccount_num());
+		
 		partyViewDao.updateAccount(partner);
 		return "수정 완료";
 	}
+	
+	@Override
+	public String partyMemberInsertProc(PartyMemberDTO partyMember, int party_num) {
+		PartyListDTO paChk = partyViewDao.partyAvailableChk(party_num);
+		if(paChk != null) {
+			int tmp = paChk.getParty_member() - paChk.getParty_now_member();
+			if(tmp <= 0) {
+				return "신청불가";
+			}
+			if(tmp == 1) {
+				partyViewDao.updateParty(party_num);
+			}
+		}
+			
+		partyViewDao.insertPartyMember(partyMember);
+		return "신청완료";
+	}
+
+	
 
 }

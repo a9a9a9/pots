@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="/css/member/basic.css">
 
 <!-- 스크립트 -->
-
+${msg }
 <script>
 	// 자바스크립트에서 사용하는 전역변수 선언
 	var g5_url = "https://buts.co.kr";

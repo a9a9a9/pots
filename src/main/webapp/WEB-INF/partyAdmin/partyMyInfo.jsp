@@ -204,7 +204,7 @@ input[type='text'] {
 		*/
 
 		if (confirm("정보수정을 하시겠습니까?")) {
-			f.action = "http://localhost/partyMyInfo";
+			f.action = "http://localhost/accountModifyProc";
 			return true;
 		}
 
@@ -212,8 +212,7 @@ input[type='text'] {
     }
 
 	
-	function fn_type(f)
-	{
+	function fn_type(f){
     	var idx = f.pt_type.value;
 		if(idx == "1"){			
 			$('#li_saupja').show();

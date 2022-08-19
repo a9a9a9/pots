@@ -20,6 +20,11 @@
 	 	VALUES (#{id}, #{personal_num}, #{account_name}, #{account_num})
 	 </insert>
 	 
+	 <insert id="insertPartyMember" parameterType="PartyMemberDTO">
+	 	INSERT INTO party_member(id, nick, party_num, mycharge, mystartday)
+	 	VALUES (#{id}, #{nick}, #{party_num}, #{mycharge}, NOW()) ;
+	 </insert>
+	 
 	 <update id="updateAccount" parameterType="PartnerInfoDTO">
 	 	UPDATE partner_info 
 	 	SET personal_num=#{personal_num}, account_name=#{account_name}, account_num=#{account_num} 
@@ -29,5 +34,24 @@
 	 <select id="selectParty" parameterType="int" resultType="PartyRegDTO">
 	 	SELECT * FROM party WHERE party_num = #{party_num}
 	 </select> 
-	 	 
+	 
+	 <select id="partyDay" parameterType="int" resultType="PartyRegDTO">
+	 	SELECT TIMESTAMPDIFF(DAY, party_start, party_end) as diff FROM party WHERE party_num = #{party_num};
+	 </select>
+	 
+	 <select id="partyAvailableChk" resultType="PartyListDTO">
+	 SELECT a.party_num, a.party_member, b.party_count AS party_now_member 
+		FROM 
+			(SELECT * FROM party WHERE party_num=#{party_num}) 
+			a 
+		LEFT JOIN 
+			(SELECT party_num, count(*) AS party_count FROM party_member GROUP BY party_num) 
+			b 
+		ON a.party_num = b.party_num;
+	 </select> 
+	 
+	 <update id="updateParty">
+	 	UPDATE party SET party_available='0' WHERE party_num=#{party_num}
+	 </update>
+			 	 
 </mapper>
