@@ -106,11 +106,6 @@ public class PartyController {
 			return "partyAdmin/partyCommentList";
 		}
 		
-		@RequestMapping(value = "/partyMain")
-		public String partyMain() {
-			return "partyRecruit/partyMain";
-		}
-		
 		@RequestMapping(value = "/partyOrder")
 		public String partyOrder(Model model, Integer party_num) {
 			party_num = 1;

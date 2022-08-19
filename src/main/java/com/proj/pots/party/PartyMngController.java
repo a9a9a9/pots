@@ -283,7 +283,6 @@ public class PartyMngController {
 		
 	}
 	
-<<<<<<< Updated upstream
 	@RequestMapping(value="/partyMain") 
 	public String partyMain(String party_num, Model model) throws ParseException {
 		party_num = "2";
@@ -319,7 +318,7 @@ public class PartyMngController {
 		return "partyRecruit/partyMain";
 		
 	}
-=======
+
 	@RequestMapping(value = "/partyBill")
 	public String partyBill(Model model, String id, String nowPage, PageVO vo) {
 		id = "admin";
@@ -341,8 +340,6 @@ public class PartyMngController {
 		model.addAttribute("partner", mngSvc.selectAccount(id));
 		return "partyAdmin/partyBill";
 	}
-	
->>>>>>> Stashed changes
 	
 
 }

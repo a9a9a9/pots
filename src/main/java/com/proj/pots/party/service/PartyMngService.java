@@ -182,7 +182,6 @@ public class PartyMngService {
 		return list;
 	}
 
-<<<<<<< Updated upstream
 	public PartyListDTO partyInfo(String party_num) throws ParseException {
 		PartyListDTO partyInfo = mngDao.partySelect(party_num);
 		if(partyInfo != null) {
@@ -236,13 +235,13 @@ public class PartyMngService {
 			m.setMystartday(tmp);
 		}
 		
-		
 		return members;
-=======
-	public Object selectAccount(String id) {
+	}
+	
+		public Object selectAccount(String id) {
 		// TODO Auto-generated method stub
 		return null;
->>>>>>> Stashed changes
+
 	}
 
 
