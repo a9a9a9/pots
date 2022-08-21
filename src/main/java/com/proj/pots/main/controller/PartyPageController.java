@@ -42,4 +42,98 @@ public class PartyPageController {
 		service.listView(model, currentPage, sub, req);
 		return "forward:/index?formpath=etc";
 	}
+	
+	// sub
+	
+	// video
+	@RequestMapping(value = "netflixProc")
+	public String netflixProc(Model model,HttpServletRequest req, @RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage) throws ParseException {
+		String sub = "1010";
+		service.sublistView(model, currentPage, sub, req);
+		return "forward:/index?formpath=netflix";
+	}
+	@RequestMapping(value = "watchaProc")
+	public String watchaProc(Model model,HttpServletRequest req, @RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage) throws ParseException {
+		String sub = "1020";
+		service.sublistView(model, currentPage, sub, req);
+		return "forward:/index?formpath=watcha";
+	}
+	@RequestMapping(value = "youtubeProc")
+	public String youtubeProc(Model model,HttpServletRequest req, @RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage) throws ParseException {
+		String sub = "1030";
+		service.sublistView(model, currentPage, sub, req);
+		return "forward:/index?formpath=youtube";
+	}
+	@RequestMapping(value = "wavveProc")
+	public String wavveProc(Model model,HttpServletRequest req, @RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage) throws ParseException {
+		String sub = "1040";
+		service.sublistView(model, currentPage, sub, req);
+		return "forward:/index?formpath=wavve";
+	}
+	@RequestMapping(value = "tivingProc")
+	public String tivingProc(Model model,HttpServletRequest req, @RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage) throws ParseException {
+		String sub = "1050";
+		service.sublistView(model, currentPage, sub, req);
+		return "forward:/index?formpath=tiving";
+	}
+	@RequestMapping(value = "disneyProc")
+	public String disneyProc(Model model,HttpServletRequest req, @RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage) throws ParseException {
+		String sub = "1080";
+		service.sublistView(model, currentPage, sub, req);
+		return "forward:/index?formpath=disney";
+	}
+	
+	// art
+	@RequestMapping(value = "ridiProc")
+	public String ridiProc(Model model,HttpServletRequest req, @RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage) throws ParseException {
+		String sub = "2010";
+		service.sublistView(model, currentPage, sub, req);
+		return "forward:/index?formpath=ridi";
+	}
+	@RequestMapping(value = "millieProc")
+	public String millieProc(Model model,HttpServletRequest req, @RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage) throws ParseException {
+		String sub = "2020";
+		service.sublistView(model, currentPage, sub, req);
+		return "forward:/index?formpath=millie";
+	}
+	@RequestMapping(value = "yes24Proc")
+	public String yes24Proc(Model model,HttpServletRequest req, @RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage) throws ParseException {
+		String sub = "2030";
+		service.sublistView(model, currentPage, sub, req);
+		return "forward:/index?formpath=yes24";
+	}
+	@RequestMapping(value = "spotifyProc")
+	public String spotifyProc(Model model,HttpServletRequest req, @RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage) throws ParseException {
+		String sub = "2040";
+		service.sublistView(model, currentPage, sub, req);
+		return "forward:/index?formpath=spotify";
+	}
+	
+	// game
+	@RequestMapping(value = "nintendoProc")
+	public String nintendoProc(Model model,HttpServletRequest req, @RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage) throws ParseException {
+		String sub = "3010";
+		service.sublistView(model, currentPage, sub, req);
+		return "forward:/index?formpath=nintendo";
+	}
+	@RequestMapping(value = "xboxProc")
+	public String xboxProc(Model model,HttpServletRequest req, @RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage) throws ParseException {
+		String sub = "3050";
+		service.sublistView(model, currentPage, sub, req);
+		return "forward:/index?formpath=xbox";
+	}
+	
+	// etc
+	@RequestMapping(value = "membershipProc")
+	public String membershipProc(Model model,HttpServletRequest req, @RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage) throws ParseException {
+		String sub = "6050";
+		service.sublistView(model, currentPage, sub, req);
+		return "forward:/index?formpath=membership";
+	}
+	@RequestMapping(value = "msofficeProc")
+	public String msofficeProc(Model model,HttpServletRequest req, @RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage) throws ParseException {
+		String sub = "6010";
+		service.sublistView(model, currentPage, sub, req);
+		return "forward:/index?formpath=msoffice";
+	}
 }

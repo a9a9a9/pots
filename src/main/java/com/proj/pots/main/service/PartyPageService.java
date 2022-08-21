@@ -28,7 +28,7 @@ public class PartyPageService {
 //		int begin = end+1 - pageBlock;
 		int begin = 1;
 		
-		ArrayList<PartyListDTO> list = partyDao.subProc(begin, end, sub);
+		ArrayList<PartyListDTO> list = partyDao.listProc(begin, end, sub);
 		for(PartyListDTO p : list) {
 			//주제 이름 변경
 			if(p.getParty_service().equals("10")) p.setParty_service("영상");
@@ -70,6 +70,78 @@ public class PartyPageService {
 		if(sub.equals("10")) subHead = "videoProc";
 		else if(sub.equals("20")) subHead = "artProc";
 		else if(sub.equals("30")) subHead = "gameProc";
+		else subHead = "etcProc";
+		
+		String url = req.getContextPath() + "/"+subHead+"?currentPage=";
+		model.addAttribute("page", pageNavi(currentPage, pageBlock, totalCount, url));
+		model.addAttribute("list", list);
+		if(currentPage == 1) {
+			model.addAttribute("pageNo", "1");
+		}else {
+			model.addAttribute("pageNo", "2");
+		}
+	}
+	public void sublistView(Model model, int currentPage, String sub, HttpServletRequest req) throws ParseException {
+		
+		int totalCount = partyDao.sublistCount(sub);
+		int pageBlock = 8;
+		int end = currentPage * pageBlock;
+//		int begin = end+1 - pageBlock;
+		int begin = 1;
+		
+		ArrayList<PartyListDTO> list = partyDao.sublistProc(begin, end, sub);
+		for(PartyListDTO p : list) {
+			//주제 이름 변경
+			if(p.getParty_service().equals("10")) p.setParty_service("영상");
+			else if (p.getParty_service().equals("20")) p.setParty_service("도서/음악");
+			else if (p.getParty_service().equals("30")) p.setParty_service("게임");
+			else p.setParty_service("기타");
+			
+			if(p.getParty_subservice().equals("1010")) p.setParty_subservice("넷플릭스");
+			else if(p.getParty_subservice().equals("1020")) p.setParty_subservice("왓챠");
+			else if(p.getParty_subservice().equals("1030")) p.setParty_subservice("유튜브");
+			else if(p.getParty_subservice().equals("1040")) p.setParty_subservice("웨이브");
+			else if(p.getParty_subservice().equals("1050")) p.setParty_subservice("티빙");
+			else if(p.getParty_subservice().equals("1080")) p.setParty_subservice("디즈니");
+			else if(p.getParty_subservice().equals("2010")) p.setParty_subservice("리디북스");
+			else if(p.getParty_subservice().equals("2020")) p.setParty_subservice("밀리의서재");
+			else if(p.getParty_subservice().equals("2030")) p.setParty_subservice("YES24");
+			else if(p.getParty_subservice().equals("2040")) p.setParty_subservice("스포티파이");
+			else if(p.getParty_subservice().equals("3010")) p.setParty_subservice("닌텐도온라인");
+			else if(p.getParty_subservice().equals("3050")) p.setParty_subservice("XBOX");
+			else if(p.getParty_subservice().equals("6050")) p.setParty_subservice("멤버쉽");
+			else if(p.getParty_subservice().equals("6010")) p.setParty_subservice("MSOffice");
+			else p.setParty_subservice("기타");
+			
+			//오늘부터 남은 일수
+			String party_left_date = check_today(p.getParty_end());
+			p.setParty_left_date(party_left_date);
+			
+			//남은 가격
+			int left = Integer.parseInt(party_left_date);
+			int charge = p.getParty_charge();
+			String party_total_charge = String.format("%,d",left*charge);
+			p.setParty_total_charge(party_total_charge);
+			
+			//아이콘 표현 한도 6설정
+			if(p.getParty_now_member() > 6) p.setParty_now_member(6);
+			if(p.getParty_member() > 6) p.setParty_member(6);
+		}
+		String subHead = "";
+		if(sub.equals("1010")) subHead = "netflixProc";
+		else if(sub.equals("1020")) subHead = "watchaProc";
+		else if(sub.equals("1030")) subHead = "youtubeProc";
+		else if(sub.equals("1040")) subHead = "wavveProc";
+		else if(sub.equals("1050")) subHead = "tivingProc";
+		else if(sub.equals("1080")) subHead = "disneyProc";
+		else if(sub.equals("2010")) subHead = "ridiProc";
+		else if(sub.equals("2020")) subHead = "millieProc";
+		else if(sub.equals("2030")) subHead = "yes24Proc";
+		else if(sub.equals("2040")) subHead = "spotifyProc";
+		else if(sub.equals("3010")) subHead = "nintendoProc";
+		else if(sub.equals("3050")) subHead = "xboxProc";
+		else if(sub.equals("6050")) subHead = "membershipProc";
+		else if(sub.equals("6010")) subHead = "msofficeProc";
 		else subHead = "etcProc";
 		
 		String url = req.getContextPath() + "/"+subHead+"?currentPage=";
