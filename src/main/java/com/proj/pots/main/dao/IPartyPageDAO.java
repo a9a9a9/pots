@@ -11,5 +11,5 @@ import com.proj.pots.party.dto.PartyListDTO;
 public interface IPartyPageDAO {
 	public ArrayList<PartyListDTO> videoProc(@Param("b")int begin, @Param("e")int end, @Param("sub")String sub);
 
-	public int listCount();
+	public int listCount(@Param("sub") String sub);
 }

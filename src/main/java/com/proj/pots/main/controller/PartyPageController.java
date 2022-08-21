@@ -2,6 +2,8 @@ package com.proj.pots.main.controller;
 
 import java.text.ParseException;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +19,9 @@ public class PartyPageController {
 	@Autowired IPartyPageDAO partyDao;
 	
 	@RequestMapping(value = "videoProc")
-	public String videoProc(Model model, @RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage) throws ParseException {
+	public String videoProc(Model model,HttpServletRequest req, @RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage) throws ParseException {
 		String sub = "10";
-		service.listView(model, currentPage, sub);
+		service.listView(model, currentPage, sub, req);
 		return "forward:/index?formpath=video";
 		
 	}

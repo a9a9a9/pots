@@ -70,22 +70,30 @@
 					</c:forEach>
 				</div>
 				
-					<div id="item_list-nav" class="item-nav"><a href="#"></a></div>
-							<div class="item-more">
-										<a href="#" title="더보기">
-												더보기
-								<span class="color"> 
-									<span class="sound_only">더보기</span>
-								</span>
+				<div id="item_list-nav" class="item-nav"></div>
+					<div class="item-more">
+						<c:if test="${page != '마지막 페이지'}">
+							<a href="${page}" title="더보기">더보기
+								<span class="color"></span>
 							</a>
-						</div>
+						</c:if>
+					</div>
 					
 				<div class="button-align right">
-						<a href="${root}partyCreate" class="button small button-red">등록</a>
-							<a href="${root}partyList" class="button small button-blue">관리</a>
-						</div>
-				
+					<a href="${root}partyCreate" class="button small button-red">등록</a>
+					<a href="${root}partyList" class="button small button-blue">관리</a>
+				</div>
 			</div>
 		</div>
 	</div>
 </body>
+
+<script>
+	$(function(){
+		var result = "${pageNo}";
+		if(result === "2"){
+			var location = document.querySelector("#item_list-nav").offsetTop - 500;
+			window.scrollTo({top:location, behavior:'auto'});
+		}
+	});
+</script>

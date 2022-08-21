@@ -3,24 +3,16 @@
 
 <mapper namespace="com.proj.pots.main.dao.IPartyPageDAO">
 	<select id="videoProc" resultType="PartyListDTO">
-		SELECT a.* , b.party_count AS party_now_member , DATE_FORMAT(party_end, '%y.%m.%d') AS party_end_form
-		FROM 
-			party a 
-		LEFT JOIN 
-			(SELECT party_num, count(*) AS party_count FROM party_member GROUP BY party_num) 
-			b 
-		ON a.party_num = b.party_num WHERE party_service = #{sub} AND a.party_end >= NOW()
-        ORDER BY party_regdate DESC;
+		SELECT d.* FROM(
+			SELECT ROW_NUMBER() OVER(ORDER BY party_regdate DESC) AS rn, c.* FROM
+				(SELECT a.* , b.party_count AS party_now_member , DATE_FORMAT(party_end, '%y.%m.%d') AS party_end_form
+				FROM party a LEFT JOIN (SELECT party_num, count(*) AS party_count FROM party_member GROUP BY party_num)b 
+				ON a.party_num = b.party_num WHERE party_service = 10
+				)c
+			)d WHERE rn BETWEEN #{b} and #{e};
 	</select>
 	
-	<select id="listCount" resultType="int">
-		SELECT a.* , b.party_count AS party_now_member , DATE_FORMAT(party_end, '%y.%m.%d') AS party_end_form
-		FROM 
-			party a 
-		LEFT JOIN 
-			(SELECT party_num, count(*) AS party_count FROM party_member GROUP BY party_num) 
-			b 
-		ON a.party_num = b.party_num WHERE party_service = 10 AND a.party_end >= NOW()
-        ORDER BY party_regdate DESC;
+	<select id="listCount" resultType="int" parameterType="String">
+		SELECT count(*) FROM party WHERE party_service = #{sub}
 	</select>
 </mapper>

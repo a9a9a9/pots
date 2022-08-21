@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +20,13 @@ public class PartyPageService {
 	@Autowired IPartyPageDAO partyDao;
 	@Autowired HttpSession session;
 	
-	public void listView(Model model, int currentPage, String sub) throws ParseException {
+	public void listView(Model model, int currentPage, String sub, HttpServletRequest req) throws ParseException {
 		
-		int totalCount = partyDao.listCount();
+		int totalCount = partyDao.listCount(sub);
 		int pageBlock = 8;
 		int end = currentPage * pageBlock;
-		int begin = end+1 - pageBlock;
+//		int begin = end+1 - pageBlock;
+		int begin = 1;
 		
 		ArrayList<PartyListDTO> list = partyDao.videoProc(begin, end, sub);
 		for(PartyListDTO p : list) {
@@ -64,7 +66,30 @@ public class PartyPageService {
 			if(p.getParty_now_member() > 6) p.setParty_now_member(6);
 			if(p.getParty_member() > 6) p.setParty_member(6);
 		}
+		String url = req.getContextPath() + "/videoProc?currentPage=";
+		model.addAttribute("page", pageNavi(currentPage, pageBlock, totalCount, url));
 		model.addAttribute("list", list);
+		if(currentPage == 1) {
+			model.addAttribute("pageNo", "1");
+		}else {
+			model.addAttribute("pageNo", "2");
+		}
+	}
+	public static String pageNavi(int currentPage, int pageBlock, int totalCount, String url) {
+		int blockCnt = totalCount / pageBlock;
+		
+		if(totalCount % pageBlock > 0) blockCnt++;
+		
+		String result = "";
+		int afterPage = currentPage+1;
+		
+		if(afterPage > blockCnt) {
+			String msg = "마지막 페이지";
+			return msg;
+		}
+		result += url+afterPage;
+		
+		return result;
 	}
 	
 	public String check_total_charge(String party_start, String party_end, int party_charge) throws ParseException{
@@ -105,7 +130,6 @@ public class PartyPageService {
 				count = Long.toString(days);
 			}
 			
-			System.out.println(count + days);
 			return count;
 		}
 }
