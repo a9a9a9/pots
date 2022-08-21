@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:import url="partyIndex.jsp"/> 
+<script>
+window.onload=function(){
+	document.getElementById('partyBill').classList.add('active');
+}
+</script>
 <!-- body -->
 	<div class="partner-body">
 
@@ -9,7 +14,7 @@
 <div class="title"><span class="text-purple">출금</span> 관리</div>
 
 <div class="form-half left">
-	<div class="table-list" style="border-top: 1px solid #7e69fe">
+	<div class="table-list" style="border-top: 1px solid #84cdcf">
 		<table>
 			<thead>
 			<tr>
@@ -67,7 +72,7 @@
 </div>
 
 <div class="form-half right form-half-withdraw">
-	<div class="table-list" style="border-top: 1px solid #7e69fe">
+	<div class="table-list" style="border-top: 1px solid #84cdcf">
 	<table>
 		<thead>
 		<tr>
@@ -78,7 +83,7 @@
 		<tr>
 			<td>
 				<span class="subject">입금 계좌</span>
-				<input type="text" class="account" disabled placeholder="신한은행 110486730257 " />
+				<input type="text" class="account" disabled placeholder="${partner.account_name } ${partner.account_num}"/>
 				<!-- <input type="text" class="account" placeholder="농협 8732-0204-056137" /> -->
 			</td>
 		</tr>
@@ -174,34 +179,106 @@
 		return false;
 	}
 </script>
-
-<div class="table-list scroll padding">
-	<table >
-	<thead>
-		<tr>
+<c:choose>
+	<c:when test="${empty bill}">
+		<div class="table-list scroll padding">
+			<table>
+				<thead>
+					<tr>
 						<th scope="col">상태</th>
-			<th scope="col">접수번호</th>
-			<th scope="col">신청일</th>
-			<th scope="col">출금방법</th>
-			<th scope="col">신청금액(수수료)</th>
-			<th scope="col">실지급액</th>
-			<th scope="col">메모</th>
-			<th scope="col">비고</th>
-		</tr>
-	</thead>
-	<tbody>
-							<tr>
+						<th scope="col">접수번호</th>
+						<th scope="col">신청일</th>
+						<th scope="col">출금방법</th>
+						<th scope="col">신청금액(수수료)</th>
+						<th scope="col">실지급액</th>
+						<th scope="col">메모</th>
+						<th scope="col">비고</th>
+					</tr>
+			</thead>
+			<tbody>
+				<tr>
 				<td colspan="10">
 					<div class="empty">
-						<div class="icon"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-big-glay.png" /></div>
+						<div class="icon"><img src="/img/icon-butsicon-big-glay.png" /></div>
 						<h5>등록된 내용이 없습니다.</h5>
 					</div>
 				</td>
-			</tr>
+				</tr>
 			</tbody>
-	</table>
+		</table>
+	</div>
+	</c:when>
+	<c:otherwise>
+		<!-- 등록된 내용이 있는 경우 -->
+		<div class="table-list scroll padding">
+		<table>
+			<thead>
+				<tr>
+					<th scope="col">no</th>
+					<th scope="col">상태</th>
+					<th scope="col">접수번호</th>
+					<th scope="col">신청일</th>
+					<th scope="col">출금방법</th>
+					<th scope="col">신청금액(수수료)</th>
+					<th scope="col">실지급액</th>
+					<th scope="col">메모</th>
+					<th scope="col">비고</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="bill" items="${bill }" begin="${paging.start }" end="${paging.end }">
+					<tr>
+						<td><span class="lightgrey">1</span></td>
+						<td>${bill.bill_state }</td>  
+						<td><span class="lightgrey">${bill.bill_num }</span></td>
+						<td><span class="lightgrey">${bill.bill_date }</span></td>
+						<td>${bill.bill_method }</td>
+						<td>${bill.bill_charge }</td>
+						<td><span class="text-purple">${bill.bill_pay }</span>원</td>
+						<td>${bill.bill_memo }</td>
+						<td>${bill.bill_etc }</td>
+					</tr>
+				</c:forEach>		
+			</tbody>
+		</table>
+	</div>
+	<!-- 끝 -->
+	</c:otherwise>
+</c:choose>
+<c:if test="${not empty bill}" >
+<div class="page-number" style="border-top: 0">
+	<ul>
+		<li class="disabled">
+			<a href = "/partyCommentList?nowPage=1"><i class="fa fa-angle-double-left"></i></a>
+		</li>
+		
+		<li class="disabled">
+			<a href = "/partyCommentList?nowPage=${paging.nowPage -1}"><i class="fa fa-angle-left"></i></a>
+		</li>
+		
+		<c:forEach begin="1" end="${paging.endPage }" var="p">
+			<c:choose>
+				<c:when test="${p == paging.nowPage }">
+					<li class="active">
+						<a>${p }</a>
+					</li>
+				</c:when>
+				<c:when test="${p != paging.nowPage }">
+					<li><a href="/partyCommentList?nowPage=${p }">${p }</a></li>
+				</c:when>
+			</c:choose>
+		</c:forEach>	
+		
+		<li class="disabled">
+			<a href = "/partyCommentList?nowPage=${paging.nowPage + 1}"><i class="fa fa-angle-right"></i></a>
+		</li>
+		
+		<li class="disabled">
+			<a href = "/partyCommentList?nowPage=${paging.endPage}"><i class="fa fa-angle-double-right"></i></a>
+		</li>
+	</ul>
 </div>
-
+</c:if>
 <script>
 $(function () {
   $('[data-toggle="popover"]').popover()
@@ -214,7 +291,7 @@ $(function () {
 </div><!-- /#wrapper -->
 
 <!-- JavaScript -->
-<script type="text/javascript" src="https://buts.co.kr/shop/partner/skin/Basic/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script>
 $(function () {
   var $window = $(window),
@@ -294,6 +371,7 @@ $(function () {
   })();
   ChannelIO('boot', {
     "pluginKey": "d3d063c0-7d5d-48f8-8535-0ac91305c985"
+    
   });
 </script>
 <!-- End Channel Plugin -->

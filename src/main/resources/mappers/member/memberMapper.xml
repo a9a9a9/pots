@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.proj.pots.membership.dao.IMemberDAO">
+
+	<select id="isExistId" parameterType="String" resultType="int">
+		SELECT count(id) FROM login WHERE id=#{id}
+	</select>
+	<select id="isExistNick" parameterType="String" resultType="int">
+		SELECT count(nick) FROM member WHERE id=#{nick}
+	</select>
+	<select id="isExistsnsId" parameterType="String" resultType="int">
+		SELECT count(id) FROM member WHERE id=#{id}
+	</select>
+	
+	<insert id="insertLogin" parameterType="LoginDTO">
+		INSERT INTO login VALUES(#{id}, #{pw})
+	</insert>
+	
+	<insert id="insertMember" parameterType="MemberDTO">
+		INSERT INTO member VALUES(#{id}, #{nick}, #{name}, #{tel}, #{profile}, #{point}, now(), #{sns})
+	</insert>
+	
+	<select id="memberInfo" resultType="MemberDTO">
+		SELECT * FROM member WHERE id=#{id}
+	</select>
+	
+	<select id="memberPassword" resultType="LoginDTO" parameterType="String">
+		SELECT * FROM login WHERE id=#{id}
+	</select>
+	
+	<delete id="deleteLogin" parameterType="String">
+		DELETE FROM login WHERE id=#{id}
+	</delete>
+	<delete id="deleteMember" parameterType="String">
+		DELETE FROM member WHERE id=#{id}
+	</delete>
+	
+	<update id="updateLogin" parameterType="LoginDTO">
+		UPDATE login SET pw=#{pw} WHERE id=#{id}
+	</update>
+	<update id="updateMember" parameterType="MemberDTO">
+		UPDATE member SET name=#{name}, nick=#{nick}, tel=#{tel}, profile=#{profile} WHERE id=#{id}
+	</update>
+	
+	<update id="profileUpdate" parameterType="MemberDTO">
+		UPDATE member SET profile=#{profile} WHERE id=#{id}
+	</update>
+</mapper>
