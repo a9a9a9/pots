@@ -28,7 +28,7 @@ public class PartyPageService {
 //		int begin = end+1 - pageBlock;
 		int begin = 1;
 		
-		ArrayList<PartyListDTO> list = partyDao.videoProc(begin, end, sub);
+		ArrayList<PartyListDTO> list = partyDao.subProc(begin, end, sub);
 		for(PartyListDTO p : list) {
 			//주제 이름 변경
 			if(p.getParty_service().equals("10")) p.setParty_service("영상");
@@ -66,7 +66,13 @@ public class PartyPageService {
 			if(p.getParty_now_member() > 6) p.setParty_now_member(6);
 			if(p.getParty_member() > 6) p.setParty_member(6);
 		}
-		String url = req.getContextPath() + "/videoProc?currentPage=";
+		String subHead = "";
+		if(sub.equals("10")) subHead = "videoProc";
+		else if(sub.equals("20")) subHead = "artProc";
+		else if(sub.equals("30")) subHead = "gameProc";
+		else subHead = "etcProc";
+		
+		String url = req.getContextPath() + "/"+subHead+"?currentPage=";
 		model.addAttribute("page", pageNavi(currentPage, pageBlock, totalCount, url));
 		model.addAttribute("list", list);
 		if(currentPage == 1) {

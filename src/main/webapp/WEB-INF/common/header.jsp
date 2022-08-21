@@ -225,7 +225,7 @@
 					</div>
 				</div></li>
 
-			<li class="menu-li off"><a href="${root}index?formpath=art" class="menu-a">
+			<li class="menu-li off"><a href="${root}artProc" class="menu-a">
 					<!-- 영상 -->도서/음악
 			</a>
 				<div class="sub-menu" style="display: none">
@@ -250,7 +250,7 @@
 					</div>
 				</div></li>
 
-			<li class="menu-li off"><a href="${root}index?formpath=game" class="menu-a">
+			<li class="menu-li off"><a href="${root}gameProc" class="menu-a">
 					<!-- 영상 -->게임
 			</a>
 				<div class="sub-menu" style="display: none">
@@ -272,7 +272,7 @@
 					</div>
 				</div></li>
 
-			<li class="menu-li off"><a href="${root}index?formpath=etc" class="menu-a">
+			<li class="menu-li off"><a href="${root}etcProc" class="menu-a">
 					<!-- 영상 -->기타
 			</a>
 

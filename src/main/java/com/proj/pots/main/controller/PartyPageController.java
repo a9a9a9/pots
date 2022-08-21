@@ -23,6 +23,23 @@ public class PartyPageController {
 		String sub = "10";
 		service.listView(model, currentPage, sub, req);
 		return "forward:/index?formpath=video";
-		
+	}
+	@RequestMapping(value = "artProc")
+	public String artProc(Model model,HttpServletRequest req, @RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage) throws ParseException {
+		String sub = "20";
+		service.listView(model, currentPage, sub, req);
+		return "forward:/index?formpath=art";
+	}
+	@RequestMapping(value = "gameProc")
+	public String gameProc(Model model,HttpServletRequest req, @RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage) throws ParseException {
+		String sub = "30";
+		service.listView(model, currentPage, sub, req);
+		return "forward:/index?formpath=game";
+	}
+	@RequestMapping(value = "etcProc")
+	public String etcProc(Model model,HttpServletRequest req, @RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage) throws ParseException {
+		String sub = "60";
+		service.listView(model, currentPage, sub, req);
+		return "forward:/index?formpath=etc";
 	}
 }
