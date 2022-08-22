@@ -25,6 +25,14 @@ public class MemberService {
 			return "중복 아이디 입니다.";
 		return "사용 가능한 아이디입니다.";
 	} 
+	public String isExistNick(String nick) {
+		if (nick == null)
+			return "아이디를 입력 하세요.";
+		int count = memberDao.isExistNick(nick);
+		if(count == 1)
+			return "중복 닉네임 입니다.";
+		return "사용 가능한 닉네임입니다.";
+	} 
 	public String isExistsnsId(String id) {
 		int count = memberDao.isExistsnsId(id);
 		if(count == 1)

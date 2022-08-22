@@ -28,8 +28,14 @@ public class MemberController {
 	@PostMapping(value = "isExistId", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String isExistId(@RequestBody(required = false) String id) {
-		String msg = memberService.isExistId(id);
-		return msg;
+		String msg1 = memberService.isExistId(id);
+		return msg1;
+	}
+	@PostMapping(value = "isExistNick", produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public String isExistNick(@RequestBody(required = false) String nick) {
+		String msg2 = memberService.isExistNick(nick);
+		return msg2;
 	}
 	@PostMapping(value = "isExistsnsId", produces = "application/json; charset=UTF-8")
 	@ResponseBody
