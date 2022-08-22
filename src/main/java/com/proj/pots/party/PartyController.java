@@ -37,14 +37,16 @@ public class PartyController {
 		public String accountInsertProc(PartnerInfoDTO partner, RedirectAttributes ra) {
 			String id = (String)session.getAttribute("id");   
 			partner.setId(id); 
-			//String msg = service.accountInsertProc(partner); 
-			String msg = "실패";
+			String msg = service.accountInsertProc(partner); 
 			if(msg.equals("실패")) {
 				msg = "<script>alert('파트너 등록에 실패했습니다.')</script>";
 				ra.addFlashAttribute("msg", msg);
 				return "redirect:/partnerRegister";
+			}else {
+				session.setAttribute("account_num", partner.getAccount_num());
+				session.setAttribute("account_name", partner.getAccount_name());
+				return "redirect:/partyList";
 			}
-			return "redirect:/partyList";
 					
 		}
 		
