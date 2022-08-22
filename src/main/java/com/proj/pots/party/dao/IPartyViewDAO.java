@@ -35,7 +35,7 @@ public interface IPartyViewDAO {
 		
 	int insertAccount(PartnerInfoDTO partner); 
 		
-	void updateAccount(PartnerInfoDTO partner);
+	int updateAccount(PartnerInfoDTO partner);
 	
 	void insertPartyMember(PartyMemberDTO partyMember);
 

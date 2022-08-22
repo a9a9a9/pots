@@ -53,6 +53,12 @@ input[type='text'] {
 	}
 }
 </style>
+
+<c:if test="${msg != null }">
+${msg }
+</c:if>
+
+
 <body class="partner-body">
 <form class="form" name="fregister" id="fregister" action="accountModifyProc" method="post" onsubmit="return fregister_submit(this);">
 <div class="dialog" style="border-top: 2px solid #84cdcf">
@@ -73,23 +79,23 @@ input[type='text'] {
 				<label>* 개인파티장은 수수료가 없습니다.(한달에 한번만 각 서비스 등록가능)</label>				
 			</li>
 			<li>
-				<input type="hidden" name="id" id="pt_name" placeholder="아이디" style="width: 100%; max-width: 200px" disabled="disabled" value="${member.id }" required />
+				<input type="hidden" name="id" value="${sessionScope.id }" />
 				<span class="subject">ㆍ 이름</span>
-				<input type="text" name="name" id="pt_name" placeholder="이름" style="width: 100%; max-width: 200px" disabled="disabled" value="${member.name }" required />
+				<input type="text" name="name" id="pt_name" placeholder="이름" style="width: 100%; max-width: 200px" disabled="disabled" value="${sessionScope.name }" required />
 			</li>
 			<li>
 				<span class="subject">ㆍ 연락처</span>
-				<input type="text" name="tel" id="pt_hp" placeholder="연락처를 입력해 주세요." style="width: 100%; max-width: 200px" disabled="disabled" value="${member.tel }" required>
+				<input type="text" name="tel" id="pt_hp" placeholder="연락처를 입력해 주세요." style="width: 100%; max-width: 200px" disabled="disabled" value="${sessionScope.tel }" required>
 			</li>
 		
 			<li id="li_saupja">
 				<span class="subject">ㆍ 주민번호</span>
-				<input type="text" name="personal_num" id="pt_company_saupja" style="width: 100%; max-width: 200px" value="${partner.personal_num }">
+				<input type="text" name="personal_num" id="pt_company_saupja" style="width: 100%; max-width: 200px" value="${sessionScope.personal_num }">
 			</li>
 			<li>
-				<span class="subject">ㆍ 출금계좌</span>
+				<span class="subject" >ㆍ 출금계좌</span>
 				<select name="account_name" required style="width: 100%; max-width: 232px; margin-bottom: 2px;"  value="">
-					<option value="${partner.account_name }">${partner.account_name }</option>
+					<option value="${sessionScope.account_name }">${sessionScope.account_name }</option>
 						<option value="국민은행" >국민은행</option>
 						<option value="기업은행" >기업은행</option>
 						<option value="농협은행" >농협은행</option>
@@ -146,7 +152,7 @@ input[type='text'] {
 						<option value="BNK투자증권" >BNK투자증권</option>
 						<option value="NH투자증권" >NH투자증권</option>
 				</select>
-				<input type="text" name="account_num" id="pt_bank_account" style="width: 100%; max-width: 200px;" required value="${partner.account_num }">
+				<input type="text" name="account_num" id="pt_bank_account" style="width: 100%; max-width: 200px;" required value="${sessionScope.account_num }">
 			</li>
 		</ul>
 		<div class="dialog-caution">
@@ -178,6 +184,7 @@ input[type='text'] {
 </form>
 
 <script>
+
     function fregister_submit(f) {
 
 		if(f.pt_type.value == "1"){

@@ -33,6 +33,13 @@ public class PartyController {
 			return "partyAdmin/partyIndex";
 		}
 		
+		@RequestMapping(value = "/partnerRegister")
+		public String partnerRegister(Model model, String id) {
+			id = (String)session.getAttribute("id");   
+			model.addAttribute("member", memberService.memberInfo(id));
+			return "partyAdmin/partnerRegister";
+		}
+		
 		@RequestMapping(value = "accountInsertProc")
 		public String accountInsertProc(PartnerInfoDTO partner, RedirectAttributes ra) {
 			String id = (String)session.getAttribute("id");   
@@ -43,41 +50,42 @@ public class PartyController {
 				ra.addFlashAttribute("msg", msg);
 				return "redirect:/partnerRegister";
 			}else {
+				session.setAttribute("partner", "true");
 				session.setAttribute("account_num", partner.getAccount_num());
 				session.setAttribute("account_name", partner.getAccount_name());
 				return "redirect:/partyList";
 			}
 					
 		}
-		
-		@RequestMapping(value = "/partnerRegister")
-		public String partnerRegister(Model model, String id) {
-			id = (String)session.getAttribute("id");   
-			model.addAttribute("member", memberService.memberInfo(id));
-			return "partyAdmin/partnerRegister";
-		}
 
-		@RequestMapping(value = "accountModifyProc") 
-		public String accountModifyProc(Model model, PartnerInfoDTO partner) { 
-			String id = (String)session.getAttribute("id");   
-			service.accountModifyProc(partner);  
-			model.addAttribute("member", memberService.memberInfo(id)); 
-			model.addAttribute("partner", service.selectAccount(id)); 
-			return "partyAdmin/partyMyInfo"; 
-		} 
-	
 		@RequestMapping(value = "/partyMyInfo")
 		public String partyMyInfo(Model model, String id) {
-			id = (String)session.getAttribute("id"); 
-			model.addAttribute("member", memberService.memberInfo(id));
-			model.addAttribute("partner", service.selectAccount(id));
 			return "partyAdmin/partyMyInfo";
 		}
 		
+		@RequestMapping(value = "accountModifyProc") 
+		public String accountModifyProc(Model model, PartnerInfoDTO partner, RedirectAttributes ra) { 
+			System.out.println(partner.getId() + partner.getAccount_name() + partner.getAccount_num() + partner.getPersonal_num());
+			String msg = service.accountModifyProc(partner);  
+			String personal_num = (String) session.getAttribute("personal_num");
+			if(msg.equals("실패") || !partner.getPersonal_num().equals(personal_num) ) {
+				msg = "<script>alert('정보 수정에 실패했습니다.')</script>";
+				ra.addFlashAttribute("msg", msg);
+				return "redirect:/partyMyInfo";
+			}else {
+				session.setAttribute("account_name", partner.getAccount_name());
+				session.setAttribute("account_num", partner.getAccount_num());
+				session.setAttribute("personal_num", partner.getPersonal_num());
+				msg = "<script>alert('정보 수정이 완료되었습니다.')</script>";
+				ra.addFlashAttribute("msg", msg);
+				return "redirect:/partyMyInfo";
+			}
+		} 
+		
 		@RequestMapping(value = "/partyCommentList")
 		public String partyCommentList(Model model,String nowPage, PageVO vo) {
-			//String id = (String)session.getAttribute("id");
-			String id = "admin";
+			String id = (String)session.getAttribute("id");
+			//String id = "admin";
 			ArrayList<PartyCommentDTO> list =service.comment(id);
 			int total = list.size();			
 			int cntPerPage = 2;
@@ -108,19 +116,6 @@ public class PartyController {
 			return "partyRecruit/partyOrder";
 		}
 		
-		@RequestMapping(value = "partyMemberInsertProc")
-		public String partyMemberInsertProc(PartyMemberDTO partyMember, Model model, RedirectAttributes ra) {
-			String id="user55";
-			partyMember.setId(id);
-			int party_num = partyMember.getParty_num();
-			String msg = service.partyMemberInsertProc(partyMember, party_num);
-			if(msg.equals("신청불가")) {
-				ra.addFlashAttribute("msg", "<script>alert('이미 모집이 완료된 파티입니다.')</script>");
-				return "redirect:/";
-			} 
-			return "forward:/index?formpath=partyOrderInfo";
-		}
-		
 		@RequestMapping(value = "/partyOrderInfo")
 		public String partyOrderInfo(Model model, Integer party_num, String id) {
 			party_num = 1;
@@ -132,6 +127,19 @@ public class PartyController {
 			model.addAttribute("partyMember", service.partyMember(id));
 			model.addAttribute("method", service.payMethod(id));
 			return "partyRecruit/partyOrderInfo";
+		}
+
+		@RequestMapping(value = "partyMemberInsertProc")
+		public String partyMemberInsertProc(PartyMemberDTO partyMember, Model model, RedirectAttributes ra) {
+			String id="user55";
+			partyMember.setId(id);
+			int party_num = partyMember.getParty_num();
+			String msg = service.partyMemberInsertProc(partyMember, party_num);
+			if(msg.equals("신청불가")) {
+				ra.addFlashAttribute("msg", "<script>alert('이미 모집이 완료된 파티입니다.')</script>");
+				return "redirect:/";
+			} 
+			return "forward:/index?formpath=partyOrderInfo";
 		}
 		
 		
