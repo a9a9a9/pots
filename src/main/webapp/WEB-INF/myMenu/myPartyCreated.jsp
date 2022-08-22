@@ -12,8 +12,8 @@
 
 <div class="title-wrap">
 	<div class="title">
-		<a href="https://buts.co.kr/shop/list_my.php?ca_id=10" class="text">참여파티</a>
-		<a href="https://buts.co.kr/shop/list_partner.php?ca_id=10" class="text" style="margin-left: 20px;"><span class="text-purple">생성파티</span></a>
+		<a href="/index?formpath=myPartyJoined" class="text">참여파티</a>
+		<a href="/index?formpath=myPartyCreated" class="text" style="margin-left: 20px;"><span class="text-purple">생성파티</span></a>
 	</div>
 </div>
 <div class="item-list">

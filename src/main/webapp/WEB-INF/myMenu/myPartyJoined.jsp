@@ -10,8 +10,8 @@
 
 <div class="title-wrap">
 	<div class="title">
-		<a href="https://buts.co.kr/shop/list_my.php?ca_id=10" class="text"><span class="text-purple">참여파티</span></a>
-		<a href="https://buts.co.kr/shop/list_partner.php?ca_id=10" class="text" style="margin-left: 20px;">생성파티</a>
+		<a href="/index?formpath=myPartyJoined" class="text"><span class="text-purple">참여파티</span></a>
+		<a href="/index?formpath=myPartyCreated" class="text" style="margin-left: 20px;">생성파티</a>
 	</div>
 	<div class="title">
 		* 사용기간이 종료된 파티는 참여파티에 보이지 않습니다.

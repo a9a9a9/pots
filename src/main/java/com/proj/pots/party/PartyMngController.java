@@ -35,8 +35,8 @@ public class PartyMngController {
 	@RequestMapping(value = "/partyJoinList")
 	public String partyJoinList(Model model, String nowPage, PageVO vo) throws ParseException {
 		// 리스트 가져오기
-		String id = "admin";
-		// String id = (String) session.getAtrribute("id");
+		//String id = "admin";
+		String id = (String) session.getAttribute("id");
 		ArrayList<PartyMemberDTO> list = mngSvc.partyJoinList(id);
 		
 		// 페이지 
@@ -63,8 +63,9 @@ public class PartyMngController {
 	@RequestMapping(value = "/partyList")
 	public String partyList(Model model, String nowPage, PageVO vo) throws ParseException {
 		// 리스트 가져오기
-		String id = "admin";
-		// String id = (String) session.getAtrribute("id");
+		//String id = "admin";
+		String id = (String) session.getAttribute("id");
+		System.out.println("id" + id);
 		ArrayList<PartyListDTO> list = mngSvc.partyList(id);
 		System.out.println(list);
 		// 페이지 
@@ -104,8 +105,9 @@ public class PartyMngController {
 		}
 		
 		//String id = "admin";
+		String id = (String) session.getAttribute("id");
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("id", "admin");
+		map.put("id", id);
 		map.put("keyword", searchWord);
 		map.put("start", fr_date);
 		map.put("end", to_date);
@@ -203,24 +205,22 @@ public class PartyMngController {
 	
 	// 파티 생성 등록
 	@PostMapping(value = "partyReg")
-	public String partyReg(PartyRegDTO partyDto) {
-		// 등록 날짜 및 시간 구하기
-		LocalDateTime     nowDate   = LocalDateTime.now();
-        DateTimeFormatter formatter = null;
-        String            strDate   = "";
-        try {
-            formatter = DateTimeFormatter.ofPattern( "yyyy-MM-dd HH:mm:ss" );
-        } catch ( Exception e ) {
-            formatter = DateTimeFormatter.ofPattern( "yyyy-MM-dd HH:mm:ss" );
-        }
-        strDate = nowDate.format( formatter );
-        
-        //Dto 정보 입력
-		partyDto.setParty_regdate(strDate);
+	public String partyReg(PartyRegDTO partyDto, Model model) {
+		if(partyDto.getParty_adult() == null)
+			partyDto.setParty_adult("0");
+		
 		partyDto.setParty_available("1");
 		
-		mngSvc.insert(partyDto);
-		return "partyAdmin/partyList";
+		String id = (String) session.getAttribute("id");
+		partyDto.setId(id);
+		
+		int insertChk = mngSvc.insert(partyDto);
+		if(insertChk == -1) {
+			model.addAttribute("msg", "<script>alert('파티를 생성하지 못했습니다')</script>");
+			return "partyAdmin/partyCreate";
+		}
+	
+		return "redirect:/index?formpath=partyMain?party_num="+ insertChk;
 	}
 
 	@RequestMapping(value="partySearch")
@@ -285,7 +285,7 @@ public class PartyMngController {
 	
 	@RequestMapping(value="/partyMain") 
 	public String partyMain(String party_num, Model model) throws ParseException {
-		party_num = "2";
+		//party_num = "2";
 		int joined = 0;
 		
 		PartyListDTO info = mngSvc.partyInfo(party_num);
@@ -323,23 +323,45 @@ public class PartyMngController {
 	public String partyBill(Model model, String id, String nowPage, PageVO vo) {
 		id = "admin";
 		ArrayList<PartyBillDTO> bill = mngSvc.bill(id);
-		int total = bill.size();			
-		int cntPerPage = 2;
-		
-		if (nowPage == null) {
-			nowPage = "1";
-		}else {
-			int nowInt = Integer.parseInt(nowPage);
-			if(nowInt < 1)
+		Map<String, Object> billMap = mngSvc.billMap(id);
+		System.out.println(bill);
+		if(bill != null) {
+			int total = bill.size();			
+			int cntPerPage = 10;
+			
+			if (nowPage == null) {
 				nowPage = "1";
+			}else {
+				int nowInt = Integer.parseInt(nowPage);
+				if(nowInt < 1)
+					nowPage = "1";
+			}
+		
+			vo = new PageVO(total, Integer.parseInt(nowPage), cntPerPage);
+			model.addAttribute("paging", vo);
 		}
-	
-		vo = new PageVO(total, Integer.parseInt(nowPage), cntPerPage);
-		model.addAttribute("paging", vo);
+		
 		model.addAttribute("bill", bill);
-		model.addAttribute("partner", mngSvc.selectAccount(id));
+		model.addAttribute("billMap", billMap);
 		return "partyAdmin/partyBill";
 	}
 	
+	@RequestMapping(value="/billProc")
+	public String billProc(String pp_amount, Model model) {
+		model.addAttribute("money", pp_amount);
+		return "partyAdmin/partyBillCheck";
+	}
+	
+	@RequestMapping(value="/BillComplete")
+	public String billComplete(int bill_charge) {
+		PartyBillDTO billDto = new PartyBillDTO();
+		billDto.setBill_pay(bill_charge);
+		//String id = (String) session.getAttribute("id");
+		String id = "admin";
+		billDto.setId(id);
+		billDto.setBill_charge(bill_charge);
+		mngSvc.partyBillInsert(billDto);
+		return "partyAdmin/billComplete";
+	}
 
 }

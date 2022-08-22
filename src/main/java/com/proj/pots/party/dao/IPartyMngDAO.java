@@ -13,7 +13,9 @@ import com.proj.pots.party.dto.PartyRegDTO;
 @Mapper
 public interface IPartyMngDAO {
 	
-	void insertParty(PartyRegDTO regDto);
+	int insertParty(PartyRegDTO regDto);
+	
+	PartyListDTO latestParty(String id);
 	
 	ArrayList<PartyListDTO> partyList(String id);
 	
@@ -28,4 +30,10 @@ public interface IPartyMngDAO {
 	PartyListDTO partySelect(String party_num);
 	
 	ArrayList<PartyMemberDTO> partyMember(String party_num);
+	
+	int bill_total(String id);
+	
+	int bill_now(String id);
+
+	int partyBillInsert(PartyBillDTO billDto);
 }
