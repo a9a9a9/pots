@@ -41,18 +41,19 @@ public class LoginServiceImpl implements ILoginService{
 			session.setAttribute("profile", member.getProfile());
 			session.setAttribute("point", member.getPoint());
 			session.setAttribute("tel", member.getTel());
-			
 			PartnerInfoDTO partner = loginDao.checkPartner(check.getId());
-			if(partner != null) {
+			
+			if(partner == null) {
+				session.setAttribute("partner", "false");
+			}else{
 				session.setAttribute("partner", "true");
 				session.setAttribute("account_name", partner.getAccount_name());
 				session.setAttribute("account_num", partner.getAccount_num());
-			}else {
-				session.setAttribute("partner", "false");
 			}
 			return "로그인 성공";
-		}else
+		}else {
 			return "아이디 또는 비밀번호를 확인하세요.";
+		}
 	}
 	
 }

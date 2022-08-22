@@ -134,12 +134,12 @@
 							</div>
 							<div class="buttons">
 								<c:choose>
-									<c:when test="${sessionScope.partner eq 'true'}">
+									<c:when test="${sessionScope.partner eq 'false'}">
 										<a href="partnerRegister">파티장신청</a>
 									</c:when>
-									<c:otherwise>
+									<c:when test="${sessionScope.partner eq 'true'}">
 										<a href="partyList">파티관리</a>
-									</c:otherwise>
+									</c:when>
 								</c:choose>
 							</div>
 						</div>
