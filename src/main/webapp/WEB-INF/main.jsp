@@ -13,6 +13,8 @@
 		alert(result);
 	}else if(result === "수정 완료"){
 		alert(result);
+	}else if(result === "로그 아웃"){
+		alert('로그아웃 하셨습니다.');
 	}
 </script>
 

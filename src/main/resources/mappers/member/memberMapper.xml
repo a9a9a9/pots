@@ -6,6 +6,9 @@
 	<select id="isExistId" parameterType="String" resultType="int">
 		SELECT count(id) FROM login WHERE id=#{id}
 	</select>
+	<select id="isExistNick" parameterType="String" resultType="int">
+		SELECT count(nick) FROM member WHERE id=#{nick}
+	</select>
 	<select id="isExistsnsId" parameterType="String" resultType="int">
 		SELECT count(id) FROM member WHERE id=#{id}
 	</select>

@@ -16,6 +16,7 @@ public class PartyRegDTO extends PartyDTO{
 	private String party_adult;			//19세 이상
 	private String party_notice;		//공지사항
 	private String party_available;     //파티모집가능여부
+	private String party_end_form;
 	
 	private String  diff;
 	private String logo;
@@ -23,6 +24,12 @@ public class PartyRegDTO extends PartyDTO{
 	private int plus;
 	
 	
+	public String getParty_end_form() {
+		return party_end_form;
+	}
+	public void setParty_end_form(String party_end_form) {
+		this.party_end_form = party_end_form;
+	}
 	public String getParty_regdate() {
 		return party_regdate;
 	}

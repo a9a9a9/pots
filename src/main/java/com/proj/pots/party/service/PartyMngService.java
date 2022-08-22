@@ -2,6 +2,7 @@ package com.proj.pots.party.service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,10 +20,38 @@ import com.proj.pots.party.dto.PartyRegDTO;
 @Service
 public class PartyMngService {
 	@Autowired IPartyMngDAO mngDao;
+	private int bill_paid = 0;
+	private int bill_request = 0;
+	private int bill_today = 0;
 	
 	public ArrayList<PartyBillDTO> bill(String id) {
+		bill_paid = 0;
+		bill_request = 0;
 		ArrayList<PartyBillDTO> bill = mngDao.bill(id);
+		for(PartyBillDTO b : bill) {
+			if(b.getBill_pay() == 0 ) bill_request += b.getBill_charge();
+			bill_paid += b.getBill_pay();
+			String date = b.getBill_date().substring(0,10);
+			Date now = new Date();
+			String now_date = new SimpleDateFormat("yyyy-MM-dd").format(now);
+			System.out.println(date + " " + now_date);
+			if(date.equals(now_date)) bill_today = 1;
+		}
 		return bill;
+	}
+	
+	public Map<String, Object> billMap(String id) {
+		Map<String, Object> billMap = new HashMap<String, Object>();
+		int bill_total = mngDao.bill_total(id);
+		int bill_now = mngDao.bill_now(id);
+		
+		billMap.put("bill_total", bill_total);
+		billMap.put("bill_now", bill_now);
+		billMap.put("bill_paid", bill_paid);
+		billMap.put("bill_request", bill_request);
+		billMap.put("bill_available", bill_total - bill_paid - bill_now - bill_request);
+		billMap.put("bill_today", bill_today);
+		return billMap;
 	}
 
 	public String check_day(String party_start, String party_end) throws ParseException {
@@ -94,9 +123,15 @@ public class PartyMngService {
 	}
 	
 	// 파티 삽입
-	public void insert(PartyRegDTO partyDto) {
-		mngDao.insertParty(partyDto);
-		System.out.println("wellThrough");
+	public int insert(PartyRegDTO partyDto) {
+		System.out.println("장난치치말구 ㅜㅜㅜ " + partyDto.getId());
+		int i = mngDao.insertParty(partyDto);
+		if(i == 1) {
+			PartyListDTO dto = mngDao.latestParty(partyDto.getId());
+			int party_num = dto.getParty_num();
+			return party_num; 
+		}
+		return -1;
 		
 	}
 	
@@ -134,21 +169,59 @@ public class PartyMngService {
 			else if (p.getParty_service().equals("30")) p.setParty_service("게임");
 			else p.setParty_service("기타");
 			
-			if(p.getParty_subservice().equals("1010")) p.setParty_subservice("#넷플릭스");
-			else if(p.getParty_subservice().equals("1020")) p.setParty_subservice("#왓챠");
-			else if(p.getParty_subservice().equals("1030")) p.setParty_subservice("#유튜브");
-			else if(p.getParty_subservice().equals("1040")) p.setParty_subservice("#웨이브");
-			else if(p.getParty_subservice().equals("1050")) p.setParty_subservice("#티빙");
-			else if(p.getParty_subservice().equals("1080")) p.setParty_subservice("#디즈니");
-			else if(p.getParty_subservice().equals("2010")) p.setParty_subservice("#리디북스");
-			else if(p.getParty_subservice().equals("2020")) p.setParty_subservice("#밀리의서재");
-			else if(p.getParty_subservice().equals("2030")) p.setParty_subservice("#YES24");
-			else if(p.getParty_subservice().equals("2040")) p.setParty_subservice("#스포티파이");
-			else if(p.getParty_subservice().equals("3010")) p.setParty_subservice("#닌텐도온라인");
-			else if(p.getParty_subservice().equals("3050")) p.setParty_subservice("#XBOX");
-			else if(p.getParty_subservice().equals("6050")) p.setParty_subservice("#멤버쉽");
-			else if(p.getParty_subservice().equals("6010")) p.setParty_subservice("#MSOffice");
-			else p.setParty_subservice("#기타");
+
+			if(p.getParty_subservice().equals("1010")) {
+				p.setParty_subservice("#넷플릭스"); 
+				p.setLogo("/img/partylogo/netflix.png"); 
+			} else if(p.getParty_subservice().equals("1020")) {
+				p.setParty_subservice("#왓챠");
+				p.setLogo("/img/partylogo/watcha.png"); 
+			} else if(p.getParty_subservice().equals("1030")) {
+				p.setParty_subservice("#유튜브");
+				p.setLogo("/img/partylogo/youtube.png"); 
+			} else if(p.getParty_subservice().equals("1040")) {
+				p.setParty_subservice("#WAVVE");
+				p.setLogo("/img/partylogo/wavve.png"); 
+			} else if(p.getParty_subservice().equals("1050")) {
+				p.setParty_subservice("#티빙");
+				p.setLogo("/img/partylogo/tiving.png"); 
+			} else if(p.getParty_subservice().equals("1080")) {
+				p.setParty_subservice("#디즈니");
+				p.setLogo("/img/partylogo/disney.png"); 
+			} else if(p.getParty_subservice().equals("2010")) {
+				p.setParty_subservice("#리디북스");
+				p.setLogo("/img/partylogo/ridi.png"); 
+			} else if(p.getParty_subservice().equals("2020")) {
+				p.setParty_subservice("#밀리의서재");
+				p.setLogo("/img/partylogo/millie.png"); 
+			} else if(p.getParty_subservice().equals("2030")) {
+				p.setParty_subservice("#YES24");
+				p.setLogo("/img/partylogo/yes24.png"); 
+			} else if(p.getParty_subservice().equals("2040")) {
+				p.setParty_subservice("#스포티파이");
+				p.setLogo("/img/partylogo/spotify.png"); 
+			} else if(p.getParty_subservice().equals("3010")) {
+				p.setParty_subservice("#닌텐도온라인");
+				p.setLogo("/img/partylogo/nintendo.png"); 
+			} else if(p.getParty_subservice().equals("3050")) {
+				p.setParty_subservice("#XBOX");
+				p.setLogo("/img/partylogo/xbox.png"); 
+			} else if(p.getParty_subservice().equals("6050")) {
+				p.setParty_subservice("#멤버쉽");
+				p.setLogo("/img/partylogo/membership.png"); 
+			} else if(p.getParty_subservice().equals("6010")) {
+				p.setParty_subservice("#MSOffice");
+				p.setLogo("/img/partylogo/office365.png"); 
+			}
+			else {
+				p.setParty_subservice("#기타");
+				p.setLogo("/img/partylogo/membership.png"); 
+			} 	
+			
+			
+			
+			
+			
 		}
 		
 		return list;
@@ -238,12 +311,13 @@ public class PartyMngService {
 		return members;
 	}
 	
-		public Object selectAccount(String id) {
-		// TODO Auto-generated method stub
-		return null;
 
+	public int partyBillInsert(PartyBillDTO billDto) {
+		int i = mngDao.partyBillInsert(billDto);
+		System.out.println("성공했니?"+ i);
+		return i;
+		
 	}
 
-
-
+	
 }

@@ -13,14 +13,24 @@
 	var req;
 	function isExistId(){
 		req = new XMLHttpRequest();
-		req.onreadystatechange = printMsg;
+		req.onreadystatechange = printMsg1;
 		req.open('post', 'isExistId');
 		req.send(document.getElementById('id').value);
 	}
+	function isExistNick(){
+		req = new XMLHttpRequest();
+		req.onreadystatechange = printMsg2;
+		req.open('post', 'isExistNick');
+		req.send(document.getElementById('nick').value);
+	}
 	
-	function printMsg(){
-		var msg = document.getElementById('msg');
-		msg.innerHTML = req.responseText;
+	function printMsg1(){
+		var msg1 = document.getElementById('msg1');
+		msg1.innerHTML = req.responseText;
+	}
+	function printMsg2(){
+		var msg2 = document.getElementById('msg2');
+		msg2.innerHTML = req.responseText;
 	}
 	function pwCheck(){
 		var pw1 = document.getElementById('pw').value;
@@ -58,7 +68,7 @@
 								<span class="subject">ㆍ 아이디(이메일)</span>
 								<input type="text" name="id"id="id" required  placeholder="이메일주소" size="70" maxlength="100">
 								<input type="button" id="win_hp_cert" class="button round button-purple phone" value="중복 확인" onclick="isExistId()">
-								<font color="#7e69fe" id="msg" style="margin-left:10px;">${msg}</font>
+								<font color="#7e69fe" id="msg1" style="margin-left:10px;">${msg1}</font>
 							</li>
 							<li>
 								<span class="subject">ㆍ 비밀번호</span>
@@ -82,6 +92,8 @@
 							<li>
 								<span class="subject">ㆍ 닉네임</span>
 								<input type="text" name="nick" value="" id="nick" required placeholder="닉네임" size="10" maxlength="20">
+								<input type="button" id="win_hp_cert" class="button round button-purple phone" value="중복 확인" onclick="isExistNick()">
+								<font color="#7e69fe" id="msg2" style="margin-left:10px;">${msg2}</font>
 								<%-- <input type="button" id="win_hp_cert" class="button round button-purple phone" value="중복 확인" onclick="isExistNick()">
 								<font color="#7e69fe" id="msg" style="margin-left:10px;">${msg}</font> --%>
 								<!-- <span class="lightgrey inline-break">공백없이 한글, 영문, 숫자만 입력 가능</span> -->
