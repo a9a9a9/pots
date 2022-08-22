@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="/css/member/buts.css" type="text/css">
 <link rel="stylesheet" href="/css/member/widget.css">
 <link rel="stylesheet" href="/css/member/basic.css">
-
+<!-- <link rel="stylesheet" href="//buts.co.kr/thema/Buts/colorset/Basic/buts.css?time=1660891800" type="text/css"> -->
 <!-- 스크립트 -->
 
 <script>
@@ -165,11 +165,11 @@
 												srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/icon-coin-star-big.png 2x"
 												alt=""></a></span>
 										 <span>
-										 <a href="https://buts.co.kr/bbs/point_buts.php">벗</a></span> 
+										 <a href="${root}index?formpath=myPoint">벗</a></span> 
 										 <span class="right"> 
-										 <a href="https://buts.co.kr/bbs/point_buts.php">
+										 <a href="${root}index?formpath=myPoint">
 										 <span class="price Rajdhani">${sessionScope.point}</span></a> 
-										 <a href="https://buts.co.kr/shop/order_point_form.php"
+										 <a href="${root}index?formpath=myPointCharge"
 											class="charge fill">충전</a>
 										</span>
 									</div>
