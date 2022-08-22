@@ -1,5 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.security.SecureRandom" %>
+<%@ page import="java.math.BigInteger" %>
 <html>
 <head>
 <title>POTS 로그인</title>
@@ -50,13 +54,29 @@
 				</form>
 
 				<div class="form-sns-join sns-wrap">
-					<a href="javascrip:;"
-						onclick="nwindow('https://buts.co.kr/plugin/social/popup.php?provider=naver&amp;url=https://buts.co.kr/bbs/login.php')"
-						style="margin-top: 20px; width: 100%;" class="naver sns-naver"
-						title="네이버"> <img
-						src="https://buts.co.kr/thema/Buts/colorset/Basic/img/btn-sns-login-naver.png"
-						alt=""> 네이버 계정으로 로그인 하기
-					</a> 
+<!-- 					<a href="https://nid.naver.com/oauth2.0/authorize? -->
+<!-- 				            response_type=code& -->
+<!-- 				            client_id=Tfs97zQRihtlD6y1o9wt& -->
+<!-- 				            state=state = URLEncoder.encode(callBackUrl, 'UTF-8')& -->
+<!-- 				            redirect_uri=http://localhost/naverRegister" -->
+<!-- 						style="margin-top: 20px; width: 100%;" class="naver sns-naver" -->
+<!-- 						title="네이버">  -->
+<!-- 						<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/btn-sns-login-naver.png" -->
+<!-- 						alt=""> 네이버 계정으로 로그인 하기 -->
+<!-- 					</a>  -->
+<%
+    String clientId = "Tfs97zQRihtlD6y1o9wt";//애플리케이션 클라이언트 아이디값";
+    String redirectURI = URLEncoder.encode("http://localhost/CallBack", "UTF-8");
+    SecureRandom random = new SecureRandom();
+    String state = new BigInteger(130, random).toString();
+    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+    apiURL += "&client_id=" + clientId;
+    apiURL += "&redirect_uri=" + redirectURI;
+    apiURL += "&state=" + state;
+    session.setAttribute("state", state);
+ %>
+  <a href="<%=apiURL%>"><img src="http://buts.co.kr/thema/Buts/colorset/Basic/img/btn-sns-login-naver.png" alt=""/></a>
+					
 					<a href="https://kauth.kakao.com/oauth/authorize?
 							client_id=0070664f6956225934aebb37c784f4ed&
 							redirect_uri=http://localhost/kakaoRegister&
