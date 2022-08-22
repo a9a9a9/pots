@@ -13,16 +13,16 @@
 				</div>
 
 				<div class="mypoint">
-					<span class="picture"> <img
-						src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-big-glay.png"
-						alt=""> 가이드
-					</span> <span class="name">와규와규</span>
+					<span class="picture"> 
+					<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-big-glay.png" alt=""> 가이드
+					</span> 
+					<span class="name">${sessionScope.nick }</span>
 					<div class="right">
 						<span class="icon"><img
 							src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-coin-star-big.png"
 							alt=""></span> <span class="text">포인트</span> <span
-							class="text-purple Rajdhani price">540</span> <a
-							href="https://buts.co.kr/shop/order_point_form.php"
+							class="text-purple Rajdhani price">${sessionScope.point}</span> 
+							<a href="${root }index?formpath=myPointCharge"
 							class="button round button-purple">충전</a>
 					</div>
 				</div>

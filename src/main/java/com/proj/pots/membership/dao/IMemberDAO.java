@@ -1,9 +1,11 @@
 package com.proj.pots.membership.dao;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.proj.pots.member.dto.LoginDTO;
 import com.proj.pots.member.dto.MemberDTO;
+import com.proj.pots.party.dto.PartnerInfoDTO;
 
 @Mapper
 public interface IMemberDAO {
@@ -30,4 +32,11 @@ public interface IMemberDAO {
 	int profileUpdate(MemberDTO member);
 
 	int isExistNick(String nick);
+	
+	MemberDTO selectPoint(String id);
+
+	int updatePoint(MemberDTO member);
+
+	PartnerInfoDTO checkPartner(String id);
+
 }
