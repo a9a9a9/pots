@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.proj.pots.member.dto.LoginDTO;
 import com.proj.pots.member.dto.MemberDTO;
 import com.proj.pots.membership.dao.IMemberDAO;
 import com.proj.pots.membership.service.KakaoService;
+//import com.proj.pots.membership.service.naverService;
 import com.proj.pots.membership.service.MemberService;
 
 @Controller
@@ -28,8 +28,14 @@ public class MemberController {
 	@PostMapping(value = "isExistId", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String isExistId(@RequestBody(required = false) String id) {
-		String msg = memberService.isExistId(id);
-		return msg;
+		String msg1 = memberService.isExistId(id);
+		return msg1;
+	}
+	@PostMapping(value = "isExistNick", produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public String isExistNick(@RequestBody(required = false) String nick) {
+		String msg2 = memberService.isExistNick(nick);
+		return msg2;
 	}
 	@PostMapping(value = "isExistsnsId", produces = "application/json; charset=UTF-8")
 	@ResponseBody
@@ -148,5 +154,44 @@ public class MemberController {
 		return "redirect:/index?formpath=snsRegister";
 	}
 	}
+//	@Autowired private naverService naverService;
+//	@RequestMapping("CallBack")
+//	public String CallBack(String code, HttpSession session, MemberDTO member, String state) {
+//		System.out.println("code : " + code);
+//		String accessToken = naverService.getAccessToken(code, state); 
+//		HashMap<String, String> map = naverService.getUserInfo(accessToken);
+//		System.out.println("이름 : " + map.get("name"));
+//		System.out.println("아이디 : " + map.get("id"));
+//		
+//		int kakaoid = memberDao.isExistsnsId(map.get("id"));
+//		member = memberDao.memberInfo(map.get("id"));
+//		
+//		if(kakaoid == 1) {
+//			session.setAttribute("id", map.get("id"));
+//			session.setAttribute("nick", member.getNick());
+//			session.setAttribute("accessToken", accessToken);
+//			return "redirect:/index?formpath=main";
+//		}else {
+//			session.setAttribute("naverid", map.get("naverid"));
+//			session.setAttribute("navername", map.get("navername"));
+//			session.setAttribute("accessToken", accessToken);
+//			return "redirect:/index?formpath=snsRegister";
+//		}
+//	}
 	
+	@RequestMapping(value = "ChargeProc")
+	public String ChargeProc(String od_point, Model model) {
+		System.out.println("charge : " + od_point);
+		String msg = memberService.ChargeProc(od_point);
+
+		if(msg.equals("충전 완료")) {
+		model.addAttribute("msg", msg);
+		
+			return "forward:/index?formpath=main";
+		}else {
+			return "redirect:index?formpaty=myPointCharge";
+		}
+		
+		
+	}
 }

@@ -8,7 +8,10 @@ import org.apache.ibatis.annotations.Param;
 
 import com.proj.pots.member.dto.MemberDTO;
 import com.proj.pots.party.dto.PartnerInfoDTO;
+import com.proj.pots.party.dto.PartyBillDTO;
 import com.proj.pots.party.dto.PartyCommentDTO;
+import com.proj.pots.party.dto.PartyParDTO;
+import com.proj.pots.party.dto.PartyRegDTO;
 
 @Mapper
 public interface IPartyViewDAO {
@@ -17,5 +20,12 @@ public interface IPartyViewDAO {
 	
 	PartnerInfoDTO selectAccount(String id);
 	
-//	PartnerInfoDTO updateAccount(String id);
+	PartyRegDTO selectParty(int party_num);
+	
+	void insertAccount(PartnerInfoDTO partner);
+		
+	void updateAccount(PartnerInfoDTO partner);  
+	
+	ArrayList<PartyParDTO> par(String id);
+	
 }

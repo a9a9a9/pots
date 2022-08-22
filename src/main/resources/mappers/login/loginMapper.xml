@@ -7,7 +7,7 @@
 		SELECT * FROM login WHERE id=#{id}
 	</select>
 	
-	<select id="checkPartner" resultType="PartnerInfoDTO">
+	<select id="checkPartner" resultType="PartnerInfoDTO" parameterType="String">
 		SELECT * FROM partner_info WHERE id=#{id}
 	</select>
 </mapper>

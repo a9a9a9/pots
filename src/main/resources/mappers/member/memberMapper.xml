@@ -6,6 +6,9 @@
 	<select id="isExistId" parameterType="String" resultType="int">
 		SELECT count(id) FROM login WHERE id=#{id}
 	</select>
+	<select id="isExistNick" parameterType="String" resultType="int">
+		SELECT count(nick) FROM member WHERE id=#{nick}
+	</select>
 	<select id="isExistsnsId" parameterType="String" resultType="int">
 		SELECT count(id) FROM member WHERE id=#{id}
 	</select>
@@ -42,5 +45,15 @@
 	
 	<update id="profileUpdate" parameterType="MemberDTO">
 		UPDATE member SET profile=#{profile} WHERE id=#{id}
+	</update>
+	<select id="selectPoint" resultType="MemberDTO">
+		SELECT point FROM member WHERE id=#{id}
+	</select>
+<!-- 	<update id="updatePoint" parameterType="String" > -->
+<!-- 		update member set point = #{point} where id = #{id} -->
+<!-- 	</update> -->
+	
+	<update id="updatePoint" parameterType="MemberDTO">
+		UPDATE member set point = #{point} WHERE id = #{id}
 	</update>
 </mapper>

@@ -25,6 +25,14 @@ public class MemberService {
 			return "중복 아이디 입니다.";
 		return "사용 가능한 아이디입니다.";
 	} 
+	public String isExistNick(String nick) {
+		if (nick == null)
+			return "아이디를 입력 하세요.";
+		int count = memberDao.isExistNick(nick);
+		if(count == 1)
+			return "중복 닉네임 입니다.";
+		return "사용 가능한 닉네임입니다.";
+	} 
 	public String isExistsnsId(String id) {
 		int count = memberDao.isExistsnsId(id);
 		if(count == 1)
@@ -122,5 +130,25 @@ public class MemberService {
 		session.setAttribute("profile", member.getProfile());
 		return "사진 저장";
 	}
+	
+	public String ChargeProc(String od_point) {
+		int pointc = (int)session.getAttribute("point");
+		int priced = Integer.parseInt(od_point);
+//		MemberDTO member = memberDao.selectPoint();
+		MemberDTO member = new MemberDTO();
+//		member = memberDao.selectPoint(id);
+		System.out.println("charge123 : " + od_point);
+		System.out.println("charge12334 : " + pointc);
+		String id = (String) session.getAttribute("id");
+		int point = pointc + priced;
+//		int point = Integer.parseInt(pointcharge);
+		System.out.println(point); 
+		member.setPoint(point);
+		member.setId(id);
+		memberDao.updatePoint(member);
+		session.setAttribute("point", point);
+		return "충전 완료";
+		
+	} 
 	
 }

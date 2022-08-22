@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="/css/member/buts.css" type="text/css">
 <link rel="stylesheet" href="/css/member/widget.css">
 <link rel="stylesheet" href="/css/member/basic.css">
-
+<!-- <link rel="stylesheet" href="//buts.co.kr/thema/Buts/colorset/Basic/buts.css?time=1660891800" type="text/css"> -->
 <!-- 스크립트 -->
 
 <script>
@@ -114,10 +114,7 @@
 							<div class="picture mobile">
 								<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-myimg.png" alt="">
 							</div>
-							<div class="name"> ${sessionScope.nick } <a href="${root }logout" class="header-logout"> 
-									<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/img-input-text-reste-copy.png"
-									srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/img-input-text-reste-copy.png 2x" alt="">
-								</a>
+							<div class="name"> ${sessionScope.nick }
 							</div>
 							<!--
 								<div class="credit-percent">
@@ -137,12 +134,12 @@
 							</div>
 							<div class="buttons">
 								<c:choose>
-									<c:when test="${sessionScope.partner eq 'true'}">
+									<c:when test="${sessionScope.partner eq 'false'}">
 										<a href="partnerRegister">파티장신청</a>
 									</c:when>
-									<c:otherwise>
+									<c:when test="${sessionScope.partner eq 'true'}">
 										<a href="partyList">파티관리</a>
-									</c:otherwise>
+									</c:when>
 								</c:choose>
 							</div>
 						</div>
@@ -168,11 +165,11 @@
 												srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/icon-coin-star-big.png 2x"
 												alt=""></a></span>
 										 <span>
-										 <a href="https://buts.co.kr/bbs/point_buts.php">벗</a></span> 
+										 <a href="${root}index?formpath=myPoint">벗</a></span> 
 										 <span class="right"> 
-										 <a href="https://buts.co.kr/bbs/point_buts.php">
+										 <a href="${root}index?formpath=myPoint">
 										 <span class="price Rajdhani">${sessionScope.point}</span></a> 
-										 <a href="https://buts.co.kr/shop/order_point_form.php"
+										 <a href="${root}index?formpath=myPointCharge"
 											class="charge fill">충전</a>
 										</span>
 									</div>
@@ -187,7 +184,8 @@
 						</div>
 						<div class="block">
 							<ul class="menu">
-								<li><a href="#">FAQ</a></li>
+								<li><a href="${root }logout">로그아웃</a></li>
+								<li><a href="${root }index?formpath=faq1">FAQ</a></li>
 								<li><a href="javascript:ChannelIO('showMessenger');">1:1문의하기</a></li>
 							</ul>
 						</div>
@@ -199,7 +197,7 @@
 
 	<div class="header-menu pc">
 		<ul>
-			<li class="menu-li off"><a href="${root}index?formpath=video" class="menu-a">
+			<li class="menu-li off"><a href="${root}videoProc" class="menu-a">
 					<!-- 영상 -->영상 <span class="menu_new"></span>
 			</a>
 				<div class="sub-menu" style="display: none">
@@ -212,25 +210,22 @@
 							</a>
 						</div>
 						<ul>
-							<li class="sub-li off"><a href="#" class="sub-a">#넷플릭스<span
-									class="sub-1new2"></span></a></li>
-							<li class="sub-li off"><a href="#" class="sub-a">#디즈니 </a></li>
-							<li class="sub-li off"><a href="#" class="sub-a">#왓챠</a></li>
-							<li class="sub-li off"><a href="#" class="sub-a">#유튜브 <span
-									class="sub-1new2"></span></a></li>
-							<li class="sub-li off"><a href="#" class="sub-a">#웨이브 <span
-									class="sub-1new2"></span></a></li>
-							<li class="sub-li off"><a href="#" class="sub-a">#티빙</a></li>
-							<li class="sub-li off"><a href="#" class="sub-a">#라프텔 </a></li>
-							<li class="sub-li off"><a href="#" class="sub-a">#AppleOne</a></li>
-							<li class="sub-li off"><a href="#" class="sub-a">#프라임비디오</a></li>
-							<li class="sub-li off"><a href="#" class="sub-a">#테니스TV</a></li>
-							<li class="sub-li off"><a href="#" class="sub-a">기타(영상)</a></li>
+							<li class="sub-li off"><a href="${root}netflixProc" class="sub-a">#넷플릭스<span class="sub-1new2"></span></a></li>
+							<li class="sub-li off"><a href="${root}disneyProc" class="sub-a">#디즈니 </a></li>
+							<li class="sub-li off"><a href="${root}watchaProc" class="sub-a">#왓챠</a></li>
+							<li class="sub-li off"><a href="${root}youtubeProc" class="sub-a">#유튜브 <span class="sub-1new2"></span></a></li>
+							<li class="sub-li off"><a href="${root}wavveProc" class="sub-a">#웨이브 <span class="sub-1new2"></span></a></li>
+							<li class="sub-li off"><a href="${root}tivingProc" class="sub-a">#티빙</a></li>
+<!-- 							<li class="sub-li off"><a href="#" class="sub-a">#라프텔 </a></li> -->
+<!-- 							<li class="sub-li off"><a href="#" class="sub-a">#AppleOne</a></li> -->
+<!-- 							<li class="sub-li off"><a href="#" class="sub-a">#프라임비디오</a></li> -->
+<!-- 							<li class="sub-li off"><a href="#" class="sub-a">#테니스TV</a></li> -->
+<!-- 							<li class="sub-li off"><a href="#" class="sub-a">기타(영상)</a></li> -->
 						</ul>
 					</div>
 				</div></li>
 
-			<li class="menu-li off"><a href="${root}index?formpath=art" class="menu-a">
+			<li class="menu-li off"><a href="${root}artProc" class="menu-a">
 					<!-- 영상 -->도서/음악
 			</a>
 				<div class="sub-menu" style="display: none">
@@ -243,19 +238,19 @@
 							</a>
 						</div>
 						<ul>
-							<li class="sub-li off"><a href="#" class="sub-a">#리디북스</a></li>
-							<li class="sub-li off"><a href="#" class="sub-a">#밀리의서재</a></li>
-							<li class="sub-li off"><a href="#" class="sub-a">#YES24</a></li>
-							<li class="sub-li off"><a href="#" class="sub-a">#윌라</a></li>
-							<li class="sub-li off"><a href="#" class="sub-a">#스포티파이</a></li>
-							<li class="sub-li off"><a href="#" class="sub-a">#애플뮤직</a></li>
-							<li class="sub-li off"><a href="#" class="sub-a">#케이크 </a></li>
-							<li class="sub-li off"><a href="#" class="sub-a">기타(도서/음악)</a></li>
+							<li class="sub-li off"><a href="${root}ridiProc" class="sub-a">#리디북스</a></li>
+							<li class="sub-li off"><a href="${root}millieProc" class="sub-a">#밀리의서재</a></li>
+							<li class="sub-li off"><a href="${root}yes24Proc" class="sub-a">#YES24</a></li>
+							<li class="sub-li off"><a href="${root}spotifyProc" class="sub-a">#스포티파이</a></li>
+<!-- 							<li class="sub-li off"><a href="#" class="sub-a">#윌라</a></li> -->
+<!-- 							<li class="sub-li off"><a href="#" class="sub-a">#애플뮤직</a></li> -->
+<!-- 							<li class="sub-li off"><a href="#" class="sub-a">#케이크 </a></li> -->
+<!-- 							<li class="sub-li off"><a href="#" class="sub-a">기타(도서/음악)</a></li> -->
 						</ul>
 					</div>
 				</div></li>
 
-			<li class="menu-li off"><a href="${root}index?formpath=game" class="menu-a">
+			<li class="menu-li off"><a href="${root}gameProc" class="menu-a">
 					<!-- 영상 -->게임
 			</a>
 				<div class="sub-menu" style="display: none">
@@ -268,17 +263,16 @@
 							</a>
 						</div>
 						<ul>
-							<li class="sub-li off"><a href="#" class="sub-a">#닌텐도온라인
-							</a></li>
-							<li class="sub-li off"><a href="#" class="sub-a">#스팀</a></li>
-							<li class="sub-li off"><a href="#" class="sub-a">#PS4/PS5</a></li>
-							<li class="sub-li off"><a href="#" class="sub-a">#XBOX </a></li>
-							<li class="sub-li off"><a href="#" class="sub-a">기타</a></li>
+							<li class="sub-li off"><a href="${root}nintendoProc" class="sub-a">#닌텐도온라인</a></li>
+							<li class="sub-li off"><a href="${root}xboxProc" class="sub-a">#XBOX </a></li>
+<!-- 							<li class="sub-li off"><a href="#" class="sub-a">#스팀</a></li> -->
+<!-- 							<li class="sub-li off"><a href="#" class="sub-a">#PS4/PS5</a></li> -->
+<!-- 							<li class="sub-li off"><a href="#" class="sub-a">기타</a></li> -->
 						</ul>
 					</div>
 				</div></li>
 
-			<li class="menu-li off"><a href="${root}index?formpath=etc" class="menu-a">
+			<li class="menu-li off"><a href="${root}etcProc" class="menu-a">
 					<!-- 영상 -->기타
 			</a>
 
@@ -292,13 +286,12 @@
 							</a>
 						</div>
 						<ul>
-							<li class="sub-li off"><a href="#" class="sub-a">#맴버쉽 </a></li>
-							<li class="sub-li off"><a href="#" class="sub-a">#MS
-									Office</a></li>
-							<li class="sub-li off"><a href="#" class="sub-a">#그래픽 </a></li>
-							<li class="sub-li off"><a href="#" class="sub-a">#운영체제</a></li>
-							<li class="sub-li off"><a href="#" class="sub-a">#VPN</a></li>
-							<li class="sub-li off"><a href="#" class="sub-a">기타</a></li>
+							<li class="sub-li off"><a href="${root}membershipProc" class="sub-a">#멤버쉽 </a></li>
+							<li class="sub-li off"><a href="${root}msofficeProc" class="sub-a">#MS Office</a></li>
+<!-- 							<li class="sub-li off"><a href="#" class="sub-a">#그래픽 </a></li> -->
+<!-- 							<li class="sub-li off"><a href="#" class="sub-a">#운영체제</a></li> -->
+<!-- 							<li class="sub-li off"><a href="#" class="sub-a">#VPN</a></li> -->
+<!-- 							<li class="sub-li off"><a href="#" class="sub-a">기타</a></li> -->
 						</ul>
 					</div>
 				</div></li>

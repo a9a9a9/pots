@@ -34,6 +34,83 @@
 		ON a.party_num = b.party_num;
 	</select>
 	
+	<select id="partySearch" parameterType="Map" resultType="PartyListDTO">
+		SELECT a.*, b.party_count AS party_now_member 
+			FROM 
+				(SELECT * FROM party WHERE id=#{id} ORDER BY party_num DESC)
+				a 
+			LEFT JOIN 
+				(SELECT party_num, count(*) AS party_count FROM party_member GROUP BY party_num) 
+				b 
+			ON a.party_num = b.party_num 
+			WHERE 
+			<choose>
+				<when test="sel2 == 'num'">a.party_num LIKE CONCAT('%',${keyword},'%')</when>
+				<when test="sel2 == 'id'">a.party_id LIKE CONCAT('%',${keyword},'%')</when>
+			</choose>
+			<choose>
+				<when test="sel1 == 'ser'">AND a.party_service=#{keynum}</when>
+				<when test="sel1 == 'sub'">AND a.party_subservice=#{keynum}</when>
+			</choose>
+			;
+	</select>
+	
+	<select id="partyJoinList" resultType="PartyMemberDTO">
+		SELECT b.nick, b.mycharge, b.mystartday, a.party_num, a.party_service, a.party_subservice, a.party_title, a.party_charge, a.party_available, a.party_end
+			FROM 
+				(SELECT * FROM party WHERE id=#{id})
+				a 
+			LEFT JOIN 
+				party_member
+				b 
+			ON a.party_num = b.party_num 
+	        WHERE b.id IS NOT NULL 
+	        ORDER BY mystartday DESC;
+	</select>
+	
+	<select id="partyJoinSearch" parameterType="Map" resultType="PartyMemberDTO">
+		SELECT b.nick, b.mycharge, b.mystartday, a.party_num, a.party_service, a.party_subservice, a.party_title, a.party_charge, a.party_available, a.party_end
+		FROM 
+			(SELECT * FROM party WHERE id=#{id})
+			a 
+		LEFT JOIN 
+			party_member
+			b 
+		ON a.party_num = b.party_num 
+        WHERE b.id IS NOT NULL 
+        	<choose>
+				<when test="sel1 == 'ser'">AND a.party_service=#{keynum} </when>
+				<when test="sel1 == 'sub'">AND a.party_subservice=#{keynum}</when>
+			</choose>
+			<if test="!keyword.equals('')">
+				AND a.party_num LIKE CONCAT('%',${keyword},'%')
+			</if>
+			<if test="!start.equals('')">
+				AND b.mystartday BETWEEN #{start} AND #{end} 
+			</if>
+        ORDER BY b.mystartday DESC;
+	</select>
+		 
+	 <select id="bill" parameterType="String" resultType="PartyBillDTO">
+	 	SELECT * FROM party_bill WHERE id = #{id}
+	 </select>
+	 
+	 <select id="partySelect" resultType="PartyListDTO">
+	 	SELECT a.*, b.party_count AS party_now_member 
+		FROM 
+			(SELECT party.* , member.nick FROM party JOIN member ON party.id = member.id WHERE party_num=#{party_num})
+			a 
+		LEFT JOIN 
+			(SELECT party_num, count(*) AS party_count FROM party_member GROUP BY party_num) 
+			b 
+		ON a.party_num = b.party_num ;
+	 </select>
+	 
+	 <select id="partyMember" resultType="PartyMemberDTO">
+	 	SELECT nick, mystartday FROM party_member WHERE party_num=#{party_num}
+	 
+	 </select>
+	
 	
 	
 </mapper>
