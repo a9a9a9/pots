@@ -210,12 +210,12 @@
 							</a>
 						</div>
 						<ul>
-							<li class="sub-li off"><a href="${root}index?formpath=netflix" class="sub-a">#넷플릭스<span class="sub-1new2"></span></a></li>
-							<li class="sub-li off"><a href="${root}index?formpath=disney" class="sub-a">#디즈니 </a></li>
-							<li class="sub-li off"><a href="${root}index?formpath=watcha" class="sub-a">#왓챠</a></li>
-							<li class="sub-li off"><a href="${root}index?formpath=youtube" class="sub-a">#유튜브 <span class="sub-1new2"></span></a></li>
-							<li class="sub-li off"><a href="${root}index?formpath=wavve" class="sub-a">#웨이브 <span class="sub-1new2"></span></a></li>
-							<li class="sub-li off"><a href="${root}index?formpath=tiving" class="sub-a">#티빙</a></li>
+							<li class="sub-li off"><a href="${root}netflixProc" class="sub-a">#넷플릭스<span class="sub-1new2"></span></a></li>
+							<li class="sub-li off"><a href="${root}disneyProc" class="sub-a">#디즈니 </a></li>
+							<li class="sub-li off"><a href="${root}watchaProc" class="sub-a">#왓챠</a></li>
+							<li class="sub-li off"><a href="${root}youtubeProc" class="sub-a">#유튜브 <span class="sub-1new2"></span></a></li>
+							<li class="sub-li off"><a href="${root}wavveProc" class="sub-a">#웨이브 <span class="sub-1new2"></span></a></li>
+							<li class="sub-li off"><a href="${root}tivingProc" class="sub-a">#티빙</a></li>
 <!-- 							<li class="sub-li off"><a href="#" class="sub-a">#라프텔 </a></li> -->
 <!-- 							<li class="sub-li off"><a href="#" class="sub-a">#AppleOne</a></li> -->
 <!-- 							<li class="sub-li off"><a href="#" class="sub-a">#프라임비디오</a></li> -->
@@ -225,7 +225,7 @@
 					</div>
 				</div></li>
 
-			<li class="menu-li off"><a href="${root}index?formpath=art" class="menu-a">
+			<li class="menu-li off"><a href="${root}artProc" class="menu-a">
 					<!-- 영상 -->도서/음악
 			</a>
 				<div class="sub-menu" style="display: none">
@@ -238,10 +238,10 @@
 							</a>
 						</div>
 						<ul>
-							<li class="sub-li off"><a href="${root}index?formpath=ridi" class="sub-a">#리디북스</a></li>
-							<li class="sub-li off"><a href="${root}index?formpath=millie" class="sub-a">#밀리의서재</a></li>
-							<li class="sub-li off"><a href="${root}index?formpath=yes24" class="sub-a">#YES24</a></li>
-							<li class="sub-li off"><a href="${root}index?formpath=spotify" class="sub-a">#스포티파이</a></li>
+							<li class="sub-li off"><a href="${root}ridiProc" class="sub-a">#리디북스</a></li>
+							<li class="sub-li off"><a href="${root}millieProc" class="sub-a">#밀리의서재</a></li>
+							<li class="sub-li off"><a href="${root}yes24Proc" class="sub-a">#YES24</a></li>
+							<li class="sub-li off"><a href="${root}spotifyProc" class="sub-a">#스포티파이</a></li>
 <!-- 							<li class="sub-li off"><a href="#" class="sub-a">#윌라</a></li> -->
 <!-- 							<li class="sub-li off"><a href="#" class="sub-a">#애플뮤직</a></li> -->
 <!-- 							<li class="sub-li off"><a href="#" class="sub-a">#케이크 </a></li> -->
@@ -250,7 +250,7 @@
 					</div>
 				</div></li>
 
-			<li class="menu-li off"><a href="${root}index?formpath=game" class="menu-a">
+			<li class="menu-li off"><a href="${root}gameProc" class="menu-a">
 					<!-- 영상 -->게임
 			</a>
 				<div class="sub-menu" style="display: none">
@@ -263,8 +263,8 @@
 							</a>
 						</div>
 						<ul>
-							<li class="sub-li off"><a href="${root}index?formpath=nintendo" class="sub-a">#닌텐도온라인</a></li>
-							<li class="sub-li off"><a href="${root}index?formpath=xbox" class="sub-a">#XBOX </a></li>
+							<li class="sub-li off"><a href="${root}nintendoProc" class="sub-a">#닌텐도온라인</a></li>
+							<li class="sub-li off"><a href="${root}xboxProc" class="sub-a">#XBOX </a></li>
 <!-- 							<li class="sub-li off"><a href="#" class="sub-a">#스팀</a></li> -->
 <!-- 							<li class="sub-li off"><a href="#" class="sub-a">#PS4/PS5</a></li> -->
 <!-- 							<li class="sub-li off"><a href="#" class="sub-a">기타</a></li> -->
@@ -272,7 +272,7 @@
 					</div>
 				</div></li>
 
-			<li class="menu-li off"><a href="${root}index?formpath=etc" class="menu-a">
+			<li class="menu-li off"><a href="${root}etcProc" class="menu-a">
 					<!-- 영상 -->기타
 			</a>
 
@@ -286,8 +286,8 @@
 							</a>
 						</div>
 						<ul>
-							<li class="sub-li off"><a href="${root}index?formpath=membership" class="sub-a">#멤버쉽 </a></li>
-							<li class="sub-li off"><a href="${root}index?formpath=msoffice" class="sub-a">#MS Office</a></li>
+							<li class="sub-li off"><a href="${root}membershipProc" class="sub-a">#멤버쉽 </a></li>
+							<li class="sub-li off"><a href="${root}msofficeProc" class="sub-a">#MS Office</a></li>
 <!-- 							<li class="sub-li off"><a href="#" class="sub-a">#그래픽 </a></li> -->
 <!-- 							<li class="sub-li off"><a href="#" class="sub-a">#운영체제</a></li> -->
 <!-- 							<li class="sub-li off"><a href="#" class="sub-a">#VPN</a></li> -->
