@@ -82,5 +82,10 @@
 	 <update id="updateParty">
 	 	UPDATE party SET party_available='0' WHERE party_num=#{party_num}
 	 </update>
+	 
+	 <update id="updatePoint" parameterType="PartyMemberDTO">
+	 	UPDATE member SET point = point - ${use_point} 
+	 	WHERE id = #{id}
+	 </update>
 			 	 
 </mapper>

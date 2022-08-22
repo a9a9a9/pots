@@ -175,6 +175,7 @@ public class PartyViewServiceImpl implements IPartyViewService{
 		}
 			
 		partyViewDao.insertPartyMember(partyMember);
+		partyViewDao.updatePoint(partyMember);
 		return "신청완료";
 	}
 
