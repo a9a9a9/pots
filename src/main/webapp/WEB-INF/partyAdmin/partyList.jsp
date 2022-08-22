@@ -131,7 +131,7 @@
 								<td>
 									<a href="partyMain?party_num=${ pl.party_num}" class="item-name"> 
 									<span class="brand">
-									<img src="/img/1.jpg" alt=""></span> 
+									<img src="${pl.logo }" alt=""></span> 
 									<span class="name">${ pl.party_title}</span> 
 									<span class="lightgrey"> 파티번호 : ${ pl.party_num} / ${ pl.party_service} / ${ pl.party_subservice} </span>
 								</a></td>
@@ -351,3 +351,4 @@ $(function() {
 
 </body>
 </html>
+S

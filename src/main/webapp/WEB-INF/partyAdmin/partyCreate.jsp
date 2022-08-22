@@ -23,6 +23,9 @@
 		document.getElementById('partyList').classList.add('active');
 	}
 </script>
+<c:if test="${msg != null}">
+${msg }
+</c:if>
 
 <!-- body -->
 
@@ -229,7 +232,7 @@
 
 				<div style="clear: both;"></div>
 
-				<form name="fitemform" action="partyReg" method="post">
+				<form name="fitemform" action="partyReg" method="post" onsubmit="return fitemformcheck(this)">
 				<input type="hidden" name="id" value="${session.id }"/>
 					<!-- [[ 파트너 서비스 등록 ]] -->
 
@@ -243,7 +246,7 @@
 								<li>
 									<div class="subject">ㆍ 서비스</div>
 									<div class="bo_w_select write_div">
-										<select name="party_service" id="ca_id_s" required="" onchange="category_main_change(this.form)" class="width-200">
+										<select name="party_service" id="ca_id_s" required onchange="category_main_change(this.form)" class="width-200">
 											<option value="">기본 분류를 선택하세요</option>
 											<option value="10">영상</option>
 											<option value="20">도서/음악</option>
@@ -252,7 +255,7 @@
 										</select>
 									</div>
 									<div class="bo_w_select write_div">
-										<select name="party_subservice" id="ca_id" required="" onchange="category_sub_change2(this.form)" class="width-200">
+										<select name="party_subservice" id="ca_id" required onchange="category_sub_change2(this.form)" class="width-200">
 											<option value="">기본 분류를 먼저 선택하세요</option>
 										</select>
 									</div>
@@ -260,33 +263,34 @@
 								</li>
 								<li>
 									<div class="subject">ㆍ 제목</div> 
-									<input type="hidden" name="pt_tag" value="" id="pt_tag"> 
-									<input type="text" name="party_title" value="" id="it_name" required="" class="width-400" size="50" placeholder="제목을 입력해 주세요">
+									<input type="hidden" name="pt_tag" id="pt_tag"> 
+									<input type="text" name="party_title" id="it_name" required class="width-400" size="50" placeholder="제목을 입력해 주세요">
 								</li>
 								<li>
-									<div class="subject">ㆍ 모집인원</div> 
-									<select name="party_member" id="it_stock_qty" class="width-100" value="">
-										<option value="0">본인제외</option>
-										<option value="0">0</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-										<option value="6">6</option>
-										<option value="7">7</option>
-										<option value="8">8</option>
-								</select> 명
+									<div class="subject">ㆍ 모집인원</div>
+									<select name="party_member" id="it_stock_qty"class="width-100">
+									<option value="0">본인제외</option>
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									</select>
+									명
 								</li>
 								<li>
-									<div class="subject">ㆍ 진행 형태</div> 
+									<div class="subject">ㆍ 계정 정보</div> 
 									
 									<div id="div_idpw" style="display: block;">
-										<input type="text" name="party_id" value="" id="pt_link1"
+										<input type="text" name="party_id" id="pt_link1"
 											class="width-200" size="20" maxlength="35"
 											placeholder="계정 아이디(이메일)"> 
 										<input type="text"
-											name="party_pw" value="" id="pt_link2" class="width-200"
+											name="party_pw" id="pt_link2" class="width-200"
 											size="20" maxlength="20" placeholder="패스워드"> <br>
 									</div>
 								</li>
@@ -294,7 +298,7 @@
 									<div class="subject w100">ㆍ 연락처(문의처)</div> 
 									<div>
 										<input type="text" class="width-200" name="party_tel"
-											id="kakao_id" placeholder="연락받을 곳을 입력해 주세요." required=""
+											id="kakao_id" placeholder="연락받을 곳을 입력해 주세요." required
 											value="${session.tel }">
 										<div class="lightgrey">이슈 발생 시 대응 가능한 문의정보를 입력해 주세요.</div>
 									</div>
@@ -302,7 +306,7 @@
 								<li>
 									<div class="subject w100">ㆍ 진행 기간</div> 
 									<input type="text" name="party_start" id="start_day" value="${sysDate }" class="width-100" readonly="" size="8" maxlength="8"> ~
-									<input type="text" name="party_end" value="종료날짜" id="pt_day" style="width:100px;" required="" size="8" maxlength="8">
+									<input type="text" name="party_end" value="종료날짜" id="pt_day" style="width:100px;" required size="8" maxlength="8">
 									<button type="button" id="btn_enddate" class="button round button-purple" onclick="check_day()">
 									기간확인</button> 
 									<span id="lb_enddate" class="text-purple"></span>
@@ -310,8 +314,8 @@
 								<li>
 									<div class="subject w100">ㆍ 참여 금액</div> 
 									1인 당 1일 
-									<input type="text" name="party_charge" value="" id="it_price"
-									class="width-100" required="" size="10" placeholder=" 금액입력" maxlength="4"> 
+									<input type="text" name="party_charge" id="it_price"
+									class="width-100" required size="10" placeholder=" 금액입력" maxlength="4"> 
 									원 * 예상 
 									<span id="sp_count" class="text-purple"></span> 
 									수령 금액
@@ -329,7 +333,7 @@
 								</li>
 								<li>
 									<div class="subject w100">ㆍ 공지사항 입력</div> 
-									<textarea name="party_notice" id="it_explan" rows="10"></textarea> 
+									<textarea name="party_notice" id="it_explan" rows="10" style="white-space:pre;" ></textarea> 
 									<br>
 									* 개인 연락처 또는 카카오톡, 개인간 거래 유도 행위는 불법으로 간주하며, 적발시 사전동의 없이 파티장 권한이
 									중지 됩니다. <br> * 작성된 정보는 벗츠에 수집되며 진행 중인 파티에 문제가 발생한 경우에 확인 및
@@ -355,9 +359,9 @@
 					<script>
 					
 						var f = document.fitemform;
-
-
 						function fitemformcheck(f) {
+							console.log("잘 안되는거 같은데요 보이나요");
+							
 							if (!f.ca_id.value) {
 								alert("기본분류를 선택하십시오.");
 								f.ca_id.focus();
@@ -372,19 +376,19 @@
 								return false;
 							}
 
-							if (f.viewid_yn.value == "0") {
-								if (!f.pt_link1.value) {
-									alert("계정의 아이디를 입력하십시오.");
-									f.pt_link1.focus();
-									return false;
-								}
-
-								if (!f.pt_link2.value) {
-									alert("계정의 패스워드를 입력하십시오.");
-									f.pt_link2.focus();
-									return false;
-								}
+							
+							if (!f.pt_link1.value) {
+								alert("계정의 아이디를 입력하십시오.");
+								f.pt_link1.focus();
+								return false;
 							}
+
+							if (!f.pt_link2.value) {
+								alert("계정의 패스워드를 입력하십시오.");
+								f.pt_link2.focus();
+								return false;
+							}
+							
 
 							var var_kakao_id = f.kakao_id.value.replace(
 									/[A-Za-z0-9\-_.]/g, "");
@@ -465,31 +469,8 @@
 								return false;
 							}
 
-							if (f.w.value == "") {
-								var error = "";
-								/* $.ajax({
-									url : "./ajax.it_id.php",
-									type : "POST",
-									data : {
-										"it_id" : f.it_id.value
-									},
-									dataType : "json",
-									async : false,
-									cache : false,
-									success : function(data, textStatus) {
-										error = data.error;
-									}
-								});
- */
- 								document.getElementById(fitemform).sumit();
- 
-								if (error) {
-									alert(error);
-									return false;
-								}
-							}
-
-							var var_plus = '0';
+							
+							/* var var_plus = '0';
 							var pt_level = '9';
 							var pt_type = '2';
 							if (pt_type == "1") {
@@ -569,10 +550,13 @@
 										}
 									}
 								}
-							}
+							} */
 
 							return true;
 						}
+
+
+						
 
 						/* function fn_rdo_checked(id) {
 							document.getElementById('rdo_idview_0').checked = false;
@@ -594,25 +578,25 @@
 						function categorychange(f) {
 							var idx = f.ca_id.value;
 
-							if (f.w.value == "" && idx) {
+							/* if (f.w.value == "" && idx) {
 								//f.it_use.checked = ca_use[idx] ? true : false;
 								f.it_stock_qty.value = ca_stock_qty[idx];
-							}
+							} */
 
 							var idx_main = '';
 
 							if (idx_main == "10") {
 								$("#ca_id")
 										.html(
-												'<option value="1010">&nbsp;&nbsp;&nbsp;#넷플릭스</option><option value="1020">&nbsp;&nbsp;&nbsp;#왓챠</option><option value="1030">&nbsp;&nbsp;&nbsp;#유튜브</option><option value="1040">&nbsp;&nbsp;&nbsp;#웨이브</option><option value="1050">&nbsp;&nbsp;&nbsp;#티빙</option><option value="1080">&nbsp;&nbsp;&nbsp;#디즈니</option>');
+												'<option value="1010">   #넷플릭스</option><option value="1020">   #왓챠</option><option value="1030">   #유튜브</option><option value="1040">   #웨이브</option><option value="1050">   #티빙</option><option value="1080">   #디즈니</option>');
 							} else if (idx_main == "20") {
 								$("#ca_id")
 										.html(
-												'<option value="2010">&nbsp;&nbsp;&nbsp;#리디북스</option><option value="2020">&nbsp;&nbsp;&nbsp;#밀리의서재</option><option value="2030">&nbsp;&nbsp;&nbsp;#YES24</option><option value="2040">&nbsp;&nbsp;&nbsp;#스포티파이');
+												'<option value="2010">   #리디북스</option><option value="2020">   #밀리의서재</option><option value="2030">   #YES24</option><option value="2040">   #스포티파이');
 							} else if (idx_main == "30") {
 								$("#ca_id")
 										.html(
-												'<option value="3010">&nbsp;&nbsp;&nbsp;#닌텐도온라인</option><option value="3050">&nbsp;&nbsp;&nbsp;#XBOX</option>');
+												'<option value="3010">   #닌텐도온라인</option><option value="3050">   #XBOX</option>');
 							} else if (idx_main == "40") {
 								$("#ca_id").html('');
 							} else if (idx_main == "50") {
@@ -620,7 +604,7 @@
 							} else if (idx_main == "60") {
 								$("#ca_id")
 										.html(
-												'<option value="6060">&nbsp;&nbsp;&nbsp;#VPN</option><option value="6050">&nbsp;&nbsp;&nbsp;#맴버쉽</option><option value="6010">&nbsp;&nbsp;&nbsp;#MS Office</option>');
+												'<option value="6060">   #VPN</option><option value="6050">   #맴버쉽</option><option value="6010">   #MS Office</option>');
 							} else if (idx_main == "70") {
 								$("#ca_id").html('');
 							} else if (idx_main == "80") {
@@ -629,97 +613,7 @@
 								$("#ca_id").html('');
 							}
 
-							fn_rdo_checked('');
-
-							if (idx == "1010") {//넷플릭스
-								$('#view_0').show();
-								$('#div_idpw').show();
-								$('#view_1').hide();
-								$('#view_2').hide();
-							} else if (idx == "1020") {//왓챠
-								$('#view_0').show();
-								$('#div_idpw').show();
-								$('#view_1').hide();
-								$('#view_2').hide();
-							} else if (idx == "1030") {//유튜브
-								$('#view_0').hide();
-								$('#div_idpw').hide();
-								$('#view_1').show();
-								$('#view_2').hide();
-								$('#view_3').hide();
-							} else if (idx == "1040") {//웨이브
-								$('#view_0').show();
-								$('#div_idpw').show();
-								$('#view_1').hide();
-								$('#view_2').hide();
-							} else if (idx == "1050") {//티빙
-								$('#view_0').show();
-								$('#div_idpw').show();
-								$('#view_1').hide();
-								$('#view_2').show();
-							} else if (idx == "1080") {//디즈니
-								$('#view_0').show();
-								$('#div_idpw').show();
-								$('#view_1').hide();
-								$('#view_2').hide();
-							} else if (idx == "10a0") {//유튜브
-								$('#view_0').hide();
-								$('#div_idpw').hide();
-								$('#view_1').show();
-								$('#view_2').hide();
-								$('#view_3').hide();
-							} else if (idx == "2010") {//리디북스
-								$('#view_0').hide();
-								$('#div_idpw').show();
-								$('#view_1').hide();
-								$('#view_2').show();
-							} else if (idx == "2020") {//밀리의서재
-								$('#view_0').hide();
-								$('#div_idpw').show();
-								$('#view_1').hide();
-								$('#view_2').show();
-							} else if (idx == "2030") {//YES24북클럽
-								$('#view_0').show();
-								$('#div_idpw').show();
-								$('#view_1').hide();
-								$('#view_2').hide();
-							} else if (idx == "2040") {//스포티파이패밀리
-								$('#view_0').hide();
-								$('#div_idpw').hide();
-								$('#view_1').show();
-								$('#view_2').hide();
-								$('#view_3').hide();
-							} else if (idx == "3010") {//닌텐도온라인
-								$('#view_0').hide();
-								$('#div_idpw').hide();
-								$('#view_1').show();
-								$('#view_2').hide();
-								$('#view_3').hide();
-							} else if (idx == "3050") {//XBOX
-								$('#view_0').hide();
-								$('#div_idpw').hide();
-								$('#view_1').show();
-								$('#view_2').hide();
-								$('#view_3').hide();
-							} else if (idx == "6010") {//MSOffice
-								$('#view_0').hide();
-								$('#div_idpw').hide();
-								$('#view_1').show();
-								$('#view_2').hide();
-								$('#view_3').hide();
-							} else if (idx == "6050") {//맴버쉽
-								$('#view_0').hide();
-								$('#div_idpw').hide();
-								$('#view_1').show();
-								$('#view_2').hide();
-								$('#view_3').hide();
-							} else {
-								$('#view_0').show();
-								$('#div_idpw').show();
-								$('#view_1').show();
-								$('#view_2').show();
-
-							}
+							
 						}
 
 						function category_main_change(f) {
@@ -730,17 +624,17 @@
 								$("#ca_id")
 										.html(
 												sub_val
-														+ '<option value="1010">&nbsp;&nbsp;&nbsp;#넷플릭스</option><option value="1020">&nbsp;&nbsp;&nbsp;#왓챠</option><option value="1030">&nbsp;&nbsp;&nbsp;#유튜브</option><option value="1040">&nbsp;&nbsp;&nbsp;#웨이브</option><option value="1050">&nbsp;&nbsp;&nbsp;#티빙</option><option value="1080">&nbsp;&nbsp;&nbsp;#디즈니</option>');
+														+ '<option value="1010">   #넷플릭스</option><option value="1020">   #왓챠</option><option value="1030">   #유튜브</option><option value="1040">   #웨이브</option><option value="1050">   #티빙</option><option value="1080">   #디즈니</option>');
 							} else if (idx == "20") {
 								$("#ca_id")
 										.html(
 												sub_val
-														+ '<option value="2010">&nbsp;&nbsp;&nbsp;#리디북스</option><option value="2020">&nbsp;&nbsp;&nbsp;#밀리의서재</option><option value="2030">&nbsp;&nbsp;&nbsp;#YES24</option><option value="2040">&nbsp;&nbsp;&nbsp;#스포티파이</option>');
+														+ '<option value="2010">   #리디북스</option><option value="2020">   #밀리의서재</option><option value="2030">   #YES24</option><option value="2040">   #스포티파이</option>');
 							} else if (idx == "30") {
 								$("#ca_id")
 										.html(
 												sub_val
-														+ '<option value="3010">&nbsp;&nbsp;&nbsp;#닌텐도온라인</option><option value="3050">&nbsp;&nbsp;&nbsp;#XBOX</option>');
+														+ '<option value="3010">   #닌텐도온라인</option><option value="3050">   #XBOX</option>');
 							} else if (idx == "40") {
 								$("#ca_id").html(sub_val + '');
 							} else if (idx == "50") {
@@ -749,7 +643,7 @@
 								$("#ca_id")
 										.html(
 												sub_val
-														+ '<option value="6050">&nbsp;&nbsp;&nbsp;#맴버쉽</option><option value="6010">&nbsp;&nbsp;&nbsp;#MS Office</option>');
+														+ '<option value="6050">   #맴버쉽</option><option value="6010">   #MS Office</option>');
 							} else if (idx == "70") {
 								$("#ca_id").html(sub_val + '');
 							} else if (idx == "80") {
@@ -766,12 +660,12 @@
 						function category_sub_change2(f) {
 							var idx = f.ca_id.value;
 
-							if (f.w.value == "" && idx) {
+							/* if (f.w.value == "" && idx) {
 								//f.it_use.checked = ca_use[idx] ? true : false;
 								//f.it_stock_qty.value = ca_stock_qty[idx];
-							}
+							} */
 							$('#view_3').show();
-							fn_rdo_checked('99');
+							//fn_rdo_checked('99');
 
 							if (idx == "1010") {
 								document.getElementById('pt_tag').value = "넷플릭스 프리미엄";
@@ -796,11 +690,10 @@
 								document.getElementById('it_name').value = "유튜브";
 								fn_check('1');
 
-								$('#view_0').hide();
-								$('#div_idpw').hide();
-								$('#view_1').show();
+								$('#view_0').show();
+								$('#div_idpw').show();
+								$('#view_1').hide();
 								$('#view_2').hide();
-								$('#view_3').hide();
 							} else if (idx == "1040") {
 								document.getElementById('pt_tag').value = "WAVVE 프리미엄";
 								document.getElementById('it_name').value = "웨이브";
@@ -818,7 +711,7 @@
 								$('#view_0').show();
 								$('#div_idpw').show();
 								$('#view_1').hide();
-								$('#view_2').show();
+								$('#view_2').hide();
 							} else if (idx == "1080") {
 								document.getElementById('pt_tag').value = "디즈니";
 								document.getElementById('it_name').value = "디즈니플러스";
@@ -833,19 +726,19 @@
 								document.getElementById('it_name').value = "리디북스";
 								fn_check('2');
 
-								$('#view_0').hide();
+								$('#view_0').show();
 								$('#div_idpw').show();
 								$('#view_1').hide();
-								$('#view_2').show();
+								$('#view_2').hide();
 							} else if (idx == "2020") {
 								document.getElementById('pt_tag').value = "밀리 정기구독";
 								document.getElementById('it_name').value = "밀리의서재";
 								fn_check('2');
 
-								$('#view_0').hide();
+								$('#view_0').show();
 								$('#div_idpw').show();
 								$('#view_1').hide();
-								$('#view_2').show();
+								$('#view_2').hide();
 							} else if (idx == "2030") {
 								document.getElementById('pt_tag').value = "YES24 북클럽";
 								document.getElementById('it_name').value = "YES24";
@@ -860,51 +753,46 @@
 								document.getElementById('it_name').value = "스포티파이";
 								fn_check('1');
 
-								$('#view_0').hide();
-								$('#div_idpw').hide();
-								$('#view_1').show();
+								$('#view_0').show();
+								$('#div_idpw').show();
+								$('#view_1').hide();
 								$('#view_2').hide();
-								$('#view_3').hide();
 							} else if (idx == "3010") {
 								document.getElementById('pt_tag').value = "닌텐도온라인";
 								document.getElementById('it_name').value = "닌텐도온라인";
 								fn_check('1');
 
-								$('#view_0').hide();
-								$('#div_idpw').hide();
-								$('#view_1').show();
+								$('#view_0').show();
+								$('#div_idpw').show();
+								$('#view_1').hide();
 								$('#view_2').hide();
-								$('#view_3').hide();
 							} else if (idx == "3050") {
 								document.getElementById('pt_tag').value = "XBOX";
 								document.getElementById('it_name').value = "XBOX";
 								fn_check('1');
 
-								$('#view_0').hide();
-								$('#div_idpw').hide();
-								$('#view_1').show();
+								$('#view_0').show();
+								$('#div_idpw').show();
+								$('#view_1').hide();
 								$('#view_2').hide();
-								$('#view_3').hide();
 							} else if (idx == "6010") {
 								document.getElementById('pt_tag').value = "오피스365";
 								document.getElementById('it_name').value = "오피스365";
 								fn_check('1');
 
-								$('#view_0').hide();
-								$('#div_idpw').hide();
-								$('#view_1').show();
+								$('#view_0').show();
+								$('#div_idpw').show();
+								$('#view_1').hide();
 								$('#view_2').hide();
-								$('#view_3').hide();
 							} else if (idx == "6050") {
 								document.getElementById('pt_tag').value = "맴버쉽";
 								document.getElementById('it_name').value = "맴버쉽";
 								fn_check('1');
 
-								$('#view_0').hide();
-								$('#div_idpw').hide();
-								$('#view_1').show();
+								$('#view_0').show();
+								$('#div_idpw').show();
+								$('#view_1').hide();
 								$('#view_2').hide();
-								$('#view_3').hide();
 							} else {
 								document.getElementById('pt_tag').value = "기타";
 								document.getElementById('it_name').value = "";
@@ -912,8 +800,8 @@
 
 								$('#view_0').show();
 								$('#div_idpw').show();
-								$('#view_1').show();
-								$('#view_2').show();
+								$('#view_1').hide();
+								$('#view_2').hide();S
 							}
 						}
 						function apms_show(id) {
@@ -957,17 +845,17 @@
 							if (val_c == "0") {
 								var_display = 'block';
 								default_chk = 'bcdefghij';
-								var_it_explan = '-&nbsp;프로필은 생성(선택)&nbsp;후 닉네임을 변경하여 사용해 주세요.\n-&nbsp;반드시 본인의 프로필으로 컨텐츠를 이용해 주세요.\n- 1인&nbsp;1회선 사용 원칙으로 합니다.\n-&nbsp;다양한 디바이스에서 접속은 가능하지만 본인이&nbsp;&nbsp;여러대의 기기에서 동시접속은 불가합니다.\n-&nbsp;다수가 사용하는 계정인만큼 불쾌감을 줄 수 있는 프로필 이미지나 닉네임은 피해주세요.\n-&nbsp;계정정보는 본인만 이용하며 절대 타인에게 노출하지 않습니다.';
+								var_it_explan = '- 프로필은 생성(선택) 후 닉네임을 변경하여 사용해 주세요.\n- 반드시 본인의 프로필으로 컨텐츠를 이용해 주세요.\n- 1인 1회선 사용 원칙으로 합니다.\n- 다양한 디바이스에서 접속은 가능하지만 본인이  여러대의 기기에서 동시접속은 불가합니다.\n- 다수가 사용하는 계정인만큼 불쾌감을 줄 수 있는 프로필 이미지나 닉네임은 피해주세요.\n- 계정정보는 본인만 이용하며 절대 타인에게 노출하지 않습니다.';
 								document.getElementById('it_explan').value = var_it_explan;
 							} else if (val_c == "1") {
 								var_display = 'none';
 								default_chk = 'dehi';
-								var_it_explan = '-&nbsp;신청 시 가족그룹에 등록이 가능한 계정을 적어주세요.\n-&nbsp;등록이 늦어 질 경우 카톡으로 로그인 가능한 이메일이나 아이디(로그인 계정) 보내주시면 승인 요청 보내드립니다.&nbsp;\n- 신청 이후 메일에서 내용 확인 후 승인하시면 사용 가능합니다.';
+								var_it_explan = '- 신청 시 가족그룹에 등록이 가능한 계정을 적어주세요.\n- 등록이 늦어 질 경우 카톡으로 로그인 가능한 이메일이나 아이디(로그인 계정) 보내주시면 승인 요청 보내드립니다. \n- 신청 이후 메일에서 내용 확인 후 승인하시면 사용 가능합니다.';
 								document.getElementById('it_explan').value = var_it_explan;
 							} else if (val_c == "2") {
 								var_display = 'block';
 								default_chk = 'bcdehi';
-								var_it_explan = '- 1인&nbsp;1회선 사용 원칙으로 합니다.\n-&nbsp;기본적으로&nbsp;1인&nbsp;1기기 등록(협의)을 원칙으로 하며,&nbsp;기기 변경은 기본 월&nbsp;1회(협의)로 제한 됩니다.\n-&nbsp;계정정보는 본인만 이용하며 절대 타인에게 노출하지 않습니다.&nbsp;';
+								var_it_explan = '- 1인 1회선 사용 원칙으로 합니다.\n- 기본적으로 1인 1기기 등록(협의)을 원칙으로 하며, 기기 변경은 기본 월 1회(협의)로 제한 됩니다.\n- 계정정보는 본인만 이용하며 절대 타인에게 노출하지 않습니다. ';
 								document.getElementById('it_explan').value = var_it_explan;
 							} else if (val_c == "3") {
 								var_display = 'block';
@@ -984,12 +872,12 @@
 							}
 
 							document.getElementById('div_idpw').style.display = var_display;
-							fn_chkbox(default_chk);
+							/* fn_chkbox(default_chk); */
 						}
 
 						fn_check('3');
 
-						function fn_chkbox(var_chk) {
+						/* function fn_chkbox(var_chk) {
 							del_chk = 'abcdefghij';
 							for (i = 0; i < del_chk.length; i++) {
 								document.getElementById('chk_'
@@ -1000,7 +888,7 @@
 								document.getElementById('chk_'
 										+ var_chk.substr(i, 1)).checked = true;
 							}
-						}
+						} */
 
 						function fn_contact(var_no) {
 							if (var_no == "1") {
