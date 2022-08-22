@@ -31,7 +31,7 @@
 								<div class="article"><span style="font-size:9pt;font-family:'맑은 고딕', 'malgun gothic';color:#000000;">벗츠(https://buts.co.kr) 홈페이지 내에서 참여 가능한 서비스를 확인 하실 수 있습니다.<br />
 									해당 파티 중 선택하여 결제 하신 뒤 [내 파티보기] 페이지를 통해 참여하신 서비스의 참여정보(로그인 정보)를 확인 하실 수 있습니다.</span>
 									<p><br /></p>
-									<p><a href="https://buts.co.kr/bbs/guide_buts.php" target="_blank" title="참여방법" rel="nofollow noreferrer noopener"><span style="color:#0080ff;">참여방법 자세히 보기</span></a></p>
+									<p><a href="#" onclick="return false;" target="_blank" title="참여방법" rel="nofollow noreferrer noopener"><span style="color:#0080ff;">참여방법 자세히 보기</span></a></p>
 								</div>
 							</div>
 						</div>
