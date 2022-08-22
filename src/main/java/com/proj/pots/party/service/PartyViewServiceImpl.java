@@ -150,8 +150,11 @@ public class PartyViewServiceImpl implements IPartyViewService{
 	
 	@Override
 	public String accountInsertProc(PartnerInfoDTO partner) {
-		partyViewDao.insertAccount(partner);
-		return "파트너 가입 완료";
+		int i = partyViewDao.insertAccount(partner);
+		if(i == 1)
+			return "성공";
+		else 
+			return "실패";
 	}
 	
 	@Override

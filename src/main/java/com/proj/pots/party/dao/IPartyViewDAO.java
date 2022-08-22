@@ -33,7 +33,7 @@ public interface IPartyViewDAO {
 	
 	PartyMemberDTO payMethod(String id);
 		
-	void insertAccount(PartnerInfoDTO partner); 
+	int insertAccount(PartnerInfoDTO partner); 
 		
 	void updateAccount(PartnerInfoDTO partner);
 	

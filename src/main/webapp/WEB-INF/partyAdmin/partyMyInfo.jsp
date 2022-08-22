@@ -204,7 +204,7 @@ input[type='text'] {
 		*/
 
 		if (confirm("정보수정을 하시겠습니까?")) {
-			f.action = "http://localhost/accountModifyProc";
+			f.action = "accountModifyProc";
 			return true;
 		}
 

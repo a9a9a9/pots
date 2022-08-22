@@ -69,7 +69,7 @@
 	 </select>
 	 
 	 <select id="partyAvailableChk" resultType="PartyListDTO">
-	 SELECT a.party_num, a.party_member, b.party_count AS party_now_member 
+		SELECT a.party_num, a.party_member, b.party_count AS party_now_member 
 		FROM 
 			(SELECT * FROM party WHERE party_num=#{party_num}) 
 			a 
