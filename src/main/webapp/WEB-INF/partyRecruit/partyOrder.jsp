@@ -147,14 +147,14 @@ var g5_purl = "https://buts.co.kr/shop/orderform.php?sw_direct=1";
 				<td class="pc-block">
 					<input type="hidden" name="it_id[0]"    value="">
 					<input type="hidden" name="it_name[0]"  value="${party.party_title }">
-					<input type="hidden" name="it_price[0]" value="${day.diff * party.party_charge }">
+					<input type="hidden" name="it_price[0]" value="${myDay.pay }">
 					<input type="hidden" name="cp_id[0]" value="">
-					<input type="hidden" name="cp_price[0]" value="0">
+					<input type="hidden" name="cp_price[0]" value="${mayDay.plus }">
 					
 					<input type="hidden" name="id" value="${member.id }">
 					<input type="hidden" name="nick" value="${member.nick }">
 					<input type="hidden" name="party_num" value="${party.party_num }">
-					<input type="hidden" name="mycharge" value="${day.diff * party.party_charge }">
+					<input type="hidden" name="mycharge" value="${myDay.pay }">
 					<input type="hidden" name="mystartday" value="">
 					
 					<div class="item-name">
@@ -163,18 +163,18 @@ var g5_purl = "https://buts.co.kr/shop/orderform.php?sw_direct=1";
 						<span class="comment">${party.party_title }</span>
 					</div>
 				</td>
-				<td><strong>${day.diff }</strong>일</td>
-				<td><strong>${day.diff * party.party_charge }</strong>원</td> 
-				<td><strong>${day.plus}</strong>원</td>
-				<td><span class="Rajdhani">${(day.diff * party.party_charge) + day.plus}</span>원</td>  
+				<td><strong>${myDay.diff}</strong>일</td>
+				<td><strong>${myDay.pay}</strong>원</td> 
+				<td><strong>${myDay.plus}</strong>원</td>
+				<td><span class="Rajdhani">${(myDay.pay + myDay.plus)}</span>원</td>  
 				
 			</tr>
 		</tbody>
 	</table>
 </div>
 
-	<input type="hidden" name="od_price"    value="${day.diff * party.party_charge }">
-	<input type="hidden" name="org_od_price"    value="${day.diff * party.party_charge }">
+	<input type="hidden" name="od_price"    value="${myDay.pay }">
+	<input type="hidden" name="org_od_price"    value="${myDay.diff + myDay.plus}">
 	<input type="hidden" name="od_send_cost" value="0">
 	<input type="hidden" name="od_send_cost2" value="0">
 	<input type="hidden" name="item_coupon" value="0">
@@ -182,13 +182,13 @@ var g5_purl = "https://buts.co.kr/shop/orderform.php?sw_direct=1";
 	<input type="hidden" name="od_send_coupon" value="0">
 
 
-<input type="hidden" name="good_mny" value="${day.diff * party.party_charge }"> <!-- 영카트 로직을 위한 값 -->
+<input type="hidden" name="good_mny" value="${myDay.diff + myDay.plus}"> <!-- 영카트 로직을 위한 값 -->
 
 <input type="hidden" id="PayMethod" name="PayMethod" value="">  <!-- 결제수단 // -->
 <input type="hidden" id="MID" name="MID" value="pgbuts001m">  <!-- 가맹점 아이디 // -->
 <input type="hidden" id="MerchantKey" name="MerchantKey" value="IElSrkcNVP9j2Ox4/bX3BKWRRNtTILvIYeM88TB8jTYY8kqmcnvOWwfVlFFfyVa7gijbxtN1EaSnXOmP4suRdA==">
 <input type="hidden" id="GoodsName" name="GoodsName" value="${party.party_title }">  <!-- 상품명 // -->
-<input type="hidden" id="Amt" name="Amt" value="${day.diff * party.party_charge }">  <!-- 상품금액 // -->
+<input type="hidden" id="Amt" name="Amt" value="${myDay.pay + myDay.plus}">  <!-- 상품금액 // -->
 <input type="hidden" id="BuyerName" name="BuyerName" value="${member.name }">  <!-- 구매자명 // -->
 <input type="hidden" id="BuyerTel" name="BuyerTel" value="${member.tel }">  <!-- 구매자 연락처 // -->
 <input type="hidden" id="BuyerEmail" name="BuyerEmail" value="">  <!-- 구매자 이메일 주소 // -->
@@ -262,15 +262,15 @@ var g5_purl = "https://buts.co.kr/shop/orderform.php?sw_direct=1";
 		<ul>
 		<li>
 			<div class="subject">ㆍ 서비스 금액</div>
-			<div class="right">${day.diff * party.party_charge }</div>
+			<div class="right">${myDay.pay}</div>
 		</li>
 		<li>
 			<div class="subject">ㆍ 수수료(10%)</div>
-			<div class="right">0원</div>
+			<div class="right">${myDay.plus }원</div>
 		</li>
 		<li>
 			<div class="subject">ㆍ 합계</div>
-			<div class="right">${day.diff * party.party_charge }</div>
+			<div class="right">${myDay.pay + myDay.plus}</div>
 		</li>
 		<li>
 			<div class="subject">ㆍ 사용 포인트</div>
@@ -278,7 +278,7 @@ var g5_purl = "https://buts.co.kr/shop/orderform.php?sw_direct=1";
 				보유 포인트
 				<span class="text-purple">${member.point }P</span>
 				<input type="hidden" name="max_temp_point" value="${member.point }">
-				<input type="text" name="od_temp_point" id="od_temp_point" onBlur="onlyNumber(this);" class="point" value="0" >
+				<input type="text" name="use_point" id="od_temp_point" onBlur="onlyNumber(this);" class="point" value="0" >
 				<input type="button" id="point_s" value="전액사용" onclick="change_view('1');" class="all button mini button-purple">
 				<input type="button" id="point_c" value="취소" onclick="change_view('2');" style="display:none;" class="all button mini button-purple">
 				<input type="radio" id="od_settle_point" name="od_settle_case" value="포인트" style="display:none;" >
@@ -305,7 +305,11 @@ var g5_purl = "https://buts.co.kr/shop/orderform.php?sw_direct=1";
 		<li class="total">
 			<div class="subject text-purple">총 결제금액</div>
 			<div class="right">
-			<span id="od_last_price" class="Rajdhani text-purple">${day.diff * party.party_charge }</span><span class="won">원</span>
+			<span id="od_last_price" class="Rajdhani text-purple" >
+				 ${(myDay.pay + myDay.plus)}
+			</span>
+			<input type="hidden" id="use_account" name="use_account" value=""/>
+			<span class="won">원</span>
 			</div>
 		</li>
 		</ul>
@@ -325,7 +329,7 @@ var g5_purl = "https://buts.co.kr/shop/orderform.php?sw_direct=1";
 <script>
 	function change_view(check_val)
 	{
-		var tot_price = ${day.diff * party.party_charge};
+		var tot_price = ${myDay.pay + myDay.plus};
 		var mb_point = ${member.point};
 		if(check_val == '1')
 		{
@@ -363,7 +367,7 @@ var g5_purl = "https://buts.co.kr/shop/orderform.php?sw_direct=1";
 	function onlyNumber(obj)
 	{
 		var str_val = obj.value;
-		var tot_price = ${day.diff * party.party_charge};
+		var tot_price = ${myDay.pay + myDay.plus};
 
 		if(str_val.replace(/[0-9]/g, "").length > 0) {
 			alert("수량은 숫자로 입력해 주십시오.");
@@ -387,7 +391,8 @@ var g5_purl = "https://buts.co.kr/shop/orderform.php?sw_direct=1";
 		}
 		else{
 			var od_last_price = parseInt(tot_price) - parseInt(str_val);
-			document.getElementById("od_last_price").innerHTML = number_format(od_last_price);	
+			document.getElementById("od_last_price").innerHTML = number_format(od_last_price);
+			$('input[name=use_account]').attr('value', number_format(od_last_price));
 		}	
 	}
 

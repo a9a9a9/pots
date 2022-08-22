@@ -107,13 +107,12 @@ public class PartyController {
 		}
 		
 		@RequestMapping(value = "/partyOrder")
-		public String partyOrder(Model model, Integer party_num) {
+		public String partyOrder(Model model, Integer party_num, String id) {
 			party_num = 1;
-			String id = "user55";
+			id = "user55";
 			model.addAttribute("member", memberService.memberInfo(id));
 			model.addAttribute("party", service.selectParty(party_num));
-			//model.addAttribute("myDay", service.myPartyDay(id, party_num));
-			model.addAttribute("day", service.partyDay(party_num));
+			model.addAttribute("myDay", service.partyDay(party_num));
 			return "partyRecruit/partyOrder";
 		}
 		
