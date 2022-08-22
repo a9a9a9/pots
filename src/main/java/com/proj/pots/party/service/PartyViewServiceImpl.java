@@ -150,7 +150,6 @@ public class PartyViewServiceImpl implements IPartyViewService{
 	
 	@Override
 	public String accountInsertProc(PartnerInfoDTO partner) {
-		
 		partyViewDao.insertAccount(partner);
 		return "파트너 가입 완료";
 	}
@@ -176,6 +175,7 @@ public class PartyViewServiceImpl implements IPartyViewService{
 		}
 			
 		partyViewDao.insertPartyMember(partyMember);
+		partyViewDao.updatePoint(partyMember);
 		return "신청완료";
 	}
 

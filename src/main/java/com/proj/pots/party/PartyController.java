@@ -106,15 +106,29 @@ public class PartyController {
 			return "partyAdmin/partyCommentList";
 		}
 		
-		@RequestMapping(value = "/partyOrder")
-		public String partyOrder(Model model, Integer party_num) {
+		@RequestMapping(value = "partyOrderInfo")
+		public String partyOrderInfo(Model model, Integer party_num, String id) {
 			party_num = 1;
-			String id = "user55";
+			id = "user55";
 			model.addAttribute("member", memberService.memberInfo(id));
 			model.addAttribute("party", service.selectParty(party_num));
-			//model.addAttribute("myDay", service.myPartyDay(id, party_num));
-			model.addAttribute("day", service.partyDay(party_num));
+			model.addAttribute("end", service.endDay(party_num));
+			model.addAttribute("myDay", service.myPartyDay(id, party_num));
+			model.addAttribute("partyMember", service.partyMember(id));
+			model.addAttribute("method", service.payMethod(id));
+			return "partyRecruit/partyOrderInfo";
+		}
+		
+		@RequestMapping(value = "/partyOrder")
+		public String partyOrder(Model model, Integer party_num, String id) {
+			party_num = 1;
+			id = "user55";
+			model.addAttribute("member", memberService.memberInfo(id));
+			model.addAttribute("party", service.selectParty(party_num));
+			model.addAttribute("myDay", service.partyDay(party_num));
 			return "partyRecruit/partyOrder";
 		}
+		
+		
 		
 }

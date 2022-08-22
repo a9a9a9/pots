@@ -31,7 +31,7 @@ public class PartyMemberDTO extends PartyListDTO{
 	}
 	public void setUse_account(String use_account) {
 		this.use_account = use_account;
-	}
+	} 
 	public String getUse_point() {
 		return use_point;
 	}

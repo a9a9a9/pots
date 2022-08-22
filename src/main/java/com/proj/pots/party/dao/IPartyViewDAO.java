@@ -44,5 +44,7 @@ public interface IPartyViewDAO {
 	PartyListDTO partyAvailableChk(int party_num);
 
 	void updateParty(int party_num);
+	
+	void updatePoint(PartyMemberDTO partyMember);
 
 }

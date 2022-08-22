@@ -21,8 +21,8 @@
 	 </insert>
 	 
 	 <insert id="insertPartyMember" parameterType="PartyMemberDTO">
-	 	INSERT INTO party_member(id, nick, party_num, mycharge, mystartday)
-	 	VALUES (#{id}, #{nick}, #{party_num}, #{mycharge}, NOW());
+	 	INSERT INTO party_member(id, nick, party_num, mycharge, mystartday, use_account, use_point)
+	 	VALUES (#{id}, #{nick}, #{party_num}, #{mycharge}, NOW(), #{use_account}, #{use_point})
 	 </insert>
 	 
 	 <update id="updateAccount" parameterType="PartnerInfoDTO">
@@ -43,10 +43,16 @@
 	 	SELECT DATE_FORMAT(party_end, '%y.%m.%d') AS party_end FROM party WHERE party_num = #{party_num}
 	 </select>
 	 
+	 <!-- 파티 날짜별 금액, 수수료 -->
 	 <select id="partyDay" parameterType="int" resultType="PartyRegDTO">
-	 	SELECT TIMESTAMPDIFF(DAY, party_start, party_end) as diff FROM party WHERE party_num = #{party_num};
+	 	SELECT TIMESTAMPDIFF(DAY, NOW(), party_end) as diff,
+	 		TIMESTAMPDIFF(DAY, NOW(), party_end) * party_charge AS pay,
+	 		TIMESTAMPDIFF(DAY, NOW(), party_end) * party_charge * 0.1 AS plus 
+	 	FROM party WHERE party_num = #{party_num};
+	 	
 	 </select>
 	 
+	 <!-- 파티 회원 날짜별 금액 , 수수료 -->
 	 <select id="myPartyDay" resultType="PartyRegDTO">
 	 	SELECT TIMESTAMPDIFF (DAY, a.mystartday, b.party_end) AS diff, 
 	 		TIMESTAMPDIFF (DAY, a.mystartday, b.party_end) * b.party_charge AS pay, 
@@ -57,7 +63,7 @@
 	 </select>
 	 
 	 <select id="payMethod" parameterType="String" resultType="PartyMemberDTO">
-	 	SELECT use_account , use_point 
+	 	SELECT use_account , use_point
 		FROM party_member
 		WHERE id=#{id} AND use_account > 0  OR use_point > 0;
 	 </select>
@@ -75,6 +81,11 @@
 	 
 	 <update id="updateParty">
 	 	UPDATE party SET party_available='0' WHERE party_num=#{party_num}
+	 </update>
+	 
+	 <update id="updatePoint" parameterType="PartyMemberDTO">
+	 	UPDATE member SET point = point - ${use_point} 
+	 	WHERE id = #{id}
 	 </update>
 			 	 
 </mapper>
