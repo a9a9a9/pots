@@ -15,6 +15,7 @@ import com.proj.pots.party.dto.PartnerInfoDTO;
 import com.proj.pots.party.dto.PartyMemberDTO;
 import com.proj.pots.party.dto.PartyBillDTO;
 import com.proj.pots.party.dto.PartyCommentDTO;
+import com.proj.pots.party.dto.PartyDTO;
 import com.proj.pots.party.dto.PartyListDTO;
 import com.proj.pots.party.dto.PartyParDTO;
 import com.proj.pots.party.dto.PartyRegDTO;
@@ -48,6 +49,30 @@ public class PartyViewServiceImpl implements IPartyViewService{
 	public PartyRegDTO partyDay(Integer party_num) {
 		PartyRegDTO day = partyViewDao.partyDay(party_num); 
 		return day;
+	}
+	
+	@Override
+	public PartyMemberDTO partyMember(String id) {
+		PartyMemberDTO partyMember = partyViewDao.partyMember(id);
+		return partyMember;
+	}
+	
+	@Override
+	public PartyMemberDTO payMethod(String id) {
+		PartyMemberDTO method = partyViewDao.payMethod(id);
+		
+		if(!method.getUse_account().equals("0")) {
+			method.setUse_account("계좌이체");
+		}else {
+			method.setUse_account("");
+		}
+		if(!method.getUse_point().equals("0")) {
+			method.setUse_point("포인트");
+		}else {
+			method.setUse_point("");
+		}
+		
+		return method;
 	}
 	
 	@Override
@@ -111,6 +136,19 @@ public class PartyViewServiceImpl implements IPartyViewService{
 	}
 	
 	@Override
+	public PartyRegDTO endDay(Integer party_num) { 
+		PartyRegDTO end = partyViewDao.endDay(party_num); 
+		return end; 
+	}
+	
+	@Override
+	public PartyRegDTO myPartyDay(String id, Integer party_num) {
+		PartyRegDTO myDay = partyViewDao.myPartyDay(id, party_num);
+		
+		return myDay; 
+	}
+	
+	@Override
 	public String accountInsertProc(PartnerInfoDTO partner) {
 		
 		partyViewDao.insertAccount(partner);
@@ -140,7 +178,5 @@ public class PartyViewServiceImpl implements IPartyViewService{
 		partyViewDao.insertPartyMember(partyMember);
 		return "신청완료";
 	}
-
-	
 
 }

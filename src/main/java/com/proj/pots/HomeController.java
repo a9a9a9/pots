@@ -1,11 +1,19 @@
 package com.proj.pots;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.proj.pots.membership.service.MemberService;
+import com.proj.pots.party.dto.PartyMemberDTO;
+import com.proj.pots.party.service.IPartyViewService;
+
 @Controller
 public class HomeController {
+	
+	@Autowired IPartyViewService service;
+	@Autowired MemberService memberService;
 	
 	@RequestMapping(value = "/")
 	public String index(Model model) { 
@@ -247,7 +255,16 @@ public class HomeController {
 		return "member/updateCheck";
 	}
 	@RequestMapping(value = "partyOrderInfo")
-	public String partyOrderInfo() {
+	public String partyOrderInfo(Model model, Integer party_num, String id) {
+		party_num = 1;
+		id = "user55";
+		
+		model.addAttribute("member", memberService.memberInfo(id));
+		model.addAttribute("party", service.selectParty(party_num));
+		model.addAttribute("end", service.endDay(party_num));
+		model.addAttribute("myDay", service.myPartyDay(id, party_num));
+		model.addAttribute("partyMember", service.partyMember(id));
+		model.addAttribute("method", service.payMethod(id));
 		return "partyRecruit/partyOrderInfo";
 	}
 }

@@ -146,7 +146,7 @@ public class PartyMngController {
 	
 	@RequestMapping(value = "/partyCancelReq")
 	public String partyCancelReq() {
-		return "/index";
+		return "partyAdmin/partyCancelReq";
 	}
 	
 	@RequestMapping(value = "/partyCancelList")

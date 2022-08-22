@@ -39,30 +39,35 @@
 					<span class="brand"><img src="https://buts.co.kr/thema/Buts/colorset/category/6040.jpg" alt="" /></span>
 					
 											<a href="./item.php?it_id=1660890917" class="name">
-							기타						</a>
-										<span class="comment">kg</span>
+							${party.party_service }						</a>
+										<span class="comment">${party.party_title }</span>
 				</div>
 				</td>
 				<td>
 					
-					<strong>
-					2022.08.21					</strong>	
+				 	<strong>${end.party_end}<!-- 2022.08.21	--></strong>	
 					</br>
-					<span class="comment">(총 2일)</span>				
+					<span class="comment">(총 ${myDay.diff }일)</span>		 		
 				</td>
 				<td>
-					<strong>20원</strong>
+					<strong>${myDay.pay }원</strong>
 				</td>
 				<td>
-					<strong>2원</strong>
+					<strong>${myDay.plus}원</strong>
 				</td>
 				<td>
-					<strong>22원</strong>
+					<strong>${myDay.pay + myDay.plus}원</strong>
 				</td>
-				<td>
-											사용중									</td>
+				<c:choose>
+					<c:when test="${myDay.diff >= 0}">
+						<td>사용중</td>
+					</c:when>
+					<c:otherwise>
+						<td>사용완료</td>
+					</c:otherwise>
+				</c:choose>								
 			</tr>
-							</tbody>
+		</tbody>
 	</table>
 </div>
 
@@ -72,15 +77,15 @@
 		<ul>
 			<li>
 				<div class="subject">ㆍ 결제번호</div>
-				<div class="right">2022081915423153</div>
+				<div class="right">${partyMember.no_mem }</div>
 			</li>
 			<li>
 				<div class="subject">ㆍ 결제일시</div>
-				<div class="right">2022-08-19 15:42:37</div>
+				<div class="right">${partyMember.mystartday }</div>
 			</li>
 			<li>
 				<div class="subject">ㆍ 결제방식</div>
-				<div class="right">포인트</div>
+				<div class="right">${method.use_account } ${method.use_point } </div>
 			</li>
 					
 		</ul>
@@ -93,25 +98,26 @@
 		<ul>
 		<li>
 			<div class="subject">ㆍ 총구매액</div>
-			<div class="right">20원</div>
+			<div class="right">${myDay.pay }원</div>
 		</li>
 		<li>
 			<div class="subject">ㆍ 수수료(10%)</div>
 			<div class="right">
-				2원			</div>
+				${myDay.plus}원			</div>
 		</li>
 		<li>
 			<div class="subject">ㆍ 포인트 사용</div>
-			<div class="right">-22P</div>
+			<div class="right">-${partyMember.use_point}P</div>  
 		</li>
 				<li>
 			<div class="subject">ㆍ 미결제액</div>
 			<div class="right">
-				0원			</div>
+				${(myDay.pay + myDay.plus) - (partyMember.use_account+partyMember.use_point)}원			
+			</div>
 		</li>
-				<li class="total">
+		<li class="total">
 			<div class="subject text-purple">결제한 금액</div>
-			<div class="right"><span class="Rajdhani text-purple">0원</span></div>
+			<div class="right"><span class="Rajdhani text-purple">${(partyMember.use_account+partyMember.use_point)}원</span></div>
 		</li>
 		</ul>
 	</div>		

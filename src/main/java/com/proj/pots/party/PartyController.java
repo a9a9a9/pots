@@ -42,8 +42,8 @@ public class PartyController {
 			if(msg.equals("신청불가")) {
 				ra.addFlashAttribute("msg", "<script>alert('이미 모집이 완료된 파티입니다.')</script>");
 				return "redirect:/";
-			}
-			return "redirect:/";
+			} 
+			return "forward:/index?formpath=partyOrderInfo";
 		}
 		
 		@RequestMapping(value = "accountInsertProc")
@@ -112,6 +112,7 @@ public class PartyController {
 			String id = "user55";
 			model.addAttribute("member", memberService.memberInfo(id));
 			model.addAttribute("party", service.selectParty(party_num));
+			//model.addAttribute("myDay", service.myPartyDay(id, party_num));
 			model.addAttribute("day", service.partyDay(party_num));
 			return "partyRecruit/partyOrder";
 		}
