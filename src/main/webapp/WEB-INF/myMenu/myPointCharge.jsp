@@ -6,12 +6,12 @@
 	<div class="wrap wrapper  ko">
 		<div class="body" >
 			<div class="width-container">
-				<form name="forderform" id="forderform" method="post" action="https://buts.co.kr/shop/orderpointformupdate.php" autocomplete="off" role="form" class="form-horizontal">
+				<form name="forderform" id="forderform" method="post" action="ChargeProc"class="form-horizontal">
 					<input type="hidden" name="od_price"    value="">
 					<input type="hidden" name="org_od_price"    value="">
 					<input type="hidden" name="od_send_cost" value="">
-					<input type="hidden" name="od_send_cost2" value="0">
-					<input type="hidden" name="item_coupon" value="0">
+					<input type="hidden" name="check_val" value="">
+<!-- 					<input type="hidden" name="" value=""> -->
 					<input type="hidden" name="od_coupon" value="0">
 					<input type="hidden" name="od_send_coupon" value="0">
 				
@@ -24,7 +24,8 @@
 								<span class="input-check">
 									<input type="radio" id="od_9900" name="od_point" value="9900"  onclick="change_view('9900');" checked />
 									<label for="od_9900">
-										<span class="icon"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-coin-star-big.png" srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/icon-coin-star-big.png 2x" alt="" /></span>
+										<span class="icon">
+										<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-coin-star-big.png" srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/icon-coin-star-big.png 2x" alt="" /></span>
 										<span class="Rajdhani">9,900</span>
 										<span class="tip text-red">(이벤트 기간동안 1인당 1회만 결제가능)</span>
 										<span class="right">
@@ -98,6 +99,7 @@
 						<li>
 							<div class="subject">ㆍ 결재 금액</div>
 							<div class="right"><span class="Rajdhani" id="od_tot_price">9,900</span><span class="won">원</span></div>
+							<input type="hidden" name="price" value="od_point">
 						</li>
 						<li>
 							<div class="subject">ㆍ 결제방법</div>
@@ -109,9 +111,9 @@
 							</div>
 							<div class="account text-right">
 								<select name="od_bank_account" id="od_bank_account">
-									<option value="하나은행 165-910009-55405 김시진" selected="selected">하나은행 165-910009-55405 김시진</option>
+									<option value="우리은행 1002-254-965054 이관리" selected="selected">우리은행 1002-254-965054 이관리</option>
 								</select>
-								<input type="text" name="od_deposit_name" id="od_deposit_name" size="10" maxlength="20" placeholder="입금자명" />	
+								<input type="text" value="${sessionScope.name }" name="od_deposit_name" id="od_deposit_name" size="10" maxlength="20" placeholder="입금자명" />	
 							</div>
 							<p class="lightgrey text-right">
 								*계좌이체 진행시 입금 확인까지 <span class="text-purple">최대 10분 정도 소요</span>됩니다.(단, 해당 은행 점검시간이나 사정에 의하여 늦어질 수 있습니다) <br />
@@ -133,11 +135,12 @@
 						document.getElementById("od_tot_price").innerHTML = number_format(check_val);
 					}
 					$("#settle_bank").show();
-					$("[name=od_deposit_name]").val( '백찬우' );
+					$("[name=od_deposit_name]").val( ${sessionScope.name} );
 				</script>
 				
 				<div id="display_pay_button" class="btn_confirm button-align center">
-				    <input type="submit" value="주문하기" onclick="return forderform_check(this.form);" class="btn_pay btn_submit button large button-purple" style="border:0px;">
+					<a href="ChargeProc?price=${od_point }"/>
+				    <input type="submit" value="주문하기" onclick="#" class="btn_pay btn_submit button large button-purple" style="border:0px;">
 				    <a href="javascript:history.go(-1);" class="button large">취소</a>
 				</div>
 				<div id="display_pay_process" style="display:none">

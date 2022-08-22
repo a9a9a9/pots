@@ -123,4 +123,24 @@ public class MemberService {
 		return "사진 저장";
 	}
 	
+	public String ChargeProc(String od_point) {
+		int pointc = (int)session.getAttribute("point");
+		int priced = Integer.parseInt(od_point);
+//		MemberDTO member = memberDao.selectPoint();
+		MemberDTO member = new MemberDTO();
+//		member = memberDao.selectPoint(id);
+		System.out.println("charge123 : " + od_point);
+		System.out.println("charge12334 : " + pointc);
+		String id = (String) session.getAttribute("id");
+		int point = pointc + priced;
+//		int point = Integer.parseInt(pointcharge);
+		System.out.println(point); 
+		member.setPoint(point);
+		member.setId(id);
+		memberDao.updatePoint(member);
+		session.setAttribute("point", point);
+		return "충전 완료";
+		
+	} 
+	
 }
