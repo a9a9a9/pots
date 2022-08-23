@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet"> 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800" type="text/css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300,200,100" type="text/css">
 
@@ -12,7 +13,11 @@
 <link rel="stylesheet" href="/css/partyAdmin/basic.css">
 <link rel="stylesheet" href="/css/partyAdmin/bootstrap.min.css">
 <link rel="stylesheet" href="/css/partyAdmin/partner.css">
-<meta charset="UTF-8">
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src="https://kit.fontawesome.com/74860f3084.js" crossorigin="anonymous"></script>
+
 <title>Buts</title>
 </head>
 <!--[if lte IE 8]>
@@ -35,12 +40,14 @@ var g5_admin_url = "https://buts.co.kr/adm";
 </script>
 <script src="/js/jquery-1.11.3.min.js"></script>
 <script src="/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="/js/jquery-ui.min.js"></script>
 <script src="https://buts.co.kr/lang/korean/lang.js?ver=180820"></script>
 <script src="/js/common.js"></script>
 <script src="/js/wrest.js"></script>
 <script src="/js/placeholders.min.js"></script>
 <script src="/js/apms.js"></script>
-<link rel="stylesheet" href="/css/font-awesome.min.css">
+<script src="/js/bootstrap.min.js"></script>
+<!-- <link rel="stylesheet" href="/css/font-awesome.min.css"> -->
 </head>
 <body class="responsive is-pc">
 
@@ -54,17 +61,17 @@ var g5_admin_url = "https://buts.co.kr/adm";
 		</a>
 		<ul class="partner-menu">
 			<li class="v-bar right">
-				<a>ㅇㅆㅇ</a>
+				<a>${session.nick}</a>
 			</li>
 			 
 			<li class="v-bar right" style="color:#fff;">
 				개인 파티장
 			</li>
 						<li class="v-bar right">
-				<a href="https://buts.co.kr">벗츠</a>
+				<a href="main">팟츠</a>
 			</li>
 			<li>
-				<a href="https://buts.co.kr/bbs/logout.php">로그아웃</a>
+				<a href="logout">로그아웃</a>
 			</li>
 		</ul>
 		<a href="" class="partner-toggle"><span class="line"></span></a>
@@ -74,25 +81,25 @@ var g5_admin_url = "https://buts.co.kr/adm";
 	<div class="partner-shade"></div>
 	<div class="partner-nav">
 		<ul>
-						<li>
+			<li id="partyList" class="">
 				<a href="partyList"> 파티관리</a>
 			</li>
-			<li>
+			<li id="partyCommentList" class="">
 				<a href="partyCommentList"> 댓글보기</a>
 			</li>
-			<li>
+			<li id="partyJoinList" class="">
 				<a href="partyJoinList"> 참여정보</a>
 			</li>
-			<li>
+			<li id="partyCancelReq" class="">
 				<a href="partyCancelReq"> 취소요청</a>
 			</li>
-			<li>
+			<li id="partyCancelList" class="">
 				<a href="partyCancelList"> 취소내역</a>
 			</li>
-			<li>
+			<li id="partyBill" class="">
 				<a href="partyBill"> 출금관리</a>
 			</li>
-			<li>
+			<li id="partyMyInfo" class="">
 				<a href="partyMyInfo"> 정보수정</a>
 			</li>
 								</ul>

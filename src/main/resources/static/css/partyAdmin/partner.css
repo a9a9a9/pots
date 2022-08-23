@@ -1,3 +1,133 @@
+@charset "UTF-8";
+/* rajdhani-300 - latin */
+
+/* @font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 300;
+  src: url("./fonts/rajdhani-v10-latin-300.eot");
+  IE9 Compat Modes
+  src: local(""), url("./fonts/rajdhani-v10-latin-300.eot?#iefix") format("embedded-opentype"), url("./fonts/rajdhani-v10-latin-300.woff2") format("woff2"), url("./fonts/rajdhani-v10-latin-300.woff") format("woff"), url("./fonts/rajdhani-v10-latin-300.ttf") format("truetype"), url("./fonts/rajdhani-v10-latin-300.svg#Rajdhani") format("svg");
+  Legacy iOS
+}
+
+rajdhani-regular - latin
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 400;
+  src: url("./fonts/rajdhani-v10-latin-regular.eot");
+  IE9 Compat Modes
+  src: local(""), url("./fonts/rajdhani-v10-latin-regular.eot?#iefix") format("embedded-opentype"), url("./fonts/rajdhani-v10-latin-regular.woff2") format("woff2"), url("./fonts/rajdhani-v10-latin-regular.woff") format("woff"), url("./fonts/rajdhani-v10-latin-regular.ttf") format("truetype"), url("./fonts/rajdhani-v10-latin-regular.svg#Rajdhani") format("svg");
+  Legacy iOS
+}
+
+rajdhani-500 - latin
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 500;
+  src: url("./fonts/rajdhani-v10-latin-500.eot");
+  IE9 Compat Modes
+  src: local(""), url("./fonts/rajdhani-v10-latin-500.eot?#iefix") format("embedded-opentype"), url("./fonts/rajdhani-v10-latin-500.woff2") format("woff2"), url("./fonts/rajdhani-v10-latin-500.woff") format("woff"), url("./fonts/rajdhani-v10-latin-500.ttf") format("truetype"), url("./fonts/rajdhani-v10-latin-500.svg#Rajdhani") format("svg");
+  Legacy iOS
+}
+
+rajdhani-600 - latin
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 600;
+  src: url("./fonts/rajdhani-v10-latin-600.eot");
+  IE9 Compat Modes
+  src: local(""), url("./fonts/rajdhani-v10-latin-600.eot?#iefix") format("embedded-opentype"), url("./fonts/rajdhani-v10-latin-600.woff2") format("woff2"), url("./fonts/rajdhani-v10-latin-600.woff") format("woff"), url("./fonts/rajdhani-v10-latin-600.ttf") format("truetype"), url("./fonts/rajdhani-v10-latin-600.svg#Rajdhani") format("svg");
+  Legacy iOS
+}
+
+rajdhani-700 - latin
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 700;
+  src: url("./fonts/rajdhani-v10-latin-700.eot");
+  IE9 Compat Modes
+  src: local(""), url("./fonts/rajdhani-v10-latin-700.eot?#iefix") format("embedded-opentype"), url("./fonts/rajdhani-v10-latin-700.woff2") format("woff2"), url("./fonts/rajdhani-v10-latin-700.woff") format("woff"), url("./fonts/rajdhani-v10-latin-700.ttf") format("truetype"), url("./fonts/rajdhani-v10-latin-700.svg#Rajdhani") format("svg");
+  Legacy iOS
+}
+
+noto-sans-kr-100 - latin_korean
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 100;
+  src: url("./fonts/noto-sans-kr-v13-latin_korean-100.eot");
+  IE9 Compat Modes
+  src: local(""), url("./fonts/noto-sans-kr-v13-latin_korean-100.eot?#iefix") format("embedded-opentype"), url("./fonts/noto-sans-kr-v13-latin_korean-100.woff2") format("woff2"), url("./fonts/noto-sans-kr-v13-latin_korean-100.woff") format("woff"), url("./fonts/noto-sans-kr-v13-latin_korean-100.ttf") format("truetype"), url("./fonts/noto-sans-kr-v13-latin_korean-100.svg#NotoSansKR") format("svg");
+  Legacy iOS
+}
+
+noto-sans-kr-300 - latin_korean
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 300;
+  src: url("./fonts/noto-sans-kr-v13-latin_korean-300.eot");
+  IE9 Compat Modes
+  src: local(""), url("./fonts/noto-sans-kr-v13-latin_korean-300.eot?#iefix") format("embedded-opentype"), url("./fonts/noto-sans-kr-v13-latin_korean-300.woff2") format("woff2"), url("./fonts/noto-sans-kr-v13-latin_korean-300.woff") format("woff"), url("./fonts/noto-sans-kr-v13-latin_korean-300.ttf") format("truetype"), url("./fonts/noto-sans-kr-v13-latin_korean-300.svg#NotoSansKR") format("svg");
+  Legacy iOS
+}
+
+noto-sans-kr-regular - latin_korean
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  src: url("./fonts/noto-sans-kr-v13-latin_korean-regular.eot");
+  IE9 Compat Modes
+  src: local(""), url("./fonts/noto-sans-kr-v13-latin_korean-regular.eot?#iefix") format("embedded-opentype"), url("./fonts/noto-sans-kr-v13-latin_korean-regular.woff2") format("woff2"), url("./fonts/noto-sans-kr-v13-latin_korean-regular.woff") format("woff"), url("./fonts/noto-sans-kr-v13-latin_korean-regular.ttf") format("truetype"), url("./fonts/noto-sans-kr-v13-latin_korean-regular.svg#NotoSansKR") format("svg");
+  Legacy iOS
+}
+
+noto-sans-kr-500 - latin_korean
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 500;
+  src: url("./fonts/noto-sans-kr-v13-latin_korean-500.eot");
+  IE9 Compat Modes
+  src: local(""), url("./fonts/noto-sans-kr-v13-latin_korean-500.eot?#iefix") format("embedded-opentype"), url("./fonts/noto-sans-kr-v13-latin_korean-500.woff2") format("woff2"), url("./fonts/noto-sans-kr-v13-latin_korean-500.woff") format("woff"), url("./fonts/noto-sans-kr-v13-latin_korean-500.ttf") format("truetype"), url("./fonts/noto-sans-kr-v13-latin_korean-500.svg#NotoSansKR") format("svg");
+  Legacy iOS
+}
+
+noto-sans-kr-700 - latin_korean
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 700;
+  src: url("./fonts/noto-sans-kr-v13-latin_korean-700.eot");
+  IE9 Compat Modes
+  src: local(""), url("./fonts/noto-sans-kr-v13-latin_korean-700.eot?#iefix") format("embedded-opentype"), url("./fonts/noto-sans-kr-v13-latin_korean-700.woff2") format("woff2"), url("./fonts/noto-sans-kr-v13-latin_korean-700.woff") format("woff"), url("./fonts/noto-sans-kr-v13-latin_korean-700.ttf") format("truetype"), url("./fonts/noto-sans-kr-v13-latin_korean-700.svg#NotoSansKR") format("svg");
+  Legacy iOS
+}
+
+noto-sans-kr-900 - latin_korean
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 900;
+  src: url("./fonts/noto-sans-kr-v13-latin_korean-900.eot");
+  IE9 Compat Modes
+  src: local(""), url("./fonts/noto-sans-kr-v13-latin_korean-900.eot?#iefix") format("embedded-opentype"), url("./fonts/noto-sans-kr-v13-latin_korean-900.woff2") format("woff2"), url("./fonts/noto-sans-kr-v13-latin_korean-900.woff") format("woff"), url("./fonts/noto-sans-kr-v13-latin_korean-900.ttf") format("truetype"), url("./fonts/noto-sans-kr-v13-latin_korean-900.svg#NotoSansKR") format("svg");
+  Legacy iOS
+} */
+
+@import url(http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb);  
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+.nanumgothic * {
+ font-family: 'Nanum Gothic', sans-serif;
+}
+
 body {
   padding: 0;
   font-size: 13px;
@@ -24,7 +154,7 @@ a:visited {
 }
 
 a:hover {
-  color: #7e69fe;
+  color: #84cdcf;
 }
 
 img,
@@ -44,7 +174,7 @@ select {
 }
 
 select:focus {
-  border: solid 1px #7e69fe;
+  border: solid 1px #84cdcf;
 }
 
 textarea {
@@ -59,7 +189,7 @@ textarea {
 }
 
 textarea:focus {
-  border: solid 1px #7e69fe;
+  border: solid 1px #84cdcf;
 }
 
 textarea::-webkit-input-placeholder {
@@ -97,7 +227,7 @@ input[type='password'] {
 
 input[type='text']:focus,
 input[type='password']:focus {
-  border: solid 1px #a89cf4;
+  border: solid 1px #84cdcf;
 }
 
 input[type='text']::-webkit-input-placeholder,
@@ -183,9 +313,9 @@ input[type='password']:disabled {
   /* 체크표시 유니코드 사용 */
   font-size: 12px;
   font-weight: 600;
-  color: #7e69fe;
+  color: #84cdcf;
   line-height: 16px;
-  border-color: #7e69fe;
+  border-color: #84cdcf;
 }
 
 .input-check input[type='radio'] {
@@ -248,7 +378,7 @@ input[type='password']:disabled {
   margin-top: -5px;
   background: #99a1a7;
   border-radius: 100%;
-  background-color: #7e69fe;
+  background-color: #84cdcf;
 }
 
 .input-file {
@@ -308,7 +438,7 @@ input[type='password']:disabled {
 }
 
 .text-purple {
-  color: #7e69fe !important;
+  color: #84cdcf !important;
 }
 
 .text-red {
@@ -408,7 +538,7 @@ input[type='password']:disabled {
 }
 
 .title-wrap.border {
-  border-bottom: 2px solid #7e69fe;
+  border-bottom: 2px solid #84cdcf;
 }
 
 .title {
@@ -531,8 +661,8 @@ input[type='password']:disabled {
 }
 
 .button.border.button-purple {
-  color: #7e69fe;
-  border: solid 1px #a89cf4;
+  color: #84cdcf;
+  border: solid 1px #84cdcf;
   background-color: #ffffff;
 }
 
@@ -543,7 +673,7 @@ input[type='password']:disabled {
 }
 
 .button.button-purple {
-  background-color: #7e69fe;
+  background-color: #84cdcf;
 }
 
 .button.button-red {
@@ -645,7 +775,7 @@ input[type='password']:disabled {
 .indicator a.on,
 .indicator span.on {
   width: 18px;
-  background-color: #7e69fe;
+  background-color: #84cdcf;
   -webkit-transition: width 0.5s;
   transition: width 0.5s;
 }
@@ -733,7 +863,7 @@ input[type='password']:disabled {
   padding: 8px 10px;
   font-size: 12px;
   font-weight: 300;
-  color: #7e69fe;
+  color: #84cdcf;
   word-break: keep-all;
   line-height: 16px;
   border: 1px solid #d5d0f5;
@@ -754,7 +884,7 @@ input[type='password']:disabled {
 .search-bar input,
 .search-bar .submit {
   border: 0;
-  border-bottom: 1px solid #7e69fe;
+  border-bottom: 1px solid #84cdcf;
 }
 
 .search-bar select {
@@ -769,7 +899,7 @@ input[type='password']:disabled {
 
 .search-bar input:focus {
   border: 0;
-  border-bottom: 1px solid #7e69fe;
+  border-bottom: 1px solid #84cdcf;
 }
 
 .search-bar .submit {
@@ -805,7 +935,7 @@ input[type='password']:disabled {
   margin: 0 6px;
   color: white;
   text-decoration: none;
-  background-color: #7e69fe;
+  background-color: #84cdcf;
   border-radius: 50%;
   cursor: default;
 }
@@ -1288,10 +1418,10 @@ input[type='password']:disabled {
   height: 20px;
   margin-top: -10px;
   font-size: 11px;
-  color: #7e69fe;
+  color: #84cdcf;
   text-align: center;
   vertical-align: middle;
-  border: 1px solid #7e69fe;
+  border: 1px solid #84cdcf;
   border-radius: 4px;
 }
 
@@ -1422,7 +1552,7 @@ input[type='password']:disabled {
 }
 
 .pevent-tab a.active {
-  color: #7e69fe;
+  color: #84cdcf;
 }
 
 .pevent-banner {
@@ -1502,7 +1632,7 @@ input[type='password']:disabled {
 }
 
 .pevent-list .subject:hover {
-  color: #7e69fe;
+  color: #84cdcf;
 }
 
 .pevent-list .state {
@@ -1700,7 +1830,7 @@ input[type='password']:disabled {
 .form-round {
   position: relative;
   padding: 25px 40px;
-  border: solid 1px #cec8f1;
+  border: solid 1px #84cdcf;
   border-radius: 20px;
 }
 
@@ -1781,7 +1911,7 @@ input[type='password']:disabled {
 }
 
 .form-list.border select:focus {
-  border: solid 1px #7e69fe;
+  border: solid 1px #84cdcf;
 }
 
 .form-list.border input[type='text'],
@@ -1848,7 +1978,7 @@ input[type='password']:disabled {
   position: relative;
   top: -1px;
   padding: 0 15px !important;
-  border: 1px solid #7e69fe !important;
+  border: 1px solid #84cdcf !important;
   background-color: #f9f9f9;
 }
 
@@ -2108,7 +2238,7 @@ input[type='password']:disabled {
   height: 20px;
   color: white;
   text-align: center;
-  background-color: #7e69fe;
+  background-color: #84cdcf;
   border-radius: 50%;
 }
 
@@ -2144,7 +2274,7 @@ input[type='password']:disabled {
   left: 0;
   width: 100%;
   height: 12px;
-  background-color: #7e69fe;
+  background-color: #84cdcf;
   border-radius: 6px;
 }
 
@@ -2169,7 +2299,7 @@ input[type='password']:disabled {
 .form-profile .point .Rajdhani {
   font-size: 24px;
   font-weight: bold;
-  color: #7e69fe;
+  color: #84cdcf;
   vertical-align: middle;
 }
 
@@ -2416,7 +2546,7 @@ input[type='password']:disabled {
     display: block;
     margin: 6px 0 6px 0;
   }
-  .form-list .phone {
+  .form-list .phone { 
     margin-top: 8px;
   }
   .form-list .account select {
@@ -2618,7 +2748,7 @@ a:visited {
 }
 
 a:hover {
-  color: #7e69fe;
+  color: #84cdcf;
 }
 
 img,
@@ -2638,7 +2768,7 @@ select {
 }
 
 select:focus {
-  border: solid 1px #7e69fe;
+  border: solid 1px #84cdcf;
 }
 
 textarea {
@@ -2653,7 +2783,7 @@ textarea {
 }
 
 textarea:focus {
-  border: solid 1px #7e69fe;
+  border: solid 1px #84cdcf;
 }
 
 textarea::-webkit-input-placeholder {
@@ -2691,7 +2821,7 @@ input[type='password'] {
 
 input[type='text']:focus,
 input[type='password']:focus {
-  border: solid 1px #a89cf4;
+  border: solid 1px #84cdcf;
 }
 
 input[type='text']::-webkit-input-placeholder,
@@ -2777,9 +2907,9 @@ input[type='password']:disabled {
   /* 체크표시 유니코드 사용 */
   font-size: 12px;
   font-weight: 600;
-  color: #7e69fe;
+  color: #84cdcf;
   line-height: 16px;
-  border-color: #7e69fe;
+  border-color: #84cdcf;
 }
 
 .input-check input[type='radio'] {
@@ -2842,7 +2972,7 @@ input[type='password']:disabled {
   margin-top: -5px;
   background: #99a1a7;
   border-radius: 100%;
-  background-color: #7e69fe;
+  background-color: #84cdcf;
 }
 
 .input-file {
@@ -2902,7 +3032,7 @@ input[type='password']:disabled {
 }
 
 .text-purple {
-  color: #7e69fe !important;
+  color: #84cdcf !important;
 }
 
 .text-red {
@@ -3002,7 +3132,7 @@ input[type='password']:disabled {
 }
 
 .title-wrap.border {
-  border-bottom: 2px solid #7e69fe;
+  border-bottom: 2px solid #84cdcf;
 }
 
 .title {
@@ -3125,8 +3255,8 @@ input[type='password']:disabled {
 }
 
 .button.border.button-purple {
-  color: #7e69fe;
-  border: solid 1px #a89cf4;
+  color: #84cdcf;
+  border: solid 1px #84cdcf;
   background-color: #ffffff;
 }
 
@@ -3137,7 +3267,7 @@ input[type='password']:disabled {
 }
 
 .button.button-purple {
-  background-color: #7e69fe;
+  background-color: #84cdcf;
 }
 
 .button.button-red {
@@ -3239,7 +3369,7 @@ input[type='password']:disabled {
 .indicator a.on,
 .indicator span.on {
   width: 18px;
-  background-color: #7e69fe;
+  background-color: #84cdcf;
   -webkit-transition: width 0.5s;
   transition: width 0.5s;
 }
@@ -3327,7 +3457,7 @@ input[type='password']:disabled {
   padding: 8px 10px;
   font-size: 12px;
   font-weight: 300;
-  color: #7e69fe;
+  color: #84cdcf;
   word-break: keep-all;
   line-height: 16px;
   border: 1px solid #d5d0f5;
@@ -3348,7 +3478,7 @@ input[type='password']:disabled {
 .search-bar input,
 .search-bar .submit {
   border: 0;
-  border-bottom: 1px solid #7e69fe;
+  border-bottom: 1px solid #84cdcf;
 }
 
 .search-bar select {
@@ -3363,7 +3493,7 @@ input[type='password']:disabled {
 
 .search-bar input:focus {
   border: 0;
-  border-bottom: 1px solid #7e69fe;
+  border-bottom: 1px solid #84cdcf;
 }
 
 .search-bar .submit {
@@ -3399,7 +3529,7 @@ input[type='password']:disabled {
   margin: 0 6px;
   color: white;
   text-decoration: none;
-  background-color: #7e69fe;
+  background-color: #84cdcf;
   border-radius: 50%;
   cursor: default;
 }
@@ -3782,7 +3912,7 @@ input[type='password']:disabled {
 }
 
 .dialog.border {
-  border-top: 3px solid #7e69fe;
+  border-top: 3px solid #84cdcf;
 }
 
 .dialog.center {
@@ -3856,16 +3986,16 @@ input[type='password']:disabled {
 
 .dialog-step span.active {
   color: white;
-  border: solid 1px #7e69fe;
-  background-color: #7e69fe;
+  border: solid 1px #84cdcf;
+  background-color: #84cdcf;
 }
 
 .dialog-step span.active::before {
-  border-left: 12px solid #7e69fe;
+  border-left: 12px solid #84cdcf;
 }
 
 .dialog-step span.active::after {
-  border-left: 10px solid #7e69fe;
+  border-left: 10px solid #84cdcf;
 }
 
 .dialog-step span::before, .dialog-step span::after {
@@ -4053,8 +4183,8 @@ input[type='password']:disabled {
 }
 
 .dialog-select a.active {
-  color: #7e69fe;
-  border: solid 1px #7e69fe;
+  color: #84cdcf;
+  border: solid 1px #84cdcf;
 }
 
 .dialog-reject {
@@ -4132,7 +4262,7 @@ input[type='password']:disabled {
 .dialog-cash .Rajdhani {
   font-size: 28px;
   font-weight: bold;
-  color: #7e69fe;
+  color: #84cdcf;
   vertical-align: middle;
 }
 
@@ -4207,7 +4337,7 @@ input[type='password']:disabled {
   position: relative;
   padding: 25px 30px;
   border: solid 1px #ececec;
-  border-top: 2px solid #7e69fe;
+  border-top: 2px solid #84cdcf;
 }
 
 .dialog-msg P {
@@ -4533,7 +4663,7 @@ input[type='password']:disabled {
   left: 0;
   width: 100%;
   height: 80px;
-  background-color: #7e69fe;
+  background-color: #84cdcf;
   z-index: 900;
 }
 
@@ -4599,7 +4729,7 @@ input[type='password']:disabled {
 }
 
 .partner-menu .v-bar::after {
-  border-left: 1px solid #988af2;
+  border-left: 1px solid #84cdcf;
 }
 
 .partner-nav {
@@ -4608,7 +4738,7 @@ input[type='password']:disabled {
   left: 0;
   width: 220px;
   height: calc(100% - 80px);
-  border-right: 1px solid #cec8f1;
+  border-right: 1px solid #84cdcf;
   background-color: white;
   z-index: 700;
 }
@@ -4630,8 +4760,8 @@ input[type='password']:disabled {
 }
 
 .partner-nav li:hover a, .partner-nav li.active a {
-  background: #f9f9f9 url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAYAAAB4zEQNAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAG9JREFUeNpirMv8xwAE7AwQ8JMBCTBBJdYD8QYkRXBJOSA2AWIPdAUgydtA7AjEr6EK1sMUMEEVXUVS4AlTwMSAHTAi69QG4v1ALArEO4A4AORykKQqNgmQDhYgfgTEZ6EmBCD7lQXKCcAWCAABBgCLQRb10KsUHgAAAABJRU5ErkJggg==") no-repeat calc(100% - 30px) 50%;
-  color: #7e69fe !important;
+  background: #f9f9f9 url("/img/arrow.png") no-repeat calc(100% - 30px) 50%;
+  color: #84cdcf !important;
   background-color: #f9f9f9 !important;
 }
 
@@ -4657,7 +4787,7 @@ input[type='password']:disabled {
   margin-top: 60px;
   padding: 19px 34px;
   background-color: #f5f5f5;
-  border: 1px solid #cec8f1;
+  border: 1px solid #84cdcf;
 }
 
 .partner-well select {
@@ -4697,7 +4827,7 @@ input[type='password']:disabled {
   position: absolute;
   top: 8px;
   right: 10px;
-  color: #7e69fe;
+  color: #84cdcf;
 }
 
 .partner-calendar {
@@ -4763,16 +4893,16 @@ input[type='password']:disabled {
 }
 
 .table-list .emphasis td {
-  border-top: 1px solid #cec8f1;
-  border-bottom: 1px solid #cec8f1;
+  border-top: 1px solid #84cdcf;
+  border-bottom: 1px solid #84cdcf;
 }
 
 .table-list .emphasis td:first-child {
-  border-left: 1px solid #cec8f1;
+  border-left: 1px solid #84cdcf;
 }
 
 .table-list .emphasis td:last-child {
-  border-right: 1px solid #cec8f1;
+  border-right: 1px solid #84cdcf;
 }
 
 .table-list .bg-grey td {
@@ -4787,10 +4917,10 @@ input[type='password']:disabled {
   height: 20px;
   font-size: 11px;
   font-weight: 300;
-  color: #7e69fe;
+  color: #84cdcf;
   text-align: center;
   line-height: 18px;
-  border: 1px solid #7e69fe;
+  border: 1px solid #84cdcf;
   border-radius: 4px;
 }
 
@@ -4832,7 +4962,7 @@ input[type='password']:disabled {
   margin-top: 8px;
   color: white;
   line-height: 52px;
-  background-color: #7e69fe;
+  background-color: #84cdcf;
 }
 
 .withdraw-price strong {
@@ -4842,7 +4972,7 @@ input[type='password']:disabled {
 
 .withdraw-account {
   padding: 15px 15px 0px 15px;
-  border: solid 1px #cec8f1;
+  border: solid 1px #84cdcf;
   border-top: 0;
   background-color: #f9f9f9;
 }
@@ -4985,7 +5115,7 @@ select[class*='ui-datepicker'] {
     font-size: 13px;
   }
   .partner-menu .v-bar::after {
-    border-left: 1px solid #988af2;
+    border-left: 1px solid #84cdcf;
   }
   .partner-nav {
     top: 50px;
@@ -5030,7 +5160,7 @@ select[class*='ui-datepicker'] {
     width: calc(100% + 30px);
     padding: 10px;
     border: 0;
-    border-bottom: 1px solid #cec8f1;
+    border-bottom: 1px solid #84cdcf;
   }
   .partner-well select {
     width: 100px;
@@ -5070,5 +5200,6 @@ select[class*='ui-datepicker'] {
   }
   .table-list .guide {
     line-height: 16px;
-  } 
+  }
 }
+/*# sourceMappingURL=partner.css.map */
