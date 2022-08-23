@@ -1,4 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<style>
+	#naverIdLogin_loginButton{display: contents;}
+	#naverIdLogin_loginButton img{position: relative; float: left;}
+</style>
 <body>
 	<div class="body">
 <div class="width-container">
@@ -19,7 +25,7 @@
          
       
                                  <!-- 네이버아이디로로그인 버튼 노출 영역 --> 
-                        <div class="naver_div"><a id="naverIdLogin" class="btn_start btn_naver" style="padding: 20px; display: contents;" />
+                        <div style="display: contents;"><a id="naverIdLogin" class="btn_start btn_naver" style="padding: 20px; display: contents;" />
                         
                                  <!-- //네이버 아이디로 로그인 버튼 노출 영역 -->
                                   
@@ -37,10 +43,6 @@
                                      
                                      /* 설정정보를 초기화하고 연동을 준비 */
                                      naverLogin.init();
-                                     
-                                     document.getElementById('name');
-                                     document.getElementById('name').innerHTML="이순신";
-                                    		 출처: https://meaningone.tistory.com/316 [의미 하나:티스토리]
 //                                      const handleClick = () => {
 //                                          naverRef.current.children[0].click();
 //                                      }
@@ -54,7 +56,7 @@
 //                                     	        </>
 //                                     	    )
                                      
-                                 </script> <p class="naver_font">네이버로 회원가입 하기</p></div>
+                                 </script>&nbsp;&nbsp;&nbsp;&nbsp;네이버로 회원가입 하기</div>
 
 <!-- 			<a href="javascrip:;" -->
 <!-- 				onclick="nwindow('https://buts.co.kr/plugin/social/popup.php?provider=kakao&amp;url=https://buts.co.kr/bbs/register.php')" -->
