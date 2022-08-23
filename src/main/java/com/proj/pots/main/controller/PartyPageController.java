@@ -22,7 +22,7 @@ public class PartyPageController {
 	@RequestMapping(value = "main")
 	public String main(Model model,HttpServletRequest req, @RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage) throws ParseException {
 		service.mainList(model, currentPage, req);
-		return "forward:/index?formpath=main";
+		return "main";
 	}
 	
 	// 카테고리

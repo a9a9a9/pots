@@ -19,23 +19,7 @@
 		alert('로그아웃 하셨습니다.');
 	}
 </script>
-<style>
-	.at-container {max-width:1200px;}
-	.no-responsive .wrapper, .no-responsive .at-container-wide { min-width:1200px; }
-	.no-responsive .boxed.wrapper, .no-responsive .at-container { width:1200px; }
-	.at-menu .nav-height { height:44px; line-height:44px !important; }
-	.pc-menu, .pc-menu .nav-full-back, .pc-menu .nav-full-height { height:44px; }
-	.pc-menu .nav-top.nav-float .menu-a { padding:0px 25px; }
-	.pc-menu .nav-top.nav-float .sub-1div::before { left: 25px; }
-	.pc-menu .subm-w { width:170px; }
-	@media all and (min-width:1200px) {
-		.responsive .boxed.wrapper { max-width:1200px; }
-	}
-</style>
-<!-- <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" /> -->
-<!-- 	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/> -->
-<!-- <script type="text/javascript" -->
-<!-- 	src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script> -->
+
 </head>
 <body class="responsive is-pc">
 
@@ -60,32 +44,44 @@
 					
 					<div class="item-boundary">
 						<div class="item-list" style="left: 0px;">
-							<div class="item-row">
-								<div class="item-type">YES24 북클럽</div>
-								<div class="item-title">신용1등급 / 2개월 / 일60원</div>
-								<div class="item-members">
-									<span class="item-member">
-									<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small.png" alt=""></span> 
-									<span class="item-member">
-									<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small.png" alt=""></span> 
-									<span class="item-member">
-									<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small.png" alt=""></span> 
-									<span class="item-member">
-									<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small-glay.png" alt=""></span> 
-									<span class="item-member">
-									<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small-glay.png" alt=""></span>
-								</div>
-								<div class="item-info">
-									<div class="item-date">
-										22.10.13<span class="pc-inline">까지</span>(<strong>55</strong>일)
+							<c:forEach var="list" items="${list}">
+							<c:choose>
+							<c:when test="${!empty list}">
+								<c:if test="${list.party_available == 1}">
+								<div class="item-row">
+									<div class="item-type">${list.party_subservice}</div>
+									<div class="item-title">${list.party_title}</div>
+									<div class="item-members">
+										<c:forEach begin="1" end="${list.party_now_member}">
+											<span class="item-member"><img src="/img/icon-butsicon-small.png" alt="" /></span>
+										</c:forEach>
+										<c:forEach begin="1" end="${list.party_member-list.party_now_member}">
+											<span class="item-member"><img src="/img/icon-butsicon-small-glay.png" alt="" /></span>
+										</c:forEach>
 									</div>
-									<div class="item-price">
-										<span class="Rajdhani">3,300</span>원
+									
+									<div class="item-info">
+										<div class="item-date">
+											${list.party_end_form }<span class="pc-inline">까지</span>(<strong>${list.party_left_date }</strong>일)
+										</div>
+										<div class="item-price">
+											<span class="Rajdhani">${list.party_total_charge }</span>원
+										</div>
 									</div>
+									<a href="${root}index?formpath=partyMain?party_num=${list.party_num}" class="item-button"></a>
 								</div>
-								<a href="https://buts.co.kr/shop/item.php?it_id=1660324389"
-									class="item-button"></a>
-							</div>
+								</c:if>
+							</c:when>
+							</c:choose>
+							</c:forEach>
+							<c:choose>
+								<c:when test="${empty list}">
+									<div class="empty">
+										<div class="icon"><img src="/img/icon-butsicon-big-glay.png" /></div>
+										<h5>등록된 내용이 없습니다.</h5>
+									</div>
+								</c:when>
+							</c:choose>
 						</div>
 					</div>
 					<div class="indicator">

@@ -238,10 +238,10 @@ public class HomeController {
 	public String profile() {
 		return "member/profile";
 	}
-	@RequestMapping(value = "main")
-	public String main() {
-		return "main";
-	}
+//	@RequestMapping(value = "main")
+//	public String main() {
+//		return "main";
+//	}
 	@RequestMapping(value = "updateCheck")
 	public String updateCheck() {
 		return "member/updateCheck";
