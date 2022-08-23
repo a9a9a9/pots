@@ -81,7 +81,7 @@
 		<div class="topper-menu">
 			<a href="${root}boardProc" class="v-bar">커뮤니티</a>
 <%-- 			<a href="${root}index?formpath=eventMain" class="v-bar">이벤트</a>  --%>
-			<a href="${root}index?formpath=noticeBoard">공지사항</a>
+			<a href="${root}noticeProc">공지사항</a>
 		</div>
 	</div>
 </div>
