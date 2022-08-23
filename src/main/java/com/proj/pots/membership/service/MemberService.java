@@ -1,14 +1,18 @@
 package com.proj.pots.membership.service;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 
 import com.proj.pots.member.dto.LoginDTO;
 import com.proj.pots.member.dto.MemberDTO;
+import com.proj.pots.member.dto.PointDTO;
 import com.proj.pots.membership.dao.IMemberDAO;
 
 @Service
@@ -131,24 +135,40 @@ public class MemberService {
 		return "사진 저장";
 	}
 	
-	public String ChargeProc(String od_point) {
+	public String ChargeProc(String od_point, Model model) {
 		int pointc = (int)session.getAttribute("point");
 		int priced = Integer.parseInt(od_point);
-//		MemberDTO member = memberDao.selectPoint();
+
 		MemberDTO member = new MemberDTO();
-//		member = memberDao.selectPoint(id);
+
+		// 충전 포인트 금액
 		System.out.println("charge123 : " + od_point);
 		System.out.println("charge12334 : " + pointc);
 		String id = (String) session.getAttribute("id");
 		int point = pointc + priced;
-//		int point = Integer.parseInt(pointcharge);
-		System.out.println(point); 
+
+		System.out.println("chargePoint : " + point); 
+		// 충전 내용
+		PointDTO pointDto = new PointDTO();
+		String content = "포인트 충전";
+		pointDto.setId(id);
+		pointDto.setPoint_content(content);
+		pointDto.setPoint_charge(priced);
+		
 		member.setPoint(point);
-		member.setId(id);
+		member.setId(id); 
+		
+		ArrayList<PointDTO> pointlist = memberDao.selectPoint(pointDto);
+		model.addAttribute("pointlist", pointlist);
+		
 		memberDao.updatePoint(member);
+		memberDao.insertContent(pointDto);
 		session.setAttribute("point", point);
+		
 		return "충전 완료";
 		
 	} 
+	
+
 	
 }

@@ -38,6 +38,7 @@ public class LoginServiceImpl implements ILoginService{
 			
 			MemberDTO member = memberDao.memberInfo(check.getId());
 			session.setAttribute("nick", member.getNick());
+			session.setAttribute("name", member.getName());
 			session.setAttribute("profile", member.getProfile());
 			session.setAttribute("point", member.getPoint());
 			session.setAttribute("tel", member.getTel());
