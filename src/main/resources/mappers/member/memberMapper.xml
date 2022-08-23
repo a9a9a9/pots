@@ -49,11 +49,15 @@
 	<select id="selectPoint" resultType="MemberDTO">
 		SELECT point FROM member WHERE id=#{id}
 	</select>
-<!-- 	<update id="updatePoint" parameterType="String" > -->
-<!-- 		update member set point = #{point} where id = #{id} -->
-<!-- 	</update> -->
-	
+	<insert id="insertContent" parameterType="PointDTO">
+		INSERT INTO point_list (id, point_date, point_content, point_charge, use_point )
+		VALUES(#{id}, #{point_date} , #{point_content}, #{point_charge}, 0)
+	</insert>
 	<update id="updatePoint" parameterType="MemberDTO">
 		UPDATE member set point = #{point} WHERE id = #{id}
 	</update>
+	
+	<select id="listpoint" resultType="PointDTO"> 
+		SELECT * FROM point_list WHERE id = #{id} ORDER BY point_num DESC
+	</select>
 </mapper>

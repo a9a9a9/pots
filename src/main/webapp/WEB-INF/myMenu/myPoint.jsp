@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <c:url var="root" value="/" />
 
 <body class="responsive is-pc">
@@ -40,17 +42,17 @@
 							</tr>
 						</thead>
 						<tbody>
-						<c:forEach var="list" items="${pointList }">
+						<c:forEach var="list" items="${pointlist }">
 							<tr>
-								<td><span class="date"> 2022-08-04<br> 17:47
-										(목)
+								<td><span class="date"> <c:out value="${fn:substring(list.point_date, 0, 10)}"/><br> <c:out value="${fn:substring(list.point_date, 11, 20)}"/>
 								</span></td>
 								<td>
 									<div class="subject2">${list.point_content }</div>
 								</td>
 								<td><strong class="text-purple">+${list.point_charge }</strong> 포인트</td>
-								<td><strong class="text-red">-{list.use_point}</strong> 포인트</td>
+								<td><strong class="text-red">-${list.use_point}</strong> 포인트</td>
 							</tr>
+						</c:forEach>
 							
 						</tbody>
 					</table>

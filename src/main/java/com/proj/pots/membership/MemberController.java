@@ -194,7 +194,16 @@ public class MemberController {
 		}else {
 			return "redirect:index?formpaty=myPointCharge";
 		}
+	}
 		
+	@RequestMapping(value = "/myPoint")
+	public String myPoint(String id, Model model) {
+			memberService.listpoint(id, model);
+		
+		return "myMenu/myPoint";
 		
 	}
+			
+		
+	
 }
