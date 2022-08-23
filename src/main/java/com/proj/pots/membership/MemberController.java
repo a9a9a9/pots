@@ -157,6 +157,31 @@ public class MemberController {
 		return "redirect:/index?formpath=snsRegister";
 	}
 	}
+	@RequestMapping("CallBack")
+	String callback() {
+		return "member/CallBack";
+	}
+	@RequestMapping(value = "naverLogin")
+	String home(MemberDTO member,HttpServletRequest request, HttpSession session) {
+		String naver_name = request.getParameter("name");
+		String naver_email = request.getParameter("email");
+		System.out.println("naverid = " +naver_name);
+		System.out.println("naver_email = " +naver_email);
+		
+		int naverid = memberDao.isExistsnsId(naver_email);
+		member = memberDao.memberInfo(naver_email);
+		
+		if(naverid == 1) {
+			session.setAttribute("id", naver_email);
+			session.setAttribute("nick", member.getNick());
+			return "redirect:/index?formpath=main";
+		}else {
+			session.setAttribute("snsid", naver_email);
+			session.setAttribute("snsname", naver_name);
+			return "redirect:/index?formpath=snsRegister";
+		}
+		
+	}
 //	@Autowired private naverService naverService;
 //	@RequestMapping("CallBack")
 //	public String CallBack(String code, HttpSession session, MemberDTO member, String state) {

@@ -65,19 +65,50 @@
 <!-- 						<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/btn-sns-login-naver.png" -->
 <!-- 						alt=""> 네이버 계정으로 로그인 하기 -->
 <!-- 					</a>  -->
-<%
-    String clientId = "Tfs97zQRihtlD6y1o9wt";//애플리케이션 클라이언트 아이디값";
-    String redirectURI = URLEncoder.encode("http://localhost/CallBack", "UTF-8");
-    SecureRandom random = new SecureRandom();
-    String state = new BigInteger(130, random).toString();
-    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
-    apiURL += "&client_id=" + clientId;
-    apiURL += "&redirect_uri=" + redirectURI;
-    apiURL += "&state=" + state;
-    session.setAttribute("state", state);
- %>
-  <a href="<%=apiURL%>"><img src="http://buts.co.kr/thema/Buts/colorset/Basic/img/btn-sns-login-naver.png" alt=""/></a>
-					
+<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+         
+      
+                                 <!-- 네이버아이디로로그인 버튼 노출 영역 --> 
+<!--                                  <div style="margin-top: 20px; width: 100%;" class="naver sns-naver" title="네이버"> -->
+<!--                         <a id="naverIdLogin"  class="naver sns-naver" style="margin-top: 20px; width: 100%;" title="네이버" alt=""> -->
+<!--                         네이버 계정으로 로그인 하기</a> -->
+                        <a id="naverIdLogin" class="naver sns-naver" style="margin-top: 20px; width: 100%;" title="네이버">
+                         네이버 계정으로 로그인 하기<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/btn-sns-login-naver.png"
+ 						alt="">
+                        </a>
+                        
+                                 <!-- //네이버 아이디로 로그인 버튼 노출 영역 -->
+                                  
+                                 <!-- 네이버 아이디로 로그인 초기화 Script -->
+                                 <script type="text/javascript">
+                                     var naverLogin = new naver.LoginWithNaverId(
+                                         {
+                                             //클라이언트 id와 콜백 url (결과페이지)
+                                             clientId: "Tfs97zQRihtlD6y1o9wt",
+                                             callbackUrl: "http://localhost/CallBack",
+                                             isPopup: false, /* 팝업을 통한 연동처리 여부 */
+                                             loginButton: {color: "green", type:1, height:45, } /* 로그인 버튼의 타입을 지정 */
+                                         }
+                                     );
+                                     
+                                     /* 설정정보를 초기화하고 연동을 준비 */
+                                     naverLogin.init();
+//                                      const handleClick = () => {
+//                                          naverRef.current.children[0].click();
+//                                      }
+//                                      return (
+//                                     	        <>
+//                                     	            <div ref={naverRef} id="naverIdLogin"></div>
+//                                     	            <button onClick={handleClick} className={styles.naver} >
+//                                     	           <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/btn-sns-login-naver.png"
+//                                     	            alt=""> 네이버 계정으로 로그인 하기
+//                                     	            </button>
+//                                     	        </>
+//                                     	    )
+                                     
+                                 </script> 
+                                 
+				
 					<a href="https://kauth.kakao.com/oauth/authorize?
 							client_id=0070664f6956225934aebb37c784f4ed&
 							redirect_uri=http://localhost/kakaoRegister&
