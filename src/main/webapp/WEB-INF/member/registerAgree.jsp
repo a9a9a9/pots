@@ -8,12 +8,54 @@
 			<span class="text-purple">SNS</span> 가입하기
 		</div>
 		<div class="form-sns-join sns-wrap">
-			<a href="javascrip:;"
-				onclick="nwindow('https://buts.co.kr/plugin/social/popup.php?provider=naver&amp;url=https://buts.co.kr/bbs/register.php')"
-				class="naver sns-naver" title="네이버"> <img
-				src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-sns-never-on.png"
-				alt="">네이버로 회원가입 하기
-			</a> 
+<!-- 			<a href="javascrip:;" -->
+<!-- 				onclick="nwindow('https://buts.co.kr/plugin/social/popup.php?provider=naver&amp;url=https://buts.co.kr/bbs/register.php')" -->
+<!-- 				class="naver sns-naver" title="네이버"> <img -->
+<!-- 				src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-sns-never-on.png" -->
+<!-- 				alt="">네이버로 회원가입 하기 -->
+<!-- 			</a>  -->
+
+<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+         
+      
+                                 <!-- 네이버아이디로로그인 버튼 노출 영역 --> 
+                        <div class="naver_div"><a id="naverIdLogin" class="btn_start btn_naver" style="padding: 20px; display: contents;" />
+                        
+                                 <!-- //네이버 아이디로 로그인 버튼 노출 영역 -->
+                                  
+                                 <!-- 네이버 아이디로 로그인 초기화 Script -->
+                                 <script type="text/javascript">
+                                     var naverLogin = new naver.LoginWithNaverId(
+                                         {
+                                             //클라이언트 id와 콜백 url (결과페이지)
+                                             clientId: "Tfs97zQRihtlD6y1o9wt",
+                                             callbackUrl: "http://localhost/CallBack",
+                                             isPopup: false, /* 팝업을 통한 연동처리 여부 */
+                                             loginButton: {color: "green", type:1, height: 45} /* 로그인 버튼의 타입을 지정 */
+                                         }
+                                     );
+                                     
+                                     /* 설정정보를 초기화하고 연동을 준비 */
+                                     naverLogin.init();
+                                     
+                                     document.getElementById('name');
+                                     document.getElementById('name').innerHTML="이순신";
+                                    		 출처: https://meaningone.tistory.com/316 [의미 하나:티스토리]
+//                                      const handleClick = () => {
+//                                          naverRef.current.children[0].click();
+//                                      }
+//                                      return (
+//                                     	        <>
+//                                     	            <div ref={naverRef} id="naverIdLogin"></div>
+//                                     	            <button onClick={handleClick} className={styles.naver} >
+//                                     	           <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/btn-sns-login-naver.png"
+//                                     	            alt=""> 네이버 계정으로 로그인 하기
+//                                     	            </button>
+//                                     	        </>
+//                                     	    )
+                                     
+                                 </script> <p class="naver_font">네이버로 회원가입 하기</p></div>
+
 <!-- 			<a href="javascrip:;" -->
 <!-- 				onclick="nwindow('https://buts.co.kr/plugin/social/popup.php?provider=kakao&amp;url=https://buts.co.kr/bbs/register.php')" -->
 <!-- 				class="kakao sns-kakao" title="카카오"> <img -->

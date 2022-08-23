@@ -38,7 +38,9 @@
 				<div class="title-wrap">
 					<div class="title"> 벗츠 <span class="text-purple">파티</span></div>
 					<div class="title-right">
-						<a href="${root}partyCreate" class="button border round button-purple">파티 만들기</a>
+						<c:if test="${sessionScope.partner eq 'true'}">
+							<a href="${root}partyCreate" class="button border round button-purple">파티 만들기</a>
+						</c:if>
 					</div>
 				</div>
 				
