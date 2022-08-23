@@ -48,6 +48,7 @@ public class LoginServiceImpl implements ILoginService{
 				session.setAttribute("partner", "false");
 			}else{
 				session.setAttribute("partner", "true");
+				session.setAttribute("personal_num", partner.getPersonal_num());
 				session.setAttribute("account_name", partner.getAccount_name());
 				session.setAttribute("account_num", partner.getAccount_num());
 			}

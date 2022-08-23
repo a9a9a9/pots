@@ -52,14 +52,7 @@
 <!-- 	<update id="updatePoint" parameterType="String" > -->
 <!-- 		update member set point = #{point} where id = #{id} -->
 <!-- 	</update> -->
-<!-- 	<select id="selectPoint" resultType="PointDTO" parameterType="HashMap"> -->
-<!-- 		SELECT * FROM point_list WHERE id = #{id}; -->
-<!-- 	</select> -->
-
-	<insert id="insertContent" parameterType="PointDTO">
-		INSERT INTO point_list (id, point_date, point_content, point_charge, use_point )
-		VALUES(#{id}, now() , #{point_content}, #{point_charge}, 0)
-	</insert>
+	
 	<update id="updatePoint" parameterType="MemberDTO">
 		UPDATE member set point = #{point} WHERE id = #{id}
 	</update>

@@ -73,9 +73,10 @@ jQuery(function($){
 <div class="title"><span class="text-purple">취소</span> 요청</div>
 
 <div class="table-list scroll">
-	<table >
+	<table style="min-width: 1000px">
 	<thead>
 		<tr>
+							<th scope="col">no</th>
 						<th scope="col">신청일</th>
 			<th scope="col">구매자</th>
 			<th scope="col">상태</th>
@@ -88,20 +89,43 @@ jQuery(function($){
 		</tr>
 	</thead>
 	<tbody>
-							<tr>
-				<td colspan="9">
-					<div class="empty">
-						<div class="icon"><img src="/img/icon-butsicon-big-glay.png" /></div>
-						<h5>등록된 내용이 없습니다.</h5>
-					</div>
-				</td>
-			</tr>
-			</tbody>
+				<tr>
+			<td style="width:30px;"><span class="lightgrey">1</span></td>
+			<td>
+				<span class="lightgrey">
+					08.19					</br>
+					16:42				</span>
+			</td>
+			<td>
+				<strong>에이구</strong><br>
+			</td>
+			<td>
+									<input type="button" onclick="" value="취소/승인 관리" class="button round border button-purple" />			
+							</td>
+			<td>
+				<a href="https://buts.co.kr/shop/item.php?it_id=1660890917" class="item-name">
+				<span class="brand"><img src="https://buts.co.kr/thema/Buts/colorset/category/6040.jpg" alt="" /></span>
+					<span class="name">kg</span>
+					<span class="lightgrey">파티번호 : 1660890917</span>
+				</a>
+			</td>
+            							<td><span class="name">사용중</span></td>
+				<td>20원</td>
+				<td>0원</td>
+				<td>0원(0%)</td>
+				<td>20원</td>
+					</tr>
+					</tbody>
 	</table>
 </div>
 
+<div class="page-number" style="border-top: 0">
+	<ul>
+		<li class="disabled"><a><i class="fa fa-angle-double-left"></i></a></li><li class="disabled"><a><i class="fa fa-angle-left"></i></a></li><li class="active"><a>1</a></li><li class="disabled"><a><i class="fa fa-angle-right"></i></a></li><li class="disabled"><a><i class="fa fa-angle-double-right"></i></a></li>	</ul>
+</div>
 	</div><!-- /#page-wrapper -->
 </div><!-- /#wrapper -->
+
 
 <!-- JavaScript -->
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>

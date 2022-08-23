@@ -181,37 +181,11 @@ public class MemberController {
 //			return "redirect:/index?formpath=snsRegister";
 //		}
 //	}
-	@RequestMapping("CallBack")
-	String callback() {
-		return "member/CallBack";
-	}
-	@RequestMapping(value = "naverLogin")
-	String home(MemberDTO member,HttpServletRequest request, HttpSession session) {
-		String naver_name = request.getParameter("name");
-		String naver_email = request.getParameter("email");
-		System.out.println("naverid = " +naver_name);
-		System.out.println("naver_email = " +naver_email);
-		
-		int naverid = memberDao.isExistsnsId(naver_email);
-		member = memberDao.memberInfo(naver_email);
-		
-		if(naverid == 1) {
-			session.setAttribute("id", naver_email);
-			session.setAttribute("nick", member.getNick());
-			return "redirect:/index?formpath=main";
-		}else {
-			session.setAttribute("snsid", naver_email);
-			session.setAttribute("snsname", naver_name);
-			return "redirect:/index?formpath=snsRegister";
-		}
-		
-	}
-	
 	
 	@RequestMapping(value = "ChargeProc")
 	public String ChargeProc(String od_point, Model model) {
 		System.out.println("charge : " + od_point);
-		String msg = memberService.ChargeProc(od_point, model);
+		String msg = memberService.ChargeProc(od_point);
 
 		if(msg.equals("충전 완료")) {
 		model.addAttribute("msg", msg);
@@ -220,10 +194,7 @@ public class MemberController {
 		}else {
 			return "redirect:index?formpaty=myPointCharge";
 		}
+		
+		
 	}
-	
-
-	
-	
-	
 }

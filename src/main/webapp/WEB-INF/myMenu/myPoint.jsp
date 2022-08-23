@@ -14,12 +14,12 @@
 
 				<div class="mypoint">
 					<span class="picture"> 
-					<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-big-glay.png" alt=""> 가이드
+					<img src="/img/profile${sessionScope.profile}.png" alt=""> 가이드
 					</span> 
 					<span class="name">${sessionScope.nick }</span>
 					<div class="right">
 						<span class="icon"><img
-							src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-coin-star-big.png"
+							src="/img/icon-coin-star-big.png"
 							alt=""></span> <span class="text">포인트</span> <span
 							class="text-purple Rajdhani price">${sessionScope.point}</span> 
 							<a href="${root }index?formpath=myPointCharge"
@@ -40,71 +40,27 @@
 							</tr>
 						</thead>
 						<tbody>
+						<c:forEach var="list" items="${pointList }">
 							<tr>
 								<td><span class="date"> 2022-08-04<br> 17:47
 										(목)
 								</span></td>
 								<td>
-									<div class="subject2">2022-08-04 첫로그인</div>
+									<div class="subject2">${list.point_content }</div>
 								</td>
-								<td><strong class="text-purple">+10</strong> 포인트</td>
-								<td><strong class="text-red">0</strong> 포인트</td>
+								<td><strong class="text-purple">+${list.point_charge }</strong> 포인트</td>
+								<td><strong class="text-red">-{list.use_point}</strong> 포인트</td>
 							</tr>
-							<tr>
-								<td><span class="date"> 2022-08-03<br> 16:58
-										(수)
-								</span></td>
-								<td>
-									<div class="subject2">2022-08-03 첫로그인</div>
-								</td>
-								<td><strong class="text-purple">+10</strong> 포인트</td>
-								<td><strong class="text-red">0</strong> 포인트</td>
-							</tr>
-							<tr>
-								<td><span class="date"> 2022-08-01<br> 16:00
-										(월)
-								</span></td>
-								<td>
-									<div class="subject2">2022-08-01 첫로그인</div>
-								</td>
-								<td><strong class="text-purple">+10</strong> 포인트</td>
-								<td><strong class="text-red">0</strong> 포인트</td>
-							</tr>
-							<tr>
-								<td><span class="date"> 2022-07-29<br> 17:09
-										(금)
-								</span></td>
-								<td>
-									<div class="subject2">2022-07-29 첫로그인</div>
-								</td>
-								<td><strong class="text-purple">+10</strong> 포인트</td>
-								<td><strong class="text-red">0</strong> 포인트</td>
-							</tr>
-							<tr>
-								<td><span class="date"> 2022-07-28<br> 20:14
-										(목)
-								</span></td>
-								<td>
-									<div class="subject2">회원가입 축하</div>
-								</td>
-								<td><strong class="text-purple">+500</strong> 포인트</td>
-								<td><strong class="text-red">0</strong> 포인트</td>
-							</tr>
+							
 						</tbody>
 					</table>
 				</div>
 
-				<div class="page-number">
-					<ul>
-						<li class="disabled"><a><i
-								class="fa fa-angle-double-left"></i></a></li>
-						<li class="disabled"><a><i class="fa fa-angle-left"></i></a></li>
-						<li class="active"><a>1</a></li>
-						<li class="disabled"><a><i class="fa fa-angle-right"></i></a></li>
-						<li class="disabled"><a><i
-								class="fa fa-angle-double-right"></i></a></li>
-					</ul>
-				</div>
+					<div class="page-number">
+						${page}
+					</div>
+
+					<div class="button-align right mg-top-0"></div>
 			</div>
 
 		</div>

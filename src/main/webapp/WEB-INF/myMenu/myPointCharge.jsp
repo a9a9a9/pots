@@ -113,7 +113,7 @@
 								<select name="od_bank_account" id="od_bank_account">
 									<option value="우리은행 1002-254-965054 이관리" selected="selected">우리은행 1002-254-965054 이관리</option>
 								</select>
-								<input type="text" value="${sessionScope.name }" name="od_deposit_name" id="od_deposit_name" size="10" maxlength="20" placeholder="입금자명" />	
+								<input type="text" value="${sessionScope.name }" name="od_deposit_name" disabled id="od_deposit_name" size="10" maxlength="20" placeholder="입금자명" />	
 							</div>
 							<p class="lightgrey text-right">
 								*계좌이체 진행시 입금 확인까지 <span class="text-purple">최대 10분 정도 소요</span>됩니다.(단, 해당 은행 점검시간이나 사정에 의하여 늦어질 수 있습니다) <br />
@@ -135,7 +135,7 @@
 						document.getElementById("od_tot_price").innerHTML = number_format(check_val);
 					}
 					$("#settle_bank").show();
-					$("[name=od_deposit_name]").val( ${sessionScope.name} );
+					$("[name=od_deposit_name]").val( "${sessionScope.name}" );
 				</script>
 				
 				<div id="display_pay_button" class="btn_confirm button-align center">

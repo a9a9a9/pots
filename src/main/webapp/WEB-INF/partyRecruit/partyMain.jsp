@@ -167,12 +167,24 @@
 
 <div class="item-view-caution">
 		<div class="tag">
+									<span> 19세 이상 </span>
+									<span> 1인 1회선 </span>
+									<span> 1인 1기기 등록 </span>
 									<span> 공유 금지 </span>
 									<span> 설정 임의변경 불가 </span>
+									<span> 프로필 매너 준수 </span>
+									<span> 계정양도 불가 </span>
 									<span> 개인사정 환불 불가 </span>
 									<span> 위반 시 강제 조치 </span>
+									<span> 벗츠 닉네임과 동일하게 프로필 닉네임 설정 </span>
 					</div>
-		<div class="text">${p.party_notice }
+		<div class="text">
+		- 프로필은 생성(선택) 후 닉네임을 변경하여 사용해 주세요.<br />
+- 반드시 본인의 프로필으로 컨텐츠를 이용해 주세요.<br />
+- 1인 1회선 사용 원칙으로 합니다.<br />
+- 다양한 디바이스에서 접속은 가능하지만 본인이  여러대의 기기에서 동시접속은 불가합니다.<br />
+- 다수가 사용하는 계정인만큼 불쾌감을 줄 수 있는 프로필 이미지나 닉네임은 피해주세요.<br />
+- 계정정보는 본인만 이용하며 절대 타인에게 노출하지 않습니다.	</div>
 </div>
 
 <form name="fitem" method="post" action="https://buts.co.kr/shop/cartupdate.php" role="form" onsubmit="return fitem_submit(this);">
@@ -234,89 +246,72 @@
 		$("select.it_option").addClass("form-control input-sm");
 		$("select.it_supply").addClass("form-control input-sm");
 	});
-
 	// 재입고SMS 알림
 	function popup_stocksms(it_id, ca_id) {
 		url = "./itemstocksms.php?it_id=" + it_id + "&ca_id=" + ca_id;
 		opt = "scrollbars=yes,width=616,height=420,top=10,left=10";
 		popup_window(url, "itemstocksms", opt);
 	}
-
 	// 바로구매, 장바구니 폼 전송
 	function fitem_submit(f) {
-
 		if(document.getElementById("chk_confirm").checked == false){
 			alert('안내 및 규칙을 읽고\n체크박스에 체크해 주세요.');
 			document.getElementById("chk_confirm").focus();
 			return false;
 		}
-
 		f.action = "https://buts.co.kr/shop/cartupdate.php";
 		f.target = "";
-
 		if (document.pressed == "장바구니") {
 			f.sw_direct.value = 0;
 		} else { // 바로구매
 			f.sw_direct.value = 1;
 		}
-
 		// 판매가격이 0 보다 작다면
 		if (document.getElementById("it_price").value < 0) {
 			alert("전화로 문의해 주시면 감사하겠습니다.");
 			return false;
 		}
-
 		if($(".it_opt_list").size() < 1) {
 			alert("선택옵션을 선택해 주십시오.");
 			return false;
 		}
-
 		var val, io_type, result = true;
 		var sum_qty = 0;
 		var min_qty = parseInt(1);
 		var max_qty = parseInt(0);
 		var $el_type = $("input[name^=io_type]");
-
 		$("input[name^=ct_qty]").each(function(index) {
 			val = $(this).val();
-
 			if(val.length < 1) {
 				alert("수량을 입력해 주십시오.");
 				result = false;
 				return false;
 			}
-
 			if(val.replace(/[0-9]/g, "").length > 0) {
 				alert("수량은 숫자로 입력해 주십시오.");
 				result = false;
 				return false;
 			}
-
 			if(parseInt(val.replace(/[^0-9]/g, "")) < 1) {
 				alert("수량은 1이상 입력해 주십시오.");
 				result = false;
 				return false;
 			}
-
 			io_type = $el_type.eq(index).val();
 			if(io_type == "0")
 				sum_qty += parseInt(val);
 		});
-
 		if(!result) {
 			return false;
 		}
-
 		if(min_qty > 0 && sum_qty < min_qty) {
 			alert("선택옵션 개수 총합 "+number_format(String(min_qty))+"개 이상 주문해 주십시오.");
 			return false;
 		}
-
 		if(max_qty > 0 && sum_qty > max_qty) {
 			alert("선택옵션 개수 총합 "+number_format(String(max_qty))+"개 이하로 주문해 주십시오.");
 			return false;
 		}
-
 		if (document.pressed == "장바구니") {
 			$.post("./itemcart.php", $(f).serialize(), function(error) {
 				if(error != "OK") {
@@ -333,14 +328,12 @@
 			return true;
 		}
 	}
-
 	// Wishlist
 	function apms_wishlist(it_id) {
 		if(!it_id) {
 			alert("코드가 올바르지 않습니다.");
 			return false;
 		}
-
 		$.post("./itemwishlist.php", { it_id: it_id },	function(error) {
 			if(error != "OK") {
 				alert(error.replace(/\\n/g, "\n"));
@@ -351,10 +344,8 @@
 				}
 			}
 		});
-
 		return false;
 	}
-
 	// Recommend
 	function apms_recommend(it_id, ca_id) {
 		if (!g5_is_member) {
@@ -570,11 +561,9 @@
 			</div>
 </div>
 <script>
-
 function tochange(f)
 {
     var idx = f.wr_1.value;
-
 	if(idx == ""){
 		$('#opentalk').hide();
 		$('.secret').hide();
@@ -588,7 +577,6 @@ function tochange(f)
 </script>
 <script>
 $(function() {
-
 	$('.item-tab a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 		var ref = $(e.target).attr("ref") // activated tab
 		var tid = $(e.target).attr("tid") // activated tab
@@ -598,7 +586,6 @@ $(function() {
 			location.href = "#tspot";
 		}
 	});
-
 	$("a.view_image").click(function() {
 		window.open(this.href, "large_image", "location=yes,links=no,toolbar=no,top=10,left=10,width=10,height=10,resizable=yes,scrollbars=no,status=no");
 		return false;
@@ -614,7 +601,6 @@ $("document").ready(function() {
 		}
     });
 });
-
 	function fn_chk_confirm()
 	{
 		if(document.getElementById("chk_confirm").checked == false){
@@ -631,7 +617,6 @@ $("document").ready(function() {
         
 		return true;
 	}
-
 	function copyText(copy_val) {
 		if(copy_val == 'myID'){
 			var copyText  = document.getElementById('myID');
@@ -647,12 +632,9 @@ $("document").ready(function() {
 			alert('계정 PW가 복사 되었습니다.');
 		}
 	}
-
-
 </script>	<script>
 	var save_before = '';
 	var save_html = document.getElementById('it_vc_w').innerHTML;
-
 	function fviewcomment_submit(f)	{
 		var pattern = /(^\s*)|(\s*$)/g; // \s 공백 문자
 		var subject = "";
@@ -672,13 +654,11 @@ $("document").ready(function() {
 				content = data.content;
 			}
 		});
-
 		if (content) {
 			alert("내용에 금지단어('"+content+"')가 포함되어있습니다");
 			f.wr_content.focus();
 			return false;
 		}
-
 		// 양쪽 공백 없애기
 		var pattern = /(^\s*)|(\s*$)/g; // \s 공백 문자
 		document.getElementById('wr_content').value = document.getElementById('wr_content').value.replace(pattern, "");
@@ -687,7 +667,6 @@ $("document").ready(function() {
 			f.wr_content.focus();
 			return false;
 		}
-
 		if (typeof(f.wr_name) != 'undefined') {
 			f.wr_name.value = f.wr_name.value.replace(pattern, "");
 			if (f.wr_name.value == '') {
@@ -696,7 +675,6 @@ $("document").ready(function() {
 				return false;
 			}
 		}
-
 		if (typeof(f.wr_password) != 'undefined') {
 			f.wr_password.value = f.wr_password.value.replace(pattern, "");
 			if (f.wr_password.value == '') {
@@ -705,14 +683,10 @@ $("document").ready(function() {
 				return false;
 			}
 		}
-
 		set_comment_token(f);
-
 		document.getElementById("btn_submit").disabled = "disabled";
-
 		return true;
 	}
-
 	function comment_box(comment_id, work) {
 		var el_id;
 		// 댓글 아이디가 넘어오면 답변, 수정
@@ -724,13 +698,11 @@ $("document").ready(function() {
 		}
 		else
 			el_id = 'it_vc_w';
-
 		if (save_before != el_id) {
 			if (save_before) {
 				document.getElementById(save_before).style.display = 'none';
 				document.getElementById(save_before).innerHTML = '';
 			}
-
 			document.getElementById(el_id).style.display = '';
 			document.getElementById(el_id).innerHTML = save_html;
 			// 댓글 수정
@@ -741,10 +713,8 @@ $("document").ready(function() {
 				else
 					document.getElementById('wr_secret').checked = false;
 			}
-
 			document.getElementById('comment_id').value = comment_id;
 			document.getElementById('w').value = work;
-
 			// 페이지
 			if (comment_id) {
 				document.getElementById('comment_page').value = document.getElementById('comment_page_'+comment_id).value;
@@ -753,13 +723,10 @@ $("document").ready(function() {
 				document.getElementById('comment_page').value = '';
 				document.getElementById('comment_url').value = './itemcomment.php?it_id=1656867366&ca_id=10&crows=20';
 			}
-
 			save_before = el_id;
 		}
 	}
-
 	comment_box('', 'c'); // 댓글 입력폼이 보이도록 처리하기위해서 추가 (root님)
-
 	$(function() {
 		$("textarea#wr_content[maxlength]").live("keyup change", function() {
 			var str = $(this).val()
@@ -778,7 +745,6 @@ $("document").ready(function() {
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'UA-163597728-1');
 </script>
 
@@ -807,6 +773,5 @@ $("document").ready(function() {
 		</script>
 	</div>
 -->
-</div>
 </div>
 </body>

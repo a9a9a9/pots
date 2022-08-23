@@ -135,40 +135,24 @@ public class MemberService {
 		return "사진 저장";
 	}
 	
-	public String ChargeProc(String od_point, Model model) {
+	public String ChargeProc(String od_point) {
 		int pointc = (int)session.getAttribute("point");
 		int priced = Integer.parseInt(od_point);
-
+//		MemberDTO member = memberDao.selectPoint();
 		MemberDTO member = new MemberDTO();
-
-		// 충전 포인트 금액
+//		member = memberDao.selectPoint(id);
 		System.out.println("charge123 : " + od_point);
 		System.out.println("charge12334 : " + pointc);
 		String id = (String) session.getAttribute("id");
 		int point = pointc + priced;
-
-		System.out.println("chargePoint : " + point); 
-		// 충전 내용
-		PointDTO pointDto = new PointDTO();
-		String content = "포인트 충전";
-		pointDto.setId(id);
-		pointDto.setPoint_content(content);
-		pointDto.setPoint_charge(priced);
-		
+//		int point = Integer.parseInt(pointcharge);
+		System.out.println(point); 
 		member.setPoint(point);
-		member.setId(id); 
-		
-		ArrayList<PointDTO> pointlist = memberDao.selectPoint(pointDto);
-		model.addAttribute("pointlist", pointlist);
-		
+		member.setId(id);
 		memberDao.updatePoint(member);
-		memberDao.insertContent(pointDto);
 		session.setAttribute("point", point);
-		
 		return "충전 완료";
 		
 	} 
-	
-
 	
 }
