@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!doctype html>
 <html lang="ko">
 <head>
@@ -106,6 +107,11 @@ input[type='text'] {
 	}
 }
 </style>
+
+<c:if test="${msg != null }">
+${msg }
+</c:if>
+
 <form class="form" name="fregister" id="fregister" action="accountInsertProc" method="post" onsubmit="return fregister_submit(this);">
 <div class="dialog" style="border-top: 2px solid #84cdcf">
 	<div class="dialog-title"><span class="text-purple">파트너</span> 신청</div>
@@ -256,7 +262,7 @@ input[type='text'] {
 		*/
 
 		if (confirm("파트너 등록을 신청하시겠습니까?")) {
-			f.action = "http://localhost/partyList";
+			f.action = "accountInsertProc";
 			return true;
 		}
 

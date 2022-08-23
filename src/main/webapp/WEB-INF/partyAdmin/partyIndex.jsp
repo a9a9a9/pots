@@ -62,14 +62,14 @@ var g5_admin_url = "https://buts.co.kr/adm";
 		</a>
 		<ul class="partner-menu">
 			<li class="v-bar right">
-				<a>${session.nick}</a>
+				<a>${sessionScope.nick}</a>
 			</li>
 			 
 			<li class="v-bar right" style="color:#fff;">
 				개인 파티장
 			</li>
 						<li class="v-bar right">
-				<a href="main">팟츠</a>
+				<a href="/">팟츠</a>
 			</li>
 			<li>
 				<a href="logout">로그아웃</a>
