@@ -39,7 +39,7 @@
 	</update>
 	
 	<select id="commentListProc" resultType="CommentDTO">
-		SELECT * FROM board_comment WHERE square_num=#{square_num}
+		SELECT * FROM board_comment WHERE square_num=#{square_num} ORDER BY comment_num DESC
 	</select>
 	
 	<select id="boardProc" resultType="BoardDTO">

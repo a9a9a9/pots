@@ -34,6 +34,7 @@ ${msg }
 	var g5_purl = "${root}index?formpath=main";
 </script>
 
+<script src="https://buts.co.kr/thema/Buts/assets/js/buts.main.js"></script>
 <script src="/js/jquery-1.11.3.min.js"></script>
 <script src="/js/jquery-migrate-1.2.1.min.js"></script>
 <script src="/js/common.js"></script>
