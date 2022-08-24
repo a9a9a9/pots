@@ -10,7 +10,9 @@
 				
 				<div class="title-wrap">
 					<div class="title"><a href="${root}etcProc" class="text">기타</a><a href="${root}membershipProc" class="button border round button-white">#멤버쉽</a></div>
-					<div class="title-right"><a href="${root}partyCreate" class="button border round button-purple">파티 만들기</a></div>
+					<c:if test="${sessionScope.partner eq 'true'}">
+						<div class="title-right"><a href="${root}partyCreate" class="button border round button-purple">파티 만들기</a></div>
+					</c:if>
 				</div>
 				<div class="item-list">
 					<c:forEach var="list" items="${list}">
@@ -72,10 +74,12 @@
 						</c:if>
 					</div>
 					
-				<div class="button-align right">
-					<a href="${root}partyCreate" class="button small button-red">등록</a>
-					<a href="${root}partyList" class="button small button-blue">관리</a>
-				</div>
+				<c:if test="${sessionScope.partner eq 'true'}">
+					<div class="button-align right">
+						<a href="${root}partyCreate" class="button small button-red">등록</a>
+						<a href="${root}partyList" class="button small button-blue">관리</a>
+					</div>
+				</c:if>
 			</div>
 		</div>
 	</div>

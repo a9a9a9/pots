@@ -45,7 +45,7 @@
 										<p>입금 확인 진행이 안된 경우 벗츠 채널Talk를 통하여 진행 요청 가능합니다.</p>
 										<p><br> </p>
 										<p>
-										   <a href="https://pf.kakao.com/_xnSxgxdxb/chat?api_ver=1.1&amp;kakao_agent=sdk%2F1.39.10%20os%2Fjavascript%20sdk_type%2Fjavascript%20lang%2Fko-KR%20device%2FWin32%20origin%2Fhttps%253A%252F%252Fbuts.co.kr&amp;app_key=2cb912e1f64b0e57fd1bbcc9af1e964c&amp;referer=https%3A%2F%2Fbuts.co.kr%2Fshop%2Forderinquiry.php" target="_blank" rel="nofollow noreferrer noopener"><span style="color:#0080ff;">입금확인 요청하기</span></a>
+										   <a href="#" onclick="return false;" target="_blank" rel="nofollow noreferrer noopener"><span style="color:#0080ff;">입금확인 요청하기</span></a>
 										</p>
 									</div>
 								</div>
@@ -99,10 +99,10 @@
 										<p> ----------------------------------------------------------</p>
 										<p><br> </p>
 										<p>
-										   <span style="color:#0080ff;"><a href="https://buts.co.kr/shop/orderinquiry.php" target="_blank" rel="nofollow noreferrer noopener"><span style="color:#0080ff;">환불진행 바로가기</span></a></span>
+										   <span style="color:#0080ff;"><a href="#" onclick="return false;" target="_blank" rel="nofollow noreferrer noopener"><span style="color:#0080ff;">환불진행 바로가기</span></a></span>
 										</p>
 										<p>
-										   <span style="color:#0080ff;"><a href="https://pf.kakao.com/_xnSxgxdxb/chat?api_ver=1.1&amp;kakao_agent=sdk%2F1.39.10%20os%2Fjavascript%20sdk_type%2Fjavascript%20lang%2Fko-KR%20device%2FWin32%20origin%2Fhttp%253A%252F%252Fbuts.co.kr&amp;app_key=2cb912e1f64b0e57fd1bbcc9af1e964c&amp;referer=http%3A%2F%2Fbuts.co.kr%2F" target="_blank" rel="nofollow noreferrer noopener"><span style="color:#0080ff;">벗츠에 분쟁해결 요청하기</span></a></span>
+										   <span style="color:#0080ff;"><a href="#" onclick="return false;" target="_blank" rel="nofollow noreferrer noopener"><span style="color:#0080ff;">벗츠에 분쟁해결 요청하기</span></a></span>
 										</p>
 										<p> </p>
 										<p><span style="color:#000000;">※ 환불금액은 요청하신 날짜 기준으로 소급적용하여 남은 기간만큼 환불 가능합니다.</span></p>
@@ -122,9 +122,6 @@
 									<div class="article"><p>파티원이 1명 이상 참여가 진행 된 경우 출금 신청 가능합니다.</p>
 										<p><br> </p>
 										<p>출금 신청은 [파티관리] → [출금관리] 에서 진행 하실 수 있습니다.</p>
-										<p>
-										   <a href="https://buts.co.kr/shop/partner/?ap=paylist" target="_blank" rel="nofollow noreferrer noopener">https://buts.co.kr/shop/partner/?ap=paylist</a>
-										</p>
 										<p><br> </p>
 										<p>입급 확인은 출금 신청 후 영업일 기준 24시간 정도 소요 됩니다.</p>
 									</div>

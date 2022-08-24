@@ -54,7 +54,7 @@
 					</div>
 				</form>
 
-				<div class="form-sns-join sns-wrap">
+				<div class="form-sns-join sns-wrap" style="margin-top: 30px;">
 <!-- 					<a href="https://nid.naver.com/oauth2.0/authorize? -->
 <!-- 				            response_type=code& -->
 <!-- 				            client_id=Tfs97zQRihtlD6y1o9wt& -->
@@ -69,13 +69,8 @@
          
       
                                  <!-- 네이버아이디로로그인 버튼 노출 영역 --> 
-<!--                                  <div style="margin-top: 20px; width: 100%;" class="naver sns-naver" title="네이버"> -->
-<!--                         <a id="naverIdLogin"  class="naver sns-naver" style="margin-top: 20px; width: 100%;" title="네이버" alt=""> -->
-<!--                         네이버 계정으로 로그인 하기</a> -->
-                        <a id="naverIdLogin" class="naver sns-naver" style="margin-top: 20px; width: 100%;" title="네이버">
-                         네이버 계정으로 로그인 하기<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/btn-sns-login-naver.png"
- 						alt="">
-                        </a>
+                        <a id="naverIdLogin" class="btn_start btn_naver" style="padding: 20px; display: contents;">
+                        <span><i class="icon-ic_login_naver" ></i>네이버로 로그인</span></a>
                         
                                  <!-- //네이버 아이디로 로그인 버튼 노출 영역 -->
                                   
@@ -87,7 +82,7 @@
                                              clientId: "Tfs97zQRihtlD6y1o9wt",
                                              callbackUrl: "http://localhost/CallBack",
                                              isPopup: false, /* 팝업을 통한 연동처리 여부 */
-                                             loginButton: {color: "green", type:1, height:45, } /* 로그인 버튼의 타입을 지정 */
+                                             loginButton: {color: "green", type:3, height: 45} /* 로그인 버튼의 타입을 지정 */
                                          }
                                      );
                                      
@@ -107,16 +102,15 @@
 //                                     	    )
                                      
                                  </script> 
-                                 
-				
-					<a href="https://kauth.kakao.com/oauth/authorize?
-							client_id=0070664f6956225934aebb37c784f4ed&
-							redirect_uri=http://localhost/kakaoRegister&
-							response_type=code"
-						style="margin-left: 0px; margin-top: 5px; width: 100%;"
+
+						<a href="https://kauth.kakao.com/oauth/authorize?
+	 							client_id=0070664f6956225934aebb37c784f4ed& 
+								redirect_uri=http://localhost/kakaoRegister& 
+								response_type=code"
+						style="margin-left: 0px; margin-top: 5px; width: 100%; display: inline;"
 						class="kakao sns-kakao" title="카카오"> 
 						<img src="//k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg"
-						alt=" ">카카오 계정으로 로그인 하기
+						alt=" " style="float: left; height: 46px; border: 1px solid; border-color: #E5D85C; border-radius: 5px; margin-left: 5px; margin-right: 17px;">
 						</a>
 
 

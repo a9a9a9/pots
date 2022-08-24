@@ -9,20 +9,19 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="/css/member/default_shop.css">
 <link rel="stylesheet" href="/css/member/apms.css">
-<link rel="stylesheet" href="/css/member/bootstrap.css" type="text/css"
-	class="thema-mode">
-<link rel="stylesheet" href="/css/member/magnific-popup.css"
-	type="text/css">
+<link rel="stylesheet" href="/css/member/bootstrap.css" type="text/css" class="thema-mode">
+<link rel="stylesheet" href="/css/member/magnific-popup.css" type="text/css">
 <link rel="stylesheet" href="/css/member/buts.css" type="text/css">
 <link rel="stylesheet" href="/css/member/widget.css">
 <link rel="stylesheet" href="/css/member/basic.css">
+<link rel="stylesheet" href="/css/partyAdmin/font-awesome.min.css">
 <!-- <link rel="stylesheet" href="//buts.co.kr/thema/Buts/colorset/Basic/buts.css?time=1660891800" type="text/css"> -->
 <!-- 스크립트 -->
 ${msg }
 <script>
 	// 자바스크립트에서 사용하는 전역변수 선언
-	var g5_url = "https://buts.co.kr";
-	var g5_bbs_url = "https://buts.co.kr/bbs";
+	var g5_url = "${root}index?formpath=main";
+	var g5_bbs_url = "${root}boardProc";
 	var g5_is_member = "";
 	var g5_is_admin = "";
 	var g5_is_mobile = "";
@@ -32,19 +31,18 @@ ${msg }
 	var g5_editor = "";
 	var g5_responsive = "1";
 	var g5_cookie_domain = "";
-	var g5_purl = "https://buts.co.kr/";
+	var g5_purl = "${root}index?formpath=main";
 </script>
-<script src="https://buts.co.kr/js/jquery-1.11.3.min.js"></script>
-<script src="https://buts.co.kr/js/jquery-migrate-1.2.1.min.js"></script>
-<script src="https://buts.co.kr/lang/korean/lang.js?ver=180820"></script>
+
+<script src="/js/jquery-1.11.3.min.js"></script>
+<script src="/js/jquery-migrate-1.2.1.min.js"></script>
 <script src="/js/common.js"></script>
-<script src="https://buts.co.kr/js/wrest.js?ver=180820"></script>
-<script src="https://buts.co.kr/js/placeholders.min.js"></script>
-<script src="https://buts.co.kr/js/apms.js?ver=180820"></script>
-<link rel="stylesheet"
-	href="https://buts.co.kr/js/font-awesome/css/font-awesome.min.css">
-<script
-	src="https://buts.co.kr/plugin/apms/js/jquery.mobile.swipe.min.js"></script>
+<script src="/js/wrest.js"></script>
+<script src="/js/placeholders.min.js"></script>
+<script src="/js/apms.js"></script>
+<script src="/js/jquery.mobile.swipe.min.js"></script>
+<script src="/js/lang.js"></script>
+	
 <script>
 	var sub_show = "slide";
 	var sub_hide = "";
@@ -52,13 +50,13 @@ ${msg }
 	var menu_sub = "";
 	var menu_subAt = "0";
 </script>
-<script
-	src="https://buts.co.kr/thema/Buts/assets/bs3/js/bootstrap.min.js"></script>
-<script
-	src="https://buts.co.kr/thema/Buts/assets/js/jquery.magnific-popup.min.js"></script>
-<script src="https://buts.co.kr/thema/Buts/assets/js/sly.min.js"></script>
-<script src="https://buts.co.kr/thema/Buts/assets/js/custom.js"></script>
-<script src="https://buts.co.kr/thema/Buts/assets/js/buts.js"></script>
+
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<script src="/js/sly.min.js"></script>
+<script src="/js/custom.js"></script>
+<script src="/js/buts.js"></script>
+
 <script>
 	function showProfile(){
 		var width = 550;
@@ -73,15 +71,17 @@ ${msg }
 		window.open(profileUrl, "", windowStatus);
 	}
 </script>
+
 </head>
-<!-- topper -->
+
+<!--							 topper									 -->
 
 <div class="topper">
 	<div class="width-container">
 		<div class="topper-menu">
 			<a href="${root}boardProc" class="v-bar">커뮤니티</a>
-			<a href="${root}index?formpath=eventMain" class="v-bar">이벤트</a> <a
-				href="${root}index?formpath=noticeBoard">공지사항</a>
+<%-- 			<a href="${root}index?formpath=eventMain" class="v-bar">이벤트</a>  --%>
+			<a href="${root}index?formpath=noticeBoard">공지사항</a>
 		</div>
 	</div>
 </div>
@@ -105,14 +105,14 @@ ${msg }
 					<span class="picture"> 
 						<img src="/img/profile${sessionScope.profile}.png" >
 					</span> <span class="arrow">
-					<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/mymenu-arrow.png" ></span>
+					<img src="/img/mymenu-arrow.png" ></span>
 					</a>
 
 					<div class="header-shade" style="display: none"></div>
 					<div class="header-profile" style="display: none">
 						<div class="block">
 							<div class="picture mobile">
-								<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-myimg.png" alt="">
+								<img src="/img/icon-myimg.png" alt="">
 							</div>
 							<div class="name"> ${sessionScope.nick }
 							</div>
@@ -121,12 +121,12 @@ ${msg }
 									<div class="credit-bar credit-1" style="right: 50%"></div>
 								</div>-->
 							<div class="grade">
-								<a href="https://buts.co.kr/bbs/partner_level.php">벗츠 신용 <span
+								<a href="#">벗츠 신용 <span
 									class="text-purple">개인</span>
 
 								</a> <a href="javascript:;" class="ttip"> 
-								<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/tip.png"
-									srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/tip.png 2x"
+								<img src="/img/tip.png"
+									srcset="/img/tip2.png 2x"
 									alt=""> <span class="ttip-text"
 									style="right: -29px; width: 160px">
 									첫 가입시 9등급이며, 벗츠 사용도 및 거래 점수에 따라 등급이 변할 수 있습니다.</span>
@@ -160,9 +160,9 @@ ${msg }
 								<li>
 									<div class="point">
 										<span class="icon">
-										<a href="https://buts.co.kr/bbs/point_buts.php">
-										<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-coin-star-big.png"
-												srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/icon-coin-star-big.png 2x"
+										<a href="${root}index?formpath=myPoint">
+										<img src="/img/icon-coin-star-big.png"
+												srcset="/img/icon-coin-star-big2.png 2x"
 												alt=""></a></span>
 										 <span>
 										 <a href="${root}index?formpath=myPoint">벗</a></span> 
@@ -186,7 +186,7 @@ ${msg }
 							<ul class="menu">
 								<li><a href="${root }logout">로그아웃</a></li>
 								<li><a href="${root }index?formpath=faq1">FAQ</a></li>
-								<li><a href="javascript:ChannelIO('showMessenger');">1:1문의하기</a></li>
+<!-- 								<li><a href="javascript:ChannelIO('showMessenger');">1:1문의하기</a></li> -->
 							</ul>
 						</div>
 					</div>
