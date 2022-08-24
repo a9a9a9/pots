@@ -52,6 +52,13 @@
 			</a>
 					</span>
 	</span>
+	
+	
+<c:if test="${memberChk ==  'checked'}">
+	<span class="social v-bar left"> 문의 : ${p.party_tel }</span>
+</c:if>
+
+
 		<span class="right pc-block">파티 번호 : <span class="lightgrey">${p.party_num }</span></span>
 </div>
 
@@ -62,14 +69,20 @@
 
 <div class="item-view-row">
 		<span > 종료일 : 
-		<span class="fw300">
-			${p.party_end }		</span>		
-		<span class="lightgrey">
-		(${p.party_left_date }일 / 일 평균 ${p.party_charge }원)		</span>
-	</span>
-		
+		<c:choose>
+			<c:when test="${p.party_left_date <= 0 or p.party_available == '0'}">
+				<span class="fw300">종료 되었습니다.</span>		
+				<span class="lightgrey">(종료)</span>
+			</c:when>
+			<c:otherwise>
+				<span class="fw300"> ${p.party_end } </span>		
+				<span class="lightgrey"> (${p.party_left_date }일 / 일 평균 ${p.party_charge }원)</span>
+			</c:otherwise>
+		</c:choose>
+		</span>
+		<c:if test="${p.party_available == '1' || p.party_left_date == 0}">
 		<span class="v-bar left">참여 비용 : <span class="price Rajdhani text-purple">${p.party_total_charge }</span><span class="lightgrey"> 원</span></span>
-		
+		</c:if>
 		
 		<c:if test="${memberChk ==  'checked'}">
 			<a href="#popup-account" class="item-view-idpw popup-inline button round button-red">아이디/패스워드 보기</a>
@@ -137,7 +150,7 @@
 	</div>
 </div>
 <c:choose>
-	<c:when test="${joined == 0 }">
+	<c:when test="${list == null}">
 		<div class="empty">
 			<div class="icon"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-big-glay.png" /></div>
 			<h5>아직 모집된 인원이 없습니다.</h5>
@@ -158,18 +171,25 @@
 							</div>
 			<div class="date">
 				${m.mystartday } 
-				참여			
+				<c:choose>
+					<c:when test="${p.party_left_date <= 0 }">
+					사용종료
+					</c:when>
+					<c:otherwise>
+					참여		
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</li>
 						
 		</c:forEach>
-		<c:if test="${ joined != 100}">
-			<c:forEach  begin="${joined + 1 }" end="${p.party_member }" varStatus="vs">
+		<c:if test="${ p.party_now_member != p.party_member}">
+			<c:forEach  begin="${p.party_now_member + 1 }" end="${p.party_member }" varStatus="vs">
 				<li>
 					<div class="picture">
 						<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle-glay.png" alt="" />				</div>
 					<div class="name">
-					${joined + vs.count }.벗츠
+					${p.party_now_member + vs.count }.벗츠
 					</div>
 					<div class="date">
 					모집대기중
@@ -204,7 +224,7 @@
 		</div>
 </div>
 
-<form name="fitem" method="post" action="https://buts.co.kr/shop/cartupdate.php" role="form" onsubmit="return fitem_submit(this);">
+<form name="fitem" method="post" action="/partyOrder?party_num=${p.party_num }" role="form" onsubmit="return fitem_submit(this);">
 	<input type="hidden" name="it_id[]" value="1656867366">
 	<input type="hidden" name="it_msg1[]" value="">
 	<input type="hidden" name="it_msg2[]" value="">
@@ -230,13 +250,14 @@
 		});
 	</script>
 </div>
-
+<c:if test="${p.party_available == '1' && sessionScope.id != null }">
 <div class="item-view-check">
 	<div class="input-check item-view-confirm">
 		<input type="checkbox" id="chk_confirm" name="chk_confirm" />
 		<label for="chk_confirm">파티 규칙에 대한 내용 확인 및 파티 알림 수신에 동의합니다.</label>
 	</div>
 </div>
+</c:if>
 <br>
 <div class="item-view-caution" style="border-color:#7e69fe; background-color: #ffffff;">
 	<div class="text">
@@ -249,143 +270,40 @@
 
 <div class="button-align center" style="margin-bottom: 30px;">
 	<a href="/" class="button large">목록</a>
-	
-						<button type="submit" onclick="document.pressed=this.value;" class="button large button-purple">참여신청</button>
-				</div>
+	<c:if test="${p.party_available=='1'&& sessionScope.id != null}">
+	<button type="submit" onclick="document.pressed=this.value;" class="button large button-purple">참여신청</button>
+	</c:if>
+</div>
 
 	<input type="hidden" id="it_price" value="50">
 
 </form>
 
-<script>
-	// BS3
-	$(function() {
-		$("select.it_option").addClass("form-control input-sm");
-		$("select.it_supply").addClass("form-control input-sm");
-	});
-	// 재입고SMS 알림
-	function popup_stocksms(it_id, ca_id) {
-		url = "./itemstocksms.php?it_id=" + it_id + "&ca_id=" + ca_id;
-		opt = "scrollbars=yes,width=616,height=420,top=10,left=10";
-		popup_window(url, "itemstocksms", opt);
-	}
-	// 바로구매, 장바구니 폼 전송
-	function fitem_submit(f) {
-		if(document.getElementById("chk_confirm").checked == false){
-			alert('안내 및 규칙을 읽고\n체크박스에 체크해 주세요.');
-			document.getElementById("chk_confirm").focus();
-			return false;
-		}
-		f.action = "https://buts.co.kr/shop/cartupdate.php";
-		f.target = "";
-		if (document.pressed == "장바구니") {
-			f.sw_direct.value = 0;
-		} else { // 바로구매
-			f.sw_direct.value = 1;
-		}
-		// 판매가격이 0 보다 작다면
-		if (document.getElementById("it_price").value < 0) {
-			alert("전화로 문의해 주시면 감사하겠습니다.");
-			return false;
-		}
-		if($(".it_opt_list").size() < 1) {
-			alert("선택옵션을 선택해 주십시오.");
-			return false;
-		}
-		var val, io_type, result = true;
-		var sum_qty = 0;
-		var min_qty = parseInt(1);
-		var max_qty = parseInt(0);
-		var $el_type = $("input[name^=io_type]");
-		$("input[name^=ct_qty]").each(function(index) {
-			val = $(this).val();
-			if(val.length < 1) {
-				alert("수량을 입력해 주십시오.");
-				result = false;
-				return false;
-			}
-			if(val.replace(/[0-9]/g, "").length > 0) {
-				alert("수량은 숫자로 입력해 주십시오.");
-				result = false;
-				return false;
-			}
-			if(parseInt(val.replace(/[^0-9]/g, "")) < 1) {
-				alert("수량은 1이상 입력해 주십시오.");
-				result = false;
-				return false;
-			}
-			io_type = $el_type.eq(index).val();
-			if(io_type == "0")
-				sum_qty += parseInt(val);
-		});
-		if(!result) {
-			return false;
-		}
-		if(min_qty > 0 && sum_qty < min_qty) {
-			alert("선택옵션 개수 총합 "+number_format(String(min_qty))+"개 이상 주문해 주십시오.");
-			return false;
-		}
-		if(max_qty > 0 && sum_qty > max_qty) {
-			alert("선택옵션 개수 총합 "+number_format(String(max_qty))+"개 이하로 주문해 주십시오.");
-			return false;
-		}
-		if (document.pressed == "장바구니") {
-			$.post("./itemcart.php", $(f).serialize(), function(error) {
-				if(error != "OK") {
-					alert(error.replace(/\\n/g, "\n"));
-					return false;
-				} else {
-					if(confirm("장바구니에 담겼습니다.\n\n바로 확인하시겠습니까?")) {
-						//document.location.href = "./cart.php";
-					}
-				}
-			});
-			return false;
-		} else {
-			return true;
-		}
-	}
-	// Wishlist
-	function apms_wishlist(it_id) {
-		if(!it_id) {
-			alert("코드가 올바르지 않습니다.");
-			return false;
-		}
-		$.post("./itemwishlist.php", { it_id: it_id },	function(error) {
-			if(error != "OK") {
-				alert(error.replace(/\\n/g, "\n"));
-				return false;
-			} else {
-				if(confirm("위시리스트에 담겼습니다.\n\n바로 확인하시겠습니까?")) {
-					document.location.href = "./wishlist.php";
-				}
-			}
-		});
-		return false;
-	}
-	// Recommend
-	function apms_recommend(it_id, ca_id) {
-		if (!g5_is_member) {
-			alert("회원만 추천하실 수 있습니다.");
-		} else {
-			url = "./itemrecommend.php?it_id=" + it_id + "&ca_id=" + ca_id;
-			opt = "scrollbars=yes,width=616,height=420,top=10,left=10";
-			popup_window(url, "itemrecommend", opt);
-		}
-	}
-</script>
-
 
 <div class="button-align left border">
 			<a href="./item.php?it_id=1593077843&amp;ca_id=10" class="button small border button-purple">다음</a>
 		<div class="float-right">
+		
 		<c:set var="partner" value="${sessionScope.partner }"/>
 		<c:if test="${partner != null }">
 				<a href="/partyCreate" class="button small button-red">등록</a>
-				</c:if>
-							</div>
+		</c:if>
 </div>
+</div>
+<script>
+function fitem_submit(f) {
 
+	if(document.getElementById("chk_confirm").checked == false){
+		alert('안내 및 규칙을 읽고\n체크박스에 체크해 주세요.');
+		document.getElementById("chk_confirm").focus();
+		return false;
+	}else {
+		return true;
+	}
+}
+
+
+</script>
 
 
 <div class="comment-wrap mg-top">
@@ -402,17 +320,38 @@
 				<div class="comment-wirte">
 					<div class="select">
 						<select name="wr_1" id="wr_1"  onchange="tochange(this.form)">
-														<option value="momok22">파티장에게</option>	
+							<c:choose>
+							<c:when test="${myParty }">
+								<option value="party">파티원 에게</option>	
+							</c:when>
+							<c:otherwise>
+								<option value="${p.nick }">파티장 에게</option>	
+							</c:otherwise>
+							</c:choose>
+							
+							<c:if test="${memberChk ==  'checked'}">
+								<c:forEach var="m" items="${list }">
+									<option value="${m.nick }">${m.nick } 에게</option>	
+								</c:forEach>
+							</c:if>
 								
-							<option value="">일반</option>	
+							<option value="party">일반</option>	
 						</select>
 						<div class="input-check secret">
-							<input type="checkbox" name="wr_secret" value="secret" id="wr_secret" />
+							<input type="checkbox" name="party" value="secret" id="wr_secret" />
 							<label for="wr_secret">비밀글</label>
 						</div>
 					</div>
-					<textarea id="wr_content" name="wr_content" maxlength="10000" required   placeholder="파티장에게 궁금한 점이 있으면 물어보세요!&#13;&#10;※ 알림톡은 5분 동안 1회로 사용이 제한됩니다."></textarea>					
-															<a href="javascript:apms_comment('itemcomment');" class="button-apply" id="btn_submit" >등록</a>	
+					<c:choose>
+					<c:when test="${sessionScope.id == null }">
+						<textarea id="wr_content" name="wr_content" maxlength="10000" readonly placeholder="파티장에게 궁금한 점이 있으면 물어보세요!&#13;&#10;※ 빠른 문의는 파티장 문의 전화번호를 이용해주세요."></textarea>					
+						<a href="" onclick="return false;" class="button-apply" id="btn_submit" style="background-color: #cecdd4;" >등록</a>	
+					</c:when>
+					<c:otherwise>
+						<textarea id="wr_content" name="wr_content" maxlength="10000" required   placeholder="파티장에게 궁금한 점이 있으면 물어보세요!&#13;&#10;※ 빠른 문의는 파티장 문의 전화번호를 이용해주세요."></textarea>					
+						<a href="javascript:apms_comment('itemcomment');" class="button-apply" id="btn_submit" >등록</a>	
+					</c:otherwise>
+					</c:choose>
 										<script>
 					function apms_comment_onKeyDown() {
 							if(event.keyCode == 13) {
@@ -424,158 +363,194 @@
 			</form>
 		</aside>
 		<div class="comment-list" id="itemcomment">
-		<ul id="it_vc"  >
-						<li class="left" id="c_139350">
-				<div class="picture">
-					<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png" alt="" />
-				</div>
-				<div class="balloon">
-					<div class="to"  style="color:#ffffff;">놐크로님 에게</div>					
-					<div class="speech">
-													<img src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif" alt="">
-												비밀댓글 입니다.					</div>
-				</div>
-				<div class="option">
-					<span class="v-bar">힘티비</span>
-					<span class="v-bar">5일전</span>
-									</div>
-			</li>
-            			<li id="c_139245">
-				<div class="picture">
-					<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png" alt="" />
-				</div>
-				<div class="balloon">
-					<div class="to">힘티비님 에게</div>						
-					<div class="speech">
-													<img src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif" alt="">
-												비밀댓글 입니다.					</div>
-				</div>
-				<div class="option">
-					<span class="v-bar">놐크로</span>
-					<span class="v-bar">5일전</span>
-									</div>
-			</li>
-						<li class="left" id="c_131787">
-				<div class="picture">
-					<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png" alt="" />
-				</div>
-				<div class="balloon">
-					<div class="to"  style="color:#ffffff;">skygowoo님 에게</div>					
-					<div class="speech">
-													<img src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif" alt="">
-												비밀댓글 입니다.					</div>
-				</div>
-				<div class="option">
-					<span class="v-bar">힘티비</span>
-					<span class="v-bar">2022.07.29 19:27</span>
-									</div>
-			</li>
-            			<li class="left" id="c_125157">
-				<div class="picture">
-					<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png" alt="" />
-				</div>
-				<div class="balloon">
-					<div class="to"  style="color:#ffffff;">싱가포리님 에게</div>					
-					<div class="speech">
-													<img src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif" alt="">
-												비밀댓글 입니다.					</div>
-				</div>
-				<div class="option">
-					<span class="v-bar">힘티비</span>
-					<span class="v-bar">2022.07.17 01:07</span>
-									</div>
-			</li>
-            			<li id="c_125066">
-				<div class="picture">
-					<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png" alt="" />
-				</div>
-				<div class="balloon">
-					<div class="to">힘티비님 에게</div>						
-					<div class="speech">
-													<img src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif" alt="">
-												비밀댓글 입니다.					</div>
-				</div>
-				<div class="option">
-					<span class="v-bar">싱가포리</span>
-					<span class="v-bar">2022.07.16 21:43</span>
-									</div>
-			</li>
-						<li class="left" id="c_125062">
-				<div class="picture">
-					<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png" alt="" />
-				</div>
-				<div class="balloon">
-					<div class="to"  style="color:#ffffff;">싱가포리님 에게</div>					
-					<div class="speech">
-													<img src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif" alt="">
-												비밀댓글 입니다.					</div>
-				</div>
-				<div class="option">
-					<span class="v-bar">힘티비</span>
-					<span class="v-bar">2022.07.16 21:40</span>
-									</div>
-			</li>
-            			<li id="c_125060">
-				<div class="picture">
-					<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png" alt="" />
-				</div>
-				<div class="balloon">
-					<div class="to">힘티비님 에게</div>						
-					<div class="speech">
-													<img src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif" alt="">
-												비밀댓글 입니다.					</div>
-				</div>
-				<div class="option">
-					<span class="v-bar">싱가포리</span>
-					<span class="v-bar">2022.07.16 21:39</span>
-									</div>
-			</li>
-						<li class="left" id="c_125056">
-				<div class="picture">
-					<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png" alt="" />
-				</div>
-				<div class="balloon">
-					<div class="to"  style="color:#ffffff;">싱가포리님 에게</div>					
-					<div class="speech">
-													<img src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif" alt="">
-												비밀댓글 입니다.					</div>
-				</div>
-				<div class="option">
-					<span class="v-bar">힘티비</span>
-					<span class="v-bar">2022.07.16 21:33</span>
-									</div>
-			</li>
-            			<li id="c_118539">
-				<div class="picture">
-					<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png" alt="" />
-				</div>
-				<div class="balloon">
-					<div class="to">힘티비님 에게</div>						
-					<div class="speech">
-													<img src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif" alt="">
-												비밀댓글 입니다.					</div>
-				</div>
-				<div class="option">
-					<span class="v-bar">바나나귤</span>
-					<span class="v-bar">2022.07.04 07:50</span>
-									</div>
-			</li>
-						<li class="left" id="c_118536">
-				<div class="picture">
-					<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png" alt="" />
-				</div>
-				<div class="balloon">
-					<div class="to"  style="color:#ffffff;">바나나귤님 에게</div>					
-					<div class="speech">
-													<img src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif" alt="">
-												비밀댓글 입니다.					</div>
-				</div>
-				<div class="option">
-					<span class="v-bar">힘티비</span>
-					<span class="v-bar">2022.07.04 07:35</span>
-									</div>
-			</li>
-            		</ul>
+		
+				<ul id="it_vc">
+					<li class="right" id="c_139350">
+						<div class="picture">
+							<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png"/>
+						</div>
+						<div class="balloon">
+							<div class="to">놐크로님 에게</div>
+							<div class="speech">
+								<img src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif">
+									 비밀댓글 입니다.
+							</div>
+						</div>
+						<div class="option">
+							<span class="v-bar">힘티비</span> <span class="v-bar">5일전</span>
+						</div>
+					</li>
+					<li id="c_139245">
+						<div class="picture">
+							<img
+								src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png"
+								alt="" />
+						</div>
+						<div class="balloon">
+							<div class="to">힘티비님 에게</div>
+							<div class="speech">
+								<img
+									src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif"
+									alt=""> 비밀댓글 입니다.
+							</div>
+						</div>
+						<div class="option">
+							<span class="v-bar">놐크로</span> <span class="v-bar">5일전</span>
+						</div>
+					</li>
+					<li class="left" id="c_131787">
+						<div class="picture">
+							<img
+								src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png"
+								alt="" />
+						</div>
+						<div class="balloon">
+							<div class="to" style="color: #ffffff;">skygowoo님 에게</div>
+							<div class="speech">
+								<img
+									src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif"
+									alt=""> 비밀댓글 입니다.
+							</div>
+						</div>
+						<div class="option">
+							<span class="v-bar">힘티비</span> <span class="v-bar">2022.07.29
+								19:27</span>
+						</div>
+					</li>
+					<li class="left" id="c_125157">
+						<div class="picture">
+							<img
+								src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png"
+								alt="" />
+						</div>
+						<div class="balloon">
+							<div class="to" style="color: #ffffff;">싱가포리님 에게</div>
+							<div class="speech">
+								<img
+									src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif"
+									alt=""> 비밀댓글 입니다.
+							</div>
+						</div>
+						<div class="option">
+							<span class="v-bar">힘티비</span> <span class="v-bar">2022.07.17
+								01:07</span>
+						</div>
+					</li>
+					<li id="c_125066">
+						<div class="picture">
+							<img
+								src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png"
+								alt="" />
+						</div>
+						<div class="balloon">
+							<div class="to">힘티비님 에게</div>
+							<div class="speech">
+								<img
+									src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif"
+									alt=""> 비밀댓글 입니다.
+							</div>
+						</div>
+						<div class="option">
+							<span class="v-bar">싱가포리</span> <span class="v-bar">2022.07.16
+								21:43</span>
+						</div>
+					</li>
+					<li class="left" id="c_125062">
+						<div class="picture">
+							<img
+								src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png"
+								alt="" />
+						</div>
+						<div class="balloon">
+							<div class="to" style="color: #ffffff;">싱가포리님 에게</div>
+							<div class="speech">
+								<img
+									src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif"
+									alt=""> 비밀댓글 입니다.
+							</div>
+						</div>
+						<div class="option">
+							<span class="v-bar">힘티비</span> <span class="v-bar">2022.07.16
+								21:40</span>
+						</div>
+					</li>
+					<li id="c_125060">
+						<div class="picture">
+							<img
+								src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png"
+								alt="" />
+						</div>
+						<div class="balloon">
+							<div class="to">힘티비님 에게</div>
+							<div class="speech">
+								<img
+									src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif"
+									alt=""> 비밀댓글 입니다.
+							</div>
+						</div>
+						<div class="option">
+							<span class="v-bar">싱가포리</span> <span class="v-bar">2022.07.16
+								21:39</span>
+						</div>
+					</li>
+					<li class="left" id="c_125056">
+						<div class="picture">
+							<img
+								src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png"
+								alt="" />
+						</div>
+						<div class="balloon">
+							<div class="to" style="color: #ffffff;">싱가포리님 에게</div>
+							<div class="speech">
+								<img
+									src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif"
+									alt=""> 비밀댓글 입니다.
+							</div>
+						</div>
+						<div class="option">
+							<span class="v-bar">힘티비</span> <span class="v-bar">2022.07.16
+								21:33</span>
+						</div>
+					</li>
+					<li id="c_118539">
+						<div class="picture">
+							<img
+								src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png"
+								alt="" />
+						</div>
+						<div class="balloon">
+							<div class="to">힘티비님 에게</div>
+							<div class="speech">
+								<img
+									src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif"
+									alt=""> 비밀댓글 입니다.
+							</div>
+						</div>
+						<div class="option">
+							<span class="v-bar">바나나귤</span> <span class="v-bar">2022.07.04
+								07:50</span>
+						</div>
+					</li>
+					<li class="left" id="c_118536">
+						<div class="picture">
+							<img
+								src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png"
+								alt="" />
+						</div>
+						<div class="balloon">
+							<div class="to" style="color: #ffffff;">바나나귤님 에게</div>
+							<div class="speech">
+								<img
+									src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif"
+									alt=""> 비밀댓글 입니다.
+							</div>
+						</div>
+						<div class="option">
+							<span class="v-bar">힘티비</span> <span class="v-bar">2022.07.04
+								07:35</span>
+						</div>
+					</li>
+				</ul>
             		
 			</div>
 </div>
@@ -651,7 +626,8 @@ $("document").ready(function() {
 			alert('계정 PW가 복사 되었습니다.');
 		}
 	}
-</script>	<script>
+</script>	
+<script>
 	var save_before = '';
 	var save_html = document.getElementById('it_vc_w').innerHTML;
 	function fviewcomment_submit(f)	{
@@ -757,41 +733,7 @@ $("document").ready(function() {
 		});
 			});
 	</script>
-<!-- <script data-ad-client="ca-pub-8150600701657072" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-Global site tag (gtag.js) - Google Analytics
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-163597728-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'UA-163597728-1');
-</script>
-
-Global site tag (gtag.js) - Google Ads: 914988072 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-914988072"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-914988072'); </script><script src="https://buts.co.kr/js/sns.js"></script>
- -->
-		</div><!-- .width-container -->
-	</div><!-- .body -->
-<!--
-	<div class="side">
-		<a href="https://buts.co.kr/bbs/guide_buts.php">
-			<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/btn-quick-guid.png" srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/btn-quick-guid.png 2x" alt="" />
-			<span class="side-text">처음 오신분!</span>
-		</a>		
-		<a onclick="chatChannel();" href="javascript:;">
-			<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/btn-quick-talk.png" srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/btn-quick-talk.png 2x" alt="" />
-			<span class="side-text">질문 주세요!</span>
-		</a>
-		<script type="text/javascript">
-		// input your appkey
-		Kakao.init('c089c8172def97eb00c07217cae17495')
-		function chatChannel() {
-			Kakao.Channel.chat({
-			channelPublicId: '_xnSxgxdxb',
-			})
-		}
-		</script>
-	</div>
--->
-
+</div>
+</div>
 </div>
 </body>

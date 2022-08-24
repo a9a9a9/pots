@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.proj.pots.party.dao.IPartyMngDAO;
 import com.proj.pots.party.dto.PartyBillDTO;
+import com.proj.pots.party.dto.PartyCommentDTO;
 import com.proj.pots.party.dto.PartyListDTO;
 import com.proj.pots.party.dto.PartyMemberDTO;
 import com.proj.pots.party.dto.PartyRegDTO;
@@ -33,7 +34,6 @@ public class PartyMngService {
 			String date = b.getBill_date().substring(0,10);
 			Date now = new Date();
 			String now_date = new SimpleDateFormat("yyyy-MM-dd").format(now);
-			System.out.println(date + " " + now_date);
 			if(date.equals(now_date)) bill_today = 1;
 		}
 		return bill;
@@ -137,7 +137,6 @@ public class PartyMngService {
 		ArrayList<PartyListDTO> list = mngDao.partySearch(map);
 		if(list != null)
 			list = listSetter(list);
-		System.out.println("List  " + list);
 		
 		return list;
 		
@@ -152,6 +151,7 @@ public class PartyMngService {
 		return tmp;
 	}
 	
+	//파티리스트 서비스 명을 한글로 바꿔주는 메서드
 	public ArrayList<PartyListDTO> listSetter(ArrayList<PartyListDTO> list) throws ParseException {
 		
 		for(PartyListDTO p : list) {
@@ -234,6 +234,7 @@ public class PartyMngService {
 		return list;
 	}
 
+	// 내가 만든 파티의 모든 파티원 목록
 	public ArrayList<PartyMemberDTO> partyJoinList(String id) throws ParseException {
 		ArrayList<PartyMemberDTO> list = mngDao.partyJoinList(id);
 		if(list != null) {
@@ -248,6 +249,7 @@ public class PartyMngService {
 		return list;
 	}
 
+	//파티원 검색하기
 	public ArrayList<PartyMemberDTO> joinSearch(Map<String, String> map) throws ParseException {
 		ArrayList<PartyMemberDTO>list = mngDao.partyJoinSearch(map);
 		if(list != null) {
@@ -281,7 +283,6 @@ public class PartyMngService {
 			partyInfo.setParty_left_member(left);
 			
 			//서비스 한글명으로 바꾸기
-			System.out.println(partyInfo.getParty_service());
 			if(partyInfo.getParty_service().equals("10")) partyInfo.setParty_service("영상");
 			else if (partyInfo.getParty_service().equals("20")) partyInfo.setParty_service("도서/음악");
 			else if (partyInfo.getParty_service().equals("30")) partyInfo.setParty_service("게임");
@@ -309,19 +310,31 @@ public class PartyMngService {
 	
 	public ArrayList<PartyMemberDTO> partyMember(String party_num) throws ParseException {
 		ArrayList<PartyMemberDTO> members = mngDao.partyMember(party_num);
-		for(PartyMemberDTO m : members) {
-			String start = m.getMystartday();
-			String tmp = start.substring(0,9);
-			m.setMystartday(tmp);
-		}
-		
 		return members;
 	}
 	
+	public ArrayList<PartyCommentDTO> partyComment(String party_num, String nick){
+		ArrayList<PartyCommentDTO> comment = mngDao.partyComment(party_num);
+		
+		if(comment != null) {
+			for(PartyCommentDTO c : comment) {
+				System.out.println(c.getComment_private()); 
+				if(c.getComment_private().equals("1")) {
+					if(c.getComment_to_nick().equals(nick) || c.getNick().equals(nick)) {
+						System.out.println("댓글정보" + c.getComment());
+					}else {
+						c.setComment("비밀댓글 입니다.");
+						System.out.println("댓글정보" + c.getComment());
+					}
+				}
+			}
+		}
+		
+		return comment;
+	}
 
 	public int partyBillInsert(PartyBillDTO billDto) {
 		int i = mngDao.partyBillInsert(billDto);
-		System.out.println("성공했니?"+ i);
 		return i;
 		
 	}
