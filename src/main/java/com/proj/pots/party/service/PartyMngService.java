@@ -22,7 +22,7 @@ public class PartyMngService {
 	private int bill_paid = 0;
 	private int bill_request = 0;
 	private int bill_today = 0;
-	
+
 	public ArrayList<PartyBillDTO> bill(String id) {
 		bill_paid = 0;
 		bill_request = 0;
@@ -68,7 +68,7 @@ public class PartyMngService {
 		return count;
 	}
 	
-	// 
+	
 	public String check_cash(String party_start, String party_end, String party_charge, String party_member) throws ParseException{
 		String count = check_day( party_start,  party_end);
 		int count_tmp = Integer.parseInt(count);
@@ -123,7 +123,6 @@ public class PartyMngService {
 	
 	// 파티 삽입
 	public int insert(PartyRegDTO partyDto) {
-		System.out.println("장난치치말구 ㅜㅜㅜ " + partyDto.getId());
 		int i = mngDao.insertParty(partyDto);
 		if(i == 1) {
 			PartyListDTO dto = mngDao.latestParty(partyDto.getId());
@@ -142,6 +141,15 @@ public class PartyMngService {
 		
 		return list;
 		
+	}
+	
+	public String notMyPartyNick(String nick) {
+		int length = nick.length();
+		String tmp  = nick.substring(0, 2);
+		for(int i = 2; i < length; i++) {
+			tmp += "*";
+		}
+		return tmp;
 	}
 	
 	public ArrayList<PartyListDTO> listSetter(ArrayList<PartyListDTO> list) throws ParseException {
@@ -316,6 +324,16 @@ public class PartyMngService {
 		System.out.println("성공했니?"+ i);
 		return i;
 		
+	}
+
+	public int partyDelete(String party_num) {
+		int i = mngDao.partyDelete(party_num);
+		return i;
+	}
+
+	public int partyClose(String party_num) {
+		int i = mngDao.partyClose(party_num);
+		return i;
 	}
 
 	

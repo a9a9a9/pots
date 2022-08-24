@@ -36,4 +36,8 @@ public interface IPartyMngDAO {
 	int bill_now(String id);
 
 	int partyBillInsert(PartyBillDTO billDto);
+
+	int partyDelete(String party_num);
+
+	int partyClose(String party_num);
 }

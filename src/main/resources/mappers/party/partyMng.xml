@@ -149,6 +149,12 @@
 		 	VALUES(#{id}, NOW(), #{bill_charge}, #{bill_pay})
 	 </insert>
 	
+	<delete id="partyDelete">
+		DELETE FROM party WHERE party_num = #{party_num}
+	</delete>
 	
+	<update id="partyClose">
+		UPDATE party SET party_available = '0' WHERE party_num = #{party_num}
+	</update>
 	
 </mapper>

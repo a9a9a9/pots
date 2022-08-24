@@ -1,6 +1,24 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<style>
+.notice_pre {
+	
+	display: block;
+    padding: 7.5px;
+    margin: 0 0 -31px;
+    font-size: 15px;
+    color: #333;
+    word-break: break-all;
+    word-wrap: break-word;
+    border-radius: 4px;
+    font-family: 'Noto Sans KR', 'NanumGothic', '나눔고딕', ng, 'Malgun Gothic', Gulim, Dotum, Sans-Serif !important;
+    line-height: 40px;
+    background-color: transparent;
+    border: none;
+    }
 
+
+</style>
 <body class="responsive is-pc">
 	<div class="wrap wrapper  ko">
 		<div class="body">
@@ -38,7 +56,7 @@
 </div>
 
 <div class="item-view-row mobile-block">
-	<span>파티 번호 : <span class="lightgrey"><span class="lightgrey">${p.party_num }</span></span>
+	<span>파티 번호 : <span class="lightgrey"><span class="lightgrey">${p.party_num }</span></span></span>
 	<a href="#popup-policy" class="right fw300 text-purple popup-inline">벗츠 환불 보증 정책 보기</a>
 </div>
 
@@ -167,7 +185,9 @@
 
 <div class="item-view-caution">
 		<div class="tag">
+				<c:if test="${p.party_adult == 1 }">
 									<span> 19세 이상 </span>
+				</c:if>
 									<span> 1인 1회선 </span>
 									<span> 1인 1기기 등록 </span>
 									<span> 공유 금지 </span>
@@ -177,14 +197,11 @@
 									<span> 개인사정 환불 불가 </span>
 									<span> 위반 시 강제 조치 </span>
 									<span> 벗츠 닉네임과 동일하게 프로필 닉네임 설정 </span>
+									
 					</div>
 		<div class="text">
-		- 프로필은 생성(선택) 후 닉네임을 변경하여 사용해 주세요.<br />
-- 반드시 본인의 프로필으로 컨텐츠를 이용해 주세요.<br />
-- 1인 1회선 사용 원칙으로 합니다.<br />
-- 다양한 디바이스에서 접속은 가능하지만 본인이  여러대의 기기에서 동시접속은 불가합니다.<br />
-- 다수가 사용하는 계정인만큼 불쾌감을 줄 수 있는 프로필 이미지나 닉네임은 피해주세요.<br />
-- 계정정보는 본인만 이용하며 절대 타인에게 노출하지 않습니다.	</div>
+		<pre class="notice_pre">${p.party_notice }</pre>
+		</div>
 </div>
 
 <form name="fitem" method="post" action="https://buts.co.kr/shop/cartupdate.php" role="form" onsubmit="return fitem_submit(this);">
@@ -230,8 +247,8 @@
 	</div>
 </div>
 
-<div class="button-align center">
-	<a href="./list.php?ca_id=10&amp;page=1" class="button large">목록</a>
+<div class="button-align center" style="margin-bottom: 30px;">
+	<a href="/" class="button large">목록</a>
 	
 						<button type="submit" onclick="document.pressed=this.value;" class="button large button-purple">참여신청</button>
 				</div>
@@ -358,13 +375,14 @@
 	}
 </script>
 
-<div class="sns-share-icon">
-	<a href="https://buts.co.kr/bbs/sns_send.php?longurl=https%3A%2F%2Fbuts.co.kr%2Fshop%2Fitem.php%3Fit_id%3D1656867366&amp;title=%5B%EC%A0%95%EC%8B%9D%EC%82%AC%EC%97%85%EC%9E%90%5D%EC%8B%A0%EC%86%8D%EC%95%88%EC%A0%84+%ED%94%84%EB%A6%AC%EB%AF%B8%EC%97%84%EA%B3%BC+%EB%AE%A4%EC%A7%81+%7C+Buts&amp;sns=facebook" onclick="apms_sns('facebook','https://buts.co.kr/bbs/sns_send.php?longurl=https%3A%2F%2Fbuts.co.kr%2Fshop%2Fitem.php%3Fit_id%3D1656867366&amp;title=%5B%EC%A0%95%EC%8B%9D%EC%82%AC%EC%97%85%EC%9E%90%5D%EC%8B%A0%EC%86%8D%EC%95%88%EC%A0%84+%ED%94%84%EB%A6%AC%EB%AF%B8%EC%97%84%EA%B3%BC+%EB%AE%A4%EC%A7%81+%7C+Buts&amp;sns=facebook'); return false;" target="_blank"><img src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/sns_fb.png" alt="Facebook"></a> <a href="https://buts.co.kr/bbs/sns_send.php?longurl=https%3A%2F%2Fbuts.co.kr%2Fshop%2Fitem.php%3Fit_id%3D1656867366&amp;title=%5B%EC%A0%95%EC%8B%9D%EC%82%AC%EC%97%85%EC%9E%90%5D%EC%8B%A0%EC%86%8D%EC%95%88%EC%A0%84+%ED%94%84%EB%A6%AC%EB%AF%B8%EC%97%84%EA%B3%BC+%EB%AE%A4%EC%A7%81+%7C+Buts&amp;sns=twitter" onclick="apms_sns('twitter','https://buts.co.kr/bbs/sns_send.php?longurl=https%3A%2F%2Fbuts.co.kr%2Fshop%2Fitem.php%3Fit_id%3D1656867366&amp;title=%5B%EC%A0%95%EC%8B%9D%EC%82%AC%EC%97%85%EC%9E%90%5D%EC%8B%A0%EC%86%8D%EC%95%88%EC%A0%84+%ED%94%84%EB%A6%AC%EB%AF%B8%EC%97%84%EA%B3%BC+%EB%AE%A4%EC%A7%81+%7C+Buts&amp;sns=twitter'); return false;" target="_blank"><img src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/sns_twt.png" alt="Twitter"></a> <a href="https://buts.co.kr/bbs/sns_send.php?longurl=https%3A%2F%2Fbuts.co.kr%2Fshop%2Fitem.php%3Fit_id%3D1656867366&amp;title=%5B%EC%A0%95%EC%8B%9D%EC%82%AC%EC%97%85%EC%9E%90%5D%EC%8B%A0%EC%86%8D%EC%95%88%EC%A0%84+%ED%94%84%EB%A6%AC%EB%AF%B8%EC%97%84%EA%B3%BC+%EB%AE%A4%EC%A7%81+%7C+Buts&amp;sns=gplus" onclick="apms_sns('googleplus','https://buts.co.kr/bbs/sns_send.php?longurl=https%3A%2F%2Fbuts.co.kr%2Fshop%2Fitem.php%3Fit_id%3D1656867366&amp;title=%5B%EC%A0%95%EC%8B%9D%EC%82%AC%EC%97%85%EC%9E%90%5D%EC%8B%A0%EC%86%8D%EC%95%88%EC%A0%84+%ED%94%84%EB%A6%AC%EB%AF%B8%EC%97%84%EA%B3%BC+%EB%AE%A4%EC%A7%81+%7C+Buts&amp;sns=gplus'); return false;" target="_blank"><img src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/sns_goo.png" alt="GooglePlus"></a> <a href="https://buts.co.kr/bbs/sns_send.php?longurl=https%3A%2F%2Fbuts.co.kr%2Fshop%2Fitem.php%3Fit_id%3D1656867366&amp;title=%5B%EC%A0%95%EC%8B%9D%EC%82%AC%EC%97%85%EC%9E%90%5D%EC%8B%A0%EC%86%8D%EC%95%88%EC%A0%84+%ED%94%84%EB%A6%AC%EB%AF%B8%EC%97%84%EA%B3%BC+%EB%AE%A4%EC%A7%81+%7C+Buts&amp;sns=kakaostory" onclick="apms_sns('kakaostory','https://buts.co.kr/bbs/sns_send.php?longurl=https%3A%2F%2Fbuts.co.kr%2Fshop%2Fitem.php%3Fit_id%3D1656867366&amp;title=%5B%EC%A0%95%EC%8B%9D%EC%82%AC%EC%97%85%EC%9E%90%5D%EC%8B%A0%EC%86%8D%EC%95%88%EC%A0%84+%ED%94%84%EB%A6%AC%EB%AF%B8%EC%97%84%EA%B3%BC+%EB%AE%A4%EC%A7%81+%7C+Buts&amp;sns=kakaostory'); return false;" target="_blank"><img src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/sns_kakaostory.png" alt="KakaoStory"></a> <a onclick="kakaolink_send('[정식사업자]신속안전 프리미엄과 뮤직 | Buts','https://buts.co.kr/shop/item.php?it_id=1656867366',''); return false;" class="cursor"><img src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/sns_kakao.png" alt="KakaoTalk"></a> <a href="https://buts.co.kr/bbs/sns_send.php?longurl=https%3A%2F%2Fbuts.co.kr%2Fshop%2Fitem.php%3Fit_id%3D1656867366&amp;title=%5B%EC%A0%95%EC%8B%9D%EC%82%AC%EC%97%85%EC%9E%90%5D%EC%8B%A0%EC%86%8D%EC%95%88%EC%A0%84+%ED%94%84%EB%A6%AC%EB%AF%B8%EC%97%84%EA%B3%BC+%EB%AE%A4%EC%A7%81+%7C+Buts&amp;sns=naverband" onclick="apms_sns('naverband','https://buts.co.kr/bbs/sns_send.php?longurl=https%3A%2F%2Fbuts.co.kr%2Fshop%2Fitem.php%3Fit_id%3D1656867366&amp;title=%5B%EC%A0%95%EC%8B%9D%EC%82%AC%EC%97%85%EC%9E%90%5D%EC%8B%A0%EC%86%8D%EC%95%88%EC%A0%84+%ED%94%84%EB%A6%AC%EB%AF%B8%EC%97%84%EA%B3%BC+%EB%AE%A4%EC%A7%81+%7C+Buts&amp;sns=naverband'); return false;" target="_blank"><img src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/sns_naverband.png" alt="NaverBand"></a> </div>
 
 <div class="button-align left border">
 			<a href="./item.php?it_id=1593077843&amp;ca_id=10" class="button small border button-purple">다음</a>
 		<div class="float-right">
-				<a href="https://buts.co.kr/shop/partner/?ap=item&amp;fn=2" class="button small button-red">등록</a>
+		<c:set var="partner" value="${sessionScope.partner }"/>
+		<c:if test="${partner != null }">
+				<a href="/partyCreate" class="button small button-red">등록</a>
+				</c:if>
 							</div>
 </div>
 
@@ -558,6 +576,7 @@
 									</div>
 			</li>
             		</ul>
+            		
 			</div>
 </div>
 <script>
@@ -738,8 +757,8 @@ $("document").ready(function() {
 		});
 			});
 	</script>
-<script data-ad-client="ca-pub-8150600701657072" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
+<!-- <script data-ad-client="ca-pub-8150600701657072" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+Global site tag (gtag.js) - Google Analytics
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163597728-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -748,8 +767,8 @@ $("document").ready(function() {
   gtag('config', 'UA-163597728-1');
 </script>
 
-<!-- Global site tag (gtag.js) - Google Ads: 914988072 --> <script async src="https://www.googletagmanager.com/gtag/js?id=AW-914988072"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-914988072'); </script><script src="https://buts.co.kr/js/sns.js"></script>
-
+Global site tag (gtag.js) - Google Ads: 914988072 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-914988072"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-914988072'); </script><script src="https://buts.co.kr/js/sns.js"></script>
+ -->
 		</div><!-- .width-container -->
 	</div><!-- .body -->
 <!--
@@ -773,5 +792,6 @@ $("document").ready(function() {
 		</script>
 	</div>
 -->
+
 </div>
 </body>
