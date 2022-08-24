@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.proj.pots.main.dao.IPartyPageDAO">
+	<select id="listProc" resultType="PartyListDTO">
+		SELECT d.* FROM(
+			SELECT ROW_NUMBER() OVER(ORDER BY party_regdate DESC) AS rn, c.* FROM
+				(SELECT a.* , b.party_count AS party_now_member , DATE_FORMAT(party_end, '%y.%m.%d') AS party_end_form
+				FROM party a LEFT JOIN (SELECT party_num, count(*) AS party_count FROM party_member GROUP BY party_num)b 
+				ON a.party_num = b.party_num WHERE party_service = #{sub}
+				)c
+			)d WHERE rn BETWEEN #{b} and #{e};
+	</select>
+	
+	<select id="listCount" resultType="int" parameterType="String">
+		SELECT count(*) FROM party WHERE party_service = #{sub}
+	</select>
+	
+	<select id="sublistProc" resultType="PartyListDTO">
+		SELECT d.* FROM(
+			SELECT ROW_NUMBER() OVER(ORDER BY party_regdate DESC) AS rn, c.* FROM
+				(SELECT a.* , b.party_count AS party_now_member , DATE_FORMAT(party_end, '%y.%m.%d') AS party_end_form
+				FROM party a LEFT JOIN (SELECT party_num, count(*) AS party_count FROM party_member GROUP BY party_num)b 
+				ON a.party_num = b.party_num WHERE party_subservice = #{sub}
+				)c
+			)d WHERE rn BETWEEN #{b} and #{e};
+	</select>
+	
+	<select id="sublistCount" resultType="int" parameterType="String">
+		SELECT count(*) FROM party WHERE party_subservice = #{sub}
+	</select>
+	
+	<select id="mainList" resultType="PartyListDTO">
+		SELECT d.* FROM(
+			SELECT ROW_NUMBER() OVER(ORDER BY party_regdate DESC) AS rn, c.* FROM
+				(SELECT a.* , b.party_count AS party_now_member , DATE_FORMAT(party_end, '%y.%m.%d') AS party_end_form
+				FROM party a LEFT JOIN (SELECT party_num, count(*) AS party_count FROM party_member GROUP BY party_num)b 
+				ON a.party_num = b.party_num
+				)c
+			)d WHERE rn BETWEEN #{b} and #{e};
+	</select>
+	
+	<select id="mainListCount" resultType="int">
+		SELECT count(*) FROM party
+	</select>
+</mapper>

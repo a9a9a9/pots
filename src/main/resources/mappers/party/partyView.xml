@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.proj.pots.party.dao.IPartyViewDAO">
+
+	<select id="comment" parameterType="String" resultType="PartyCommentDTO">
+	 	SELECT a.nick, a.comment_date, a.comment, a.comment_private, b.party_title
+	 	FROM party_comment as a
+	 	JOIN party as b
+	 	ON a.party_num = b.party_num AND b.id = #{id} AND a.id != #{id}<!-- id 세션 값 --> 
+	 	ORDER BY comment_date DESC 
+	 </select>
+	 
+	 <select id="selectAccount" parameterType="String" resultType="PartnerInfoDTO">
+	 	SELECT * FROM partner_info WHERE id = #{id}
+	 </select> 
+	 
+	 <insert id="insertAccount" parameterType="PartnerInfoDTO">
+	 	INSERT INTO partner_info
+	 	VALUES (#{id}, #{personal_num}, #{account_name}, #{account_num})
+	 </insert>
+	 
+	 <insert id="insertPartyMember" parameterType="PartyMemberDTO">
+	 	INSERT INTO party_member(id, nick, party_num, mycharge, mystartday, use_account, use_point)
+	 	VALUES (#{id}, #{nick}, #{party_num}, #{mycharge}, NOW(), #{use_account}, #{use_point})
+	 </insert>
+	 
+	 <update id="updateAccount" parameterType="PartnerInfoDTO">
+	 	UPDATE partner_info 
+	 	SET personal_num=#{personal_num}, account_name=#{account_name}, account_num=#{account_num} 
+	 	WHERE id = #{id}
+	 </update>
+	 
+	 <select id="selectParty" parameterType="int" resultType="PartyRegDTO">
+	 	SELECT * FROM party WHERE party_num = #{party_num}
+	 </select> 
+	 
+	 <select id="partyMember" parameterType="String" resultType="PartyMemberDTO">
+	 	SELECT * FROM party_member WHERE id = #{id}
+	 </select>
+	 
+	 <select id="endDay" parameterType="int" resultType="PartyRegDTO">
+	 	SELECT DATE_FORMAT(party_end, '%y.%m.%d') AS party_end FROM party WHERE party_num = #{party_num}
+	 </select>
+	 
+	 <!-- 파티 날짜별 금액, 수수료 -->
+	 <select id="partyDay" parameterType="int" resultType="PartyRegDTO">
+	 	SELECT TIMESTAMPDIFF(DAY, NOW(), party_end) as diff,
+	 		TIMESTAMPDIFF(DAY, NOW(), party_end) * party_charge AS pay,
+	 		TIMESTAMPDIFF(DAY, NOW(), party_end) * party_charge * 0.1 AS plus 
+	 	FROM party WHERE party_num = #{party_num};
+	 	
+	 </select>
+	 
+	 <!-- 파티 회원 날짜별 금액 , 수수료 -->
+	 <select id="myPartyDay" resultType="PartyRegDTO">
+	 	SELECT TIMESTAMPDIFF (DAY, a.mystartday, b.party_end) AS diff, 
+	 		TIMESTAMPDIFF (DAY, a.mystartday, b.party_end) * b.party_charge AS pay, 
+	 		round(TIMESTAMPDIFF (DAY, a.mystartday, b.party_end) * b.party_charge * 0.1) AS plus 
+		FROM party_member AS a
+		JOIN party AS b
+		ON a.id=#{id} AND b.party_num=#{party_num};
+	 </select>
+	 
+	 <select id="payMethod" parameterType="String" resultType="PartyMemberDTO">
+	 	SELECT use_account , use_point
+		FROM party_member
+		WHERE id=#{id} AND use_account > 0  OR use_point > 0;
+	 </select>
+	 
+	 <select id="partyAvailableChk" resultType="PartyListDTO">
+		SELECT a.party_num, a.party_member, b.party_count AS party_now_member 
+		FROM 
+			(SELECT * FROM party WHERE party_num=#{party_num}) 
+			a 
+		LEFT JOIN 
+			(SELECT party_num, count(*) AS party_count FROM party_member GROUP BY party_num) 
+			b 
+		ON a.party_num = b.party_num;
+	 </select> 
+	 
+	 <update id="updateParty">
+	 	UPDATE party SET party_available='0' WHERE party_num=#{party_num}
+	 </update>
+	 
+	 <update id="updatePoint" parameterType="PartyMemberDTO">
+	 	UPDATE member SET point = point - ${use_point} 
+	 	WHERE id = #{id}
+	 </update>
+			 	 
+</mapper>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.proj.pots.party.dao.IPartyMngDAO">
+	
+	<insert id="insertParty" parameterType="PartyRegDTO" useGeneratedKeys="true">
+		INSERT INTO party (id, party_regdate, party_service, party_subservice, party_title, party_member, party_id, party_pw, party_tel, party_start, party_end, party_charge, party_adult, party_notice, party_available)
+		VALUES (
+		#{id},
+		NOW(), 		
+		#{party_service}, 		
+		#{party_subservice}, 	
+		#{party_title}, 			
+		#{party_member}, 			
+		#{party_id}, 			
+		#{party_pw}, 			
+		#{party_tel}, 			
+		#{party_start}, 			
+		#{party_end}, 			
+		#{party_charge}, 		
+		#{party_adult}, 			
+		#{party_notice}, 		
+		#{party_available})   
+	</insert>
+	
+	<select id="partyList" resultType="PartyListDTO">
+		SELECT a.*, b.party_count AS party_now_member 
+		FROM 
+			(SELECT * FROM party WHERE id=#{id}) 
+			a 
+		LEFT JOIN 
+			(SELECT party_num, count(*) AS party_count FROM party_member GROUP BY party_num) 
+			b 
+		ON a.party_num = b.party_num;
+	</select>
+	
+	<select id="latestParty" resultType="PartyListDTO">
+		SELECT a.*, b.party_count AS party_now_member 
+		FROM 
+			(SELECT * FROM party WHERE id=#{id}) 
+			a 
+		LEFT JOIN 
+			(SELECT party_num, count(*) AS party_count FROM party_member GROUP BY party_num) 
+			b 
+		ON a.party_num = b.party_num LIMIT 1
+		ORDER BY a.party_num DESC;
+	</select>
+	
+	<select id="partySearch" parameterType="Map" resultType="PartyListDTO">
+		SELECT a.*, b.party_count AS party_now_member 
+			FROM 
+				(SELECT * FROM party WHERE id=#{id} ORDER BY party_num DESC)
+				a 
+			LEFT JOIN 
+				(SELECT party_num, count(*) AS party_count FROM party_member GROUP BY party_num) 
+				b 
+			ON a.party_num = b.party_num 
+			WHERE 
+			<choose>
+				<when test="sel2 == 'num'">a.party_num LIKE CONCAT('%',${keyword},'%')</when>
+				<when test="sel2 == 'id'">a.party_id LIKE CONCAT('%',${keyword},'%')</when>
+			</choose>
+			<choose>
+				<when test="sel1 == 'ser'">AND a.party_service=#{keynum}</when>
+				<when test="sel1 == 'sub'">AND a.party_subservice=#{keynum}</when>
+			</choose>
+			;
+	</select>
+	
+	<select id="partyJoinList" resultType="PartyMemberDTO">
+		SELECT b.nick, b.mycharge, b.mystartday, a.party_num, a.party_service, a.party_subservice, a.party_title, a.party_charge, a.party_available, a.party_end
+			FROM 
+				(SELECT * FROM party WHERE id=#{id})
+				a 
+			LEFT JOIN 
+				party_member
+				b 
+			ON a.party_num = b.party_num 
+	        WHERE b.id IS NOT NULL 
+	        ORDER BY mystartday DESC;
+	</select>
+	
+	<select id="partyJoinSearch" parameterType="Map" resultType="PartyMemberDTO">
+		SELECT b.nick, b.mycharge, b.mystartday, a.party_num, a.party_service, a.party_subservice, a.party_title, a.party_charge, a.party_available, a.party_end
+		FROM 
+			(SELECT * FROM party WHERE id=#{id})
+			a 
+		LEFT JOIN 
+			party_member
+			b 
+		ON a.party_num = b.party_num 
+        WHERE b.id IS NOT NULL 
+        	<choose>
+				<when test="sel1 == 'ser'">AND a.party_service=#{keynum} </when>
+				<when test="sel1 == 'sub'">AND a.party_subservice=#{keynum}</when>
+			</choose>
+			<if test="!keyword.equals('')">
+				AND a.party_num LIKE CONCAT('%',${keyword},'%')
+			</if>
+			<if test="!start.equals('')">
+				AND b.mystartday BETWEEN #{start} AND #{end} 
+			</if>
+        ORDER BY b.mystartday DESC
+	</select>
+		 
+	 <select id="bill" parameterType="String" resultType="PartyBillDTO">
+	 	SELECT * FROM party_bill WHERE id = #{id} ORDER BY bill_date DESC
+	 </select>
+	 
+	 <select id="partySelect" resultType="PartyListDTO">
+	 	SELECT a.*, b.party_count AS party_now_member 
+		FROM 
+			(SELECT party.* , member.nick FROM party JOIN member ON party.id = member.id WHERE party_num=#{party_num})
+			a 
+		LEFT JOIN 
+			(SELECT party_num, count(*) AS party_count FROM party_member GROUP BY party_num) 
+			b 
+		ON a.party_num = b.party_num
+	 </select>
+	 
+	 <select id="partyMember" resultType="PartyMemberDTO">
+	 	SELECT nick, mystartday FROM party_member WHERE party_num=#{party_num}
+	 </select>
+	 
+	 <select id="bill_total" resultType="int">
+	 	SELECT SUM(b.mycharge) AS sum
+			FROM (SELECT * FROM party WHERE id=#{id}) a 
+			LEFT JOIN party_member b 
+			ON a.party_num = b.party_num 
+			WHERE b.id IS NOT NULL
+			ORDER BY b.mystartday DESC
+	 </select>
+	 
+	 <select id="bill_now" resultType="int">
+	 SELECT a.party_charge* DATEDIFF(a.party_end, NOW()) * b.party_count AS party_now_member 
+		FROM 
+			(SELECT * FROM party WHERE id=#{id}) 
+			a 
+		LEFT JOIN 
+			(SELECT party_num, count(*) AS party_count FROM party_member GROUP BY party_num) 
+			b
+		ON a.party_num = b.party_num
+        WHERE a.party_end >= NOW() AND b.party_count IS NOT NULL
+	 
+	 </select>
+	 
+	 <insert id="partyBillInsert" parameterType="PartyBillDTO">
+		 INSERT INTO party_bill (id, bill_date, bill_charge, bill_pay)
+		 	VALUES(#{id}, NOW(), #{bill_charge}, #{bill_pay})
+	 </insert>
+	
+	
+	
+</mapper>
