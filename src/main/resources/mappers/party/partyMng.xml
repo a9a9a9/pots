@@ -119,7 +119,12 @@
 	 </select>
 	 
 	 <select id="partyMember" resultType="PartyMemberDTO">
-	 	SELECT nick, mystartday FROM party_member WHERE party_num=#{party_num}
+	 	SELECT id, nick, DATE_FORMAT(mystartday, '%Y.%m.%d') AS mystartday FROM party_member WHERE party_num=#{party_num}
+	 </select>
+	 
+	 <select id="partyComment" resultType="PartyCommentDTO">
+	 	SELECT * FROM party_comment WHERE party_num = #{party_num} ORDER BY no_cmnt DESC;
+	 
 	 </select>
 	 
 	 <select id="bill_total" resultType="int">
@@ -149,6 +154,12 @@
 		 	VALUES(#{id}, NOW(), #{bill_charge}, #{bill_pay})
 	 </insert>
 	
+	<delete id="partyDelete">
+		DELETE FROM party WHERE party_num = #{party_num}
+	</delete>
 	
+	<update id="partyClose">
+		UPDATE party SET party_available = '0' WHERE party_num = #{party_num}
+	</update>
 	
 </mapper>
