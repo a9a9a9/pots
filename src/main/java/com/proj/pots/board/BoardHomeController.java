@@ -26,7 +26,7 @@ public class BoardHomeController {
 	}
 	@RequestMapping(value = "/noticeView")
 	public String noticeView() {
-		String url = checkSession("board/noticeBoardView");
+		String url = "board/noticeBoardView";
 		return url;
 	}
 	@RequestMapping(value = "/boardWrite")

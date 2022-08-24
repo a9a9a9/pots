@@ -36,7 +36,7 @@
 						<!-- 작성자 -->
 						<span class="v-bar"><span class="sv_member">관리자</span></span>
 						<!-- 댓글 -->
-						<span class="v-bar">댓글 <span class="text-purple">0</span></span>
+<!-- 						<span class="v-bar">댓글 <span class="text-purple">0</span></span> -->
 						<!-- 조회수 -->
 						<span class="v-bar">조회수 <span class="text-purple">${board.notice_view }</span></span>
 						<!-- 작성일 -->
