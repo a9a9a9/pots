@@ -102,11 +102,16 @@
 //                                     	    )
                                      
                                  </script> 
-
-						<a href="https://kauth.kakao.com/oauth/authorize?
-	 							client_id=0070664f6956225934aebb37c784f4ed& 
-								redirect_uri=http://localhost/kakaoRegister& 
-								response_type=code"
+<!-- 						<a href="https://kauth.kakao.com/oauth/authorize? -->
+<!-- 	 							client_id=0070664f6956225934aebb37c784f4ed&  -->
+<!-- 								redirect_uri=http://localhost/kakaoRegister&  -->
+<!-- 								response_type=code" -->
+<!-- 						style="margin-left: 0px; margin-top: 5px; width: 100%; display: inline;" -->
+<!-- 						class="kakao sns-kakao" title="카카오">  -->
+					<a href="https://kauth.kakao.com/oauth/authorize?
+							client_id=0070664f6956225934aebb37c784f4ed&
+							redirect_uri=http://localhost/kakaoRegister&
+							response_type=code"
 						style="margin-left: 0px; margin-top: 5px; width: 100%; display: inline;"
 						class="kakao sns-kakao" title="카카오"> 
 						<img src="//k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg"

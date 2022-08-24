@@ -42,6 +42,7 @@
 							</tr>
 						</thead>
 						<tbody>
+	
 						<c:forEach var="list" items="${pointlist }">
 							<tr>
 								<td><span class="date"> <c:out value="${fn:substring(list.point_date, 0, 10)}"/><br> <c:out value="${fn:substring(list.point_date, 11, 20)}"/>
@@ -58,9 +59,9 @@
 					</table>
 				</div>
 
-					<div class="page-number">
-						${page}
-					</div>
+<!-- 					<div class="page-number"> -->
+<%-- 						${page} --%>
+<!-- 					</div> -->
 
 					<div class="button-align right mg-top-0"></div>
 			</div>

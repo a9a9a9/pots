@@ -16,6 +16,7 @@ import com.proj.pots.member.dto.LoginDTO;
 import com.proj.pots.member.dto.MemberDTO;
 import com.proj.pots.member.dto.PointDTO;
 import com.proj.pots.membership.dao.IMemberDAO;
+import com.proj.pots.party.dto.PartyMemberDTO;
 
 @Service
 @Transactional
@@ -148,10 +149,9 @@ public class MemberService {
 			
 			String id = (String) session.getAttribute("id");
 			int point = pointc + priced;
-
-			System.out.println("현재 포인트 : " + point); 
 			
-			member.setPoint(point);
+			
+//			member.setPoint(point);
 			member.setId(id);
 			
 			//충전 내용
@@ -160,6 +160,7 @@ public class MemberService {
 			pointDto.setId(id);
 			pointDto.setPoint_content(content);
 			pointDto.setPoint_charge(priced);
+			pointDto.setUse_point(0);
 			
 			Date date = new Date();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm (E)");
@@ -175,24 +176,60 @@ public class MemberService {
 		} 
 		
 		public void listpoint(String id, Model model) {
+			MemberDTO member = new MemberDTO();
+			PointDTO pointDto = new PointDTO();
 			// 포인트 조회
 			id = (String)session.getAttribute("id");
 			ArrayList<PointDTO> pointlist = memberDao.listpoint(id);
 			model.addAttribute("pointlist", pointlist);
-					
+			
+			String point = String.format("%,d", member.getPoint());
+			member.setPoint(point);
+			System.out.println("현재 포인트 : " + point); 
+
+		}
+
+		public void minapoint(PointDTO pointDto) {
+			
+			PartyMemberDTO partyDto = new PartyMemberDTO();
+			String id = (String) session.getAttribute("id");
+
+			// 결제한 포인트 저장
+			String content = "포인트 결제";
+			if(partyDto.getId().equals(id)) {
+			pointDto.setId(id);
+			}
+			pointDto.setPoint_content(content);
+			pointDto.setPoint_charge(0);
+			int pointm = Integer.parseInt(partyDto.getUse_point());
+			pointDto.setUse_point(pointm);
+//			Date date = new Date();
+//			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm (E)");
+//			String dateConvert = sdf.format(date);
+//			pointDto.setPoint_date(dateConvert);
+			
+			// 사용후 포인트 계산
+			int pointc = (int)session.getAttribute("point");
+				
+				MemberDTO member = new MemberDTO();
+				// 사용 포인트 금액
+				System.out.println("현재금액 : " + pointc);
+				System.out.println("사용금액 : " + pointm);
+				
+				int point = pointc - pointm;
+				System.out.println("계산 후 금액 : " + point); 
+				
+//				member.setPoint(point);
+				member.setId(id);
+			
+			memberDao.insertContent(pointDto);
+			memberDao.updatePoint(member);
+			session.setAttribute("point", point);
+			
+			
+			
 			
 		}
-//			
-//		
-//		ArrayList<PointDTO> pointlist = memberDao.selectPoint(pointDto);
-//		model.addAttribute("pointlist", pointlist);
-//		
-//		memberDao.updatePoint(member);
-//		memberDao.insertContent(pointDto);
-//		session.setAttribute("point", point);
-//		
-//		return "충전 완료";
-	
 
 	
 }

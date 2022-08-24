@@ -46,6 +46,17 @@ public class MemberController {
 		String msg = memberService.isExistsnsId(id); 
 		return msg;
 	}
+	
+	@RequestMapping(value = "registerProc") 
+		public String registerProc(HttpSession session) {
+			String id = (String) session.getAttribute("snsid");
+			if(id != null) {
+				return "redirect:/index?formpath=registerAgree";
+			}else {
+				return "redirect:/index?formpath=main";
+
+			}
+	}
 
 	@RequestMapping(value = "memberProc")
 	public String memberProc(MemberDTO member, Model model, RedirectAttributes ra) {
@@ -156,7 +167,7 @@ public class MemberController {
 		session.setAttribute("snsid", map.get("kakaoid"));
 		session.setAttribute("snsname", map.get("kakaoname"));
 		session.setAttribute("accessToken", accessToken);
-		return "redirect:/index?formpath=registerAgree";
+		return "redirect:/index?formpath=snsRegister";
 	}
 	}
 //	@Autowired private naverService naverService;
@@ -203,10 +214,11 @@ public class MemberController {
 			session.setAttribute("tel", member.getTel());
 			session.setAttribute("profile", member.getProfile());
 			return "redirect:/index?formpath=main";
+		
 		}else {
 			session.setAttribute("snsid", naver_email);
 			session.setAttribute("snsname", naver_name);
-			return "redirect:/index?formpath=registerAgree";
+			return "redirect:/index?formpath=snsRegister";
 		}
 		
 	}
@@ -249,8 +261,12 @@ public class MemberController {
 		}
 	}
 	
-
+	@RequestMapping(value = "/myPoint")
+	public String myPoint(String id, Model model) {
+			memberService.listpoint(id, model);
+		
+		return "myMenu/myPoint";
 	
-	
+	}
 	
 }

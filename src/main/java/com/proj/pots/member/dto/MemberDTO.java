@@ -6,7 +6,7 @@ public class MemberDTO extends LoginDTO{
 	private String name;
 	private String tel;
 	private int profile;
-	private int point;
+	private String point;
 //	private String personal_num;
 //	private String account_name;
 //	private String account_num;
@@ -50,10 +50,10 @@ public class MemberDTO extends LoginDTO{
 	public void setProfile(int profile) {
 		this.profile = profile;
 	}
-	public int getPoint() {
+	public String getPoint() {
 		return point;
 	}
-	public void setPoint(int point) {
+	public void setPoint(String point) {
 		this.point = point;
 	}
 	public String getJoined_date() {
