@@ -234,7 +234,7 @@ public class MemberController {
 	@RequestMapping(value = "ChargeProc")
 	public String ChargeProc(String od_point, Model model) {
 		System.out.println("charge : " + od_point);
-		String msg = memberService.ChargeProc(od_point);
+		String msg = memberService.ChargeProc(od_point, model);
 
 		if(msg.equals("충전 완료")) {
 		model.addAttribute("msg", msg);

@@ -140,13 +140,9 @@ public class MemberService {
 	public String ChargeProc(String od_point, Model model) {
 		int pointc = (int)session.getAttribute("point");
 		int priced = Integer.parseInt(od_point);
-		
-		public String ChargeProc(String od_point) {
-			int pointc = (int)session.getAttribute("point");
-			int priced = Integer.parseInt(od_point);
 			
 			MemberDTO member = new MemberDTO();
-			
+			// 충전 포인트 금액
 			System.out.println("현재금액 : " + pointc);
 			System.out.println("충전금액 : " + od_point);
 			
@@ -170,19 +166,7 @@ public class MemberService {
 			String dateConvert = sdf.format(date);
 			pointDto.setPoint_date(dateConvert);
 
-		// 충전 포인트 금액
-		System.out.println("charge123 : " + od_point);
-		System.out.println("charge12334 : " + pointc);
-		String id = (String) session.getAttribute("id");
-		int point = pointc + priced;
-
 		System.out.println("chargePoint : " + point); 
-		// 충전 내용
-		PointDTO pointDto = new PointDTO();
-		String content = "포인트 충전";
-		pointDto.setId(id);
-		pointDto.setPoint_content(content);
-		pointDto.setPoint_charge(priced);
 			memberDao.updatePoint(member);
 			memberDao.insertContent(pointDto);
 			session.setAttribute("point", point);
@@ -198,18 +182,16 @@ public class MemberService {
 					
 			
 		}
-			
-		
-		ArrayList<PointDTO> pointlist = memberDao.selectPoint(pointDto);
-		model.addAttribute("pointlist", pointlist);
-		
-		memberDao.updatePoint(member);
-		memberDao.insertContent(pointDto);
-		session.setAttribute("point", point);
-		
-		return "충전 완료";
-		
-	} 
+//			
+//		
+//		ArrayList<PointDTO> pointlist = memberDao.selectPoint(pointDto);
+//		model.addAttribute("pointlist", pointlist);
+//		
+//		memberDao.updatePoint(member);
+//		memberDao.insertContent(pointDto);
+//		session.setAttribute("point", point);
+//		
+//		return "충전 완료";
 	
 
 	
