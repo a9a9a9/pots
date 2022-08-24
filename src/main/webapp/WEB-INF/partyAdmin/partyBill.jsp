@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:import url="partyIndex.jsp"/> 
+
 <script>
 window.onload=function(){
 	document.getElementById('partyBill').classList.add('active');
@@ -26,7 +28,7 @@ window.onload=function(){
 			<tbody>
 			<tr>
 				<td><span class="subject">1.판매총액</span></td>
-				<td>0원</td>
+				<td>${billMap.bill_total }원</td>
 				<td class="text-left"><span class="lightgrey">총 판매합산 금액(수수료 제외)</span></td>
 			</tr>
 			<!--
@@ -38,7 +40,7 @@ window.onload=function(){
 				-->
 			<tr>
 				<td><span class="subject">2.지급금액</span></td>
-				<td>0원</td>
+				<td>${billMap.bill_paid }원</td>
 				<td class="text-left"><span class="lightgrey">신청금액 기준</span></td>
 			</tr>
 			<tr class=" bg-grey">
@@ -53,17 +55,17 @@ window.onload=function(){
 				</tr>
 				<tr class=" bg-grey">
 					<td><span class="subject">5.미발생 판매금</span></td>
-					<td>0원</td>
+					<td>${billMap.bill_now }원</td>
 					<td class="text-left"><span class="lightgrey">진행 중 파티의 남은 기간에 해당하는 비용</span></td>
 				</tr>
 				<tr class="bg-grey">
 					<td><span class="subject">6.지급 요청 금액</span></td>
-					<td><span class="text-purple">0원</span></td>
+					<td><span class="text-purple">${billMap.bill_request }원</span></td>
 					<td class="text-left"></td>
 				</tr>
 				<tr class="emphasis bg-grey">
 					<td><span class="subject">7.출금 가능 금액</span></td>
-					<td><span class="text-purple">0원</span></td>
+					<td><span class="text-purple">${billMap.bill_available }원</span></td>
 					<td class="text-left">1-2-3-4-5-6 = 7</td>
 				</tr>
 			</tbody>
@@ -83,7 +85,7 @@ window.onload=function(){
 		<tr>
 			<td>
 				<span class="subject">입금 계좌</span>
-				<input type="text" class="account" disabled placeholder="${partner.account_name } ${partner.account_num}"/>
+				<input type="text" class="account" disabled placeholder="${session.account_name } ${session.account_num}"/>
 				<!-- <input type="text" class="account" placeholder="농협 8732-0204-056137" /> -->
 			</td>
 		</tr>
@@ -93,9 +95,9 @@ window.onload=function(){
 				<span class="lightgrey">※ 정산유형 : 개인 파티장은 수수료가 없습니다.</span><br />
 				<span class="lightgrey">※ 전문 파티장은 판매 수수료를 제한 금액에 대해 출금신청이 가능합니다.</span>
 			</p>
-			<div class="withdraw-price">최대 <strong>0</strong>원까지 신청할 수 있습니다.</div>			
+			<div class="withdraw-price">최대 <strong>${billMap.bill_available }</strong>원까지 신청할 수 있습니다.${billMap.bill_today }</div>			
 			<div class="withdraw-account">
-				<form class="form" role="form" name="frm_amount" action="./payconfirm.php" onsubmit="return frm_submit(this);" method="post">
+				<form class="form" role="form" name="frm_amount" action="billProc" onsubmit="return frm_submit(this);" method="post">
 				<input type="hidden" name="ap" value="paylist">
 				<input type="hidden" name="pp_field" value="0">
 					<select name="pp_means" id="pp_means">
@@ -133,11 +135,16 @@ window.onload=function(){
 	}
 
 	function frm_submit(f) {
-		var pp_netsale = "0";
+		var pp_netsale = ${billMap.bill_available};
 		var pp_amount = f.pp_amount.value;
 		var pp_unit = String(frm_right(pp_amount, 3));
-
-
+		var bill_a = ${billMap.bill_today};
+		
+		if(bill_a == 1){
+			alert("하루 출금 허용 횟수 초과");
+			return false;
+		}
+		
 		if (pp_netsale > 0) {
 			;
 		} else {
@@ -154,13 +161,15 @@ window.onload=function(){
 			return false;
 		}
 
-		var day_price = "0";
+		var day_price = ${billMap.bill_available};
 
-		if (pp_amount > parseInt(day_price)) {
+		if (pp_amount > day_price) {
 			alert("출금가능한 잔액보다 큰 금액을 신청하셨습니다.");
 			f.pp_amount.focus();
 			return false;
 		}
+		
+		
 
 
 		if(pp_unit == "000") {
@@ -171,7 +180,7 @@ window.onload=function(){
 			//return false;
 		}
 
-		newWin = window.open("about:blank", "_frm", "width=500,height=600,scrollbars=yes,resizable=yes");
+		newWin = window.open("localhost/partyBillCheck", "_frm", "width=500,height=300,scrollbars=yes,resizable=yes,left=700,top=300");
 
 		f.target = "_frm";
 		f.submit();
@@ -226,9 +235,10 @@ window.onload=function(){
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="bill" items="${bill }" begin="${paging.start }" end="${paging.end }">
+			<c:set var="length" value="${fn:length(bill)  }"/>
+				<c:forEach var="bill" items="${bill }" begin="${paging.start }" end="${paging.end }" varStatus="vs">
 					<tr>
-						<td><span class="lightgrey">1</span></td>
+						<td><span class="lightgrey">${length - vs.count + 1}</span></td>
 						<td>${bill.bill_state }</td>  
 						<td><span class="lightgrey">${bill.bill_num }</span></td>
 						<td><span class="lightgrey">${bill.bill_date }</span></td>

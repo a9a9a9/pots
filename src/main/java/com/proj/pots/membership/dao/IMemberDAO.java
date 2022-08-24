@@ -43,4 +43,7 @@ public interface IMemberDAO {
 	int isExistNick(String nick);
 	
 	void insertContent(PointDTO pointDto);
+	
+	ArrayList<PointDTO> listpoint(String id); 
+
 }

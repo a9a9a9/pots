@@ -1,6 +1,8 @@
 package com.proj.pots.membership.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
@@ -138,36 +140,58 @@ public class MemberService {
 	public String ChargeProc(String od_point, Model model) {
 		int pointc = (int)session.getAttribute("point");
 		int priced = Integer.parseInt(od_point);
+			
+			MemberDTO member = new MemberDTO();
+			// 충전 포인트 금액
+			System.out.println("현재금액 : " + pointc);
+			System.out.println("충전금액 : " + od_point);
+			
+			String id = (String) session.getAttribute("id");
+			int point = pointc + priced;
 
-		MemberDTO member = new MemberDTO();
-
-		// 충전 포인트 금액
-		System.out.println("charge123 : " + od_point);
-		System.out.println("charge12334 : " + pointc);
-		String id = (String) session.getAttribute("id");
-		int point = pointc + priced;
+			System.out.println("현재 포인트 : " + point); 
+			
+			member.setPoint(point);
+			member.setId(id);
+			
+			//충전 내용
+			PointDTO pointDto = new PointDTO();
+			String content = "포인트 충전";
+			pointDto.setId(id);
+			pointDto.setPoint_content(content);
+			pointDto.setPoint_charge(priced);
+			
+			Date date = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm (E)");
+			String dateConvert = sdf.format(date);
+			pointDto.setPoint_date(dateConvert);
 
 		System.out.println("chargePoint : " + point); 
-		// 충전 내용
-		PointDTO pointDto = new PointDTO();
-		String content = "포인트 충전";
-		pointDto.setId(id);
-		pointDto.setPoint_content(content);
-		pointDto.setPoint_charge(priced);
+			memberDao.updatePoint(member);
+			memberDao.insertContent(pointDto);
+			session.setAttribute("point", point);
+			return "충전 완료";
+			
+		} 
 		
-		member.setPoint(point);
-		member.setId(id); 
-		
-		ArrayList<PointDTO> pointlist = memberDao.selectPoint(pointDto);
-		model.addAttribute("pointlist", pointlist);
-		
-		memberDao.updatePoint(member);
-		memberDao.insertContent(pointDto);
-		session.setAttribute("point", point);
-		
-		return "충전 완료";
-		
-	} 
+		public void listpoint(String id, Model model) {
+			// 포인트 조회
+			id = (String)session.getAttribute("id");
+			ArrayList<PointDTO> pointlist = memberDao.listpoint(id);
+			model.addAttribute("pointlist", pointlist);
+					
+			
+		}
+//			
+//		
+//		ArrayList<PointDTO> pointlist = memberDao.selectPoint(pointDto);
+//		model.addAttribute("pointlist", pointlist);
+//		
+//		memberDao.updatePoint(member);
+//		memberDao.insertContent(pointDto);
+//		session.setAttribute("point", point);
+//		
+//		return "충전 완료";
 	
 
 	

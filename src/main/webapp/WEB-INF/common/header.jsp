@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="/css/partyAdmin/font-awesome.min.css">
 <!-- <link rel="stylesheet" href="//buts.co.kr/thema/Buts/colorset/Basic/buts.css?time=1660891800" type="text/css"> -->
 <!-- 스크립트 -->
-
+${msg }
 <script>
 	// 자바스크립트에서 사용하는 전역변수 선언
 	var g5_url = "${root}index?formpath=main";

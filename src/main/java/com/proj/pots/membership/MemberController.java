@@ -148,13 +148,15 @@ public class MemberController {
 		if(kakaoid == 1) {
 			session.setAttribute("id", map.get("id"));
 			session.setAttribute("nick", member.getNick());
+			session.setAttribute("tel", member.getTel());
+			session.setAttribute("profile", member.getProfile());
 			session.setAttribute("accessToken", accessToken);
 			return "redirect:/index?formpath=main";
 		}else {
 		session.setAttribute("snsid", map.get("kakaoid"));
 		session.setAttribute("snsname", map.get("kakaoname"));
 		session.setAttribute("accessToken", accessToken);
-		return "redirect:/index?formpath=snsRegister";
+		return "redirect:/index?formpath=registerAgree";
 	}
 	}
 //	@Autowired private naverService naverService;
@@ -198,15 +200,40 @@ public class MemberController {
 		if(naverid == 1) {
 			session.setAttribute("id", naver_email);
 			session.setAttribute("nick", member.getNick());
+			session.setAttribute("tel", member.getTel());
+			session.setAttribute("profile", member.getProfile());
 			return "redirect:/index?formpath=main";
 		}else {
 			session.setAttribute("snsid", naver_email);
 			session.setAttribute("snsname", naver_name);
-			return "redirect:/index?formpath=snsRegister";
+			return "redirect:/index?formpath=registerAgree";
 		}
 		
 	}
-	
+//	@Autowired private naverService naverService;
+//	@RequestMapping("CallBack")
+//	public String CallBack(String code, HttpSession session, MemberDTO member, String state) {
+//		System.out.println("code : " + code);
+//		String accessToken = naverService.getAccessToken(code, state); 
+//		HashMap<String, String> map = naverService.getUserInfo(accessToken);
+//		System.out.println("이름 : " + map.get("name"));
+//		System.out.println("아이디 : " + map.get("id"));
+//		
+//		int kakaoid = memberDao.isExistsnsId(map.get("id"));
+//		member = memberDao.memberInfo(map.get("id"));
+//		
+//		if(kakaoid == 1) {
+//			session.setAttribute("id", map.get("id"));
+//			session.setAttribute("nick", member.getNick());
+//			session.setAttribute("accessToken", accessToken);
+//			return "redirect:/index?formpath=main";
+//		}else {
+//			session.setAttribute("naverid", map.get("naverid"));
+//			session.setAttribute("navername", map.get("navername"));
+//			session.setAttribute("accessToken", accessToken);
+//			return "redirect:/index?formpath=snsRegister";
+//		}
+//	}
 	
 	@RequestMapping(value = "ChargeProc")
 	public String ChargeProc(String od_point, Model model) {

@@ -135,7 +135,7 @@
 						document.getElementById("od_tot_price").innerHTML = number_format(check_val);
 					}
 					$("#settle_bank").show();
-					$("[name=od_deposit_name]").val( '백찬우' );
+					$("[name=od_deposit_name]").val( "${sessionScope.name}" );
 				</script>
 				
 				<div id="display_pay_button" class="btn_confirm button-align center">

@@ -18,6 +18,11 @@ public class PartyRegDTO extends PartyDTO{
 	private String party_available;     //파티모집가능여부
 	private String party_end_form;
 	
+	private String  diff;
+	private String logo;
+	private int pay;
+	private int plus;
+	
 	
 	public String getParty_end_form() {
 		return party_end_form;
@@ -109,5 +114,30 @@ public class PartyRegDTO extends PartyDTO{
 	public void setParty_available(String party_available) {
 		this.party_available = party_available;
 	}
+	public String getDiff() {
+		return diff;
+	}
+	public void setDiff(String diff) {
+		this.diff = diff;
+	}
+	public String getLogo() {
+		return logo;
+	}
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
+	public int getPay() {
+		return pay;
+	}
+	public void setPay(int pay) {
+		this.pay = pay;
+	}
+	public int getPlus() {
+		return plus;
+	}
+	public void setPlus(int plus) {
+		this.plus = plus;
+	}
+	
 
 }

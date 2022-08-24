@@ -39,7 +39,7 @@
 					</div>
 					<div class="login-option">
 						<div class="input-check">
-							<input type="checkbox" name="auto_login" id="login_auto_login">
+							<input type="checkbox" name="auto_login" id="login_auto_login" value="auto_login">
 							<label for="login_auto_login">자동로그인</label>
 						</div>
 						<div class="right">

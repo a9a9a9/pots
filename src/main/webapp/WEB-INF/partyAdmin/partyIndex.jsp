@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" href="/img/cicon.png"/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet"> 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800" type="text/css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300,200,100" type="text/css">
@@ -18,7 +19,7 @@
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src="https://kit.fontawesome.com/74860f3084.js" crossorigin="anonymous"></script>
 
-<title>Buts</title>
+<title>POTS</title>
 </head>
 <!--[if lte IE 8]>
 <script src="https://buts.co.kr/js/html5.js"></script>
@@ -56,19 +57,19 @@ var g5_admin_url = "https://buts.co.kr/adm";
 <div class="partner-wrap">
 	<!-- header -->
 	<div class="partner-header">
-		<a class="partner-logo" href="https://buts.co.kr">
-			<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/logo_small.png" title="">
+		<a class="partner-logo" href="/" style="top: 18px;">
+			<img src="/img/logoo1.png" title="">
 		</a>
 		<ul class="partner-menu">
 			<li class="v-bar right">
-				<a>${session.nick}</a>
+				<a>${sessionScope.nick}</a>
 			</li>
 			 
 			<li class="v-bar right" style="color:#fff;">
 				개인 파티장
 			</li>
 						<li class="v-bar right">
-				<a href="main">팟츠</a>
+				<a href="/">팟츠</a>
 			</li>
 			<li>
 				<a href="logout">로그아웃</a>
