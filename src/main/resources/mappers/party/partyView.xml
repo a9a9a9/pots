@@ -31,7 +31,7 @@
 	 	WHERE id = #{id}
 	 </update>
 	 
-	 <select id="selectParty" parameterType="int" resultType="PartyRegDTO">
+	 <select id="selectParty" resultType="PartyRegDTO"> 
 	 	SELECT * FROM party WHERE party_num = #{party_num}
 	 </select> 
 	 
@@ -39,12 +39,12 @@
 	 	SELECT * FROM party_member WHERE id = #{id}
 	 </select>
 	 
-	 <select id="endDay" parameterType="int" resultType="PartyRegDTO">
+	 <select id="endDay" parameterType="String" resultType="PartyRegDTO">
 	 	SELECT DATE_FORMAT(party_end, '%y.%m.%d') AS party_end FROM party WHERE party_num = #{party_num}
 	 </select>
 	 
 	 <!-- 파티 날짜별 금액, 수수료 -->
-	 <select id="partyDay" parameterType="int" resultType="PartyRegDTO">
+	 <select id="partyDay" parameterType="String" resultType="PartyRegDTO">
 	 	SELECT TIMESTAMPDIFF(DAY, NOW(), party_end) as diff,
 	 		TIMESTAMPDIFF(DAY, NOW(), party_end) * party_charge AS pay,
 	 		TIMESTAMPDIFF(DAY, NOW(), party_end) * party_charge * 0.1 AS plus 
@@ -87,5 +87,30 @@
 	 	UPDATE member SET point = point - ${use_point} 
 	 	WHERE id = #{id}
 	 </update>
+	 
+	 <select id="createdParty" parameterType="String" resultType="PartyListDTO">
+	 	SELECT a.party_num, a.party_title, a.party_subservice, a.party_member, a.party_end, a.party_available, 
+	 			DATEDIFF(a.party_end, NOW()) AS party_left_date, b.party_count AS party_now_member
+		FROM (SELECT * FROM party WHERE id = #{id}) a
+	    LEFT JOIN (SELECT party_num, count(*) AS party_count FROM party_member GROUP BY party_num ) b 
+	    ON a.party_num = b.party_num
+	    ORDER BY a.party_regdate DESC;
+	 </select>
+	 
+	 <select id="joinedParty" parameterType="String" resultType="PartyListDTO">
+	 	SELECT a.party_num, b.party_subservice, b.party_title, b.party_end,
+			DATEDIFF(b.party_end, NOW()) AS party_remain, b.party_id, b.party_pw
+		FROM party_member AS a
+		JOIN party AS b
+		ON a.party_num = b.party_num AND a.id=#{id};
+	 </select>
+	 
+	 <select id="orderList" parameterType="String" resultType="PartyMemberDTO">
+	 	SELECT DATE_FORMAT(a.mystartday, '%y-%m-%d') AS day, DATE_FORMAT(a.mystartday, '%H:%i') AS time, DAYOFWEEK(mystartday) AS week, 
+			b.party_subservice, b.party_title, a.use_account, a.use_point
+		FROM party_member AS a
+		JOIN  party AS b
+		ON a.party_Num = b.party_num AND a.id =#{id};
+	 </select>
 			 	 
 </mapper>

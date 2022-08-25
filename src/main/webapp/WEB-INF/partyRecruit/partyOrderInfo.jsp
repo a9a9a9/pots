@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <body class="responsive is-pc">
 	<div class="wrap wrapper  ko">
 		<div class="body">
@@ -36,7 +36,7 @@
 								<tr>
 				<td class="pc-block">
 				<div class="item-name">
-					<span class="brand"><img src="https://buts.co.kr/thema/Buts/colorset/category/6040.jpg" alt="" /></span>
+					<span class="brand"><img src="${party.logo }" alt="" /></span>
 					
 											<a href="./item.php?it_id=1660890917" class="name">
 							${party.party_service }						</a>
@@ -50,13 +50,13 @@
 					<span class="comment">(총 ${myDay.diff }일)</span>		 		
 				</td>
 				<td>
-					<strong>${myDay.pay }원</strong>
+					<strong><fmt:formatNumber type="number" maxFractionDigits="3" value="${myDay.pay }" />원</strong>
 				</td>
 				<td>
-					<strong>${myDay.plus}원</strong>
+					<strong><fmt:formatNumber type="number" maxFractionDigits="3" value="${myDay.plus}" />원</strong>
 				</td>
 				<td>
-					<strong>${myDay.pay + myDay.plus}원</strong>
+					<strong><fmt:formatNumber type="number" maxFractionDigits="3" value="${myDay.pay + myDay.plus}"/>원</strong>
 				</td>
 				<c:choose>
 					<c:when test="${myDay.diff >= 0}">
@@ -98,33 +98,35 @@
 		<ul>
 		<li>
 			<div class="subject">ㆍ 총구매액</div>
-			<div class="right">${myDay.pay }원</div>
+			<div class="right"><fmt:formatNumber type="number" maxFractionDigits="3" value="${myDay.pay }" />원</div>
 		</li>
 		<li>
 			<div class="subject">ㆍ 수수료(10%)</div>
 			<div class="right">
-				${myDay.plus}원			</div>
+				<fmt:formatNumber type="number" maxFractionDigits="3" value="${myDay.plus}" />원</div> 
 		</li>
 		<li>
 			<div class="subject">ㆍ 포인트 사용</div>
-			<div class="right">-${partyMember.use_point}P</div>  
+			<div class="right">-<fmt:formatNumber type="number" maxFractionDigits="3" value="${myDay.plus}" />P</div>  
 		</li>
 				<li>
 			<div class="subject">ㆍ 미결제액</div>
 			<div class="right">
-				${(myDay.pay + myDay.plus) - (partyMember.use_account+partyMember.use_point)}원			
+				<fmt:formatNumber type="number" maxFractionDigits="3" value="${(myDay.pay + myDay.plus) - (partyMember.use_account+partyMember.use_point)}"/>원			
 			</div>
 		</li>
 		<li class="total">
 			<div class="subject text-purple">결제한 금액</div>
-			<div class="right"><span class="Rajdhani text-purple">${(partyMember.use_account+partyMember.use_point)}원</span></div>
+			<div class="right"><span class="Rajdhani text-purple">
+				<fmt:formatNumber type="number" maxFractionDigits="3" value="${(partyMember.use_account+partyMember.use_point)}"/>원
+			</span></div>
 		</li>
 		</ul>
 	</div>		
 </div>
 <div class="button-align center">
 			<a href="./list_my.php?ca_id=10" class="button large border button-purple">내 파티보기</a>
-		<a href="./orderinquiry.php" class="button large button-purple">확인</a>
+		<a href="index?formpath=partyOrderList" class="button large button-purple">확인</a>
 			<div style="text-align: center; margin-top: 20px;">
 			계좌입금으로 진행시 입금확인 후, <span class="text-purple">[내 파티보기]</span>에서 공유정보 확인 가능합니다. (카드결제 시 바로 확인 가능)
 		</div>

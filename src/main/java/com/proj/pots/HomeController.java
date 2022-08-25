@@ -160,15 +160,15 @@ public class HomeController {
 		return "myMenu/faq";
 	}
 	
-	@RequestMapping(value = "/myPartyCreated")
-	public String myPartyCreated() {
-		return "myMenu/myPartyCreated";
-	}
-	
-	@RequestMapping(value = "/myPartyJoined")
-	public String myPartyJoined() {
-		return "myMenu/myPartyJoined";
-	}
+//	@RequestMapping(value = "/myPartyCreated")
+//	public String myPartyCreated() { 
+//		return "myMenu/myPartyCreated";
+//	}
+//	
+//	@RequestMapping(value = "/myPartyJoined")
+//	public String myPartyJoined() {
+//		return "myMenu/myPartyJoined";
+//	}
 	
 	@RequestMapping(value = "/myPoint")
 	public String myPoint() {
