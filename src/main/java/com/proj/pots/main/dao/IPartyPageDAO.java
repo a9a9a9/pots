@@ -16,4 +16,8 @@ public interface IPartyPageDAO {
 	public ArrayList<PartyListDTO> sublistProc(@Param("b")int begin, @Param("e")int end, @Param("sub")String sub);
 	
 	public int sublistCount(@Param("sub") String sub);
+
+	public int mainListCount();
+
+	public ArrayList<PartyListDTO> mainList(@Param("b")int begin, @Param("e")int end);
 }

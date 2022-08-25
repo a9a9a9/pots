@@ -24,9 +24,19 @@ public class BoardHomeController {
 		String url = checkSession("board/communityBoardView");
 		return url;
 	}
+	@RequestMapping(value = "/noticeView")
+	public String noticeView() {
+		String url = "board/noticeBoardView";
+		return url;
+	}
 	@RequestMapping(value = "/boardWrite")
 	public String write() {
 		String url = checkSession("board/boardWrite");
+		return url;
+	}
+	@RequestMapping(value = "/noticeWrite")
+	public String noticeWrite() {
+		String url = checkSession("board/noticeWrite");
 		return url;
 	}
 
