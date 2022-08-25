@@ -180,7 +180,7 @@ ${msg }
 						<div class="block">
 							<ul class="menu">
 								<li><a href="memberInfoProc">회원정보확인</a></li>
-								<li><a href="#">결제내역 조회</a></li>
+								<li><a href="index?formpath=partyOrderList">결제내역 조회</a></li>
 							</ul>
 						</div>
 						<div class="block">
