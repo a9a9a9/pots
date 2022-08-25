@@ -18,14 +18,14 @@
 			<div class="width-container">
 				<div class="title-wrap border">
 					<div class="title">
-						<a href="" class="text">커뮤니티</a>
+						<a href="${root}boardProc" class="text">커뮤니티</a>
 					</div>
 					<div class="title-right">
 						<div class="search-bar">
 							<form action="${root}boardProc" method="post">
 								<!-- 검색 -->
 								<select name="select">
-									<option value="">전체</option>
+									<option value="">선택</option>
 									<option value="title">제목</option>
 									<option value="nick">닉네임</option>
 								</select> 

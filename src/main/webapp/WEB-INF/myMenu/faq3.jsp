@@ -48,7 +48,7 @@
 											<p>채널Talk을 통하여 문의 주시면 회원가입 진행 도와 드리겠습니다.</p>
 											<p><br> </p>
 											<p>
-											   <a href="https://pf.kakao.com/_xnSxgxdxb/chat?api_ver=1.1&amp;kakao_agent=sdk%2F1.39.10%20os%2Fjavascript%20sdk_type%2Fjavascript%20lang%2Fko-KR%20device%2FWin32%20origin%2Fhttps%253A%252F%252Fbuts.co.kr&amp;app_key=2cb912e1f64b0e57fd1bbcc9af1e964c&amp;referer=https%3A%2F%2Fbuts.co.kr%2Fshop%2Fmypage.php" target="_blank" rel="nofollow noreferrer noopener"><span style="color:#0080ff;">회원 가입문의 바로가기</span></a>
+											   <a href="#" onclick="return false;" target="_blank" rel="nofollow noreferrer noopener"><span style="color:#0080ff;">회원 가입문의 바로가기</span></a>
 											</p>
 											<p><br> </p>
 											<p>※ 과거 부정사용 이력이 있는 경우 가입이 제한 될 수 있습니다.</p>

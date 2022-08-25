@@ -1,59 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <body>
 	<div class="body">
 <div class="width-container">
 
 	<div class="mw-800 form-clause mg-top-minus">
-		<div class="h3">
-			<span class="text-purple">SNS</span> 가입하기
-		</div>
-		<div class="form-sns-join sns-wrap">
-			<a href="javascrip:;"
-				onclick="nwindow('https://buts.co.kr/plugin/social/popup.php?provider=naver&amp;url=https://buts.co.kr/bbs/register.php')"
-				class="naver sns-naver" title="네이버"> <img
-				src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-sns-never-on.png"
-				alt="">네이버로 회원가입 하기
-			</a> 
-<!-- 			<a href="javascrip:;" -->
-<!-- 				onclick="nwindow('https://buts.co.kr/plugin/social/popup.php?provider=kakao&amp;url=https://buts.co.kr/bbs/register.php')" -->
-<!-- 				class="kakao sns-kakao" title="카카오"> <img -->
-<!-- 				src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-sns-kakao-on.png" -->
-<!-- 				alt="">카카오톡으로 회원가입 하기 -->
-<!-- 			</a> -->
-			<a href="https://kauth.kakao.com/oauth/authorize?
-					client_id=0070664f6956225934aebb37c784f4ed&
-					redirect_uri=http://localhost/kakaoRegister&
-					response_type=code"
-					class="kakao sns-kakao" title="카카오"> 
-					<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-sns-kakao-on.png"
-					alt=" ">카카오톡으로 회원가입 하기
-			</a>
-
-			<script>
-				jQuery(function($) {
-					$(".sns-wrap")
-							.on(
-									"click",
-									"a.social_link",
-									function(e) {
-										e.preventDefault();
-
-										var pop_url = $(this).attr("href");
-										var newWin = window
-												.open(pop_url,
-														"social_sing_on",
-														"location=0,status=0,scrollbars=1,width=600,height=500");
-
-										if (!newWin
-												|| newWin.closed
-												|| typeof newWin.closed == 'undefined')
-											alert('브라우저에서 팝업이 차단되어 있습니다. 팝업 활성화 후 다시 시도해 주세요.');
-
-										return false;
-									});
-				});
-			</script>
-
 		</div>
 
 		<form name="fregister" id="fregister"
@@ -730,7 +682,14 @@
 			</div>
 			<div class="button-align center">
 				<a href="${root}index?formpath=main" class="button">취소</a>
+				<c:choose>
+					<c:when test="${empty sessionScop.id }">
 				<button type="submit" class="button button-purple">회원가입</button>
+					</c:when>
+					<c:otherwise>
+				<button type="button"  onclick="${root}index?formpath=snsRegister" class="button button-purple">회원가입</button>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</form>
 	</div>

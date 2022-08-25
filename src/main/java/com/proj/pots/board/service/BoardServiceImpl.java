@@ -18,6 +18,7 @@ import com.proj.pots.board.dao.IBoardDAO;
 import com.proj.pots.member.dto.BoardDTO;
 import com.proj.pots.member.dto.CommentDTO;
 import com.proj.pots.member.dto.LoginDTO;
+import com.proj.pots.member.dto.NoticeDTO;
 import com.proj.pots.membership.dao.IMemberDAO;
 
 
@@ -48,6 +49,24 @@ public class BoardServiceImpl implements IBoardService {
 		mapper.writeProc(board);
 	}
 	@Override
+	public void noticeWriteProc(MultipartHttpServletRequest req) {
+//		String id = (String)session.getAttribute("id");
+//		String nick = (String)session.getAttribute("nick");
+		String title = req.getParameter("notice_title");
+		String content= req.getParameter("notice_content");
+		
+		NoticeDTO board = new NoticeDTO();
+		board.setNotice_title(title); 
+		board.setNotice_content(content);		
+		board.setNotice_view(0);
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd hh:mm");
+		String dateConvert = sdf.format(date);
+		
+		board.setNotice_date(dateConvert);
+		mapper.noticeWriteProc(board);
+	}
+	@Override
 	public void commentProc(CommentDTO com) {
 		mapper.commentProc(com);
 	}
@@ -73,6 +92,28 @@ public class BoardServiceImpl implements IBoardService {
 		model.addAttribute("page", PageService.getNavi(currentPage, pageBlock, totalCount, url)); 
 		
 	}
+	@Override
+	public void noticeProc(Model model, int currentPage, String search, String select, HttpServletRequest req) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("search", search);
+		map.put("select", select);
+		
+		int totalCount = mapper.noticeCount(map); 
+		int pageBlock = 5;
+		int end = currentPage * pageBlock;
+		int begin = end+1 - pageBlock;
+		
+		ArrayList<NoticeDTO> boardList = mapper.noticeProc(begin, end, select, search);
+		model.addAttribute("boardList", boardList);
+		String url = req.getContextPath() + "/noticeProc?";
+		if(select != null) { 
+			url+="select="+select+"&";
+			url+="search="+search+"&";	
+		}
+		url+="currentPage=";
+		model.addAttribute("page", PageService.getNavi(currentPage, pageBlock, totalCount, url)); 
+		
+	}
 
 	@Override
 	public void viewProc(int square_num, Model model) {
@@ -80,10 +121,18 @@ public class BoardServiceImpl implements IBoardService {
 		model.addAttribute("commentList", commentList);
 		model.addAttribute("board", mapper.viewProc(square_num));
 	}
+	@Override
+	public void noticeViewProc(int notice_num, Model model) {
+		model.addAttribute("board", mapper.noticeViewProc(notice_num));
+	}
 
 	@Override
 	public void upNum(int square_num) {
 		mapper.upNum(square_num);
+	}
+	@Override
+	public void noticeUpNum(int notice_num) {
+		mapper.noticeUpNum(notice_num);
 	}
 	
 	@Override
