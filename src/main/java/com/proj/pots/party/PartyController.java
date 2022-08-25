@@ -1,5 +1,6 @@
 package com.proj.pots.party;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,13 +12,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.proj.pots.membership.service.MemberService;
 import com.proj.pots.party.dto.PageVO;
 import com.proj.pots.party.dto.PartnerInfoDTO;
 import com.proj.pots.party.dto.PartyCommentDTO;
+import com.proj.pots.party.dto.PartyListDTO;
 import com.proj.pots.party.dto.PartyMemberDTO;
+import com.proj.pots.party.dto.PartyRegDTO;
 import com.proj.pots.party.service.IPartyViewService;
 
 @Controller
@@ -107,9 +111,10 @@ public class PartyController {
 		
 		
 		@RequestMapping(value = "/partyOrder")
-		public String partyOrder(Model model, Integer party_num, String id) {
-			party_num = 1;
-			id = "user55";
+		public String partyOrder(Model model, String party_num, String id) {
+			//party_num = "1";
+			//id = "user55";
+			id = (String)session.getAttribute("id");
 			model.addAttribute("member", memberService.memberInfo(id));
 			model.addAttribute("party", service.selectParty(party_num));
 			model.addAttribute("myDay", service.partyDay(party_num));
@@ -117,9 +122,10 @@ public class PartyController {
 		}
 		
 		@RequestMapping(value = "/partyOrderInfo")
-		public String partyOrderInfo(Model model, Integer party_num, String id) {
-			party_num = 1;
-			id = "user55";
+		public String partyOrderInfo(Model model, String party_num, String id) {
+			//party_num = "1";
+			//id = "user55";
+			id = (String)session.getAttribute("id");
 			model.addAttribute("member", memberService.memberInfo(id));
 			model.addAttribute("party", service.selectParty(party_num));
 			model.addAttribute("end", service.endDay(party_num));
@@ -131,7 +137,8 @@ public class PartyController {
 
 		@RequestMapping(value = "partyMemberInsertProc")
 		public String partyMemberInsertProc(PartyMemberDTO partyMember, Model model, RedirectAttributes ra) {
-			String id="user55";
+			//String id="user55";
+			String id = (String)session.getAttribute("id");
 			partyMember.setId(id);
 			int party_num = partyMember.getParty_num();
 			String msg = service.partyMemberInsertProc(partyMember, party_num);
@@ -142,5 +149,51 @@ public class PartyController {
 			return "forward:/index?formpath=partyOrderInfo";
 		}
 		
+		@RequestMapping(value="/myPartyCreated")
+		public String myPartyCreated(Model model) {
+			//String id="admin";
+			String id = (String)session.getAttribute("id");
+			ArrayList<PartyListDTO> created = service.createdParty(id);
+			model.addAttribute("created", created); 	
+			return "myMenu/myPartyCreated";
+		}
 		
+		@RequestMapping(value="/myPartyJoined")
+		public String myPartyJoined(Model model) {
+			//String id="user1";
+			String id = (String)session.getAttribute("id");
+			ArrayList<PartyListDTO> joined = service.joinedParty(id);
+			model.addAttribute("joined", joined); 	
+			return "myMenu/myPartyJoined";
+		}
+		
+		@RequestMapping(value="partyOrderList")
+		 public String partyOrderList(Model model, String party_num, String id, String nowPage, PageVO vo) {
+			//party_num = "1"; 
+			//id = "user55";
+			id = (String)session.getAttribute("id");
+			model.addAttribute("party", service.selectParty(party_num));
+			model.addAttribute("myDay", service.myPartyDay(id, party_num));
+			model.addAttribute("partyMember", service.partyMember(id));
+			
+			ArrayList<PartyMemberDTO> orderList =service.orderList(id);
+			
+			int total = orderList.size();			
+			int cntPerPage = 2;
+			
+			if (nowPage == null) {
+				nowPage = "1";
+			}else {
+				int nowInt = Integer.parseInt(nowPage);
+				if(nowInt < 1)
+					nowPage = "1";
+			}
+		
+			vo = new PageVO(total, Integer.parseInt(nowPage), cntPerPage);
+			
+			model.addAttribute("paging", vo);
+			model.addAttribute("orderList", orderList);
+			
+			return "partyRecruit/partyOrderList";
+		}
 }

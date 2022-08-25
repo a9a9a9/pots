@@ -59,7 +59,6 @@
 										<p>(추 후 등급제 업데이트가 진행되면 등급에 따라 수수료가 변동 될 수 있습니다. ex. 등급이 좋을 경우 하향 조정, 나쁠 경우 상향 조정)</p>
 										<p><br /></p>
 										<p>만드는 방법에 대한 자세한 내용은 해당 URL에 접속하셔서 [파티모집 하기] 탭을 선택하시면 확인 가능합니다.</p>
-										<p><a href="https://buts.co.kr/bbs/guide_buts.php" target="_blank" rel="nofollow noreferrer noopener">https://buts.co.kr/bbs/guide_buts.php</a></p>
 										<p> <br></p>
 										<p>※ 전문판매자와 일반판매자 전환은 1:1문의 및 벗츠 채널을 통하여 변경 요청 하실 수 있습니다.</p>
 									</div>
@@ -101,7 +100,7 @@
 										<p>문제해결 요청 이후 24시간 내에 응답이 없거나 문제가 해결되지 않은 경우 벗츠에서 환불신청이 가능하며</p>
 										<p>벗츠에서 내용 확인 후 사용하지 못한 기간에 대해서 100% 환불을 진행해 드립니다.</p>
 										<p><br> </p>
-										<p><a href="" target="_blank" rel="noreferrer noopener"><span style="color:#0080ff;">환불 절차 안내</span></a></p>
+										<p><a href="#" onclick="return false;" target="_blank" rel="noreferrer noopener"><span style="color:#0080ff;">환불 절차 안내</span></a></p>
 									</div>
 								</div>
 							</div>

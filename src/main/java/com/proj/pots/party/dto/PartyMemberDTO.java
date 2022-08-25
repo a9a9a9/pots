@@ -8,6 +8,10 @@ public class PartyMemberDTO extends PartyListDTO{
 	private String use_account;
 	private String use_point;
 	
+	private String day;
+	private String time;
+	private String week;
+	
 	public int getNo_mem() {
 		return no_mem;
 	}
@@ -37,6 +41,24 @@ public class PartyMemberDTO extends PartyListDTO{
 	}
 	public void setUse_point(String use_point) {
 		this.use_point = use_point;
+	}
+	public String getDay() {
+		return day;
+	}
+	public void setDay(String day) {
+		this.day = day;
+	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
+	public String getWeek() {
+		return week;
+	}
+	public void setWeek(String week) {
+		this.week = week;
 	}
 	
 }

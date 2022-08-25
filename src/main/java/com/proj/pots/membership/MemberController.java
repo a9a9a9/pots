@@ -2,11 +2,14 @@ package com.proj.pots.membership;
 
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.tools.DocumentationTool.Location;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -145,14 +148,67 @@ public class MemberController {
 		if(kakaoid == 1) {
 			session.setAttribute("id", map.get("id"));
 			session.setAttribute("nick", member.getNick());
+			session.setAttribute("tel", member.getTel());
+			session.setAttribute("profile", member.getProfile());
 			session.setAttribute("accessToken", accessToken);
 			return "redirect:/index?formpath=main";
 		}else {
-		session.setAttribute("kakaoid", map.get("kakaoid"));
-		session.setAttribute("kakaoname", map.get("kakaoname"));
+		session.setAttribute("snsid", map.get("kakaoid"));
+		session.setAttribute("snsname", map.get("kakaoname"));
 		session.setAttribute("accessToken", accessToken);
-		return "redirect:/index?formpath=snsRegister";
+		return "redirect:/index?formpath=registerAgree";
 	}
+	}
+//	@Autowired private naverService naverService;
+//	@RequestMapping("CallBack")
+//	public String CallBack(String code, HttpSession session, MemberDTO member, String state) {
+//		System.out.println("code : " + code);
+//		String accessToken = naverService.getAccessToken(code, state); 
+//		HashMap<String, String> map = naverService.getUserInfo(accessToken);
+//		System.out.println("이름 : " + map.get("name"));
+//		System.out.println("아이디 : " + map.get("id"));
+//		
+//		int kakaoid = memberDao.isExistsnsId(map.get("id"));
+//		member = memberDao.memberInfo(map.get("id"));
+//		
+//		if(kakaoid == 1) {
+//			session.setAttribute("id", map.get("id"));
+//			session.setAttribute("nick", member.getNick());
+//			session.setAttribute("accessToken", accessToken);
+//			return "redirect:/index?formpath=main";
+//		}else {
+//			session.setAttribute("naverid", map.get("naverid"));
+//			session.setAttribute("navername", map.get("navername"));
+//			session.setAttribute("accessToken", accessToken);
+//			return "redirect:/index?formpath=snsRegister";
+//		}
+//	}
+	@RequestMapping("CallBack")
+	String callback() {
+		return "member/CallBack";
+	}
+	@RequestMapping(value = "naverLogin")
+	String home(MemberDTO member,HttpServletRequest request, HttpSession session) {
+		String naver_name = request.getParameter("name");
+		String naver_email = request.getParameter("email");
+		System.out.println("naverid = " +naver_name);
+		System.out.println("naver_email = " +naver_email);
+		
+		int naverid = memberDao.isExistsnsId(naver_email);
+		member = memberDao.memberInfo(naver_email);
+		
+		if(naverid == 1) {
+			session.setAttribute("id", naver_email);
+			session.setAttribute("nick", member.getNick());
+			session.setAttribute("tel", member.getTel());
+			session.setAttribute("profile", member.getProfile());
+			return "redirect:/index?formpath=main";
+		}else {
+			session.setAttribute("snsid", naver_email);
+			session.setAttribute("snsname", naver_name);
+			return "redirect:/index?formpath=registerAgree";
+		}
+		
 	}
 //	@Autowired private naverService naverService;
 //	@RequestMapping("CallBack")
@@ -182,7 +238,7 @@ public class MemberController {
 	@RequestMapping(value = "ChargeProc")
 	public String ChargeProc(String od_point, Model model) {
 		System.out.println("charge : " + od_point);
-		String msg = memberService.ChargeProc(od_point);
+		String msg = memberService.ChargeProc(od_point, model);
 
 		if(msg.equals("충전 완료")) {
 		model.addAttribute("msg", msg);
@@ -191,7 +247,10 @@ public class MemberController {
 		}else {
 			return "redirect:index?formpaty=myPointCharge";
 		}
-		
-		
 	}
+	
+
+	
+	
+	
 }

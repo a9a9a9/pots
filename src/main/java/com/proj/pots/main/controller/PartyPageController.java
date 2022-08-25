@@ -7,8 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.proj.pots.main.dao.IPartyPageDAO;
 import com.proj.pots.main.service.PartyPageService;
@@ -18,6 +21,20 @@ public class PartyPageController {
 	@Autowired private PartyPageService service;
 	@Autowired IPartyPageDAO partyDao;
 	
+	// main 파티리스트
+	@RequestMapping(value = "main")
+	public String main(Model model,HttpServletRequest req, @RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage) throws ParseException {
+		service.mainList(model, currentPage, req);
+		return "main";
+	}
+//	@ResponseBody
+//	@PostMapping("nextPage")
+//	public String main(@RequestBody(required = false)int currentPage, Model model) throws ParseException {
+//		System.out.println(currentPage);
+//		return service.nextPage(currentPage, model);
+//	}
+	
+	// 카테고리
 	@RequestMapping(value = "videoProc")
 	public String videoProc(Model model,HttpServletRequest req, @RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage) throws ParseException {
 		String sub = "10";
@@ -43,7 +60,7 @@ public class PartyPageController {
 		return "forward:/index?formpath=etc";
 	}
 	
-	// sub
+	// sub 카테고리
 	
 	// video
 	@RequestMapping(value = "netflixProc")
