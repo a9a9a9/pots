@@ -258,4 +258,9 @@ public class HomeController {
 //	public String partyOrderInfo() {
 //		return "partyRecruit/partyOrderInfo";
 //	}
+	@RequestMapping(value = "findpass")
+	public String findpass() {
+		return "member/findpass";
+	}
+	
 }

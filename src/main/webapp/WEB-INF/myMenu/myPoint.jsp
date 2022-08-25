@@ -23,7 +23,7 @@
 						<span class="icon"><img
 							src="/img/icon-coin-star-big.png"
 							alt=""></span> <span class="text">포인트</span> <span
-							class="text-purple Rajdhani price">${sessionScope.point}</span> 
+							class="text-purple Rajdhani price">${sessionScope.compoint}</span> 
 							<a href="${root }index?formpath=myPointCharge"
 							class="button round button-purple">충전</a>
 					</div>
@@ -50,8 +50,8 @@
 								<td>
 									<div class="subject2">${list.point_content }</div>
 								</td>
-								<td><strong class="text-purple">+${list.point_charge }</strong> 포인트</td>
-								<td><strong class="text-red">-${list.use_point}</strong> 포인트</td>
+								<td><strong class="text-purple">+${list.comcharge }</strong> 포인트</td>
+								<td><strong class="text-red">-${list.comuse}</strong> 포인트</td>
 							</tr>
 						</c:forEach>
 							

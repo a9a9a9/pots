@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,18 +61,16 @@ public class MemberService {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String securePw = encoder.encode(login.getPw());
 		login.setPw(securePw);
-		
+		member.setPoint(0);
 		memberDao.insertLogin(login);
 		memberDao.insertMember(member);
 		return "가입 완료";
 	}
 	public String snsProc(MemberDTO member) {
 		
-		if(member.getId() == null || member.getId().isEmpty())
-			return "아이디를 입력하세요.";
 		if(memberDao.isExistsnsId(member.getId()) > 0) 
 			return "중복 아이디 입니다.";
-		
+	
 		memberDao.insertMember(member);
 		return "가입 완료";
 	}
@@ -151,7 +150,7 @@ public class MemberService {
 			int point = pointc + priced;
 			
 			
-//			member.setPoint(point);
+			member.setPoint(point);
 			member.setId(id);
 			
 			//충전 내용
@@ -159,7 +158,8 @@ public class MemberService {
 			String content = "포인트 충전";
 			pointDto.setId(id);
 			pointDto.setPoint_content(content);
-			pointDto.setPoint_charge(priced);
+			pointDto.setPoint_charge(priced); //충전 할 금액
+			
 			pointDto.setUse_point(0);
 			
 			Date date = new Date();
@@ -171,6 +171,9 @@ public class MemberService {
 			memberDao.updatePoint(member);
 			memberDao.insertContent(pointDto);
 			session.setAttribute("point", point);
+			
+			String compoint = String.format("%,d", point);
+			session.setAttribute("compoint", compoint);
 			return "충전 완료";
 			
 		} 
@@ -181,54 +184,41 @@ public class MemberService {
 			// 포인트 조회
 			id = (String)session.getAttribute("id");
 			ArrayList<PointDTO> pointlist = memberDao.listpoint(id);
+			
+			for(PointDTO p : pointlist) {
+				
+			String point = String.format("%,d", p.getPoint_charge());
+			p.setComcharge(point); 
+			
+			String pointm = String.format("%,d", p.getUse_point());
+			p.setComuse(pointm);
+			
+			}
+			
 			model.addAttribute("pointlist", pointlist);
 			
-			String point = String.format("%,d", member.getPoint());
-			member.setPoint(point);
-			System.out.println("현재 포인트 : " + point); 
 
 		}
 
-		public void minapoint(PointDTO pointDto) {
-			
-			PartyMemberDTO partyDto = new PartyMemberDTO();
-			String id = (String) session.getAttribute("id");
-
-			// 결제한 포인트 저장
-			String content = "포인트 결제";
-			if(partyDto.getId().equals(id)) {
-			pointDto.setId(id);
-			}
-			pointDto.setPoint_content(content);
-			pointDto.setPoint_charge(0);
-			int pointm = Integer.parseInt(partyDto.getUse_point());
-			pointDto.setUse_point(pointm);
-//			Date date = new Date();
-//			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm (E)");
-//			String dateConvert = sdf.format(date);
-//			pointDto.setPoint_date(dateConvert);
-			
-			// 사용후 포인트 계산
-			int pointc = (int)session.getAttribute("point");
-				
-				MemberDTO member = new MemberDTO();
-				// 사용 포인트 금액
-				System.out.println("현재금액 : " + pointc);
-				System.out.println("사용금액 : " + pointm);
-				
-				int point = pointc - pointm;
-				System.out.println("계산 후 금액 : " + point); 
-				
-//				member.setPoint(point);
-				member.setId(id);
-			
-			memberDao.insertContent(pointDto);
-			memberDao.updatePoint(member);
-			session.setAttribute("point", point);
-			
-			
-			
-			
+		public String captchaProc(HttpServletRequest request, Model model) {
+			LoginDTO login = new LoginDTO();
+			String getAnswer = (String) request.getSession().getAttribute("captcha");
+			   String answer = request.getParameter("answer");
+			   String id = request.getParameter("id");
+			   
+			   login.setId(id);
+			  System.out.println(id);
+				   if(memberDao.isExistId(login.getId()) > 0) {
+					   
+					   if(getAnswer.equals(answer)) {
+						   return "인증 완료";
+					   }else {
+						   return "인증 실패";
+					   }
+				   }else {
+					   return "존재하지 않는 회원입니다.";
+				   }
+			   
 		}
 
 	

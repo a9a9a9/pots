@@ -168,7 +168,7 @@ ${msg }
 										 <a href="${root}index?formpath=myPoint">벗</a></span> 
 										 <span class="right"> 
 										 <a href="${root}index?formpath=myPoint">
-										 <span class="price Rajdhani">${sessionScope.point}</span></a> 
+										 <span class="price Rajdhani">${sessionScope.compoint}</span></a> 
 										 <a href="${root}index?formpath=myPointCharge"
 											class="charge fill">충전</a>
 										</span>
