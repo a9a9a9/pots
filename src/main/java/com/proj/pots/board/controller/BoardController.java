@@ -26,6 +26,11 @@ public class BoardController {
 		service.writeProc(multi);
 		return "forward:boardProc";
 	}
+	@RequestMapping(value = "noticeWriteProc")
+	public String noticeWriteProc(MultipartHttpServletRequest multi) {
+		service.noticeWriteProc(multi);
+		return "forward:noticeProc";
+	}
 	@RequestMapping(value = "commentProc")
 	public String commentProc(CommentDTO com, Model model) {
 		service.commentProc(com);
@@ -38,6 +43,12 @@ public class BoardController {
 		service.boardProc(model, currentPage, search, select, req);
 		return "forward:/index?formpath=board";
 	}
+	@RequestMapping(value = "noticeProc")
+	public String noticeProc(Model model, @RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage,
+			String search, String select, HttpServletRequest req ) {
+		service.noticeProc(model, currentPage, search, select, req);
+		return "forward:/index?formpath=noticeBoard";
+	}
 	
 	@RequestMapping(value = "viewProc")
 	public String viewProc(@RequestParam(value = "writeNo", required = false) String writeNo, Model model) {
@@ -48,6 +59,16 @@ public class BoardController {
 		service.viewProc(no, model);
 		service.upNum(no);
 		return "forward:/index?formpath=view";
+	}
+	@RequestMapping(value = "noticeViewProc")
+	public String noticeViewProc(@RequestParam(value = "writeNo", required = false) String writeNo, Model model) {
+		if(writeNo == null || writeNo == "")
+			return "forward:/index?formpath=noticeBoard";
+		
+		int no = Integer.parseInt(writeNo);
+		service.noticeViewProc(no, model);
+		service.noticeUpNum(no);
+		return "forward:/index?formpath=noticeView";
 	}
 	
 	@RequestMapping(value = "modifyProc")

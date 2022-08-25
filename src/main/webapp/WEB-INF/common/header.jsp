@@ -2,7 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="ko">
 <head>
-<title>Buts</title>
+<link rel="icon" href="/img/cicon.png"/>
+<title>POTS</title>
 <!-- css -->
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
@@ -34,6 +35,7 @@ ${msg }
 	var g5_purl = "${root}index?formpath=main";
 </script>
 
+<script src="https://buts.co.kr/thema/Buts/assets/js/buts.main.js"></script>
 <script src="/js/jquery-1.11.3.min.js"></script>
 <script src="/js/jquery-migrate-1.2.1.min.js"></script>
 <script src="/js/common.js"></script>
@@ -71,7 +73,9 @@ ${msg }
 		window.open(profileUrl, "", windowStatus);
 	}
 </script>
-
+<style>
+	.header{border-bottom: 1px solid pink;}
+</style>
 </head>
 
 <!--							 topper									 -->
@@ -81,7 +85,7 @@ ${msg }
 		<div class="topper-menu">
 			<a href="${root}boardProc" class="v-bar">커뮤니티</a>
 <%-- 			<a href="${root}index?formpath=eventMain" class="v-bar">이벤트</a>  --%>
-			<a href="${root}index?formpath=noticeBoard">공지사항</a>
+			<a href="${root}noticeProc">공지사항</a>
 		</div>
 	</div>
 </div>
@@ -92,7 +96,7 @@ ${msg }
 	<div class="width-container">
 		<div class="header-logo">
 			<a href="${root}index?formpath=main">
-			<img src="/img/logo.png" srcset="/img/logo2.png 2x" alt="" /></a>
+			<img src="/img/logo.png" alt="" /></a>
 		</div>
 		<div class="header-right">
 			<c:choose>
@@ -121,7 +125,7 @@ ${msg }
 									<div class="credit-bar credit-1" style="right: 50%"></div>
 								</div>-->
 							<div class="grade">
-								<a href="#">벗츠 신용 <span
+								<a href="#">팟츠 신용 <span
 									class="text-purple">개인</span>
 
 								</a> <a href="javascript:;" class="ttip"> 
@@ -129,7 +133,7 @@ ${msg }
 									srcset="/img/tip2.png 2x"
 									alt=""> <span class="ttip-text"
 									style="right: -29px; width: 160px">
-									첫 가입시 9등급이며, 벗츠 사용도 및 거래 점수에 따라 등급이 변할 수 있습니다.</span>
+									첫 가입시 9등급이며, 팟츠 사용도 및 거래 점수에 따라 등급이 변할 수 있습니다.</span>
 								</a>
 							</div>
 							<div class="buttons">
@@ -146,7 +150,7 @@ ${msg }
 						<div class="block">
 							<ul class="menu">
 								<li><a href="#"
-									style="color: #7e69fe;">참여중인 파티</a></li>
+									style="color: #84cdcf;">참여중인 파티</a></li>
 								<c:choose>
 									<c:when test="${sessionScope.partner eq 'true'}">
 										<li><a href="#">생성한 파티</a></li>
@@ -165,7 +169,7 @@ ${msg }
 												srcset="/img/icon-coin-star-big2.png 2x"
 												alt=""></a></span>
 										 <span>
-										 <a href="${root}index?formpath=myPoint">벗</a></span> 
+										 <a href="${root}index?formpath=myPoint">팟</a></span> 
 										 <span class="right"> 
 										 <a href="${root}index?formpath=myPoint">
 										 <span class="price Rajdhani">${sessionScope.compoint}</span></a> 
