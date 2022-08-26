@@ -19,7 +19,7 @@
 					method="post">
 					<div class="login-logo">
 						<img
-							src="https://buts.co.kr/thema/Buts/colorset/Basic/img/big-butslogo.png"
+							src="/img/login_logo.png"
 							alt="">
 					</div>
 
