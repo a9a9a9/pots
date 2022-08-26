@@ -224,7 +224,7 @@
 		</div>
 </div>
 
-<form name="fitem" method="post" action="/partyOrder?party_num=${p.party_num }" role="form" onsubmit="return fitem_submit(this);">
+<form name="fitem" method="post" action="/index?formpath=partyOrder?party_num=${p.party_num }" role="form" onsubmit="return fitem_submit(this);">
 	<input type="hidden" name="it_id[]" value="1656867366">
 	<input type="hidden" name="it_msg1[]" value="">
 	<input type="hidden" name="it_msg2[]" value="">

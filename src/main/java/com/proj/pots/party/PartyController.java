@@ -121,7 +121,6 @@ public class PartyController {
 		
 		@RequestMapping(value = "/partyOrderInfo")
 		public String partyOrderInfo(Model model, String party_num, String id) {
-
 			//id = "admin";
 			id = (String)session.getAttribute("id");
 
@@ -130,7 +129,7 @@ public class PartyController {
 			PartyDTO my = new PartyDTO();
 			my.setId(id);
 			my.setParty_num(Integer.parseInt(party_num));
-			//model.addAttribute("partyMember", service.myPartyInfo(id,party_num));
+			//model.addAttribute("partyMember", service.myPartyInfo(id, party_num); 
 			model.addAttribute("method", service.payMethod(my));
 			return "partyRecruit/partyOrderInfo";
 		}
@@ -171,8 +170,8 @@ public class PartyController {
 		
 		@RequestMapping(value="/partyOrderList")
 		 public String partyOrderList(Model model, String id, String nowPage, PageVO vo) {
-			id = "admin";
-			//id = (String)session.getAttribute("id"); 
+			//id = "admin";
+			id = (String)session.getAttribute("id"); 
 			
 			ArrayList<PartyMemberDTO> orderList =service.orderList(id);
 			

@@ -185,7 +185,7 @@ window.onload=function(){
 			//return false;
 		}
 
-		newWin = window.open("localhost/partyBillCheck", "_frm", "width=500,height=300,scrollbars=yes,resizable=yes,left=700,top=300");
+		newWin = window.open("localhost/partyBillCheck", "_frm", "width=520,height=320,scrollbars=yes,resizable=yes,left=700,top=300");
 
 		f.target = "_frm";
 		f.submit();
