@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <body class="responsive is-pc">
 	<div class="wrap wrapper  ko">
 		<div class="body">
@@ -38,10 +37,7 @@
 							</div>
 				
 						</div>
-						<div class="item-members">
-							<span class="item-member"><img src="/img/icon-butsicon-small.png" alt="" /></span>
-							<span class="item-member"><img src="/img/icon-butsicon-small-glay.png" alt="" /></span>
-						</div>	
+						<div class="item-members"></div>	
 						<div class="item-buttons">
 							<a href="/index?formpath=partyMain?party_num=${list.party_num }" class="button border round button-purple">파티장 문의</a>		
 							<a href="#popup-account${list.party_num }" class="popup-inline button border round button-red">ID/PW 보기</a>

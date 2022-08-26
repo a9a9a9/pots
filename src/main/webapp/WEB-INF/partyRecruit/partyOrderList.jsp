@@ -8,6 +8,15 @@
       			<div class="title-wrap border mg-top-minus">
 					<div class="title">결제/환불 내역</div>
 				</div>
+				<c:choose>
+				<c:when test="${empty orderList }">
+					<div class="empty">
+						<div class="icon"><img src="/img/icon-butsicon-big-glay.png" /></div>
+						<h5>등록된 내용이 없습니다.</h5>
+					</div>
+				</c:when>
+				<c:otherwise>
+				<c:forEach var="list" items="${orderList }" begin="${paging.start }" end="${paging.end }">
 				<div class="table-list scroll">
 					<table style="min-width: 760px">
 					<thead>
@@ -24,7 +33,6 @@
 						</tr>
 					</thead>
 						<tbody>
-							<c:forEach var="list" items="${orderList }" begin="${paging.start }" end="${paging.end }">
 								<tr>
 									<td>
 										<span class="lightgrey">
@@ -42,24 +50,26 @@
 									<td>
 										<div class="item-name">
 											<a href="index?formpath=partyOrderInfo">
-												<span class="brand"><img src="${party.logo }" alt="" /></span>
-												<span class="name">${party.party_subservice }</span>
+												<span class="brand"><img src="${list.logo }" alt="" /></span>
+												<span class="name">${list.party_subservice }</span>
 												<span class="comment">${list.party_title }</span>
 											</a>
 										</div>
 									</td>
 									<td class="mobile-table">-</td>
-									<td><strong class="text-purple"><fmt:formatNumber type="number" maxFractionDigits="3" value="${myDay.pay + myDay.plus}"/></strong>원</td>
+									<td><strong class="text-purple"><fmt:formatNumber type="number" maxFractionDigits="3" value="${list.use_account + list.use_point}"/></strong>원</td>
 									<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${list.use_account}"/>원</td>
 									<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${list.use_point}"/>P</td>
 									<td><strong class="text-red">0</strong>원</td>
 									<td class="pc-table">-</td>
 									<td><span class="darkgrey">완료</span></td>
 								</tr>
-							</c:forEach>
 						</tbody>
 				</table>
 			</div>
+			</c:forEach>
+			</c:otherwise>
+			</c:choose>
 			<c:if test="${not empty orderList}" >
 				<div class="page-number" style="border-top: 1px solid #333333">
 					<ul>

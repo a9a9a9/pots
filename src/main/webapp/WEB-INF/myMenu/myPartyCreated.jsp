@@ -1,95 +1,90 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <body class="responsive is-pc">
 	<div class="wrap wrapper  ko">
 		<div class="body">
 			<div class="width-container">
 <div id="sct_hhtml" style="background-color:#242424;"></div>
-<c:choose>
-<c:when test="${empty created }">
-	<div class="title-wrap">
-		<div class="title">
-			<a href="/index?formpath=myPartyJoined" class="text">참여파티</a>
-			<a href="/index?formpath=myPartyCreated" class="text" style="margin-left: 20px;"><span class="text-purple">생성파티</span></a>
-			<div class="title">
-				* 사용기간이 종료된 파티는 참여파티에 보이지 않습니다.
-			</div>
-		</div>
+<div class="title-wrap">
+	<div class="title">
+		<a href="/index?formpath=myPartyJoined" class="text">참여파티</a>
+		<a href="/index?formpath=myPartyCreated" class="text" style="margin-left: 20px;"><span class="text-purple">생성파티</a>
 	</div>
-</c:when>
-<c:otherwise>
-		<div class="item-list">	
-			<div class="title-wrap">
-				<div class="title">
-					<a href="/index?formpath=myPartyJoined" class="text">참여파티</a>
-					<a href="/index?formpath=myPartyCreated" class="text" style="margin-left: 20px;"><span class="text-purple">생성파티</span></a>
-					
-				</div>
-			</div>
-			<c:forEach var="list" items="${created }">
-				<c:if test="${list.party_left_date > 0}">
-					<div class="item-row-my item-row"> 
-						<div class="item-type">${list.party_subservice }</div>
+	<div class="title">
+		* 사용기간이 종료된 파티는 참여파티에 보이지 않습니다.
+	</div>
+</div>
+<c:choose>
+	<c:when test="${empty created }">
+		<div class="empty">
+			<div class="icon"><img src="/img/icon-butsicon-big-glay.png" /></div>
+			<h5>등록된 내용이 없습니다.</h5>
+		</div>
+	</c:when>
+	<c:otherwise>
+		<c:forEach var="list" items="${created }">
+			<c:if test="${list.party_left_date > 0}">
+				<div class="item-row-my item-row"> 
+					<div class="item-type">${list.party_subservice }</div>
 					<div class="item-title">${list.party_title }</div>
-						<div class="item-info">
-							<div class="item-date">					
-								파티			
-									<c:if test="${list.party_left_date > 0}">		
-										<span class="pc-inline">사용중</span>
-									</c:if>
-									(<strong>${list.party_left_date }</strong>일)
-							</div>
+					<div class="item-info">
+						<div class="item-date">					
+							파티			
+							<c:if test="${list.party_left_date > 0}">		
+								<span class="pc-inline">사용중</span>
+							</c:if>
+							(<strong>${list.party_left_date }</strong>일)
 						</div>
-						<div class="item-members">
-							<c:if test="${list.party_member == list.party_now_member}">
+					</div>
+					<div class="item-members">
+						<c:if test="${list.party_member == list.party_now_member}">
+							<span class="item-member"></span>
+							<span class="item-finish">모집종료</span>
+						</c:if>
+						<c:if test="${list.party_member > list.party_now_member }">
+							<span class="item-member"></span>
+							<span class="item-finish" style="background:#84cdcf">모집중</span>								
+						</c:if> 
+					</div>			
+					<div class="item-buttons">
+						<a href="index?formpath=partyMain?party_num=${list.party_num }" class="button border round button-purple" style="margin-left:60px;">내역보기</a>								
+					</div>
+				</div>
+				</c:if>
+					<c:if test="${list.party_left_date <= 0}"> 
+						<div class="item-row-my item-row disabled">
+							<div class="item-type">${list.party_subservice }</div>	
+							<div class="item-title">${list.party_title }</div>
+							<div class="item-info">
+								<div class="item-date">					
+									파티				
+									<span class="pc-inline">사용완료</span>
+									(<strong>0</strong>일)
+								</div>
+							</div>
+							<div class="item-members">
 								<span class="item-member">
 									<img src="/img/icon-butsicon-small-glay.png" srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/icon-butsicon-small-glay.png 2x" alt="" />
 							    </span>
 								<span class="item-finish">모집종료</span>
-							</c:if>
-							<c:if test="${list.party_member > list.party_now_member }">
-								<span class="item-member">
-									<img src="/img/icon-butsicon-small-glay.png" srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/icon-butsicon-small-glay.png 2x" alt="" />
-							    </span>
-								<span class="item-finish" style="background:#84cdcf">모집중</span>								
-							</c:if> 
-						</div>
-						
-						
-						<div class="item-buttons">
-								<a href="index?formpath=partyMain?party_num=${list.party_num }" class="button border round button-purple" style="margin-left:60px;">내역보기</a>								
-						</div>
-					</div>
-				</c:if>
-						<c:if test="${list.party_left_date <= 0}"> 
-							<div class="item-row-my item-row disabled">
-								<div class="item-type">${list.party_subservice }</div>	
-								<div class="item-title">${list.party_title }</div>
-								<div class="item-info">
-									<div class="item-date">					
-										파티				
-											<span class="pc-inline">사용완료</span>
-										(<strong>0</strong>일)
-						
-									</div>
-									<!-- <div class="item-price"><span class="Rajdhani">0</span>원</div> -->
-								</div>
-								<div class="item-members">
-									<span class="item-member">
-										<img src="/img/icon-butsicon-small-glay.png" srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/icon-butsicon-small-glay.png 2x" alt="" />
-							        </span>
-									<span class="item-finish">모집종료</span>
-								</div>
-								<div class="item-buttons">
-									<a href="index?formpath=partyMain?party_num=${list.party_num }" class="button border round button-purple" style="margin-left:60px; color:#84cdcf">내역보기</a>								
-								</div>							
 							</div>
+							<div class="item-buttons">
+								<a href="index?formpath=partyMain?party_num=${list.party_num }" class="button border round button-purple" style="margin-left:60px; color:#84cdcf">내역보기</a>								
+							</div>							
+						</div>
+					</c:if>
+				</c:forEach>
+				<div id="item_list-nav" class="item-nav"><a href="https://buts.co.kr/skin/apms/list/Miso-Basic4/list_partner.rows.php?lt=Buts&amp;ls=Miso-Basic4&amp;ca_id=10&amp;npg=0&amp;page=2"></a></div>
+					<div class="item-more">
+						<c:if test="${page != '마지막 페이지'}">
+							<a href="${page}" title="더보기">더보기
+								<span class="color" style="background:#84cdcf"></span>
+							</a>
 						</c:if>
-					</c:forEach>
+					</div>
+					</c:otherwise>
+				</c:choose>
 		</div>
-</c:otherwise>
-</c:choose>
 <script>
 function date_up(var_it_id, var_it_reflesh_date, var_it_reflesh_cnt) {
 	var var_G5_TIME_YMD = '2022-08-19';
@@ -152,15 +147,6 @@ function date_up(var_it_id, var_it_reflesh_date, var_it_reflesh_cnt) {
 	}
 }	
 </script></div>
-<div id="item_list-nav" class="item-nav"><a href="https://buts.co.kr/skin/apms/list/Miso-Basic4/list_partner.rows.php?lt=Buts&amp;ls=Miso-Basic4&amp;ca_id=10&amp;npg=0&amp;page=2"></a></div>
-<div class="item-more">
-	<c:if test="${page != '마지막 페이지'}">
-		<a href="${page}" title="더보기">더보기
-			<span class="color" style="background:#84cdcf"></span>
-		</a>
-	</c:if>
-</div>	
-
 <script>
 	$(function(){
 		var result = "${pageNo}";
