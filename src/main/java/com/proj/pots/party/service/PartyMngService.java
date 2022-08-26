@@ -42,7 +42,11 @@ public class PartyMngService {
 	public Map<String, Object> billMap(String id) {
 		Map<String, Object> billMap = new HashMap<String, Object>();
 		int bill_total = mngDao.bill_total(id);
-		int bill_now = mngDao.bill_now(id);
+		ArrayList<PartyListDTO>  bill_now_list = mngDao.bill_now(id);
+		int bill_now = 0;
+		for(PartyListDTO b : bill_now_list) {
+			bill_now += b.getParty_now_member();
+		}
 		
 		billMap.put("bill_total", bill_total);
 		billMap.put("bill_now", bill_now);
@@ -142,6 +146,7 @@ public class PartyMngService {
 		
 	}
 	
+
 	public String notMyPartyNick(String nick) {
 		int length = nick.length();
 		String tmp  = nick.substring(0, 2);
@@ -347,6 +352,12 @@ public class PartyMngService {
 	public int partyClose(String party_num) {
 		int i = mngDao.partyClose(party_num);
 		return i;
+	}
+
+	public int insertComment(PartyCommentDTO comment) {
+		int i = mngDao.insertComment(comment);
+		return i;
+		
 	}
 
 	

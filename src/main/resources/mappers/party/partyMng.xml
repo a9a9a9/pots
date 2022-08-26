@@ -123,7 +123,7 @@
 	 </select>
 	 
 	 <select id="partyComment" resultType="PartyCommentDTO">
-	 	SELECT * FROM party_comment WHERE party_num = #{party_num} ORDER BY no_cmnt DESC;
+	 	SELECT party_num, id, nick, comment, comment_private, comment_date, comment_to_nick, DATE_FORMAT(comment_date, '%Y.%m.%d %H:%i') AS comment_date FROM party_comment WHERE party_num = #{party_num} ORDER BY no_cmnt DESC;
 	 
 	 </select>
 	 
@@ -136,7 +136,7 @@
 			ORDER BY b.mystartday DESC
 	 </select>
 	 
-	 <select id="bill_now" resultType="int">
+	 <select id="bill_now" resultType="PartyListDTO">
 	 SELECT a.party_charge* DATEDIFF(a.party_end, NOW()) * b.party_count AS party_now_member 
 		FROM 
 			(SELECT * FROM party WHERE id=#{id}) 
@@ -148,6 +148,12 @@
         WHERE a.party_end >= NOW() AND b.party_count IS NOT NULL
 	 
 	 </select>
+	 
+	 <insert id="insertComment" parameterType="PartyCommentDTO">
+	 INSERT INTO party_comment (party_num, id, nick, comment, comment_private, comment_date, comment_to_nick)
+	 	VALUES(#{party_num}, #{id}, #{nick}, #{comment}, #{comment_private}, #{comment_date}, #{comment_to_nick})
+	 
+	 </insert>
 	 
 	 <insert id="partyBillInsert" parameterType="PartyBillDTO">
 		 INSERT INTO party_bill (id, bill_date, bill_charge, bill_pay)
