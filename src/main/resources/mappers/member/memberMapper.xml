@@ -58,11 +58,22 @@
 	</update>
 	
 	<select id="listpoint" resultType="PointDTO"> 
-		SELECT * FROM point_list WHERE id = #{id} ORDER BY point_num DESC
+	SELECT B.* FROM(
+         SELECT ROW_NUMBER() OVER(ORDER BY point_num DESC) AS rn, 
+         A.* FROM(
+            SELECT * FROM point_list
+            WHERE id=#{id}
+            ORDER BY point_num DESC
+         )A
+      )B WHERE rn BETWEEN #{b} and #{e}
+		
 	</select>
 	
 		<select id="selectUserPoint" resultType="PartyMemberDTO">
 		SELECT use_point FROM party_member WHERE id=#{id}
 	</select>
+		<select id="pointCount" resultType="int" >
+		SELECT count(*) FROM point_list WHERE	id = #{id}
+	    </select>
 	
 </mapper>

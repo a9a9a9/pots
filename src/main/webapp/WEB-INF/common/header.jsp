@@ -174,9 +174,9 @@ if(result === "접근할 수 없는 페이지 입니다."){
 												srcset="/img/icon-coin-star-big2.png 2x"
 												alt=""></a></span>
 										 <span>
-										 <a href="${root}index?formpath=myPoint">팟</a></span> 
+										 <a href="${root }myPointproc">팟</a></span> 
 										 <span class="right"> 
-										 <a href="${root}index?formpath=myPoint">
+										 <a href="${root }myPointproc">
 										 <span class="price Rajdhani">${sessionScope.compoint}</span></a> 
 										 <a href="${root}index?formpath=myPointCharge"
 											class="charge fill">충전</a>

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
+import com.proj.pots.board.service.PageService;
 import com.proj.pots.member.dto.LoginDTO;
 import com.proj.pots.member.dto.MemberDTO;
 import com.proj.pots.member.dto.PointDTO;
@@ -211,12 +212,22 @@ public class MemberService {
 			
 		} 
 		
-		public void listpoint(String id, Model model) {
+		public void listpoint(String id, Model model, int currentPage, HttpServletRequest req) {
 			MemberDTO member = new MemberDTO();
 			PointDTO pointDto = new PointDTO();
-			// 포인트 조회
+			
 			id = (String)session.getAttribute("id");
-			ArrayList<PointDTO> pointlist = memberDao.listpoint(id);
+			int totalCount = memberDao.pointCount(id); 
+			int pageBlock = 3;
+			int end = currentPage * pageBlock;
+			int begin = end+1 - pageBlock;
+			
+			// 포인트 조회
+			ArrayList<PointDTO> pointlist = memberDao.listpoint(id, begin, end);
+			String url = req.getContextPath() + "/myPointproc?";
+			url += "currentPage=";
+			 
+			model.addAttribute("page", PageService.getNavi(currentPage, pageBlock, totalCount, url));
 			
 			for(PointDTO p : pointlist) {
 				

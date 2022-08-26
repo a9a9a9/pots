@@ -169,12 +169,12 @@ public class HomeController {
 	public String myPartyJoined() {
 		return "myMenu/myPartyJoined";
 	}
-//	
-//	@RequestMapping(value = "/myPoint")
-//	public String myPoint() {
-//		return "myMenu/myPoint";
-//	}
-//	
+	
+	@RequestMapping(value = "myPoint")
+	public String myPoint() {
+		return "myMenu/myPoint";
+	}
+	
 	@RequestMapping(value = "myPointCharge")
 	public String myPointCharge() {
 		return "myMenu/myPointCharge";
