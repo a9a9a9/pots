@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.proj.pots.login.service.ILoginService;
 import com.proj.pots.member.dto.LoginDTO;
@@ -31,5 +32,17 @@ public class LoginController {
 		model.addAttribute("msg", "로그 아웃");
 		return "forward:index?formpath=main";
 	}
+	
+	   @RequestMapping(value = "PassProc")
+		public String PassProc(LoginDTO login, Model model, RedirectAttributes ra) {
+			String msg = loginService.PassProc(login);
+			if(msg.equals("수정 완료")) {
+				ra.addFlashAttribute("msg", msg);
+				return "redirect:/index?formpath=main";
+			}else {
+				model.addAttribute("msg",msg);
+				return "forward:/index?formpath=findpass";
+			}
+	   }
 	
 }

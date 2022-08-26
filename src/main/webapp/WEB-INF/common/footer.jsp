@@ -14,15 +14,15 @@
 				<a href="#" target="_blank" class="v-bar" onclick="return false;"><strong>개인정보처리방침</strong></a>
 				<a href="#" target="_blank" class="v-bar" onclick="return false;">이용약관</a>
 				<a href="${root }index?formpath=faq1" target="_blank" class="v-bar">FAQ</a><br /><br />
-				<span class="v-bar">대표 : 백찬우</span>
-				<span class="v-bar">노량진동 장승배기로 171 KR 서울특별시 동작구 3층 아이비빌딩 302</span>
-				<span>이메일 : mailto: cucksdn@gmail.com</span><br />
+				<span class="v-bar">상호 : 팟츠</span><br>
+				<span class="v-bar">주소 : 노량진동 장승배기로 171 KR 서울특별시 동작구 3층 아이비빌딩 302</span><br>
 				<span class="v-bar">사업자등록번호 : 123-45-6789</span>
 				<span class="v-bar"><a href="#" target="_blank" onclick="return false;"><strong>사업자정보확인</strong></a></span>
-				<span class="v-bar">통신판매업신고 : 제 2022-프로젝트4-123호</span>
-				<span>개인정보보호책임 : 백찬우</span><br />
+				<span class="v-bar">통신판매업신고 : 제 2022-프로젝트4-123호</span><br>
+				<span>개인정보보호책임 : Pots</span>
+				<span>이메일 : mailto: cucksdn@gmail.com</span><br />
 				<span>호스팅 사업자 : Amazon Web Service(AWS)</span><br /><br />
-				<span>Copyright © 2022 Buts Inc. All rights reserved.</span>
+				<span>Copyright © 2022 Pots Inc. All rights reserved.</span>
 			</div>
 			</div>
 		</div>

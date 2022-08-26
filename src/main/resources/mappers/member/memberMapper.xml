@@ -51,13 +51,29 @@
 	</select>
 	<insert id="insertContent" parameterType="PointDTO">
 		INSERT INTO point_list (id, point_date, point_content, point_charge, use_point )
-		VALUES(#{id}, #{point_date} , #{point_content}, #{point_charge}, 0)
+		VALUES(#{id}, #{point_date} , #{point_content}, #{point_charge}, #{use_point})
 	</insert>
 	<update id="updatePoint" parameterType="MemberDTO">
 		UPDATE member set point = #{point} WHERE id = #{id}
 	</update>
 	
 	<select id="listpoint" resultType="PointDTO"> 
-		SELECT * FROM point_list WHERE id = #{id} ORDER BY point_num DESC
+	SELECT B.* FROM(
+         SELECT ROW_NUMBER() OVER(ORDER BY point_num DESC) AS rn, 
+         A.* FROM(
+            SELECT * FROM point_list
+            WHERE id=#{id}
+            ORDER BY point_num DESC
+         )A
+      )B WHERE rn BETWEEN #{b} and #{e}
+		
 	</select>
+	
+		<select id="selectUserPoint" resultType="PartyMemberDTO">
+		SELECT use_point FROM party_member WHERE id=#{id}
+	</select>
+		<select id="pointCount" resultType="int" >
+		SELECT count(*) FROM point_list WHERE	id = #{id}
+	    </select>
+	
 </mapper>

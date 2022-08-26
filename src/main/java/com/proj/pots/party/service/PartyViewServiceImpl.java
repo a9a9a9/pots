@@ -1,25 +1,23 @@
 package com.proj.pots.party.service;
 
-import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import com.proj.pots.member.dto.MemberDTO;
+import com.proj.pots.member.dto.PointDTO;
 import com.proj.pots.membership.dao.IMemberDAO;
 import com.proj.pots.party.dao.IPartyViewDAO;
 import com.proj.pots.party.dto.PartnerInfoDTO;
 import com.proj.pots.party.dto.PartyMemberDTO;
-import com.proj.pots.party.dto.PartyBillDTO;
 import com.proj.pots.party.dto.PartyCommentDTO;
 import com.proj.pots.party.dto.PartyDTO;
 import com.proj.pots.party.dto.PartyListDTO;
-import com.proj.pots.party.dto.PartyParDTO;
 import com.proj.pots.party.dto.PartyRegDTO;
 
 @Service
@@ -152,6 +150,57 @@ public class PartyViewServiceImpl implements IPartyViewService{
 	@Override
 	public ArrayList<PartyMemberDTO> orderList(String id) {
 		ArrayList<PartyMemberDTO> orderList = partyViewDao.orderList(id);
+		if(orderList != null) {
+			for(PartyListDTO o : orderList) {
+				if(o.getParty_subservice().equals("1010")) {
+					o.setParty_subservice("넷플릭스"); 
+					o.setLogo("/img/partylogo/netflix.png"); 
+				} else if(o.getParty_subservice().equals("1020")) {
+					o.setParty_subservice("왓챠");
+					o.setLogo("/img/partylogo/watcha.png"); 
+				} else if(o.getParty_subservice().equals("1030")) {
+					o.setParty_subservice("유튜브");
+					o.setLogo("/img/partylogo/youtube.png"); 
+				} else if(o.getParty_subservice().equals("1040")) {
+					o.setParty_subservice("WAVVE");
+					o.setLogo("/img/partylogo/wavve.png"); 
+				} else if(o.getParty_subservice().equals("1050")) {
+					o.setParty_subservice("티빙");
+					o.setLogo("/img/partylogo/tiving.png"); 
+				} else if(o.getParty_subservice().equals("1080")) {
+					o.setParty_subservice("디즈니");
+					o.setLogo("/img/partylogo/disney.png"); 
+				} else if(o.getParty_subservice().equals("2010")) {
+					o.setParty_subservice("리디북스");
+					o.setLogo("/img/partylogo/ridi.png"); 
+				} else if(o.getParty_subservice().equals("2020")) {
+					o.setParty_subservice("밀리의서재");
+					o.setLogo("/img/partylogo/millie.png"); 
+				} else if(o.getParty_subservice().equals("2030")) {
+					o.setParty_subservice("YES24");
+					o.setLogo("/img/partylogo/yes24.png"); 
+				} else if(o.getParty_subservice().equals("2040")) {
+					o.setParty_subservice("스포티파이");
+					o.setLogo("/img/partylogo/spotify.png"); 
+				} else if(o.getParty_subservice().equals("3010")) {
+					o.setParty_subservice("닌텐도온라인");
+					o.setLogo("/img/partylogo/nintendo.png"); 
+				} else if(o.getParty_subservice().equals("3050")) {
+					o.setParty_subservice("XBOX");
+					o.setLogo("/img/partylogo/xbox.png"); 
+				} else if(o.getParty_subservice().equals("6050")) {
+					o.setParty_subservice("멤버쉽");
+					o.setLogo("/img/partylogo/membership.png"); 
+				} else if(o.getParty_subservice().equals("6010")) {
+					o.setParty_subservice("MSOffice");
+					o.setLogo("/img/partylogo/office365.png"); 
+				}
+				else {
+					o.setParty_subservice("기타");
+					o.setLogo("/img/partylogo/membership.png"); 
+				} 
+			}
+		}
 		return orderList;  
 	} 
 	
@@ -180,15 +229,15 @@ public class PartyViewServiceImpl implements IPartyViewService{
 	}
 	
 	@Override
-	public PartyMemberDTO payMethod(String id) {
-		PartyMemberDTO method = partyViewDao.payMethod(id);
+	public PartyMemberDTO payMethod(PartyDTO my) {
+		PartyMemberDTO method = partyViewDao.payMethod(my);
 		
-		if(!method.getUse_account().equals("0")) {
+		if(!method.getUse_account().equals("0") || !method.getUse_account().equals("") || !(method.getUse_account() == null)) {
 			method.setUse_account("계좌이체");
 		}else {
 			method.setUse_account("");
 		}
-		if(!method.getUse_point().equals("0")) {
+		if(!method.getUse_point().equals("0") || !method.getUse_point().equals("") || !(method.getUse_point() == null)) {
 			method.setUse_point("포인트");
 		}else {
 			method.setUse_point("");
@@ -258,14 +307,8 @@ public class PartyViewServiceImpl implements IPartyViewService{
 	}
 	
 	@Override
-	public PartyRegDTO endDay(String party_num) { 
-		PartyRegDTO end = partyViewDao.endDay(party_num); 
-		return end; 
-	}
-	
-	@Override
-	public PartyRegDTO myPartyDay(String id, String party_num) {
-		PartyRegDTO myDay = partyViewDao.myPartyDay(id, party_num);
+	public PartyMemberDTO myPartyDay(String id, String party_num) {
+		PartyMemberDTO myDay = partyViewDao.myPartyDay(id, party_num);
 		return myDay; 
 	}
 	
@@ -289,8 +332,9 @@ public class PartyViewServiceImpl implements IPartyViewService{
 	}
 	
 	@Override
-	public String partyMemberInsertProc(PartyMemberDTO partyMember, Integer party_num) {
+	public String partyMemberInsertProc(PartyMemberDTO partyMember, String party_num) {
 		PartyListDTO paChk = partyViewDao.partyAvailableChk(party_num);
+		System.out.println(paChk);
 		if(paChk != null) {
 			int tmp = paChk.getParty_member() - paChk.getParty_now_member();
 			if(tmp <= 0) {
@@ -300,9 +344,40 @@ public class PartyViewServiceImpl implements IPartyViewService{
 				partyViewDao.updateParty(party_num);
 			}
 		}
-			
+		
+		insertuse(partyMember.getUse_point());
+
 		partyViewDao.insertPartyMember(partyMember);
 		partyViewDao.updatePoint(partyMember);
 		return "신청완료";
 	}
+
+	
+	public PointDTO insertuse(String usepoint) {
+		String id = (String)session.getAttribute("id");
+		PointDTO pointDto = new PointDTO();
+		String content = "포인트 결제";
+		pointDto.setId(id);
+		pointDto.setPoint_content(content);
+		pointDto.setPoint_charge(0); 
+		int minupoint = Integer.parseInt(usepoint);
+		pointDto.setUse_point(minupoint); //사용 된 금액
+		
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm (E)");
+		String dateConvert = sdf.format(date);
+		pointDto.setPoint_date(dateConvert);
+		memberDao.insertContent(pointDto);
+		
+		int pointc = (int)session.getAttribute("point");
+		
+		int point = pointc - minupoint;
+		session.setAttribute("point", point);
+		
+		String compoint = String.format("%,d", point);
+		session.setAttribute("compoint", compoint);
+		return pointDto;
+	}
+	
+
 }

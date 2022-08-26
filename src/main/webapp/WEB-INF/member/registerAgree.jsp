@@ -1,12 +1,15 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<style>
+	#naverIdLogin_loginButton{display: contents;}
+	#naverIdLogin_loginButton img{position: relative; float: left;}
+</style>
 <body>
 	<div class="body">
 <div class="width-container">
 
 	<div class="mw-800 form-clause mg-top-minus">
-		</div>
 
 		<form name="fregister" id="fregister"
 			action="${root}index?formpath=register"
@@ -682,14 +685,7 @@
 			</div>
 			<div class="button-align center">
 				<a href="${root}index?formpath=main" class="button">취소</a>
-				<c:choose>
-					<c:when test="${empty sessionScop.id }">
 				<button type="submit" class="button button-purple">회원가입</button>
-					</c:when>
-					<c:otherwise>
-				<button type="button"  onclick="${root}index?formpath=snsRegister" class="button button-purple">회원가입</button>
-					</c:otherwise>
-				</c:choose>
 			</div>
 		</form>
 	</div>

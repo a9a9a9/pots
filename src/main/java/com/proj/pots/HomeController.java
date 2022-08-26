@@ -159,7 +159,6 @@ public class HomeController {
 	public String faq() {
 		return "myMenu/faq";
 	}
-	
 
 //	@RequestMapping(value = "/myPartyCreated")
 //	public String myPartyCreated() { 
@@ -171,10 +170,10 @@ public class HomeController {
 //		return "myMenu/myPartyJoined";
 //	}
 	
-	@RequestMapping(value = "/myPoint")
-	public String myPoint() {
-		return "myMenu/myPoint";
-	}
+//	@RequestMapping(value = "/myPoint")
+//	public String myPoint() {
+//		return "myMenu/myPoint";
+//	}
 
 	@RequestMapping(value = "myPointCharge")
 	public String myPointCharge() {
@@ -259,4 +258,9 @@ public class HomeController {
 //	public String partyOrderInfo() {
 //		return "partyRecruit/partyOrderInfo";
 //	}
+	@RequestMapping(value = "findpass")
+	public String findpass() {
+		return "member/findpass";
+	}
+	
 }
