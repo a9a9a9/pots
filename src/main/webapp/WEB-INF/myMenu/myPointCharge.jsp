@@ -125,7 +125,7 @@
 				</div>
 				<script>
 				$(function(){
-					$('.form-payment-agree').css({display: 'block', textAlign: 'center'});
+					 $('.form-payment-agree').css({display: 'block', textAlign: 'center'});
 				});
 				</script>
 				

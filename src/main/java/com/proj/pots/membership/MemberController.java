@@ -1,5 +1,14 @@
 package com.proj.pots.membership;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +18,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -316,16 +326,5 @@ public class MemberController {
 				   return "forward:/index?formpath=findMy";
 		    }
 	   }
-//	   @RequestMapping(value = "PassProc")
-//		public String PassProc(LoginDTO login, Model model, RedirectAttributes ra) {
-//			String msg = memberService.PassProc(login);
-//			if(msg.equals("수정 완료")) {
-//				ra.addFlashAttribute("msg", msg);
-//				return "redirect:/index?formpath=main";
-//			}else { 
-//				model.addAttribute("msg",msg);
-//				return "forward:/index?formpath=findpass";
-//			}
-//		}
 	   
 }
