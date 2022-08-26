@@ -4,6 +4,10 @@
 
 <c:url var="root" value="/" />
 
+<style>
+.page-number img{max-width: 36%;}
+</style>
+
 <body class="responsive is-pc">
 	<div class="wrap wrapper  ko">
 		<div class="body">
@@ -57,11 +61,12 @@
 							
 						</tbody>
 					</table>
+					<div class="page-number">
+						${page}
+					</div>
 				</div>
+				
 
-<!-- 					<div class="page-number"> -->
-<%-- 						${page} --%>
-<!-- 					</div> -->
 
 					<div class="button-align right mg-top-0"></div>
 			</div>

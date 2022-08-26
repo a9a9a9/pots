@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -289,11 +290,12 @@ public class MemberController {
 		}
 	}
 	
-	@RequestMapping(value = "/myPoint")
-	public String myPoint(String id, Model model) {
-			memberService.listpoint(id, model);
+	@RequestMapping(value = "myPointproc")
+	public String myPoint(String id, Model model, @RequestParam(value="currentPage", required = false, defaultValue = "1") int currentPage,
+			HttpServletRequest req) {
+			memberService.listpoint(id, model, currentPage, req);
 		
-		return "myMenu/myPoint";
+		return "forward:/index?formpath=myPoint";
 	
 	}
 

@@ -46,6 +46,7 @@
 							<a href="${root }index?formpath=registerAgree" class="v-bar">회원가입</a>
 							<a href="${root }index?formpath=findMy">아이디/비밀번호찾기</a>
 						</div>
+						<br>
 					</div>
 					<button type="submit" class="form-button button button-purple">로그인</button>
 					<div class="form-text">
