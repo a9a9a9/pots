@@ -227,7 +227,7 @@ input[type='password'] {
 
 input[type='text']:focus,
 input[type='password']:focus {
-  border: solid 1px #a89cf4;
+  border: solid 1px #84cdcf;
 }
 
 input[type='text']::-webkit-input-placeholder,
@@ -662,7 +662,7 @@ input[type='password']:disabled {
 
 .button.border.button-purple {
   color: #84cdcf;
-  border: solid 1px #a89cf4;
+  border: solid 1px #84cdcf;
   background-color: #ffffff;
 }
 
@@ -1466,7 +1466,7 @@ input[type='password']:disabled {
 
 .header-menu .sub-li:hover .sub-a, .header-menu .sub-li.on .sub-a {
   color: #84cdcf;
-  border: solid 1px #a89cf4;
+  border: solid 1px #84cdcf;
 }
 
 .header-menu .sub-a {
@@ -2530,7 +2530,7 @@ a.header-login {
 }
 
 .item-row:not(.disabled):hover {
-  border: 1px solid #a89cf4;
+  border: 1px solid #84cdcf;
 }
 
 .item-row:not(.disabled):hover .item-type {
@@ -3119,7 +3119,7 @@ a.header-login {
   padding: 0 30px;
   font-size: 20px;
   color: #333333;
-  border: solid 1px #cec8f1;
+  border: solid 1px #84cdcf;
   background-color: #f9f9f9;
 }
 
@@ -3755,7 +3755,7 @@ a.header-login {
 .form-round {
   position: relative;
   padding: 25px 40px;
-  border: solid 1px #cec8f1;
+  border: solid 1px #84cdcf;
   border-radius: 20px;
 }
 
@@ -5178,8 +5178,8 @@ a.header-login {
 }
 
 .accordion .select:hover, .accordion .select.active {
-  border: solid 1px #cec8f1;
-  background-color: #f9f8ff;
+  border: solid 1px #84cdcf;
+   background-color: #f9f8ff;
 }
 
 .accordion .select.active .subject {
