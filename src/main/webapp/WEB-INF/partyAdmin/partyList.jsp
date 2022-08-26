@@ -9,7 +9,7 @@
 </script>
 <!-- body -->
 <div class="partner-body">
-	<script src="./script.js"></script>
+	<!-- <script src="./script.js"></script> -->
 
 	<!-- [[ 파트너 파티 관리 ]] -->
 
@@ -61,18 +61,16 @@
 
 		<div class="title2">
 			<span> <a class="text-purple" href="./?ap=list&amp;sort=d">최신순</a>
-			</span> <span class=" v-bar left" style="top: -5px;"> </span> <span>
+			<!-- </span> <span class=" v-bar left" style="top: -5px;"> </span> <span>
 				<a href="./?ap=list&amp;sort=p">모집중 파티</a>
 			</span> <span class=" v-bar left" style="top: -5px;"> </span> <span>
 				<a href="./?ap=list&amp;sort=e">연장가능 파티</a>
-			</span>
+			</span> -->
 		</div>
 	</div>
 	
 	<!-- 등록된 내용이 없는 경우 -->
-	<form class="form" role="form" name="fitemlistupdate" method="post"
-		action="./itemlistupdate.php"
-		onsubmit="return fitemlist_submit(this);" autocomplete="off">
+	<form class="form" role="form" name="fitemlistupdate" method="post" onsubmit="return fitemlist_submit(this);" autocomplete="off">
 		<!-- <input type="hidden" name="ap" value=""> <input type="hidden"
 			name="sca" value=""> <input type="hidden" name="sst" value="">
 		<input type="hidden" name="sod" value=""> <input type="hidden"
@@ -86,7 +84,7 @@
 						<th scope="col">
 							<div class="input-check" style="margin-right: -8px;">
 								<input type="checkbox" name="chkall" value="1" id="chkall"
-									onclick="check_all(this.form)"> <label for="chkall"></label>
+									> <label for="chkall"></label>
 							</div>
 						</th>
 						<th scope="col">제목</th>
@@ -120,10 +118,12 @@
 				
 				<!-- 등록된 내용이 있는 경우 -->
 					<c:forEach var="pl" items="${list }" begin="${paging.start }" end="${paging.end }" varStatus="vs">
+					<input type="hidden" name="${pl.party_num }" value="${pl.party_left_member }">
 						<tr>
 								<td>
 									<div class="input-check" style="margin-right: -8px;">
-										<input type="checkbox" name="chk[]" value="${vs.index }" id="chk_${vs.index }">
+										<input type="checkbox" name="chk" value="${pl.party_num }" id="chk_${vs.index }">
+										
 										<label for="chk_${vs.index }"></label>
 									</div> 
 									<input type="hidden" name="it_id[${vs.index }]" value="${pl.party_num }">
@@ -150,7 +150,7 @@
 								
 								<td class="text-center">${pl.party_regdate }</td>
 								<td class="text-center">
-									<a href="#" class="button round border button-red">복사</a>
+									<a href="partyUpdate/party_num" class="button round border button-purple">수정</a>
 								</td>
 							</tr>
 						</c:forEach>
@@ -198,24 +198,16 @@
 
 
 		<div class="button-align left mg-top-0">
-			<input type="submit" name="act_button" value="선택삭제"
-				onclick="document.pressed=this.value"
-				class="button round border button-purple"> <input
-				type="submit" name="act_button" value="선택마감"
-				onclick="document.pressed=this.value"
-				class="button round border button-purple">
+			<input type="button" name="act_button" value="선택삭제" onclick="deleteValue()" class="button round border button-purple"> 
+			<input type="button" name="act_button" value="선택마감" onclick="closeValue()" class="button round border button-purple">
 		</div>
 
 	</form>
-	<c:set var="URL" value="${pageContext.request.queryString}" />
-	<div>정보: ${URL }</div>
-	<c:set var="URL2" value="${pageContext.request.servletPath}" />
-	<div>정보: ${URL2 }</div>
 	
 
 	<script>
 		function fitemlist_submit(f) {
-			if (!is_checked("chk[]")) {
+			if (!is_checked("chk")) {
 				alert(document.pressed + " 하실 항목을 하나 이상 선택하세요.");
 				return false;
 			}
@@ -234,7 +226,101 @@
 
 			return true;
 		}
+		
+		
+		function deleteValue(){
+			var url = "deleteproc";    // Controller로 보내고자 하는 URL
+			var valueArr = new Array();
+		    var list = $("input[name='chk']");
+		    for(var i = 0; i < list.length; i++){
+		        if(list[i].checked){ //선택되어 있으면 배열에 값을 저장함
+		        	var tmp = $("input[name='" + list[i].value + "']");
+		        	if(tmp != 0){
+		        		alert("모집 인원이 한 명 이상 존재할 경우 삭제할 수 없습니다.");
+		        		return false;
+		        	}
+		        	
+		            valueArr.push(list[i].value);
+		        }
+		    }
+		    if (valueArr.length == 0){
+		    	alert("선택된 파티가 없습니다.");
+		    }
+		    else{
+				var chk = confirm("정말 삭제하시겠습니까?");
+				var sendData = JSON.stringify(valueArr);
+				$.ajax({
+				    url : url,                    // 전송 URL
+				    method : 'POST',                // POST 방식
+				    data : sendData ,
+				    dataType : 'json' ,
+				    contentType: 'application/json',
+				    
+	                success: function(jdata){
+	                    if(jdata = 1) {
+	                        alert("선택된 파티가 삭제되었습니다.");
+	                        location.replace("partyList") //list 로 페이지 새로고침
+	                    }
+	                    else{
+	                        alert("선택된 파티를 삭제하지 못했습니다.");
+	                    }
+	                }
+				});
+			}
+		}
+		
+		function closeValue(){
+			var url = "closeproc";    // Controller로 보내고자 하는 URL
+			var valueArr = new Array();
+		    var list = $("input[name='chk']");
+		    for(var i = 0; i < list.length; i++){
+		        if(list[i].checked){ //선택되어 있으면 배열에 값을 저장함
+		            valueArr.push(list[i].value);
+		        }
+		    }
+		    if (valueArr.length == 0){
+		    	alert("선택된 파티가 없습니다.");
+		    }
+		    else{
+				var sendData = JSON.stringify(valueArr);
+				$.ajax({
+				    url : url,                    // 전송 URL
+				    method : 'POST',                // POST 방식
+				    data : sendData ,
+				    dataType : 'json' ,
+				    contentType: 'application/json',
+				    
+	                success: function(jdata){
+	                    if(jdata = 1) {
+	                        alert("선택된 파티가 마감되었습니다.");
+	                        location.replace("partyList") //list 로 페이지 새로고침
+	                    }
+	                    else{
+	                        alert("해당 파티를 마감시키지 못했습니다.");
+	                    }
+	                }
+				});
+			}
+		}
 	</script>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#chkall").click(function() {
+				if($("#chkall").is(":checked")) $("input[name=chk]").prop("checked", true);
+				else $("input[name=chk]").prop("checked", false);
+			});
+			
+			$("input[name=chk]").click(function() {
+				var total = $("input[name=chk]").length;
+				var checked = $("input[name=chk]:checked").length;
+				
+				if(total != checked) $("#chkall").prop("checked", false);
+				else $("#chkall").prop("checked", true); 
+			});
+		});
+	</script>
+	
 </div>
 <!-- /#page-wrapper -->
 </div>
@@ -288,66 +374,8 @@
 
 		resize();
 	});
+	
 </script>
-
-<!-- Channel Plugin Scripts -->
-<script>
-	(function() {
-		var w = window;
-		if (w.ChannelIO) {
-			return (window.console.error || window.console.log || function() {
-			})('ChannelIO script included twice.');
-		}
-		var ch = function() {
-			ch.c(arguments);
-		};
-		ch.q = [];
-		ch.c = function(args) {
-			ch.q.push(args);
-		};
-		w.ChannelIO = ch;
-		function l() {
-			if (w.ChannelIOInitialized) {
-				return;
-			}
-			w.ChannelIOInitialized = true;
-			var s = document.createElement('script');
-			s.type = 'text/javascript';
-			s.async = true;
-			s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
-			s.charset = 'UTF-8';
-			var x = document.getElementsByTagName('script')[0];
-			x.parentNode.insertBefore(s, x);
-		}
-		if (document.readyState === 'complete') {
-			l();
-		} else if (window.attachEvent) {
-			window.attachEvent('onload', l);
-		} else {
-			window.addEventListener('DOMContentLoaded', l, false);
-			window.addEventListener('load', l, false);
-		}
-	})();
-	ChannelIO('boot', {
-		"pluginKey" : "d3d063c0-7d5d-48f8-8535-0ac91305c985"
-	});
-</script>
-<!-- End Channel Plugin -->
-<!-- ie6,7에서 사이드뷰가 게시판 목록에서 아래 사이드뷰에 가려지는 현상 수정 -->
-<!--[if lte IE 7]>
-<script>
-$(function() {
-    var $sv_use = $(".sv_use");
-    var count = $sv_use.length;
-
-    $sv_use.each(function() {
-        $(this).css("z-index", count);
-        $(this).css("position", "relative");
-        count = count - 1;
-    });
-});
-</script>
-<![endif]-->
 
 </body>
 </html>

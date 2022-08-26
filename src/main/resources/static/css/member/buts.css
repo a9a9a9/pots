@@ -227,7 +227,9 @@ input[type='password'] {
 
 input[type='text']:focus,
 input[type='password']:focus {
+
   border: solid 1px #84cdcf;
+
 }
 
 input[type='text']::-webkit-input-placeholder,
@@ -3540,7 +3542,7 @@ a.header-login {
 }
 
 .comment-list li.left .balloon {
-  background-color: #8e7cfd;
+  background-color: #84cdcf;
 }
 
 .comment-list li.left .speech {
@@ -3556,7 +3558,7 @@ a.header-login {
   top: 8px;
   left: -12px;
   border-bottom: 12px solid transparent;
-  border-right: 12px solid #8e7cfd;
+  border-right: 12px solid #84cdcf;
 }
 
 .comment-list .picture {
@@ -4758,6 +4760,7 @@ a.header-login {
   padding-left: 44px;
 }
 
+
 /* .table-list .notice::before { */
 /*   content: '알림'; */
 /*   position: absolute; */
@@ -4774,6 +4777,7 @@ a.header-login {
 /*   border: 1px solid #84cdcf; */
 /*   border-radius: 4px; */
 /* } */
+
 
 .table-list .Rajdhani {
   margin-right: 2px;

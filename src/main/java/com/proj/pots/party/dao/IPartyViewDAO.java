@@ -23,15 +23,13 @@ public interface IPartyViewDAO {
 	
 	PartnerInfoDTO selectAccount(String id);
 	
-	PartyRegDTO selectParty(int party_num);
+	PartyRegDTO selectParty(String party_num);
 	
 	PartyMemberDTO partyMember (String id);
 	
-	PartyRegDTO endDay(int party_num);
+	PartyMemberDTO myPartyDay(String id, String party_num);
 	
-	PartyRegDTO myPartyDay(String id, int party_num);
-	
-	PartyMemberDTO payMethod(String id);
+	PartyMemberDTO payMethod(PartyDTO my);
 		
 	int insertAccount(PartnerInfoDTO partner); 
 		
@@ -39,13 +37,19 @@ public interface IPartyViewDAO {
 	
 	void insertPartyMember(PartyMemberDTO partyMember);
 
-	PartyRegDTO partyDay(Integer party_num);
+	PartyRegDTO partyDay(String id);
 	
-	PartyListDTO partyAvailableChk(int party_num);
+	PartyListDTO partyAvailableChk(String party_num);
 
-	void updateParty(int party_num);
+	void updateParty(String party_num);
 	
 	void updatePoint(PartyMemberDTO partyMember);
+	
+	ArrayList<PartyListDTO> createdParty(String id);  
+	
+	ArrayList<PartyListDTO> joinedParty(String id);
+	
+	ArrayList<PartyMemberDTO> orderList(String id);
 
 
 
