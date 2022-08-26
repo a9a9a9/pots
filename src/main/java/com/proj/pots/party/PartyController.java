@@ -107,9 +107,11 @@ public class PartyController {
 		
 		@RequestMapping(value = "/partyOrder")
 		public String partyOrder(Model model, String party_num, String id) {
+
 			//party_num = "1";
 			//id = "admin";
 			id = (String)session.getAttribute("id");
+
 			model.addAttribute("party", service.selectParty(party_num));
 			model.addAttribute("member", memberService.memberInfo(id));
 			model.addAttribute("myDay", service.partyDay(party_num));
@@ -121,6 +123,7 @@ public class PartyController {
 		public String partyOrderInfo(Model model, String party_num, String id) {
 			//id = "admin";
 			id = (String)session.getAttribute("id");
+
 			model.addAttribute("party", service.selectParty(party_num));
 			model.addAttribute("myInfo", service.myPartyDay(id, party_num));
 			PartyDTO my = new PartyDTO();
