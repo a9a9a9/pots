@@ -459,7 +459,7 @@ public class PartyMngController {
 	@RequestMapping(value="/billProc")
 	public String billProc(String pp_amount, Model model, RedirectAttributes ra) {
 		if(ptChk() != null) {
-			ra.addFlashAttribute("msg", "<script>alert('접근할 수 없는 페이지 입니다.')</script>");
+			ra.addFlashAttribute("msg", "<script>alert('접근할 수 없는 페이지 입니다.'); window.close();</script>");
 			return "redirect:/";
 		
 		}
@@ -470,7 +470,7 @@ public class PartyMngController {
 	@RequestMapping(value="/BillComplete")
 	public String billComplete(int bill_charge, RedirectAttributes ra) {
 		if(ptChk() != null) {
-			ra.addFlashAttribute("msg", "<script>alert('접근할 수 없는 페이지 입니다.')</script>");
+			ra.addFlashAttribute("msg", "<script>alert('접근할 수 없는 페이지 입니다.'); window.close();</script>");
 			return "redirect:/";
 		}
 		
