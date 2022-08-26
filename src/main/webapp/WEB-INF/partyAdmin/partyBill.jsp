@@ -3,7 +3,12 @@
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:import url="partyIndex.jsp"/> 
+<style>
+.table-list{
+	margin-top: 20px;
+}
 
+</style>
 <script>
 window.onload=function(){
 	document.getElementById('partyBill').classList.add('active');

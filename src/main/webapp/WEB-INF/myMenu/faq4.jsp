@@ -9,9 +9,9 @@
 				<div class="mw-800 faq">
 					<div class="text-head center">
 						<img src="/img/logo.png" class="text-logo" alt="" />
-						<span class="text-purple">벗츠</span>에 대해 궁금하시다고요?
+						<span class="text-purple">팟츠</span>에 대해 궁금하시다고요?
 					</div>
-					<p class="text-para center" style="max-width: 500px">벗츠는 사용자가 이용하고 있는 <span class="text-purple">공유형 구독 서비스</span>를 허용된 범위 안에서 경제적이고 <span class="text-purple">안전하게 모집 및 참여</span> 할 수 있도록 도와주는 서비스입니다.</p>
+					<p class="text-para center" style="max-width: 500px">팟츠는 사용자가 이용하고 있는 <span class="text-purple">공유형 구독 서비스</span>를 허용된 범위 안에서 경제적이고 <span class="text-purple">안전하게 모집 및 참여</span> 할 수 있도록 도와주는 서비스입니다.</p>
 					<p class="text-para center">또한 기프트상품권, 이용권, 상품권 등의 <span class="text-purple">디지털 코드의 안전하고 편리한 거래</span>를 도와줍니다.</p>
 					<div class="faq-tab">
 						<a href="${root}index?formpath=faq1" >이용안내</a>
@@ -28,8 +28,8 @@
 								</a>
 								<div id="faq_collapse1" class="panel-collapse collapse">
 									<div class="article">
-										<p>벗츠에서는 계좌이체 방식과 카드결제 방식 모두 사용가능합니다.</p>
-										<p>(2021년 02월 현재 365일 환불이 가능한 벗츠의 결제 특성상의 문제로 인하여 해당 정책이행이 가능한 카드결제 대행사와 협의 중에 있습니다)</p>
+										<p>팟츠에서는 계좌이체 방식과 카드결제 방식 모두 사용가능합니다.</p>
+										<p>(2021년 02월 현재 365일 환불이 가능한 팟츠의 결제 특성상의 문제로 인하여 해당 정책이행이 가능한 카드결제 대행사와 협의 중에 있습니다)</p>
 										<p><br> </p>
 										<p>1. 카드결제인 경우 결제즉시 참여하신 서비스의 계정정보 확인이 가능합니다.</p>
 										<p>(그룹 참여형 서비스인 경우 해당 서비스 이용을 위한 절차 진행이 가능합니다)</p>
@@ -42,7 +42,7 @@
 										<p>② 입금 금액이 다른 경우</p>
 										<p>③ 입금자명이 입금 신청 시 작성한 내용과 다른 경우</p>
 										<p><br> </p>
-										<p>입금 확인 진행이 안된 경우 벗츠 채널Talk를 통하여 진행 요청 가능합니다.</p>
+										<p>입금 확인 진행이 안된 경우 팟츠 채널Talk를 통하여 진행 요청 가능합니다.</p>
 										<p><br> </p>
 										<p>
 										   <a href="#" onclick="return false;" target="_blank" rel="nofollow noreferrer noopener"><span style="color:#0080ff;">입금확인 요청하기</span></a>
@@ -78,7 +78,7 @@
 										<p>(치명적인 불편함이란 기술적으로 이용 불가한 수준의 불편함을 의미 합니다)</p>
 										<p>(파티장의 직접적인 귀책 사유가 아니므로 48시간 이라는 다소 긴 시간이 책정 됨을 양해 부탁 드립니다)</p>
 										<p><br> </p>
-										<p>※ 위와 같은 기준에 해당 되는 경우 파티장의 의사와 무관하게 벗츠의 비용으로 우선 처리해 드리며 파티장과의 분쟁은 벗츠에서 진행합니다.</p>
+										<p>※ 위와 같은 기준에 해당 되는 경우 파티장의 의사와 무관하게 팟츠의 비용으로 우선 처리해 드리며 파티장과의 분쟁은 팟츠에서 진행합니다.</p>
 										<p><br> </p>
 										<p> ----------------------------------------------------------</p>
 										<p><br> </p>
@@ -102,7 +102,7 @@
 										   <span style="color:#0080ff;"><a href="#" onclick="return false;" target="_blank" rel="nofollow noreferrer noopener"><span style="color:#0080ff;">환불진행 바로가기</span></a></span>
 										</p>
 										<p>
-										   <span style="color:#0080ff;"><a href="#" onclick="return false;" target="_blank" rel="nofollow noreferrer noopener"><span style="color:#0080ff;">벗츠에 분쟁해결 요청하기</span></a></span>
+										   <span style="color:#0080ff;"><a href="#" onclick="return false;" target="_blank" rel="nofollow noreferrer noopener"><span style="color:#0080ff;">팟츠에 분쟁해결 요청하기</span></a></span>
 										</p>
 										<p> </p>
 										<p><span style="color:#000000;">※ 환불금액은 요청하신 날짜 기준으로 소급적용하여 남은 기간만큼 환불 가능합니다.</span></p>

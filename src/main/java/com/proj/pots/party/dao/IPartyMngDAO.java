@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.proj.pots.party.dto.PartyBillDTO;
+import com.proj.pots.party.dto.PartyCommentDTO;
 import com.proj.pots.party.dto.PartyListDTO;
 import com.proj.pots.party.dto.PartyMemberDTO;
 import com.proj.pots.party.dto.PartyRegDTO;
@@ -31,9 +32,17 @@ public interface IPartyMngDAO {
 	
 	ArrayList<PartyMemberDTO> partyMember(String party_num);
 	
-	int bill_total(String id);
+	ArrayList<PartyCommentDTO> partyComment (String party_num);
 	
-	int bill_now(String id);
+	ArrayList<PartyListDTO> bill_now(String id);
+	
+	int bill_total(String id);
 
 	int partyBillInsert(PartyBillDTO billDto);
+
+	int partyDelete(String party_num);
+
+	int partyClose(String party_num);
+
+	int insertComment(PartyCommentDTO comment);
 }

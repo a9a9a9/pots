@@ -9,9 +9,9 @@
 				<div class="mw-800 faq">
 					<div class="text-head center">
 						<img src="/img/logo.png" class="text-logo" alt="" />
-						<span class="text-purple">벗츠</span>에 대해 궁금하시다고요?
+						<span class="text-purple">팟츠</span>에 대해 궁금하시다고요?
 					</div>
-					<p class="text-para center" style="max-width: 500px">벗츠는 사용자가 이용하고 있는 <span class="text-purple">공유형 구독 서비스</span>를 허용된 범위 안에서 경제적이고 
+					<p class="text-para center" style="max-width: 500px">팟츠는 사용자가 이용하고 있는 <span class="text-purple">공유형 구독 서비스</span>를 허용된 범위 안에서 경제적이고 
 						<span class="text-purple">안전하게 모집 및 참여</span> 할 수 있도록 도와주는 서비스입니다.</p>
 					<p class="text-para center">또한 기프트상품권, 이용권, 상품권 등의 <span class="text-purple">디지털 코드의 안전하고 편리한 거래</span>를 도와줍니다.</p>
 					<div class="faq-tab">
@@ -25,10 +25,10 @@
 					<li>
 						<div class="select">
 							<a data-toggle="collapse" data-parent="#faq_accordion" href="#faq_collapse1" class="subject collapsed">
-								벗츠에서 진행 중인 서비스에 참여하고 싶은데 절차가 어떻게 되나요?						<span class="plus"></span>
+								팟츠에서 진행 중인 서비스에 참여하고 싶은데 절차가 어떻게 되나요?						<span class="plus"></span>
 							</a>
 							<div id="faq_collapse1" class="panel-collapse collapse">
-								<div class="article"><span style="font-size:9pt;font-family:'맑은 고딕', 'malgun gothic';color:#000000;">벗츠(https://buts.co.kr) 홈페이지 내에서 참여 가능한 서비스를 확인 하실 수 있습니다.<br />
+								<div class="article"><span style="font-size:9pt;font-family:'맑은 고딕', 'malgun gothic';color:#000000;">팟츠 홈페이지 내에서 참여 가능한 서비스를 확인 하실 수 있습니다.<br />
 									해당 파티 중 선택하여 결제 하신 뒤 [내 파티보기] 페이지를 통해 참여하신 서비스의 참여정보(로그인 정보)를 확인 하실 수 있습니다.</span>
 									<p><br /></p>
 									<p><a href="#" onclick="return false;" target="_blank" title="참여방법" rel="nofollow noreferrer noopener"><span style="color:#0080ff;">참여방법 자세히 보기</span></a></p>
@@ -44,7 +44,7 @@
 							<div id="faq_collapse2" class="panel-collapse collapse">
 								<div class="article">
 									<p>결제 완료 후 알림톡이나 SMS문자 메세지로 참여 정보를 안내해 드립니다.</p>
-									<p>또한 벗츠 웹사이트 [내 파티보기]를 통해서 서비스 이용시 필요한 필수 정보 및 파티장 문의처를 확인 하실 수 있습니다.</p>
+									<p>또한 팟츠 웹사이트 [내 파티보기]를 통해서 서비스 이용시 필요한 필수 정보 및 파티장 문의처를 확인 하실 수 있습니다.</p>
 									<p> <br></p>
 									<p>그룹 등록형(유튜브프리미엄, Office356 등) 모집은 파티 참여 후 파티장의 초대 과정을 거쳐 진행되며,</p>
 									<p>참여자님께서 최종적으로 초대에 수락을 하셔야 서비스 이용이 가능합니다.</p>
@@ -61,7 +61,7 @@
 							</a>
 							<div id="faq_collapse3" class="panel-collapse collapse">
 								<div class="article">
-									<p>벗츠에서는 참여 가능한 서비스를 파트너 가입자가 직접 올려서 진행하는 시스템입니다. </p>
+									<p>팟츠에서는 참여 가능한 서비스를 파트너 가입자가 직접 올려서 진행하는 시스템입니다. </p>
 									<p>목록에 없는 서비스의 경우 언제 제공 될지 특정 드릴 수 없는 부분 양해 부탁 드립니다.</p>
 									<p> <br></p>
 									<p>다만 2021년 2월에 원하는 카테고리의 서비스 파티가 생성되면 알림신청이 가능한 [대기방] 기능이 추가 예정입니다.</p>
