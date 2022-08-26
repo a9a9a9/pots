@@ -259,6 +259,30 @@ public class PartyMngController {
 	    return map;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "commentInsert", method=RequestMethod.POST)
+    public int commentInsert (@RequestBody Map<String, String> map) {
+		String id = (String)session.getAttribute("id");
+		String nick = (String)session.getAttribute("nick");
+		int i = -1;
+        if(map != null && map.get("comment") != null) {
+        	PartyCommentDTO comment = new PartyCommentDTO();
+        	comment.setComment(map.get("comment"));
+        	comment.setComment_private(map.get("comment_private"));
+        	System.out.println("비밀글 여부 : " + map.get("comment_private"));
+        	comment.setComment_to_nick(map.get("comment_to_nick"));
+        	comment.setParty_num(Integer.parseInt(map.get("party_num")));
+        	comment.setId(id);
+        	comment.setNick(nick);
+        	comment.setComment_date(map.get("comment_date"));
+        	i = mngSvc.insertComment(comment);
+        	return i;
+        	
+        }
+        return i;
+    }
+	
+	
 	// 파티 생성 페이지
 	@GetMapping(value = "/partyCreate")
 	public String partyCreate(RedirectAttributes ra) {
@@ -389,7 +413,6 @@ public class PartyMngController {
 		ArrayList<PartyCommentDTO> comment = mngSvc.partyComment(party_num, nick);
 		System.out.println("현재멤버" + comment);
 		
-		//model.addAttribute("comment", comment);	//파티 댓글 (array or null)
 		model.addAttribute("myParty", myParty);	//파티장 여부 (true or false)
 		model.addAttribute("memberChk", memberCheck);	//파티원 여부 ("checked", "")
 		model.addAttribute("list", members);	//파티원 리스트(array or null)
@@ -410,6 +433,8 @@ public class PartyMngController {
 		ArrayList<PartyBillDTO> bill = mngSvc.bill(id);
 		Map<String, Object> billMap = mngSvc.billMap(id);
 		System.out.println(bill);
+		
+		
 		if(bill != null) {
 			int total = bill.size();			
 			int cntPerPage = 10;

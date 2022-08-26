@@ -306,20 +306,21 @@ function fitem_submit(f) {
 </script>
 
 
-<div class="comment-wrap mg-top">
+<div class="comment-wrap mg-top" id="comment-wrap mg-top">
 			<aside id="it_vc_w">
 		<div class="comment-title">벗츠 댓글톡</div>
-			<form id="fviewcomment" name="fviewcomment" class="form" role="form" action="https://buts.co.kr/shop/itemcommentupdate.php" onsubmit="return fviewcomment_submit(this);" method="post" autocomplete="off">
+			<form id="fviewcomment" name="fviewcomment" class="form" role="form" action="commentInsert" onsubmit="return commentSubmit(this);" method="post" autocomplete="off">
 				<input type="hidden" name="w" value="c" id="w">
-				<input type="hidden" name="it_id" value="1656867366">
+				<input type="hidden" name="it_id" id="it_id" value="${p.party_num }">
 				<input type="hidden" name="ca_id" value="10">
 				<input type="hidden" name="comment_id" value="" id="comment_id">
+				<input type="hidden" name="nick" value="${sessionScope.nick }" id="nick">
 				<input type="hidden" name="comment_url" value="" id="comment_url">
 				<input type="hidden" name="crows" value="20">
 				<input type="hidden" name="page" value="" id="comment_page">
 				<div class="comment-wirte">
 					<div class="select">
-						<select name="wr_1" id="wr_1"  onchange="tochange(this.form)">
+						<select name="wr_1" id="wr_1">
 							<c:choose>
 							<c:when test="${myParty }">
 								<option value="party">파티원 에게</option>	
@@ -335,7 +336,7 @@ function fitem_submit(f) {
 								</c:forEach>
 							</c:if>
 								
-							<option value="party">일반</option>	
+							<option value="Party">일반</option>	
 						</select>
 						<div class="input-check secret">
 							<input type="checkbox" name="party" value="secret" id="wr_secret" />
@@ -349,15 +350,105 @@ function fitem_submit(f) {
 					</c:when>
 					<c:otherwise>
 						<textarea id="wr_content" name="wr_content" maxlength="10000" required   placeholder="파티장에게 궁금한 점이 있으면 물어보세요!&#13;&#10;※ 빠른 문의는 파티장 문의 전화번호를 이용해주세요."></textarea>					
-						<a href="javascript:apms_comment('itemcomment');" class="button-apply" id="btn_submit" >등록</a>	
+						<input type="button" class="button-apply" id="btn_submit" onclick="commentSubmit()" value="등록" style="border:0px;">
+						<!-- <a href="#" class="button-apply" id="btn_submit" >등록</a>	 -->
 					</c:otherwise>
 					</c:choose>
-										<script>
+					<script>
 					function apms_comment_onKeyDown() {
 							if(event.keyCode == 13) {
 							apms_comment('itemcomment');
 							}
 						}
+					
+
+					function commentSubmit(){
+						var url = "commentInsert";    // Controller로 보내고자 하는 URL
+						var comment = document.getElementById('wr_content').value;
+						var comment_to = document.getElementById('wr_1').value;
+						var comment_private = document.getElementById('wr_secret');
+						var party_num = document.getElementById('it_id').value;
+						var mynick = document.getElementById('nick').value;
+						if(comment_private.checked){
+							comment_private = "1";
+						}else{
+							comment_private = "0";
+						}
+						let today = new Date();
+						var comment_date = dateFormat(today);
+						console.log(comment_date);
+						console.log(comment);
+						console.log(comment_to);
+						console.log(comment_private);
+						
+						if (!comment) {
+							alert("댓글을 입력하여 주십시오.");
+							f.wr_content.focus();
+							return false;
+						}
+					    else{
+					    	var sendData = {
+					    			"party_num" : party_num, 
+					    			"comment" : comment, 
+					    			"comment_private" : comment_private, 
+					    			"comment_to_nick" : comment_to, 
+					    			"comment_date" : comment_date
+					    			};
+							console.log(sendData);
+							var html = "";
+							$.ajax({
+							    url : url,                    // 전송 URL
+							    method : 'POST',                // POST 방식
+							    data : JSON.stringify(sendData) ,
+							    dataType : 'json' ,
+							    contentType: 'application/json',
+							    
+				                success: function(jdata){
+				                    if(jdata = 1) {
+				                       // alert("등록되었습니다.");
+				                        html += "<li class='right' id='c_139350'>"
+			    						html += "<div class='picture'><img src='https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png'/></div>"
+			    						html += "<div class='balloon'>"
+			    						html += "<div class='to'>" + comment_to + "님 에게</div>"
+			    						html += "<div class='speech'>"
+			    						if(comment_private == 1)		
+			    						html += "<img src='https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif'>"
+			    								
+			    						html += comment
+			    						html += "</div> </div> <div class='option'><span class='v-bar'>" + mynick + "</span> <span class='v-bar'>" + comment_date + "</span></div>"
+			    						html += "</li>"
+			    						
+			    						$("#it_vc").prepend(html);
+				                        document.getElementById("wr_content").value = "";
+				                        
+				                    
+				                        //location.replace("index?formpath=partyMain?party_num="+ ${p.party_num}) //list 로 페이지 새로고침
+				                    }
+				                    else{
+				                        alert("댓글을 등록하지 못했습니다.");
+				                    }
+				                }
+							});
+						} 
+					}
+					
+					function dateFormat(date) {
+				        let month = date.getMonth() + 1;
+				        let day = date.getDate();
+				        let hour = date.getHours();
+				        let minute = date.getMinutes();
+				        let second = date.getSeconds();
+
+				        month = month >= 10 ? month : '0' + month;
+				        day = day >= 10 ? day : '0' + day;
+				        hour = hour >= 10 ? hour : '0' + hour;
+				        minute = minute >= 10 ? minute : '0' + minute;
+				        second = second >= 10 ? second : '0' + second;
+
+				        return date.getFullYear() + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
+				}
+					
+					
 					</script>			
 				</div>
 			</form>
@@ -365,197 +456,87 @@ function fitem_submit(f) {
 		<div class="comment-list" id="itemcomment">
 		
 				<ul id="it_vc">
-					<li class="right" id="c_139350">
-						<div class="picture">
-							<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png"/>
-						</div>
-						<div class="balloon">
-							<div class="to">놐크로님 에게</div>
-							<div class="speech">
-								<img src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif">
-									 비밀댓글 입니다.
+			
+				<c:if test="${not empty comment}">
+					<c:forEach items="${comment }" var="c">
+					
+					<c:choose>
+						<c:when test="${c.nick == sessionScope.nick }">
+						<li class="right" id="c_139350">
+							<div class="picture">
+								<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png"/>
 							</div>
-						</div>
-						<div class="option">
-							<span class="v-bar">힘티비</span> <span class="v-bar">5일전</span>
-						</div>
-					</li>
-					<li id="c_139245">
-						<div class="picture">
-							<img
-								src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png"
-								alt="" />
-						</div>
-						<div class="balloon">
-							<div class="to">힘티비님 에게</div>
-							<div class="speech">
+							<div class="balloon">
+								<div class="to">${c.comment_to_nick }님 에게</div>
+								<div class="speech">
+								<c:if test="${c.comment_private == '1'}">
+									<img src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif">
+								</c:if>
+										 ${c.comment}
+								</div>
+							</div>
+							<div class="option">
+								<span class="v-bar">${c.nick }</span> <span class="v-bar">${c.comment_date }</span>
+							</div>
+						</li>
+						
+						</c:when>
+						
+						<c:when test="${c.nick == p.nick }">
+						
+						<li id="c_139245">
+							<div class="picture">
 								<img
-									src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif"
-									alt=""> 비밀댓글 입니다.
+									src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png"
+									alt="" />
 							</div>
-						</div>
-						<div class="option">
-							<span class="v-bar">놐크로</span> <span class="v-bar">5일전</span>
-						</div>
-					</li>
-					<li class="left" id="c_131787">
-						<div class="picture">
-							<img
-								src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png"
-								alt="" />
-						</div>
-						<div class="balloon">
-							<div class="to" style="color: #ffffff;">skygowoo님 에게</div>
-							<div class="speech">
+							<div class="balloon">
+								<div class="to">${c.comment_to_nick }님 에게</div>
+								<div class="speech">
+									<c:if test="${c.comment_private == '1'}">
+										<img src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif">
+									</c:if>
+								  ${c.comment}
+								</div>
+							</div>
+							<div class="option">
+								<span class="v-bar">${c.nick }</span> <span class="v-bar">${c.comment_date }</span>
+							</div>
+						</li>
+						</c:when>
+						
+						<c:otherwise>
+						<li class="left" id="c_131787">
+							<div class="picture">
 								<img
-									src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif"
-									alt=""> 비밀댓글 입니다.
+									src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png"
+									alt="" />
 							</div>
-						</div>
-						<div class="option">
-							<span class="v-bar">힘티비</span> <span class="v-bar">2022.07.29
-								19:27</span>
-						</div>
-					</li>
-					<li class="left" id="c_125157">
-						<div class="picture">
-							<img
-								src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png"
-								alt="" />
-						</div>
-						<div class="balloon">
-							<div class="to" style="color: #ffffff;">싱가포리님 에게</div>
-							<div class="speech">
-								<img
-									src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif"
-									alt=""> 비밀댓글 입니다.
+							<div class="balloon">
+								<div class="to" style="color: #ffffff;">${c.comment_to_nick }님 에게</div>
+								<div class="speech">
+									<c:if test="${c.comment_private == '1'}">
+										<img src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif">
+									</c:if>
+								 ${c.comment}
+								</div>
 							</div>
-						</div>
-						<div class="option">
-							<span class="v-bar">힘티비</span> <span class="v-bar">2022.07.17
-								01:07</span>
-						</div>
-					</li>
-					<li id="c_125066">
-						<div class="picture">
-							<img
-								src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png"
-								alt="" />
-						</div>
-						<div class="balloon">
-							<div class="to">힘티비님 에게</div>
-							<div class="speech">
-								<img
-									src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif"
-									alt=""> 비밀댓글 입니다.
+							<div class="option">
+								<span class="v-bar">${c.nick }</span> <span class="v-bar">${c.comment_date }</span>
 							</div>
-						</div>
-						<div class="option">
-							<span class="v-bar">싱가포리</span> <span class="v-bar">2022.07.16
-								21:43</span>
-						</div>
-					</li>
-					<li class="left" id="c_125062">
-						<div class="picture">
-							<img
-								src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png"
-								alt="" />
-						</div>
-						<div class="balloon">
-							<div class="to" style="color: #ffffff;">싱가포리님 에게</div>
-							<div class="speech">
-								<img
-									src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif"
-									alt=""> 비밀댓글 입니다.
-							</div>
-						</div>
-						<div class="option">
-							<span class="v-bar">힘티비</span> <span class="v-bar">2022.07.16
-								21:40</span>
-						</div>
-					</li>
-					<li id="c_125060">
-						<div class="picture">
-							<img
-								src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png"
-								alt="" />
-						</div>
-						<div class="balloon">
-							<div class="to">힘티비님 에게</div>
-							<div class="speech">
-								<img
-									src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif"
-									alt=""> 비밀댓글 입니다.
-							</div>
-						</div>
-						<div class="option">
-							<span class="v-bar">싱가포리</span> <span class="v-bar">2022.07.16
-								21:39</span>
-						</div>
-					</li>
-					<li class="left" id="c_125056">
-						<div class="picture">
-							<img
-								src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png"
-								alt="" />
-						</div>
-						<div class="balloon">
-							<div class="to" style="color: #ffffff;">싱가포리님 에게</div>
-							<div class="speech">
-								<img
-									src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif"
-									alt=""> 비밀댓글 입니다.
-							</div>
-						</div>
-						<div class="option">
-							<span class="v-bar">힘티비</span> <span class="v-bar">2022.07.16
-								21:33</span>
-						</div>
-					</li>
-					<li id="c_118539">
-						<div class="picture">
-							<img
-								src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png"
-								alt="" />
-						</div>
-						<div class="balloon">
-							<div class="to">힘티비님 에게</div>
-							<div class="speech">
-								<img
-									src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif"
-									alt=""> 비밀댓글 입니다.
-							</div>
-						</div>
-						<div class="option">
-							<span class="v-bar">바나나귤</span> <span class="v-bar">2022.07.04
-								07:50</span>
-						</div>
-					</li>
-					<li class="left" id="c_118536">
-						<div class="picture">
-							<img
-								src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png"
-								alt="" />
-						</div>
-						<div class="balloon">
-							<div class="to" style="color: #ffffff;">바나나귤님 에게</div>
-							<div class="speech">
-								<img
-									src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif"
-									alt=""> 비밀댓글 입니다.
-							</div>
-						</div>
-						<div class="option">
-							<span class="v-bar">힘티비</span> <span class="v-bar">2022.07.04
-								07:35</span>
-						</div>
-					</li>
+						</li>
+						</c:otherwise>
+					
+					</c:choose>
+				
+				</c:forEach>
+			</c:if>
 				</ul>
             		
 			</div>
 </div>
 <script>
-function tochange(f)
+/* function tochange(f)
 {
     var idx = f.wr_1.value;
 	if(idx == ""){
@@ -567,7 +548,7 @@ function tochange(f)
 		$('.secret').show();
 		f.wr_2.checked = true;	
 	}
-}
+} */
 </script>
 <script>
 $(function() {
@@ -630,13 +611,14 @@ $("document").ready(function() {
 <script>
 	var save_before = '';
 	var save_html = document.getElementById('it_vc_w').innerHTML;
+
 	function fviewcomment_submit(f)	{
 		var pattern = /(^\s*)|(\s*$)/g; // \s 공백 문자
 		var subject = "";
 		var content = "";
 		$.ajax({
 			url: g5_bbs_url+"/ajax.filter.php",
-			type: "POST",
+			type: "POST",˙
 			data: {
 				"subject": "",
 				"content": f.wr_content.value
@@ -682,6 +664,8 @@ $("document").ready(function() {
 		document.getElementById("btn_submit").disabled = "disabled";
 		return true;
 	}
+	
+	
 	function comment_box(comment_id, work) {
 		var el_id;
 		// 댓글 아이디가 넘어오면 답변, 수정

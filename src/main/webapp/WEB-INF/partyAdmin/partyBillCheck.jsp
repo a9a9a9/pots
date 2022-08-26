@@ -8,6 +8,8 @@
 </head>
 <body>
 <form action="/BillComplete" method="get">
+
+<table></table>
 <div>이름: ${session.name }</div><br>
 <div>은행 : ${session.account_name }</div><br>
 <div>계좌번호 : ${session.account_num }</div><br>
