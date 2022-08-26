@@ -144,10 +144,10 @@ if(result === "접근할 수 없는 페이지 입니다."){
 							<div class="buttons">
 								<c:choose>
 									<c:when test="${sessionScope.partner eq 'false'}">
-										<a href="partnerRegister">파티장신청</a>
+										<a href="${root }partnerRegister">파티장신청</a>
 									</c:when>
 									<c:when test="${sessionScope.partner eq 'true'}">
-										<a href="partyList">파티관리</a>
+										<a href="${root }partyList">파티관리</a>
 									</c:when>
 								</c:choose>
 							</div>
