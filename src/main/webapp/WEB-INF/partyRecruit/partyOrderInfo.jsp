@@ -112,7 +112,7 @@
 				<li>
 			<div class="subject">ㆍ 미결제액</div>
 			<div class="right">
-				<fmt:formatNumber type="number" maxFractionDigits="3" value="${(myInfo.pay + myInfo.plus) - (partyMember.use_account+partyMember.use_point)}"/>원			
+				<fmt:formatNumber type="number" maxFractionDigits="3" value="${(myInfo.pay + myInfo.plus) - (myInfo.use_account+myInfo.use_point)}"/>원			
 			</div>
 		</li>
 		<li class="total">
