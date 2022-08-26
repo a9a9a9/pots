@@ -27,10 +27,10 @@
 		var msg = document.getElementById('msg');
 		msg.innerHTML = req.responseText;
 	}
-// 	var kakaoCheck = "${sessionScope.name}";
-// 		if(kakaoCheck === null) {
-// 			kakaoCheck = "";
-// 		}
+	function printMsg2(){
+		var msg2 = document.getElementById('msg2');
+		msg2.innerHTML = req.responseText;
+	}
 </script>
 <body class="responsive is-pc">
 	<div class="wrap wrapper  ko">
