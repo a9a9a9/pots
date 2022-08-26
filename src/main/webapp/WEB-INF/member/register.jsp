@@ -8,6 +8,10 @@
 		alert(result);
 	}else if(result === "비밀번호를 입력하세요."){
 		alert(result);
+	}else if(result === "중복 닉네임 입니다."){
+		alert(result);
+	}else if(result === "비밀번호가 일치하지 않습니다."){
+		alert(result);
 	}
 	
 	var req;

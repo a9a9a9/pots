@@ -36,7 +36,7 @@ public class MemberService {
 	} 
 	public String isExistNick(String nick) {
 		if (nick == null)
-			return "아이디를 입력 하세요.";
+			return "닉네임을 입력 하세요.";
 		int count = memberDao.isExistNick(nick);
 		if(count == 1)
 			return "중복 닉네임 입니다.";
@@ -49,7 +49,7 @@ public class MemberService {
 		return "사용 가능한 아이디입니다.";
 	} 
 	
-	public String memberProc(MemberDTO member) {
+	public String memberProc(MemberDTO member, String pw, String pwCheck) {
 		LoginDTO login = member;
 		
 		if(login.getId() == null || login.getId().isEmpty())
@@ -58,6 +58,10 @@ public class MemberService {
 			return "비밀번호를 입력하세요.";
 		if(memberDao.isExistId(login.getId()) > 0)
 			return "중복 아이디 입니다.";
+		if(memberDao.isExistNick(member.getNick()) > 0)
+			return "중복 닉네임 입니다.";
+		if(pw.equals(pwCheck)== false)
+			return "비밀번호가 일치하지 않습니다.";
 		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String securePw = encoder.encode(login.getPw());
