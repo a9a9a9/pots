@@ -64,7 +64,7 @@
 
 <div class="item-view-row mobile-block">
 	<span>파티 번호 : <span class="lightgrey"><span class="lightgrey">${p.party_num }</span></span></span>
-	<a href="#popup-policy" class="right fw300 text-purple popup-inline">벗츠 환불 보증 정책 보기</a>
+	<a href="#popup-policy" class="right fw300 text-purple popup-inline">팟츠 환불 보증 정책 보기</a>
 </div>
 
 <div class="item-view-row">
@@ -118,7 +118,7 @@
 	
 	
 		
-	<a href="#popup-policy" class="right fw300 text-purple pc-block popup-inline">벗츠 환불 보증 정책 보기</a>
+	<a href="#popup-policy" class="right fw300 text-purple pc-block popup-inline">팟츠 환불 보증 정책 보기</a>
 	<div id="popup-policy" class="popup-magnific mfp-hide white-popup-block">
 		<h3 class="center">환불정책 안내</h3>
 		<div class="popup-policy">
@@ -129,7 +129,7 @@
 			<div class="lightgrey">참여자(구매자)가 문제해결 요청한 내용은 분쟁해결 및 환불내용에 자료로 사용 될 수 있습니다.</div>
 			</li>
 			<li>환불신청은 [결제내역조회] 페이지에서 가능하며, 환불 비용은 환불신청을 진행한 날짜의 +1일로 계산되어 환불이 진행 됩니다.</li>
-			<li>위 사항에 해당하는 경우 파티장 의사와 상관없이 벗츠에서 환불비용을 부담하여 제공하고 있으며, 포인트 환불로 진행됩니다.</li>
+			<li>위 사항에 해당하는 경우 파티장 의사와 상관없이 팟츠에서 환불비용을 부담하여 제공하고 있으며, 포인트 환불로 진행됩니다.</li>
 		</ul>
 		<h4 class="text-purple">환불 불가</h4>
 		<ul>
@@ -141,7 +141,7 @@
 			환불신청은 [결제내역조회] 페이지에서 가능하며, 환불 비용은 환불신청을 진행한 날짜의 +1일로 계산되어 환불이 진행 됩니다.
 			<div class="lightgrey">예) 프로그램 오류, 네트워크 환경 불안으로 인한 오류 등</div>
 			</li>
-			<li>위 사항에 해당하는 경우 파티장 의사와 상관없이 벗츠에서 환불비용을 부담하여 제공하고 있으며, 포인트 환불로 진행됩니다.</li>
+			<li>위 사항에 해당하는 경우 파티장 의사와 상관없이 팟츠에서 환불비용을 부담하여 제공하고 있으며, 포인트 환불로 진행됩니다.</li>
 		</ul>
 		</div>
 		<div class="popup-button center">
@@ -164,7 +164,7 @@
 	<c:forEach var="m" items="${list }">
 		<li>
 			<div class="picture">
-				<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png" alt="" />			</div>
+				<img src="/img/icon-butsicon-middle.png" alt="" />			</div>
 			<div class="name">
 				${m.nick }			</div>
 			<div class="date">
@@ -187,9 +187,9 @@
 			<c:forEach  begin="${p.party_now_member + 1 }" end="${p.party_member }" varStatus="vs">
 				<li>
 					<div class="picture">
-						<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle-glay.png" alt="" />				</div>
+						<img src="/img/icon-butsicon-middle-glay.png" alt="" />				</div>
 					<div class="name">
-					${p.party_now_member + vs.count }.벗츠
+					${p.party_now_member + vs.count }.팟츠
 					</div>
 					<div class="date">
 					모집대기중
@@ -216,7 +216,7 @@
 									<span> 계정양도 불가 </span>
 									<span> 개인사정 환불 불가 </span>
 									<span> 위반 시 강제 조치 </span>
-									<span> 벗츠 닉네임과 동일하게 프로필 닉네임 설정 </span>
+									<span> 팟츠 닉네임과 동일하게 프로필 닉네임 설정 </span>
 									
 					</div>
 		<div class="text">
@@ -259,12 +259,12 @@
 </div>
 </c:if>
 <br>
-<div class="item-view-caution" style="border-color:#7e69fe; background-color: #ffffff;">
+<div class="item-view-caution" style="border-color:#84cdcf; background-color: #ffffff;">
 	<div class="text">
-		<b>[벗츠에서 알려 드립니다.]</b><br>
+		<b>[팟츠에서 알려 드립니다.]</b><br>
 		개인 거래를 유도하여 피해가 생기는 경우가 발생되고 있습니다.<br>
-		벗츠를 통하지 않는 <span style="color:#7e69fe;">개인간의 거래 또는 파티장 임의로 제공되는 추가기간에 대해서는 어떠한 경우에도 보상 및 책임지지 않습니다.</span><br>
-		연락을 유도하여 개인거래를 진행하거나 타 사이트를 홍보하는 경우 '벗츠'에 신고 부탁 드립니다. (신고 보상 3,000포인트 제공)<br>
+		팟츠를 통하지 않는 <span style="color:#84cdcf;">개인간의 거래 또는 파티장 임의로 제공되는 추가기간에 대해서는 어떠한 경우에도 보상 및 책임지지 않습니다.</span><br>
+		연락을 유도하여 개인거래를 진행하거나 타 사이트를 홍보하는 경우 '팟츠'에 신고 부탁 드립니다. (신고 보상 3,000포인트 제공)<br>
 	</div>
 </div>
 
@@ -286,7 +286,7 @@
 		
 		<c:set var="partner" value="${sessionScope.partner }"/>
 		<c:if test="${partner != null }">
-				<a href="/partyCreate" class="button small button-red">등록</a>
+				<a href="/partyCreate" class="button small button-red" style="background-color: #FF7AA2  ">등록</a>
 		</c:if>
 </div>
 </div>
@@ -308,7 +308,7 @@ function fitem_submit(f) {
 
 <div class="comment-wrap mg-top" id="comment-wrap mg-top">
 			<aside id="it_vc_w">
-		<div class="comment-title">벗츠 댓글톡</div>
+		<div class="comment-title">팟츠 댓글톡</div>
 			<form id="fviewcomment" name="fviewcomment" class="form" role="form" action="commentInsert" onsubmit="return commentSubmit(this);" method="post" autocomplete="off">
 				<input type="hidden" name="w" value="c" id="w">
 				<input type="hidden" name="it_id" id="it_id" value="${p.party_num }">
@@ -464,13 +464,13 @@ function fitem_submit(f) {
 						<c:when test="${c.nick == sessionScope.nick }">
 						<li class="right" id="c_139350">
 							<div class="picture">
-								<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png"/>
+								<img src="/img/icon-butsicon-middle.png"/>
 							</div>
 							<div class="balloon">
 								<div class="to">${c.comment_to_nick }님 에게</div>
 								<div class="speech">
 								<c:if test="${c.comment_private == '1'}">
-									<img src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif">
+									<img src="/img/icon_secret.gif">
 								</c:if>
 										 ${c.comment}
 								</div>
@@ -487,14 +487,14 @@ function fitem_submit(f) {
 						<li id="c_139245">
 							<div class="picture">
 								<img
-									src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png"
+									src="/img/icon-butsicon-middle.png"
 									alt="" />
 							</div>
 							<div class="balloon">
 								<div class="to">${c.comment_to_nick }님 에게</div>
 								<div class="speech">
 									<c:if test="${c.comment_private == '1'}">
-										<img src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif">
+										<img src="/img/icon_secret.gif">
 									</c:if>
 								  ${c.comment}
 								</div>
@@ -509,14 +509,14 @@ function fitem_submit(f) {
 						<li class="left" id="c_131787">
 							<div class="picture">
 								<img
-									src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png"
+									src="/img/icon-butsicon-middle.png"
 									alt="" />
 							</div>
 							<div class="balloon">
 								<div class="to" style="color: #ffffff;">${c.comment_to_nick }님 에게</div>
 								<div class="speech">
 									<c:if test="${c.comment_private == '1'}">
-										<img src="https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif">
+										<img src="/img/icon_secret.gif">
 									</c:if>
 								 ${c.comment}
 								</div>
