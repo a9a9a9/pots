@@ -126,7 +126,7 @@ public class PartyController {
 			PartyDTO my = new PartyDTO();
 			my.setId(id);
 			my.setParty_num(Integer.parseInt(party_num));
-			//model.addAttribute("partyMember", service.myPartyInfo(id,party_num));
+			//model.addAttribute("partyMember", service.myPartyInfo(id, party_num); 
 			model.addAttribute("method", service.payMethod(my));
 			return "partyRecruit/partyOrderInfo";
 		}
