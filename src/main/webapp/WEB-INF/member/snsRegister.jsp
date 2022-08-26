@@ -4,6 +4,10 @@
 	var result = "${msg}";
 	if(result === "중복 아이디 입니다."){
 		alert(result);
+	}else if(result === "중복 닉네임 입니다."){
+		alert(result);
+	}else if(result === "사용 가능한 닉네임입니다."){
+		alert(result);
 	}
 	
 	var req;
@@ -13,7 +17,12 @@
 		req.open('post', 'isExistsnsId');
 		req.send(document.getElementById('id').value);
 	}
-	
+	function isExistNick(){
+		req = new XMLHttpRequest();
+		req.onreadystatechange = printMsg2;
+		req.open('post', 'isExistNick');
+		req.send(document.getElementById('nick').value);
+	}
 	function printMsg(){
 		var msg = document.getElementById('msg');
 		msg.innerHTML = req.responseText;
@@ -52,9 +61,8 @@
 							<li>
 								<span class="subject">ㆍ 닉네임</span>
 								<input type="text" name="nick" value="" id="nick" required placeholder="닉네임" size="10" maxlength="20">
-								<%-- <input type="button" id="win_hp_cert" class="button round button-purple phone" value="중복 확인" onclick="isExistNick()">
-								<font color="#7e69fe" id="msg" style="margin-left:10px;">${msg}</font> --%>
-								<!-- <span class="lightgrey inline-break">공백없이 한글, 영문, 숫자만 입력 가능</span> -->
+								<input type="button" id="win_hp_cert" class="button round button-purple phone" value="중복 확인" onclick="isExistNick()">
+								<font color="#84cdcf" id="msg2" style="margin-left:10px;">${msg}</font>
 							</li>
 							<li>
 								<span class="subject">ㆍ 휴대폰 번호</span>
