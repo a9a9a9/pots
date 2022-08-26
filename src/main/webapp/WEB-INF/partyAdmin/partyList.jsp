@@ -60,7 +60,7 @@
 		<span class="text-purple">파티/판매</span> 목록
 
 		<div class="title2">
-			<span> <a class="text-purple" href="./?ap=list&amp;sort=d">최신순</a>
+			<span> <a class="text-purple">최신순</a>
 			<!-- </span> <span class=" v-bar left" style="top: -5px;"> </span> <span>
 				<a href="./?ap=list&amp;sort=p">모집중 파티</a>
 			</span> <span class=" v-bar left" style="top: -5px;"> </span> <span>
