@@ -160,6 +160,7 @@ public class HomeController {
 		return "myMenu/faq";
 	}
 	
+
 //	@RequestMapping(value = "/myPartyCreated")
 //	public String myPartyCreated() { 
 //		return "myMenu/myPartyCreated";
@@ -170,11 +171,11 @@ public class HomeController {
 //		return "myMenu/myPartyJoined";
 //	}
 	
-//	@RequestMapping(value = "/myPoint")
-//	public String myPoint() {
-//		return "myMenu/myPoint";
-//	}
-	
+	@RequestMapping(value = "/myPoint")
+	public String myPoint() {
+		return "myMenu/myPoint";
+	}
+
 	@RequestMapping(value = "myPointCharge")
 	public String myPointCharge() {
 		return "myMenu/myPointCharge";
