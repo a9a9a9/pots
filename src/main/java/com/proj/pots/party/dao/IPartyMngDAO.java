@@ -34,13 +34,15 @@ public interface IPartyMngDAO {
 	
 	ArrayList<PartyCommentDTO> partyComment (String party_num);
 	
-	int bill_total(String id);
+	ArrayList<PartyListDTO> bill_now(String id);
 	
-	int bill_now(String id);
+	int bill_total(String id);
 
 	int partyBillInsert(PartyBillDTO billDto);
 
 	int partyDelete(String party_num);
 
 	int partyClose(String party_num);
+
+	int insertComment(PartyCommentDTO comment);
 }
