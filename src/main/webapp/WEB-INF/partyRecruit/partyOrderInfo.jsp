@@ -9,16 +9,13 @@
 <div class="title-wrap border mg-top-minus">
 	<div class="title">결제내역</div>
 </div>
-
 <div class="h3">진행 정보</div>
-
-			<div class="payment-name item-name mobile-block">
-			<span class="brand"></span>
-			<span class="name">
-									<a href="./item.php?it_id=1660890917" class="name">
-						기타					</a>
-							</span>
-			<span class="comment">kg</span>
+	<div class="payment-name item-name mobile-block">
+		<span class="brand"></span>
+		<span class="name">
+			<a href="./item.php?it_id=1660890917" class="name">${party.party_service }</a>
+		</span>
+		<span class="comment">${party.party_subservice }</span>
 		</div>
 	<div class="table-list table-list-payment">
 	<table>
@@ -33,18 +30,17 @@
 		</tr>
 		</thead>
 		<tbody>
-								<tr>
+			<tr>
 				<td class="pc-block">
 				<div class="item-name">
 					<span class="brand"><img src="${party.logo }" alt="" /></span>
-					
-											<a href="./item.php?it_id=1660890917" class="name">
-							${party.party_service }						</a>
-										<span class="comment">${party.party_title }</span>
+					<a href="/index?formpath=partyMain?party_num=${party.party_num} " class="name">
+						${party.party_service }						
+					</a>
+					<span class="comment">${party.party_title }</span>
 				</div>
 				</td>
 				<td>
-					
 				 	<strong>${myInfo.party_end}<!-- 2022.08.21	--></strong>	
 					</br>
 					<span class="comment">(총 ${myInfo.diff }일)</span>		 		
@@ -112,7 +108,7 @@
 				<li>
 			<div class="subject">ㆍ 미결제액</div>
 			<div class="right">
-				<fmt:formatNumber type="number" maxFractionDigits="3" value="${(myInfo.pay + myInfo.plus) - (partyMember.use_account+partyMember.use_point)}"/>원			
+				<fmt:formatNumber type="number" maxFractionDigits="3" value="${(myInfo.pay + myInfo.plus) - (myInfo.use_account+myInfo.use_point)}"/>원			
 			</div>
 		</li>
 		<li class="total">

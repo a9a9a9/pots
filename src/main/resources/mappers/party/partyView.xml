@@ -4,7 +4,7 @@
 <mapper namespace="com.proj.pots.party.dao.IPartyViewDAO">
 
 	<select id="comment" parameterType="String" resultType="PartyCommentDTO">
-	 	SELECT a.nick, a.comment_date, a.comment, a.comment_private, b.party_title
+	 	SELECT a.nick, a.comment_date, a.comment, a.comment_private, b.party_title, b.party_num
 	 	FROM party_comment as a
 	 	JOIN party as b
 	 	ON a.party_num = b.party_num AND b.id = #{id} AND a.id != #{id}<!-- id 세션 값 --> 
@@ -51,7 +51,7 @@
 	 
 	 <!-- 파티 회원 날짜별 금액 , 수수료 -->
 	 <select id="myPartyDay" resultType="PartyMemberDTO">
-	 	SELECT a.*, b.party_end, TIMESTAMPDIFF (DAY, a.mystartday, b.party_end) AS diff, 
+	 	SELECT a.*, b.party_end, TIMESTAMPDIFF (DAY, a.mystartday, b.party_end) AS diff,
 	 		TIMESTAMPDIFF (DAY, a.mystartday, b.party_end) * b.party_charge AS pay, 
 	 		round(TIMESTAMPDIFF (DAY, a.mystartday, b.party_end) * b.party_charge * 0.1) AS plus 
 		FROM (select * from party_member where id=#{id} and party_num = #{party_num}) AS a

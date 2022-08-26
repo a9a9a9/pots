@@ -1,6 +1,7 @@
 package com.proj.pots.party.service;
 
 import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -345,7 +346,12 @@ public class PartyViewServiceImpl implements IPartyViewService{
 			}
 		}
 		
-		insertuse(partyMember.getUse_point());
+		if(partyMember.getUse_account() == "" || partyMember.getUse_account() == null) {
+			partyMember.setUse_account("0");
+		} 
+		if(partyMember.getUse_point() == "" || partyMember.getUse_point() == null) {
+			partyMember.setUse_point("0");
+		}
 
 		partyViewDao.insertPartyMember(partyMember);
 		partyViewDao.updatePoint(partyMember);

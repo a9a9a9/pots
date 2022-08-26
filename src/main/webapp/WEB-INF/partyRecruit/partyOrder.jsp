@@ -173,7 +173,7 @@
 				보유 포인트
 				<span class="text-purple"><fmt:formatNumber type="number" maxFractionDigits="3" value="${member.point }"/>P</span>
 				<input type="hidden" name="max_temp_point" value="${myDay.pay + myDay.plus } }">
-				<input type="text" name="use_point" id="od_temp_point" onBlur="onlyNumber(this);" class="point" value="0" >
+				<input type="text" name="use_point" id="od_temp_point" onBlur="onlyNumber(this);" class="point" value="" >
 				<input type="button" id="point_s" value="전액사용" onclick="change_view('1');" class="all button mini button-purple">
 				<input type="button" id="point_c" value="취소" onclick="change_view('2');" style="display:none;" class="all button mini button-purple">
 				<input type="radio" id="od_settle_point" name="od_settle_case" value="포인트" style="display:none;" >
@@ -201,7 +201,9 @@
 			<div class="subject text-purple">총 결제금액</div>
 			<div class="right">
 			<input type="hidden" name="use_account" value="">
-			<span id="od_last_price" class="Rajdhani text-purple">${myDay.pay + myDay.plus }</span><span class="won">원</span>
+			<span id="od_last_price" class="Rajdhani text-purple">
+				<fmt:formatNumber type="number" maxFractionDigits="3" value="${myDay.pay + myDay.plus }"/>
+			</span><span class="won">원</span>
 			</div>
 		</li>
 		</ul>
@@ -274,7 +276,7 @@
 			document.getElementById("point_c").style.display = "none";	
 			document.getElementById("od_temp_point").value = '0';
 			document.getElementById("od_temp_point").readOnly = false;	
-			document.getElementById("od_last_price").innerHTML = ${myDay.pay + myDay.plus};	
+			document.getElementById("od_last_price").innerHTML = number_format(tot_price);	
 			document.getElementById("settle_bank").style.display = "";	
 			return false;
 		}
