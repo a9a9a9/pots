@@ -34,7 +34,7 @@
 				<td class="pc-block">
 				<div class="item-name">
 					<span class="brand"><img src="${party.logo }" alt="" /></span>
-					<a href="index?formpath=partyMain?party_num=${party.party_num} " class="name">
+					<a href="/index?formpath=partyMain?party_num=${party.party_num} " class="name">
 						${party.party_service }						
 					</a>
 					<span class="comment">${party.party_title }</span>

@@ -51,7 +51,7 @@ window.onload=function(){
 							<span class="lightgrey">${comment.comment_date }</span>
 						</td>
 						<td>
-							<a href="index?formpath=partyMain?party_num=${comment.party_num}" class="item-name">
+							<a href="/index?formpath=partyMain?party_num=${comment.party_num}" class="item-name">
 								<span class="name"> 
 									<c:choose>
 										<c:when test="${comment.comment_private == 1}">
