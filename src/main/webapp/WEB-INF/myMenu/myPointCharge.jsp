@@ -27,10 +27,8 @@
 										<span class="icon">
 										<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-coin-star-big.png" srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/icon-coin-star-big.png 2x" alt="" /></span>
 										<span class="Rajdhani">9,900</span>
-										<span class="tip text-red">(이벤트 기간동안 1인당 1회만 결제가능)</span>
 										<span class="right">
-											<span class="benefit"><span class="text-purple">+990</span> 추가 포인트</span>
-											<span class="button round border button-purple">10% ↑</span>
+											<span class="benefit"><span class="text-purple">+9,900</span> 포인트</span>
 										</span>
 									</label>
 								</span>
@@ -44,8 +42,10 @@
 										<span class="icon"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-coin-star-big.png" srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/icon-coin-star-big.png 2x" alt="" /></span>
 										<span class="Rajdhani">50,000</span>
 										<span class="right">
-											<span class="benefit"><span class="text-purple">+1,500</span> 추가 포인트</span>
-											<span class="button round border button-purple">3% ↑</span>
+											<span class="benefit"><span class="text-purple">+50,000</span> 포인트</span>
+										
+<!-- 											<span class="benefit"><span class="text-purple">+1,500</span> 추가 포인트</span> -->
+<!-- 											<span class="button round border button-purple">3% ↑</span> -->
 										</span>
 									</label>
 								</span>
@@ -59,8 +59,9 @@
 										<span class="icon"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-coin-star-big.png" srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/icon-coin-star-big.png 2x" alt="" /></span>
 										<span class="Rajdhani">70,000</span>
 										<span class="right">
-											<span class="benefit"><span class="text-purple">+2,800</span> 추가 포인트</span>
-											<span class="button round border button-purple">4% ↑</span>
+										<span class="benefit"><span class="text-purple">+70,000</span> 포인트</span>
+<!-- 											<span class="benefit"><span class="text-purple">+2,800</span> 추가 포인트</span> -->
+<!-- 											<span class="button round border button-purple">4% ↑</span> -->
 										</span>
 									</label>
 								</span>
@@ -74,8 +75,9 @@
 										<span class="icon"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-coin-star-big.png" srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/icon-coin-star-big.png 2x" alt="" /></span>
 										<span class="Rajdhani">100,000</span>
 										<span class="right">
-											<span class="benefit"><span class="text-purple">+5,000</span> 추가 포인트</span>
-											<span class="button round border button-purple">5% ↑</span>
+										<span class="benefit"><span class="text-purple">+100,000</span> 포인트</span>
+<!-- 											<span class="benefit"><span class="text-purple">+5,000</span> 추가 포인트</span> -->
+<!-- 											<span class="button round border button-purple">5% ↑</span> -->
 										</span>
 									</label>
 								</span>
@@ -86,7 +88,7 @@
 					<div class="caution">
 						<strong>유의사항</strong>
 						<ul>
-						<li>벗츠 포인트는 현금과 동일하게 벗츠 내 에서 사용이 가능합니다.</li>
+						<li>팟츠 포인트는 현금과 동일하게 벗츠 내 에서 사용이 가능합니다.</li>
 						<li>포인트로 결제 시 결제 직 후 별도의 확인 절차없이 파티장이 공유한 참여정보 확인이 가능합니다.</li>
 						<li>포인트결제는 현금결제로만 가능하며 결제 액수에 따라 포인트가 추가 지급됩니다.</li>
 						<li>남은 포인트는 인출신청이 가능하며 인출 진행 시 혜택받은 포인트는 차감된 금액으로 진행됩니다.</li>
@@ -125,7 +127,7 @@
 				</div>
 				<script>
 				$(function(){
-					$('.form-payment-agree').css({display: 'block', textAlign: 'center'});
+					 $('.form-payment-agree').css({display: 'block', textAlign: 'center'});
 				});
 				</script>
 				

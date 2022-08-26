@@ -5,6 +5,8 @@
 
 <style>
 	.page-number img{max-width: 36%;}
+	.table-list .notice::before{content: ""; border: 0;}
+	.table-list tr.active td{background-color: white;}
 </style>
  <script>
  	var result = "${msg}";

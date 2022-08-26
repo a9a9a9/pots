@@ -19,7 +19,7 @@
 					method="post">
 					<div class="login-logo">
 						<img
-							src="https://buts.co.kr/thema/Buts/colorset/Basic/img/big-butslogo.png"
+							src="/img/login_logo.png"
 							alt="">
 					</div>
 
@@ -38,19 +38,19 @@
 							maxlength="20" placeholder="패스워드를 입력하세요">
 					</div>
 					<div class="login-option">
-						<div class="input-check">
-							<input type="checkbox" name="auto_login" id="login_auto_login" value="auto_login">
-							<label for="login_auto_login">자동로그인</label>
-						</div>
+<!-- 						<div class="input-check"> -->
+<!-- 							<input type="checkbox" name="auto_login" id="login_auto_login" value="auto_login"> -->
+<!-- 							<label for="login_auto_login">자동로그인</label> -->
+<!-- 						</div> -->
 						<div class="right">
 							<a href="${root }index?formpath=registerAgree" class="v-bar">회원가입</a>
 							<a href="${root }index?formpath=findMy">아이디/비밀번호찾기</a>
 						</div>
+						<br>
 					</div>
 					<button type="submit" class="form-button button button-purple">로그인</button>
 					<div class="form-text">
-						벗츠 회원이 아닌가요? <br> 첫가입 시 500포인트! <span class="text-purple">추천인
-							등록 시 추가 500포인트!</span>
+						팟츠 회원이 아닌가요? <span class="text-purple">첫가입 시 500포인트!</span>
 					</div>
 				</form>
 
@@ -102,11 +102,16 @@
 //                                     	    )
                                      
                                  </script> 
-
-						<a href="https://kauth.kakao.com/oauth/authorize?
-	 							client_id=0070664f6956225934aebb37c784f4ed& 
-								redirect_uri=http://localhost/kakaoRegister& 
-								response_type=code"
+<!-- 						<a href="https://kauth.kakao.com/oauth/authorize? -->
+<!-- 	 							client_id=0070664f6956225934aebb37c784f4ed&  -->
+<!-- 								redirect_uri=http://localhost/kakaoRegister&  -->
+<!-- 								response_type=code" -->
+<!-- 						style="margin-left: 0px; margin-top: 5px; width: 100%; display: inline;" -->
+<!-- 						class="kakao sns-kakao" title="카카오">  -->
+					<a href="https://kauth.kakao.com/oauth/authorize?
+							client_id=0070664f6956225934aebb37c784f4ed&
+							redirect_uri=http://localhost/kakaoRegister&
+							response_type=code"
 						style="margin-left: 0px; margin-top: 5px; width: 100%; display: inline;"
 						class="kakao sns-kakao" title="카카오"> 
 						<img src="//k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg"
