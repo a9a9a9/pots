@@ -44,6 +44,12 @@ public interface IMemberDAO {
 	
 	void insertContent(PointDTO pointDto);
 	
-	ArrayList<PointDTO> listpoint(String id); 
+	ArrayList<PointDTO> listpoint(String id);
+
+	int updatepass(LoginDTO login);
+
+	void usePoint(String use_point);
+
+	String selectUsePoint(String id);
 
 }

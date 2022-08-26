@@ -12,4 +12,6 @@ public interface ILoginDAO {
 	LoginDTO loginProc(LoginDTO login);
 	
 	PartnerInfoDTO checkPartner(@Param("id") String id);
+
+	int updatepass(LoginDTO login);
 }

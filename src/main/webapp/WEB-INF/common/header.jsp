@@ -177,7 +177,7 @@ if(result === "접근할 수 없는 페이지 입니다."){
 										 <a href="${root}index?formpath=myPoint">팟</a></span> 
 										 <span class="right"> 
 										 <a href="${root}index?formpath=myPoint">
-										 <span class="price Rajdhani">${sessionScope.point}</span></a> 
+										 <span class="price Rajdhani">${sessionScope.compoint}</span></a> 
 										 <a href="${root}index?formpath=myPointCharge"
 											class="charge fill">충전</a>
 										</span>

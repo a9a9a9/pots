@@ -40,7 +40,11 @@ public class LoginServiceImpl implements ILoginService{
 			session.setAttribute("nick", member.getNick());
 			session.setAttribute("name", member.getName());
 			session.setAttribute("profile", member.getProfile());
+			
+			String compoint = String.format("%,d", member.getPoint());
+			session.setAttribute("compoint", compoint);
 			session.setAttribute("point", member.getPoint());
+			
 			session.setAttribute("tel", member.getTel());
 			PartnerInfoDTO partner = loginDao.checkPartner(check.getId());
 			
@@ -56,6 +60,19 @@ public class LoginServiceImpl implements ILoginService{
 		}else {
 			return "아이디 또는 비밀번호를 확인하세요.";
 		}
+	}
+	
+	public String PassProc(LoginDTO login) {
+		if(login.getPw() == null || login.getPw().isEmpty())
+			return "비밀번호를 입력하세요.";
+		
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String securePw = encoder.encode(login.getPw());
+		login.setPw(securePw);
+		 
+		loginDao.updatepass(login);
+		
+		return "수정 완료";
 	}
 	
 }

@@ -47,4 +47,6 @@ public interface IPartyViewDAO {
 	
 	void updatePoint(PartyMemberDTO partyMember);
 
+
+
 }

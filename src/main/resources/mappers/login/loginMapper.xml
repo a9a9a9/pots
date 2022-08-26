@@ -10,4 +10,8 @@
 	<select id="checkPartner" resultType="PartnerInfoDTO" parameterType="String">
 		SELECT * FROM partner_info WHERE id=#{id}
 	</select>
+	
+	<update id="updatepass" parameterType="LoginDTO">
+		UPDATE login SET pw = #{pw} WHERE id = #{id}
+	</update>
 </mapper>

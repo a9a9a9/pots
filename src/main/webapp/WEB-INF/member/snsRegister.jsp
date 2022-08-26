@@ -23,12 +23,6 @@
 // 			kakaoCheck = "";
 // 		}
 </script>
-
-		<c:if test="${not empty msg }">
-			<script>
-				alert("${msg}");
-			</script>
-		</c:if>
 <body class="responsive is-pc">
 	<div class="wrap wrapper  ko">
 		<div class="body">
@@ -44,7 +38,7 @@
 								<span class="subject">ㆍ 아이디(이메일)</span>
 								<input type="text" name="id" value="${sessionScope.snsid }" id="id" readonly placeholder="이메일주소" size="70" maxlength="100">
 								<input type="button" id="win_hp_cert" class="button round button-purple phone" value="중복 확인" onclick="isExistsnsId()"> 
-								<font color="#7e69fe" id="msg" style="margin-left:10px;">${msg}</font>
+								<font color="#84cdcf" id="msg" style="margin-left:10px;">${msg}</font>
 							</li>
 							</ul>
 						</div>
