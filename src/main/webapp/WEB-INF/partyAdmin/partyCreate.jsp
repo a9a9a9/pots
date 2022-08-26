@@ -350,11 +350,12 @@ ${msg }
 				<input type="hidden" name="it_use" value="1" id="it_use"> 
 				<input type="hidden" name="it_id" value="1659696660" id="it_id">
 				
-				<input type="hidden" name="party_num" value="">
+				
+				
 				
 
 				<div class="button-align centerbutton-align center">
-					<a href="partyMain" target="blank" class="button button-purple" >파티방보기</a>
+					<!-- <a href="partyMain" target="blank" class="button button-purple" >파티방보기</a> -->
 					<a href="partyList"class="button border button-purple">목록</a> 
 					<input type="submit" value="등록" class="button button-purple">
 				</div>
