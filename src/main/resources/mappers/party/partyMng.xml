@@ -42,8 +42,8 @@
 		LEFT JOIN 
 			(SELECT party_num, count(*) AS party_count FROM party_member GROUP BY party_num) 
 			b 
-		ON a.party_num = b.party_num LIMIT 1
-		ORDER BY a.party_num DESC;
+		ON a.party_num = b.party_num 
+		ORDER BY a.party_num DESC LIMIT 1;
 	</select>
 	
 	<select id="partySearch" parameterType="Map" resultType="PartyListDTO">
