@@ -22,10 +22,18 @@
 <div class="body">
 <div class="width-container" style="height: auto;">
 	<div class="title-wrap">
-		<br><br>
-		<a href="#" onclick="return false;">
-		<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/20220804_oder_main_banner.png" alt="" /></a>	
+<!-- 		<br><br> -->
+<!-- 		<a href="#" onclick="return false;"> -->
+<!-- 		<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/20220804_oder_main_banner.png" alt="" /></a>	 -->
 	</div>
+	<!-- recommand -->
+		<div class="title">팟츠 <span class="text-purple">추천 컨텐츠!</span></div>
+		<div class="recommand-list">
+			<a href="http://www.youtube.com/watch?v=U9q-iiHgWPk" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/U9q-iiHgWPk/mqdefault.jpg" alt="" /></a>
+			<a href="http://www.youtube.com/watch?v=H-L5Ivk4XPI" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/H-L5Ivk4XPI/mqdefault.jpg" alt="" /></a>
+			<a href="http://www.youtube.com/watch?v=hh_549VGJU8" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/hh_549VGJU8/mqdefault.jpg" alt="" /></a>
+			<a href="http://www.youtube.com/watch?v=_R2pVwDrfSA" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/_R2pVwDrfSA/mqdefault.jpg" alt="" /></a>
+		</div>
 	
 	<div class="title-wrap">
 		<div class="title">팟츠 <span class="text-purple">파티</span></div>
@@ -86,14 +94,6 @@
 		</div>
 		<div class="indicator"></div>
 	</div>
-		<!-- recommand -->
-		<div class="title">팟츠 <span class="text-purple">추천 컨텐츠!</span></div>
-		<div class="recommand-list">
-			<a href="http://www.youtube.com/watch?v=U9q-iiHgWPk" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/U9q-iiHgWPk/mqdefault.jpg" alt="" /></a>
-			<a href="http://www.youtube.com/watch?v=H-L5Ivk4XPI" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/H-L5Ivk4XPI/mqdefault.jpg" alt="" /></a>
-			<a href="http://www.youtube.com/watch?v=hh_549VGJU8" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/hh_549VGJU8/mqdefault.jpg" alt="" /></a>
-			<a href="http://www.youtube.com/watch?v=_R2pVwDrfSA" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/_R2pVwDrfSA/mqdefault.jpg" alt="" /></a>
-		</div>
 </div>
 </div>
 </div>
