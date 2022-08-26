@@ -19,7 +19,7 @@
 					method="post">
 					<div class="login-logo">
 						<img
-							src="/img/"
+							src="/img/login_logo.png"
 							alt="">
 					</div>
 
