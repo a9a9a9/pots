@@ -170,8 +170,8 @@ public class PartyController {
 		
 		@RequestMapping(value="/partyOrderList")
 		 public String partyOrderList(Model model, String id, String nowPage, PageVO vo) {
-			id = "admin";
-			//id = (String)session.getAttribute("id"); 
+			//id = "admin";
+			id = (String)session.getAttribute("id"); 
 			
 			ArrayList<PartyMemberDTO> orderList =service.orderList(id);
 			
