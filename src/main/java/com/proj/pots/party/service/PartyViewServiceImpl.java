@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import com.proj.pots.member.dto.MemberDTO;
 import com.proj.pots.member.dto.PointDTO;
@@ -16,15 +15,13 @@ import com.proj.pots.membership.dao.IMemberDAO;
 import com.proj.pots.party.dao.IPartyViewDAO;
 import com.proj.pots.party.dto.PartnerInfoDTO;
 import com.proj.pots.party.dto.PartyMemberDTO;
-import com.proj.pots.party.dto.PartyBillDTO;
 import com.proj.pots.party.dto.PartyCommentDTO;
 import com.proj.pots.party.dto.PartyDTO;
 import com.proj.pots.party.dto.PartyListDTO;
-import com.proj.pots.party.dto.PartyParDTO;
 import com.proj.pots.party.dto.PartyRegDTO;
 
 @Service
-public class PartyViewServiceImpl implements IPartyViewService{
+public class PartyViewServiceImpl implements IPartyViewService{ 
 
 	@Autowired IPartyViewDAO partyViewDao;
 	@Autowired IMemberDAO memberDao;
@@ -32,9 +29,180 @@ public class PartyViewServiceImpl implements IPartyViewService{
 	
 	@Override
 	public ArrayList<PartyCommentDTO> comment(String id) {
-		ArrayList<PartyCommentDTO> list = partyViewDao.comment(id);
+		ArrayList<PartyCommentDTO> list = partyViewDao.comment(id);		
 		return list;  
+	} 
+	
+	@Override
+	public ArrayList<PartyListDTO> createdParty(String id) {
+		ArrayList<PartyListDTO> created = partyViewDao.createdParty(id);
+		if(created != null) {
+			for(PartyListDTO c : created) {
+				if(c.getParty_subservice().equals("1010")) {
+					c.setParty_subservice("넷플릭스"); 
+					c.setLogo("/img/partylogo/netflix.png"); 
+				} else if(c.getParty_subservice().equals("1020")) {
+					c.setParty_subservice("왓챠");
+					c.setLogo("/img/partylogo/watcha.png"); 
+				} else if(c.getParty_subservice().equals("1030")) {
+					c.setParty_subservice("유튜브");
+					c.setLogo("/img/partylogo/youtube.png"); 
+				} else if(c.getParty_subservice().equals("1040")) {
+					c.setParty_subservice("WAVVE");
+					c.setLogo("/img/partylogo/wavve.png"); 
+				} else if(c.getParty_subservice().equals("1050")) {
+					c.setParty_subservice("티빙");
+					c.setLogo("/img/partylogo/tiving.png"); 
+				} else if(c.getParty_subservice().equals("1080")) {
+					c.setParty_subservice("디즈니");
+					c.setLogo("/img/partylogo/disney.png"); 
+				} else if(c.getParty_subservice().equals("2010")) {
+					c.setParty_subservice("리디북스");
+					c.setLogo("/img/partylogo/ridi.png"); 
+				} else if(c.getParty_subservice().equals("2020")) {
+					c.setParty_subservice("밀리의서재");
+					c.setLogo("/img/partylogo/millie.png"); 
+				} else if(c.getParty_subservice().equals("2030")) {
+					c.setParty_subservice("YES24");
+					c.setLogo("/img/partylogo/yes24.png"); 
+				} else if(c.getParty_subservice().equals("2040")) {
+					c.setParty_subservice("스포티파이");
+					c.setLogo("/img/partylogo/spotify.png"); 
+				} else if(c.getParty_subservice().equals("3010")) {
+					c.setParty_subservice("닌텐도온라인");
+					c.setLogo("/img/partylogo/nintendo.png"); 
+				} else if(c.getParty_subservice().equals("3050")) {
+					c.setParty_subservice("XBOX");
+					c.setLogo("/img/partylogo/xbox.png"); 
+				} else if(c.getParty_subservice().equals("6050")) {
+					c.setParty_subservice("멤버쉽");
+					c.setLogo("/img/partylogo/membership.png"); 
+				} else if(c.getParty_subservice().equals("6010")) {
+					c.setParty_subservice("MSOffice");
+					c.setLogo("/img/partylogo/office365.png"); 
+				}
+				else {
+					c.setParty_subservice("기타");
+					c.setLogo("/img/partylogo/membership.png"); 
+				}
+			} 
+		}
+		return created; 
 	}
+	
+	@Override
+	public ArrayList<PartyListDTO> joinedParty(String id) {
+		ArrayList<PartyListDTO> joined = partyViewDao.joinedParty(id);
+		if(joined != null) {
+			for(PartyListDTO j : joined) {
+				if(j.getParty_subservice().equals("1010")) {
+					j.setParty_subservice("넷플릭스"); 
+					j.setLogo("/img/partylogo/netflix.png"); 
+				} else if(j.getParty_subservice().equals("1020")) {
+					j.setParty_subservice("왓챠");
+					j.setLogo("/img/partylogo/watcha.png"); 
+				} else if(j.getParty_subservice().equals("1030")) {
+					j.setParty_subservice("유튜브");
+					j.setLogo("/img/partylogo/youtube.png"); 
+				} else if(j.getParty_subservice().equals("1040")) {
+					j.setParty_subservice("WAVVE");
+					j.setLogo("/img/partylogo/wavve.png"); 
+				} else if(j.getParty_subservice().equals("1050")) {
+					j.setParty_subservice("티빙");
+					j.setLogo("/img/partylogo/tiving.png"); 
+				} else if(j.getParty_subservice().equals("1080")) {
+					j.setParty_subservice("디즈니");
+					j.setLogo("/img/partylogo/disney.png"); 
+				} else if(j.getParty_subservice().equals("2010")) {
+					j.setParty_subservice("리디북스");
+					j.setLogo("/img/partylogo/ridi.png"); 
+				} else if(j.getParty_subservice().equals("2020")) {
+					j.setParty_subservice("밀리의서재");
+					j.setLogo("/img/partylogo/millie.png"); 
+				} else if(j.getParty_subservice().equals("2030")) {
+					j.setParty_subservice("YES24");
+					j.setLogo("/img/partylogo/yes24.png"); 
+				} else if(j.getParty_subservice().equals("2040")) {
+					j.setParty_subservice("스포티파이");
+					j.setLogo("/img/partylogo/spotify.png"); 
+				} else if(j.getParty_subservice().equals("3010")) {
+					j.setParty_subservice("닌텐도온라인");
+					j.setLogo("/img/partylogo/nintendo.png"); 
+				} else if(j.getParty_subservice().equals("3050")) {
+					j.setParty_subservice("XBOX");
+					j.setLogo("/img/partylogo/xbox.png"); 
+				} else if(j.getParty_subservice().equals("6050")) {
+					j.setParty_subservice("멤버쉽");
+					j.setLogo("/img/partylogo/membership.png"); 
+				} else if(j.getParty_subservice().equals("6010")) {
+					j.setParty_subservice("MSOffice");
+					j.setLogo("/img/partylogo/office365.png"); 
+				}
+				else {
+					j.setParty_subservice("기타");
+					j.setLogo("/img/partylogo/membership.png"); 
+				} 
+			}
+		}
+		return joined; 
+	} 
+	
+	@Override
+	public ArrayList<PartyMemberDTO> orderList(String id) {
+		ArrayList<PartyMemberDTO> orderList = partyViewDao.orderList(id);
+		if(orderList != null) {
+			for(PartyListDTO o : orderList) {
+				if(o.getParty_subservice().equals("1010")) {
+					o.setParty_subservice("넷플릭스"); 
+					o.setLogo("/img/partylogo/netflix.png"); 
+				} else if(o.getParty_subservice().equals("1020")) {
+					o.setParty_subservice("왓챠");
+					o.setLogo("/img/partylogo/watcha.png"); 
+				} else if(o.getParty_subservice().equals("1030")) {
+					o.setParty_subservice("유튜브");
+					o.setLogo("/img/partylogo/youtube.png"); 
+				} else if(o.getParty_subservice().equals("1040")) {
+					o.setParty_subservice("WAVVE");
+					o.setLogo("/img/partylogo/wavve.png"); 
+				} else if(o.getParty_subservice().equals("1050")) {
+					o.setParty_subservice("티빙");
+					o.setLogo("/img/partylogo/tiving.png"); 
+				} else if(o.getParty_subservice().equals("1080")) {
+					o.setParty_subservice("디즈니");
+					o.setLogo("/img/partylogo/disney.png"); 
+				} else if(o.getParty_subservice().equals("2010")) {
+					o.setParty_subservice("리디북스");
+					o.setLogo("/img/partylogo/ridi.png"); 
+				} else if(o.getParty_subservice().equals("2020")) {
+					o.setParty_subservice("밀리의서재");
+					o.setLogo("/img/partylogo/millie.png"); 
+				} else if(o.getParty_subservice().equals("2030")) {
+					o.setParty_subservice("YES24");
+					o.setLogo("/img/partylogo/yes24.png"); 
+				} else if(o.getParty_subservice().equals("2040")) {
+					o.setParty_subservice("스포티파이");
+					o.setLogo("/img/partylogo/spotify.png"); 
+				} else if(o.getParty_subservice().equals("3010")) {
+					o.setParty_subservice("닌텐도온라인");
+					o.setLogo("/img/partylogo/nintendo.png"); 
+				} else if(o.getParty_subservice().equals("3050")) {
+					o.setParty_subservice("XBOX");
+					o.setLogo("/img/partylogo/xbox.png"); 
+				} else if(o.getParty_subservice().equals("6050")) {
+					o.setParty_subservice("멤버쉽");
+					o.setLogo("/img/partylogo/membership.png"); 
+				} else if(o.getParty_subservice().equals("6010")) {
+					o.setParty_subservice("MSOffice");
+					o.setLogo("/img/partylogo/office365.png"); 
+				}
+				else {
+					o.setParty_subservice("기타");
+					o.setLogo("/img/partylogo/membership.png"); 
+				} 
+			}
+		}
+		return orderList;  
+	} 
 	
 	@Override
 	public MemberDTO memberInfo(String id) {
@@ -44,12 +212,12 @@ public class PartyViewServiceImpl implements IPartyViewService{
 	
 	@Override
 	public PartnerInfoDTO selectAccount(String id) {
-		PartnerInfoDTO partner = partyViewDao.selectAccount(id); 
+		PartnerInfoDTO partner = partyViewDao.selectAccount(id);
 		return partner;
 	}
 	
 	@Override
-	public PartyRegDTO partyDay(Integer party_num) {
+	public PartyRegDTO partyDay(String party_num) {
 		PartyRegDTO day = partyViewDao.partyDay(party_num); 
 		return day;
 	}
@@ -61,15 +229,15 @@ public class PartyViewServiceImpl implements IPartyViewService{
 	}
 	
 	@Override
-	public PartyMemberDTO payMethod(String id) {
-		PartyMemberDTO method = partyViewDao.payMethod(id);
+	public PartyMemberDTO payMethod(PartyDTO my) {
+		PartyMemberDTO method = partyViewDao.payMethod(my);
 		
-		if(!method.getUse_account().equals("0")) {
+		if(!method.getUse_account().equals("0") || !method.getUse_account().equals("") || !(method.getUse_account() == null)) {
 			method.setUse_account("계좌이체");
 		}else {
 			method.setUse_account("");
 		}
-		if(!method.getUse_point().equals("0")) {
+		if(!method.getUse_point().equals("0") || !method.getUse_point().equals("") || !(method.getUse_point() == null)) {
 			method.setUse_point("포인트");
 		}else {
 			method.setUse_point("");
@@ -79,7 +247,7 @@ public class PartyViewServiceImpl implements IPartyViewService{
 	}
 	
 	@Override
-	public PartyRegDTO selectParty(Integer party_num) {
+	public PartyRegDTO selectParty(String party_num) {
 		PartyRegDTO party = partyViewDao.selectParty(party_num); 
 		
 		if(party.getParty_service().equals("10")) party.setParty_service("영상");
@@ -131,7 +299,7 @@ public class PartyViewServiceImpl implements IPartyViewService{
 			party.setLogo("/img/partylogo/office365.png"); 
 		}
 		else {
-			party.setParty_subservice("#기타");
+			party.setParty_subservice("기타");
 			party.setLogo("/img/partylogo/membership.png"); 
 		} 	
 		
@@ -139,15 +307,8 @@ public class PartyViewServiceImpl implements IPartyViewService{
 	}
 	
 	@Override
-	public PartyRegDTO endDay(Integer party_num) { 
-		PartyRegDTO end = partyViewDao.endDay(party_num); 
-		return end; 
-	}
-	
-	@Override
-	public PartyRegDTO myPartyDay(String id, Integer party_num) {
-		PartyRegDTO myDay = partyViewDao.myPartyDay(id, party_num);
-		
+	public PartyMemberDTO myPartyDay(String id, String party_num) {
+		PartyMemberDTO myDay = partyViewDao.myPartyDay(id, party_num);
 		return myDay; 
 	}
 	
@@ -171,8 +332,9 @@ public class PartyViewServiceImpl implements IPartyViewService{
 	}
 	
 	@Override
-	public String partyMemberInsertProc(PartyMemberDTO partyMember, int party_num) {
+	public String partyMemberInsertProc(PartyMemberDTO partyMember, String party_num) {
 		PartyListDTO paChk = partyViewDao.partyAvailableChk(party_num);
+		System.out.println(paChk);
 		if(paChk != null) {
 			int tmp = paChk.getParty_member() - paChk.getParty_now_member();
 			if(tmp <= 0) {
@@ -184,13 +346,12 @@ public class PartyViewServiceImpl implements IPartyViewService{
 		}
 		
 		insertuse(partyMember.getUse_point());
-			
-		
 
 		partyViewDao.insertPartyMember(partyMember);
 		partyViewDao.updatePoint(partyMember);
 		return "신청완료";
 	}
+
 	
 	public PointDTO insertuse(String usepoint) {
 		String id = (String)session.getAttribute("id");
@@ -218,4 +379,5 @@ public class PartyViewServiceImpl implements IPartyViewService{
 		return pointDto;
 	}
 	
+
 }
