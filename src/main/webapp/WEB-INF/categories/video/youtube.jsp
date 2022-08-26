@@ -8,7 +8,7 @@
 			<div class="width-container">
 				<div id="sct_hhtml" style="background-color:#242424;"></div>
 				
-				<div class="title">벗츠 추천 영상</div>
+				<div class="title">팟츠 추천 영상</div>
 				<div class="recommand-list">
 					<a href="http://www.youtube.com/watch?v=O4gFFS4Maek" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/O4gFFS4Maek/mqdefault.jpg" alt="" /></a>
 					<a href="http://www.youtube.com/watch?v=QUMTtQIGnW0" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/QUMTtQIGnW0/mqdefault.jpg" alt="" /></a>

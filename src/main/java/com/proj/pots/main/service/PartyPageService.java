@@ -23,7 +23,7 @@ public class PartyPageService {
 	
 	public void mainList(Model model, int currentPage, HttpServletRequest req) throws ParseException {
 		int totalCount = partyDao.mainListCount();
-		int pageBlock = 10;
+		int pageBlock = 12;
 		int end = currentPage * pageBlock;
 //		int begin = end+1 - pageBlock;
 		int begin = 1;

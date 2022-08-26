@@ -1,6 +1,9 @@
 package com.proj.pots.party.service;
 
+import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
@@ -8,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.proj.pots.member.dto.MemberDTO;
+import com.proj.pots.member.dto.PointDTO;
 import com.proj.pots.membership.dao.IMemberDAO;
 import com.proj.pots.party.dao.IPartyViewDAO;
 import com.proj.pots.party.dto.PartnerInfoDTO;
@@ -348,9 +352,38 @@ public class PartyViewServiceImpl implements IPartyViewService{
 		if(partyMember.getUse_point() == "" || partyMember.getUse_point() == null) {
 			partyMember.setUse_point("0");
 		}
-			
+
 		partyViewDao.insertPartyMember(partyMember);
 		partyViewDao.updatePoint(partyMember);
 		return "신청완료";
 	}
+
+	
+	public PointDTO insertuse(String usepoint) {
+		String id = (String)session.getAttribute("id");
+		PointDTO pointDto = new PointDTO();
+		String content = "포인트 결제";
+		pointDto.setId(id);
+		pointDto.setPoint_content(content);
+		pointDto.setPoint_charge(0); 
+		int minupoint = Integer.parseInt(usepoint);
+		pointDto.setUse_point(minupoint); //사용 된 금액
+		
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm (E)");
+		String dateConvert = sdf.format(date);
+		pointDto.setPoint_date(dateConvert);
+		memberDao.insertContent(pointDto);
+		
+		int pointc = (int)session.getAttribute("point");
+		
+		int point = pointc - minupoint;
+		session.setAttribute("point", point);
+		
+		String compoint = String.format("%,d", point);
+		session.setAttribute("compoint", compoint);
+		return pointDto;
+	}
+	
+
 }

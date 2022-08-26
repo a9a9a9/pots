@@ -8,7 +8,21 @@ public class PointDTO {
 	private String point_content; // 포인트 내용
 	private int point_charge; // 충전 포인트
 	private int use_point; // 사용 포인트
+	private String comcharge;
+	private String comuse;
 	
+	public String getComcharge() {
+		return comcharge;
+	}
+	public void setComcharge(String comcharge) {
+		this.comcharge = comcharge;
+	}
+	public String getComuse() {
+		return comuse;
+	}
+	public void setComuse(String comuse) {
+		this.comuse = comuse;
+	}
 	public int getPoint_num() {
 		return point_num;
 	}
@@ -45,6 +59,7 @@ public class PointDTO {
 	public void setUse_point(int use_point) {
 		this.use_point = use_point;
 	}
+	
 	
 	
 	
