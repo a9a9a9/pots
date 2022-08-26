@@ -1,14 +1,14 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script>
-	var result = "${msgs}";
-	if(result === "존재하지 않는 회원입니다."){
-		alert(result);
-	}else if(result === "인증 완료"){
-		alert("인증 되었습니다.");
-	}else if(result === "인증 실패"){
-		alert("자동등록방지 숫자가 틀렸습니다.");
-	}
+// 	var result = "${msgs}";
+// 	if(result === "존재하지 않는 회원입니다."){
+// 		alert(result);
+// 	}else if(result === "인증 완료"){
+// 		alert("인증 되었습니다.");
+// 	}else if(result === "인증 실패"){
+// 		alert("자동등록방지 숫자가 틀렸습니다.");
+// 	}
 
 	function pwCheck(){
 		var pw1 = document.getElementById('pw').value;
@@ -20,10 +20,6 @@
 			result.innerHTML = "비밀번호 불일치"
 		}
 	}
-// 	var kakaoCheck = "${sessionScope.name}";
-// 		if(kakaoCheck === null) {
-// 			kakaoCheck = "";
-// 		}
 </script>
 
 		<c:if test="${not empty msg }">
@@ -53,7 +49,7 @@
 							<li>
 								<span class="subject">ㆍ 새 비밀번호 확인</span>
 								<input type="password" name="pwConfirm" id="pwConfirm" onkeyup="pwCheck()" required class="form-control input-sm" placeholder="비밀번호 확인" minlength="3" maxlength="20" style="display: inline;">
-								<font color="#7e69fe" id="pwCheck" style="margin-left:5px;"></font>
+								<font color="#84cdcf" id="pwCheck" style="margin-left:5px;"></font>
 							</li>
 							</ul>
 						</div>

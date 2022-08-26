@@ -4,15 +4,13 @@
 <c:url var="root" value="/" />
 <script>
 	var result = "${msgs}";
-	if (result === "없는 아이디입니다."){
+	if (result === "존재하지 않는 회원입니다."){
 		alert(result);
 	}else if (result === "인증 완료") {
 		alert(result)
 	} else if (result === "인증 실패") {
 		alert("번호를 다시 입력해 주세요")
-	} else if (result === "존재 하는 아이디"){
 	}
-		
 </script>
 
 <body class="responsive is-pc">
@@ -74,7 +72,6 @@
 				</div>
 			</div>
 		</form>
-
 
 		<script>
 			function audio() {
