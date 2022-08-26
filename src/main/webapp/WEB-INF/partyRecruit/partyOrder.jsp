@@ -1,122 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-${msg }
-
-
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="utf-8">
-<link rel="favicon" href="/favicon.ico">
-<!--<link rel="favicon" href="https://buts.co.kr/img/buts/favicon.ico">-->
-<meta http-equiv="imagetoolbar" content="no">
-<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-<meta name="title" content="주문서 작성 > Buts" />
-<meta name="publisher" content="Buts" />
-<meta name="author" content="Buts" />
-<meta name="robots" content="index,follow" />
-<meta name="keywords" content="Buts" />
-<meta name="description" content="주문서 작성 > Buts" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta property="og:title" content="주문서 작성 > Buts" />
-<meta property="og:site_name" content="Buts" />
-<meta property="og:author" content="Buts" />
-<meta property="og:type" content="" />
-<meta property="og:image" content="https://buts.co.kr/thema/Buts/colorset/Basic/img/og_image.jpg" />
-<meta property="og:description" content="주문서 작성 > Buts" />
-<meta property="og:url" content="https://buts.co.kr/shop/orderform.php?sw_direct=1" />
-<link rel="canonical" href="https://buts.co.kr/shop/orderform.php?sw_direct=1" />
-<title>주문서 작성 > Buts</title>
-<link rel="stylesheet" href="/css/partyAdmin/default_shop.css">
-<link rel="stylesheet" href="/css/partyAdmin/apms.css">
-
-<link rel="stylesheet" href="/css/partyAdmin/bootstrap.min.css" type="text/css" class="thema-mode">
-<link rel="stylesheet" href="/css/member/magnific-popup.css" type="text/css">
-<link rel="stylesheet" href="/css/partyAdmin/buts.css" type="text/css" >
-<link rel="stylesheet" href="/css/partyAdmin/style.css" type="text/css" >
-<link rel="stylesheet" href="/css/partyAdmin/widget.css">
-<link rel="stylesheet" href="/css/partyAdmin/basic.css">
-<!--[if lte IE 8]>
-<script src="https://buts.co.kr/js/html5.js"></script>
-<![endif]-->
-<script>
-// 자바스크립트에서 사용하는 전역변수 선언
-var g5_url       = "https://buts.co.kr";
-var g5_bbs_url   = "https://buts.co.kr/bbs";
-var g5_is_member = "1";
-var g5_is_admin  = "";
-var g5_is_mobile = "";
-var g5_bo_table  = "";
-var g5_sca       = "";
-var g5_pim       = "";
-var g5_editor    = "";
-var g5_responsive    = "1";
-var g5_cookie_domain = "";
-var g5_purl = "https://buts.co.kr/shop/orderform.php?sw_direct=1";
-</script>
-<script src="/js/jquery-1.11.3.min.js"></script>
-<script src="/js/jquery-migrate-1.2.1.min.js"></script>
-<script src="https://buts.co.kr/lang/korean/lang.js?ver=180820"></script>
-<script src="/js/common.js"></script>
-<script src="/js/wrest.js"></script>
-<script src="/js/placeholders.min.js"></script>
-<script src="/js/apms.js"></script>
-<link rel="stylesheet" href="https://buts.co.kr/js/font-awesome/css/font-awesome.min.css">
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script src="https://buts.co.kr/js/shop.order.js"></script>
-<script src="https://buts.co.kr/plugin/apms/js/jquery.mobile.swipe.min.js"></script>
-</head>
-<body class="responsive is-pc">
-	<h1 style="display:inline-block !important;position:absolute;top:0;left:0;margin:0 !important;padding:0 !important;font-size:0;line-height:0;border:0 !important;overflow:hidden !important">
-	주문서 작성 > Buts	</h1>
-<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script src="https://buts.co.kr/js/kakaolink.js"></script>
-<script>Kakao.init("2cb912e1f64b0e57fd1bbcc9af1e964c");</script>
-<style>
-		.at-container {max-width:1200px;}
-	.no-responsive .wrapper, .no-responsive .at-container-wide { min-width:1200px; }
-	.no-responsive .boxed.wrapper, .no-responsive .at-container { width:1200px; }
-	.at-menu .nav-height { height:44px; line-height:44px !important; }
-	.pc-menu, .pc-menu .nav-full-back, .pc-menu .nav-full-height { height:44px; }
-	.pc-menu .nav-top.nav-float .menu-a { padding:0px 25px; }
-	.pc-menu .nav-top.nav-float .sub-1div::before { left: 25px; }
-	.pc-menu .subm-w { width:170px; }
-	@media all and (min-width:1200px) {
-		.responsive .boxed.wrapper { max-width:1200px; }
-	}
-</style>
-
-<div class="wrap wrapper  ko">
-
-		<!-- topper -->
-		<div class="topper">
-			<div class="width-container">
-			<div class="topper-menu">
-				<a href="https://butt.kr" class="v-bar">커뮤니티</a>
-				<a href="https://buts.co.kr/bbs/board.php?bo_table=event" class="v-bar">이벤트</a>
-				<a href="https://buts.co.kr/bbs/board.php?bo_table=notice">공지사항</a>
-			</div>
-			</div>
-		</div>
-
-		<!-- header -->
-		<%@include file="../common/header.jsp" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 		<div class="body">
 			<div class="width-container">
         	
 		
 <script type="text/javascript" src="https://pg.innopay.co.kr/ipay/js/innopay-2.0.js" charset="utf-8"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
-<style type="text/css">
+<style>
 .dimm{position:absolute;left:0;top:0;z-index:99999999;background-color:#000;display:none;opacity: 0.3;}
 .dimm .loading {position:absolute;top:50%; left:50%;margin-left:-50px;margin-top:-21px;}
 </style>
-
-
-</script>
 <form name="forderform" id="forderform" method="post" action="partyMemberInsertProc" autocomplete="off" role="form" class="form-horizontal">
 
 <div class="title-wrap border mg-top-minus">
@@ -149,7 +44,7 @@ var g5_purl = "https://buts.co.kr/shop/orderform.php?sw_direct=1";
 					<input type="hidden" name="it_name[0]"  value="${party.party_title }">
 					<input type="hidden" name="it_price[0]" value="${myDay.pay }">
 					<input type="hidden" name="cp_id[0]" value="">
-					<input type="hidden" name="cp_price[0]" value="${mayDay.plus }">
+					<input type="hidden" name="cp_price[0]" value="0">
 					
 					<input type="hidden" name="id" value="${member.id }">
 					<input type="hidden" name="nick" value="${member.nick }">
@@ -163,10 +58,10 @@ var g5_purl = "https://buts.co.kr/shop/orderform.php?sw_direct=1";
 						<span class="comment">${party.party_title }</span>
 					</div>
 				</td>
-				<td><strong>${myDay.diff}</strong>일</td>
-				<td><strong>${myDay.pay}</strong>원</td> 
-				<td><strong>${myDay.plus}</strong>원</td>
-				<td><span class="Rajdhani">${(myDay.pay + myDay.plus)}</span>원</td>  
+				<td><strong>${myDay.diff }</strong>일</td>
+				<td><strong><fmt:formatNumber type="number" maxFractionDigits="3" value="${myDay.pay }"/></strong>원</td> 
+				<td><strong><fmt:formatNumber type="number" maxFractionDigits="3" value="${myDay.plus}"/></strong>원</td>
+				<td><span class="Rajdhani"><fmt:formatNumber type="number" maxFractionDigits="3" value="${myDay.pay + myDay.plus}"/></span>원</td>  
 				
 			</tr>
 		</tbody>
@@ -174,7 +69,7 @@ var g5_purl = "https://buts.co.kr/shop/orderform.php?sw_direct=1";
 </div>
 
 	<input type="hidden" name="od_price"    value="${myDay.pay }">
-	<input type="hidden" name="org_od_price"    value="${myDay.diff + myDay.plus}">
+	<input type="hidden" name="org_od_price"    value="${myDay.pay + myDay.plus}">
 	<input type="hidden" name="od_send_cost" value="0">
 	<input type="hidden" name="od_send_cost2" value="0">
 	<input type="hidden" name="item_coupon" value="0">
@@ -182,13 +77,13 @@ var g5_purl = "https://buts.co.kr/shop/orderform.php?sw_direct=1";
 	<input type="hidden" name="od_send_coupon" value="0">
 
 
-<input type="hidden" name="good_mny" value="${myDay.diff + myDay.plus}"> <!-- 영카트 로직을 위한 값 -->
+<input type="hidden" name="good_mny" value="${myDay.pay }"> <!-- 영카트 로직을 위한 값 -->
 
 <input type="hidden" id="PayMethod" name="PayMethod" value="">  <!-- 결제수단 // -->
 <input type="hidden" id="MID" name="MID" value="pgbuts001m">  <!-- 가맹점 아이디 // -->
 <input type="hidden" id="MerchantKey" name="MerchantKey" value="IElSrkcNVP9j2Ox4/bX3BKWRRNtTILvIYeM88TB8jTYY8kqmcnvOWwfVlFFfyVa7gijbxtN1EaSnXOmP4suRdA==">
 <input type="hidden" id="GoodsName" name="GoodsName" value="${party.party_title }">  <!-- 상품명 // -->
-<input type="hidden" id="Amt" name="Amt" value="${myDay.pay + myDay.plus}">  <!-- 상품금액 // -->
+<input type="hidden" id="Amt" name="Amt" value="${myDay.pay }">  <!-- 상품금액 // -->
 <input type="hidden" id="BuyerName" name="BuyerName" value="${member.name }">  <!-- 구매자명 // -->
 <input type="hidden" id="BuyerTel" name="BuyerTel" value="${member.tel }">  <!-- 구매자 연락처 // -->
 <input type="hidden" id="BuyerEmail" name="BuyerEmail" value="">  <!-- 구매자 이메일 주소 // -->
@@ -262,22 +157,22 @@ var g5_purl = "https://buts.co.kr/shop/orderform.php?sw_direct=1";
 		<ul>
 		<li>
 			<div class="subject">ㆍ 서비스 금액</div>
-			<div class="right">${myDay.pay}</div>
+			<div class="right"><fmt:formatNumber type="number" maxFractionDigits="3" value="${myDay.pay }"/>원</div>
 		</li>
 		<li>
 			<div class="subject">ㆍ 수수료(10%)</div>
-			<div class="right">${myDay.plus }원</div>
+			<div class="right"><fmt:formatNumber type="number" maxFractionDigits="3" value="${myDay.plus }"/>원</div>
 		</li>
 		<li>
 			<div class="subject">ㆍ 합계</div>
-			<div class="right">${myDay.pay + myDay.plus}</div>
+			<div class="right"><fmt:formatNumber type="number" maxFractionDigits="3" value="${myDay.pay + myDay.plus }"/>원</div>
 		</li>
 		<li>
 			<div class="subject">ㆍ 사용 포인트</div>
 			<div class="right fill">
 				보유 포인트
-				<span class="text-purple">${member.point }P</span>
-				<input type="hidden" name="max_temp_point" value="${member.point }">
+				<span class="text-purple"><fmt:formatNumber type="number" maxFractionDigits="3" value="${member.point }"/>P</span>
+				<input type="hidden" name="max_temp_point" value="${myDay.pay + myDay.plus } }">
 				<input type="text" name="use_point" id="od_temp_point" onBlur="onlyNumber(this);" class="point" value="0" >
 				<input type="button" id="point_s" value="전액사용" onclick="change_view('1');" class="all button mini button-purple">
 				<input type="button" id="point_c" value="취소" onclick="change_view('2');" style="display:none;" class="all button mini button-purple">
@@ -305,11 +200,8 @@ var g5_purl = "https://buts.co.kr/shop/orderform.php?sw_direct=1";
 		<li class="total">
 			<div class="subject text-purple">총 결제금액</div>
 			<div class="right">
-			<span id="od_last_price" class="Rajdhani text-purple" >
-				 ${(myDay.pay + myDay.plus)}
-			</span>
-			<input type="hidden" id="use_account" name="use_account" value=""/>
-			<span class="won">원</span>
+			<input type="hidden" name="use_account" value="">
+			<span id="od_last_price" class="Rajdhani text-purple">${myDay.pay + myDay.plus }</span><span class="won">원</span>
 			</div>
 		</li>
 		</ul>
@@ -331,13 +223,15 @@ var g5_purl = "https://buts.co.kr/shop/orderform.php?sw_direct=1";
 	{
 		var tot_price = ${myDay.pay + myDay.plus};
 		var mb_point = ${member.point};
+		var pay_point = ${myDay.pay + myDay.plus};
+		
 		if(check_val == '1')
-		{
-							
-				document.getElementById("od_temp_point").value = mb_point;
-				var od_last_price = parseInt(tot_price) - parseInt(mb_point);
-				document.getElementById("od_last_price").innerHTML = number_format(od_last_price);	
-						document.getElementById("point_s").style.display = "none";	
+		{				
+			document.getElementById("od_temp_point").value = tot_price; //o
+			var od_last_price = parseInt(tot_price) - parseInt(mb_point);
+			var price = parseInt(tot_price) - parseInt(pay_point);
+			document.getElementById("od_last_price").innerHTML = number_format(price);	
+			document.getElementById("point_s").style.display = "none";	
 			document.getElementById("point_c").style.display = "";	
 			document.getElementById("od_temp_point").focus();
 
@@ -374,13 +268,13 @@ var g5_purl = "https://buts.co.kr/shop/orderform.php?sw_direct=1";
 			document.getElementById("od_temp_point").value = '0';
 			return false;		
 		}
-		else if (parseInt(str_val) > ${member.point}) {
+		else if (parseInt(str_val) > parseInt(mb_point)) {
 			alert("회원님의 포인트보다 많이 결제할 수 없습니다.");
 			document.getElementById("point_s").style.display = "";	
 			document.getElementById("point_c").style.display = "none";	
 			document.getElementById("od_temp_point").value = '0';
 			document.getElementById("od_temp_point").readOnly = false;	
-			document.getElementById("od_last_price").innerHTML = '13,156';	
+			document.getElementById("od_last_price").innerHTML = ${myDay.pay + myDay.plus};	
 			document.getElementById("settle_bank").style.display = "";	
 			return false;
 		}
@@ -391,44 +285,367 @@ var g5_purl = "https://buts.co.kr/shop/orderform.php?sw_direct=1";
 		}
 		else{
 			var od_last_price = parseInt(tot_price) - parseInt(str_val);
-			document.getElementById("od_last_price").innerHTML = number_format(od_last_price);
+			document.getElementById("od_last_price").innerHTML = number_format(od_last_price);	
 			$('input[name=use_account]').attr('value', number_format(od_last_price));
+			
 		}	
 	}
 
 </script>
 
-<div id="display_pay_button" class="btn_confirm button-align center">
-    <input type="submit" value="주문하기" onclick="return forderform_check(this.form);" class="btn_pay btn_submit button large button-purple" style="border:0px;">
-    <a href="javascript:history.go(-1);" class="button large">취소</a>
-</div>
-<div id="display_pay_process" style="display:none">
-    <img src="https://buts.co.kr/shop/img/loading.gif" alt="">
-    <span>주문완료 중입니다. 잠시만 기다려 주십시오.</span>
-</div>
-</form>
-<br>
-
-
-<!-- Modal -->
-<div class="modal fade" id="couponModal" tabindex="-1" role="dialog" aria-labelledby="couponModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body">
-		<div id="couponBox"></div>
-	  </div>
-    </div>
-  </div>
-</div>
-<!-- 
- -->
-
 <script>
 var zipcode = "";
 
+$(function() {
+	// BS3
+	$("#display_pay_button input").removeClass("btn_submit");
+	$("#display_pay_button input").addClass("btn btn-color btn-lg");
+	$("#display_pay_button a").removeClass("btn01");
+	$("#display_pay_button a").removeClass("btn_cancel");
+	$("#display_pay_button a").addClass("btn btn-black btn-lg");
+
+	var $cp_btn_el;
+    var $cp_row_el;
+
+    $(".cp_btn").click(function() {
+        $cp_btn_el = $(this);
+        $cp_row_el = $(this).closest("tr");
+        //$("#cp_frm").remove();
+		$('#couponModal').modal('show');
+        var it_id = $cp_btn_el.closest("tr").find("input[name^=it_id]").val();
+
+        $.post(
+            "./orderitemcoupon.php",
+            { it_id: it_id,  sw_direct: "1" },
+            function(data) {
+                //$cp_btn_el.after(data);
+				$("#couponBox").html(data);
+            }
+        );
+    });
+
+    $(document).on("click", ".cp_apply", function() {
+		var $el = $(this).closest("tr");
+        var cp_id = $el.find("input[name='f_cp_id[]']").val();
+        var price = $el.find("input[name='f_cp_prc[]']").val();
+        var subj = $el.find("input[name='f_cp_subj[]']").val();
+        var sell_price;
+
+        if(parseInt(price) == 0) {
+            if(!confirm(subj+"쿠폰의 할인 금액은 "+price+"원입니다.\n쿠폰을 적용하시겠습니까?")) {
+                return false;
+            }
+        }
+
+        // 이미 사용한 쿠폰이 있는지
+        var cp_dup = false;
+        var cp_dup_idx;
+        var $cp_dup_el;
+        $("input[name^=cp_id]").each(function(index) {
+            var id = $(this).val();
+
+            if(id == cp_id) {
+                cp_dup_idx = index;
+                cp_dup = true;
+                $cp_dup_el = $(this).closest("tr");;
+
+                return false;
+            }
+        });
+
+        if(cp_dup) {
+            var it_name = $("input[name='it_name["+cp_dup_idx+"]']").val();
+            if(!confirm(subj+ "쿠폰은 "+it_name+"에 사용되었습니다.\n"+it_name+"의 쿠폰을 취소한 후 적용하시겠습니까?")) {
+                return false;
+            } else {
+                coupon_cancel($cp_dup_el);
+                //$("#cp_frm").remove();
+                $cp_dup_el.find(".cp_btn").text("적용").focus();
+                $cp_dup_el.find(".cp_cancel").remove();
+            }
+        }
+
+        var $s_el = $cp_row_el.find(".total_price");;
+        sell_price = parseInt($cp_row_el.find("input[name^=it_price]").val());
+        sell_price = sell_price - parseInt(price);
+        if(sell_price < 0) {
+            alert("쿠폰할인금액이 주문금액보다 크므로 쿠폰을 적용할 수 없습니다.");
+            return false;
+        }
+        $s_el.text(number_format(String(sell_price)));
+        $cp_row_el.find("input[name^=cp_id]").val(cp_id);
+        $cp_row_el.find("input[name^=cp_price]").val(price);
+
+        calculate_total_price();
+        //$("#cp_frm").remove();
+		$('#couponModal').modal('hide');
+        $cp_btn_el.text("변경").focus();
+        if(!$cp_row_el.find(".cp_cancel").size())
+            $cp_btn_el.after("<button type=\"button\" class=\"cp_cancel btn btn-black btn-xs\">취소1</button>");
+    });
+
+    $(document).on("click", "#cp_close", function() {
+		$('#couponModal').modal('hide');
+		//$("#cp_frm").remove();
+        $cp_btn_el.focus();
+    });
+
+    $(document).on("click", ".cp_cancel", function() {
+		coupon_cancel($(this).closest("tr"));
+        calculate_total_price();
+        //$("#cp_frm").remove();
+        $(this).closest("tr").find(".cp_btn").text("적용").focus();
+        $(this).remove();
+    });
+
+    $("#od_coupon_btn").click(function() {
+        //$("#od_coupon_frm").remove();
+		$('#couponModal').modal('show');
+        var $this = $(this);
+        var price = parseInt($("input[name=org_od_price]").val()) - parseInt($("input[name=item_coupon]").val());
+        if(price <= 0) {
+            alert('금액이 0원이므로 쿠폰을 사용할 수 없습니다.');
+            return false;
+        }
+        $.post(
+            "./ordercoupon.php",
+            { price: price },
+            function(data) {
+                //$this.after(data);
+				$("#couponBox").html(data);
+            }
+        );
+    });
+
+    $(document).on("click", ".od_cp_apply", function() {
+		var $el = $(this).closest("tr");
+        var cp_id = $el.find("input[name='o_cp_id[]']").val();
+        var price = parseInt($el.find("input[name='o_cp_prc[]']").val());
+        var subj = $el.find("input[name='o_cp_subj[]']").val();
+        var send_cost = $("input[name=od_send_cost]").val();
+        var item_coupon = parseInt($("input[name=item_coupon]").val());
+        var od_price = parseInt($("input[name=org_od_price]").val()) - item_coupon;
+
+        if(price == 0) {
+            if(!confirm(subj+"쿠폰의 할인 금액은 "+price+"원입니다.\n쿠폰을 적용하시겠습니까?")) {
+                return false;
+            }
+        }
+
+        if(od_price - price <= 0) {
+            alert("쿠폰할인금액이 주문금액보다 크므로 쿠폰을 적용할 수 없습니다.");
+            return false;
+        }
+
+        $("input[name=sc_cp_id]").val("");
+        $("#sc_coupon_btn").text("쿠폰적용");
+        $("#sc_coupon_cancel").remove();
+
+        $("input[name=od_price]").val(od_price - price);
+        $("input[name=od_cp_id]").val(cp_id);
+        $("input[name=od_coupon]").val(price);
+        $("input[name=od_send_coupon]").val(0);
+        $("#od_cp_price").text(number_format(String(price)));
+        $("#sc_cp_price").text(0);
+        calculate_order_price();
+        //$("#od_coupon_frm").remove();
+		$('#couponModal').modal('hide');
+        $("#od_coupon_btn").text("쿠폰변경").focus();
+        if(!$("#od_coupon_cancel").size())
+            $("#od_coupon_btn").after("<button type=\"button\" id=\"od_coupon_cancel\" class=\"btn btn-black btn-sm\">쿠폰취소</button>");
+    });
+
+    $(document).on("click", "#od_coupon_close", function() {
+		//$("#od_coupon_frm").remove();
+		$('#couponModal').modal('hide');
+        $("#od_coupon_btn").focus();
+    });
+
+    $(document).on("click", "#od_coupon_cancel", function() {
+		var org_price = $("input[name=org_od_price]").val();
+        var item_coupon = parseInt($("input[name=item_coupon]").val());
+        $("input[name=od_price]").val(org_price - item_coupon);
+        $("input[name=sc_cp_id]").val("");
+        $("input[name=od_coupon]").val(0);
+        $("input[name=od_send_coupon]").val(0);
+        $("#od_cp_price").text(0);
+        $("#sc_cp_price").text(0);
+        calculate_order_price();
+        //$("#od_coupon_frm").remove();
+        $("#od_coupon_btn").text("쿠폰적용").focus();
+        $(this).remove();
+        $("#sc_coupon_btn").text("쿠폰적용");
+        $("#sc_coupon_cancel").remove();
+    });
+
+    $("#sc_coupon_btn").click(function() {
+        //$("#sc_coupon_frm").remove();
+		$('#couponModal').modal('show');
+        var $this = $(this);
+        var price = parseInt($("input[name=od_price]").val());
+        var send_cost = parseInt($("input[name=od_send_cost]").val());
+        $.post(
+            "./ordersendcostcoupon.php",
+            { price: price, send_cost: send_cost },
+            function(data) {
+                //$this.after(data);
+				$("#couponBox").html(data);
+            }
+        );
+    });
+
+    $(document).on("click", ".sc_cp_apply", function() {
+		var $el = $(this).closest("tr");
+        var cp_id = $el.find("input[name='s_cp_id[]']").val();
+        var price = parseInt($el.find("input[name='s_cp_prc[]']").val());
+        var subj = $el.find("input[name='s_cp_subj[]']").val();
+        var send_cost = parseInt($("input[name=od_send_cost]").val());
+
+        if(parseInt(price) == 0) {
+            if(!confirm(subj+"쿠폰의 할인 금액은 "+price+"원입니다.\n쿠폰을 적용하시겠습니까?")) {
+                return false;
+            }
+        }
+
+        $("input[name=sc_cp_id]").val(cp_id);
+        $("input[name=od_send_coupon]").val(price);
+        $("#sc_cp_price").text(number_format(String(price)));
+        calculate_order_price();
+        //$("#sc_coupon_frm").remove();
+		$('#couponModal').modal('hide');
+        $("#sc_coupon_btn").text("쿠폰변경").focus();
+        if(!$("#sc_coupon_cancel").size())
+            $("#sc_coupon_btn").after("<button type=\"button\" id=\"sc_coupon_cancel\" class=\"btn btn-black btn-sm\">쿠폰취소</button>");
+    });
+
+    $(document).on("click", "#sc_coupon_close", function() {
+		//$("#sc_coupon_frm").remove();
+		$('#couponModal').modal('hide');
+        $("#sc_coupon_btn").focus();
+    });
+
+    $(document).on("click", "#sc_coupon_cancel", function() {
+		$("input[name=od_send_coupon]").val(0);
+        $("#sc_cp_price").text(0);
+        calculate_order_price();
+        //$("#sc_coupon_frm").remove();
+        $("#sc_coupon_btn").text("쿠폰적용").focus();
+        $(this).remove();
+    });
+
+    $("#od_b_addr2").focus(function() {
+        var zip = $("#od_b_zip").val().replace(/[^0-9]/g, "");
+        if(zip == "")
+            return false;
+
+        var code = String(zip);
+
+        if(zipcode == code)
+            return false;
+
+        zipcode = code;
+
+        calculate_sendcost(code);
+    });
+
+    // 배송지선택
+    $("input[name=ad_sel_addr]").on("click", function() {
+        var addr = $(this).val().split(String.fromCharCode(30));
+
+        if (addr[0] == "same") {
+            gumae2baesong();
+        } else {
+            if(addr[0] == "new") {
+                for(i=0; i<10; i++) {
+                    addr[i] = "";
+                }
+            }
+
+            var f = document.forderform;
+            f.od_b_name.value        = addr[0];
+            f.od_b_tel.value         = addr[1];
+            f.od_b_hp.value          = addr[2];
+            f.od_b_zip.value         = addr[3] + addr[4];
+            f.od_b_addr1.value       = addr[5];
+            f.od_b_addr2.value       = addr[6];
+            f.od_b_addr3.value       = addr[7];
+            f.od_b_addr_jibeon.value = addr[8];
+            f.ad_subject.value       = addr[9];
+
+            var zip1 = addr[3].replace(/[^0-9]/g, "");
+            var zip2 = addr[4].replace(/[^0-9]/g, "");
+
+            var code = String(zip1) + String(zip2);
+
+            if(zipcode != code) {
+                calculate_sendcost(code);
+            }
+        }
+    });
+
+    // 배송지목록
+    $("#order_address").on("click", function() {
+        var url = this.href;
+        window.open(url, "win_address", "left=100,top=100,width=800,height=600,scrollbars=1");
+        return false;
+    });
+});
+
+function coupon_cancel($el) {
+    var $dup_sell_el = $el.find(".total_price");
+    var $dup_price_el = $el.find("input[name^=cp_price]");
+    var org_sell_price = $el.find("input[name^=it_price]").val();
+
+    $dup_sell_el.text(number_format(String(org_sell_price)));
+    $dup_price_el.val(0);
+    $el.find("input[name^=cp_id]").val("");
+}
+
+function calculate_total_price() {
+    var $it_prc = $("input[name^=it_price]");
+    var $cp_prc = $("input[name^=cp_price]");
+    var tot_sell_price = sell_price = tot_cp_price = 0;
+    var it_price, cp_price, it_notax;
+    var tot_mny = comm_tax_mny = comm_vat_mny = comm_free_mny = tax_mny = vat_mny = 0;
+    var send_cost = parseInt($("input[name=od_send_cost]").val());
+
+    $it_prc.each(function(index) {
+        it_price = parseInt($(this).val());
+        cp_price = parseInt($cp_prc.eq(index).val());
+        sell_price += it_price;
+        tot_cp_price += cp_price;
+    });
+
+    tot_sell_price = sell_price - tot_cp_price + send_cost;
+
+    $("#ct_tot_coupon").text(number_format(String(tot_cp_price))+" 원");
+    $("#ct_tot_price").text(number_format(String(tot_sell_price))+" 원");
+
+    $("input[name=good_mny]").val(tot_sell_price);
+    $("input[name=od_price]").val(sell_price - tot_cp_price);
+    $("input[name=item_coupon]").val(tot_cp_price);
+    $("input[name=od_coupon]").val(0);
+    $("input[name=od_send_coupon]").val(0);
+            $("input[name=od_temp_point]").val(0);
+        calculate_temp_point();
+        calculate_order_price();
+}
+
+function calculate_order_price() {
+    var sell_price = parseInt($("input[name=od_price]").val());
+    var send_cost = parseInt($("input[name=od_send_cost]").val());
+    var send_cost2 = parseInt($("input[name=od_send_cost2]").val());
+    var send_coupon = parseInt($("input[name=od_send_coupon]").val());
+    var tot_price = sell_price + send_cost + send_cost2 - send_coupon;
+
+    $("input[name=good_mny]").val(tot_price);
+    $("#od_tot_price").text(number_format(String(tot_price)));
+        calculate_temp_point();
+    }
+
 function calculate_temp_point() {
     var sell_price = parseInt($("input[name=od_price]").val());
-    var mb_point = parseInt(${member.point});
+    var mb_point = parseInt(1158);
     var max_point = parseInt(999999);
     var point_unit = parseInt(1);
     var temp_point = max_point;
@@ -518,7 +735,7 @@ function gumae2baesong() {
 }
 </script><script>
 
-	var form_action_url = "http://localhost/";
+	var form_action_url = "/partyMemberInsertProc";
 
 	$(function() {
 		$("#od_settle_bank").on("click", function() {
@@ -773,11 +990,325 @@ function gumae2baesong() {
   gtag('config', 'UA-163597728-1');
 </script>
 
-		<!-- footer -->
-		<%@include file="../common/footer.jsp" %>
+<div id="display_pay_button" class="btn_confirm button-align center">
+    <input type="submit" value="주문하기" onclick="return forderform_check(this.form);" class="btn_pay btn_submit button large button-purple" style="border:0px;">
+    <a href="javascript:history.go(-1);" class="button large">취소</a>
+</div>
+<div id="display_pay_process" style="display:none">
+    <img src="https://buts.co.kr/shop/img/loading.gif" alt="">
+    <span>주문완료 중입니다. 잠시만 기다려 주십시오.</span>
+</div>
+</form>
+<br>
+
+
+<!-- Modal -->
+<div class="modal fade" id="couponModal" tabindex="-1" role="dialog" aria-labelledby="couponModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+		<div id="couponBox"></div>
+	  </div>
+    </div>
+  </div>
+</div>
+
+<script>
+var zipcode = "";
+function calculate_temp_point() {
+    var sell_price = parseInt($("input[name=od_price]").val());
+    var mb_point = parseInt(${member.point});
+    var max_point = parseInt(999999);
+    var point_unit = parseInt(1);
+    var temp_point = max_point;
+    if(temp_point > sell_price)
+        temp_point = sell_price;
+    if(temp_point > mb_point)
+        temp_point = mb_point;
+    temp_point = parseInt(temp_point / point_unit) * point_unit;
+    $("#use_max_point").text("최대 "+number_format(String(temp_point))+"점");
+    $("input[name=max_temp_point]").val(temp_point);
+}
+function calculate_sendcost(code) {
+    $.post(
+        "./ordersendcost.php",
+        { zipcode: code },
+        function(data) {
+            $("input[name=od_send_cost2]").val(data);
+            $("#od_send_cost2").text(number_format(String(data)));
+            zipcode = code;
+            calculate_order_price();
+        }
+    );
+}
+function calculate_tax() {
+    var $it_prc = $("input[name^=it_price]");
+    var $cp_prc = $("input[name^=cp_price]");
+    var sell_price = tot_cp_price = 0;
+    var it_price, cp_price, it_notax;
+    var tot_mny = comm_free_mny = tax_mny = vat_mny = 0;
+    var send_cost = parseInt($("input[name=od_send_cost]").val());
+    var send_cost2 = parseInt($("input[name=od_send_cost2]").val());
+    var od_coupon = parseInt($("input[name=od_coupon]").val());
+    var send_coupon = parseInt($("input[name=od_send_coupon]").val());
+    var temp_point = 0;
+    $it_prc.each(function(index) {
+        it_price = parseInt($(this).val());
+        cp_price = parseInt($cp_prc.eq(index).val());
+        sell_price += it_price;
+        tot_cp_price += cp_price;
+        it_notax = $("input[name^=it_notax]").eq(index).val();
+        if(it_notax == "1") {
+            comm_free_mny += (it_price - cp_price);
+        } else {
+            tot_mny += (it_price - cp_price);
+        }
+    });
+    if($("input[name=od_temp_point]").size())
+        temp_point = parseInt($("input[name=od_temp_point]").val());
+    tot_mny += (send_cost + send_cost2 - od_coupon - send_coupon - temp_point);
+    if(tot_mny < 0) {
+        comm_free_mny = comm_free_mny + tot_mny;
+        tot_mny = 0;
+    }
+    tax_mny = Math.round(tot_mny / 1.1);
+    vat_mny = tot_mny - tax_mny;
+    $("input[name=comm_tax_mny]").val(tax_mny);
+    $("input[name=comm_vat_mny]").val(vat_mny);
+    $("input[name=comm_free_mny]").val(comm_free_mny);
+}
+// 구매자 정보와 동일합니다.
+function gumae2baesong() {
+    var f = document.forderform;
+    f.od_b_name.value = f.od_name.value;
+    f.od_b_tel.value  = f.od_tel.value;
+    f.od_b_hp.value   = f.od_hp.value;
+    f.od_b_zip.value  = f.od_zip.value;
+    f.od_b_addr1.value = f.od_addr1.value;
+    f.od_b_addr2.value = f.od_addr2.value;
+    f.od_b_addr3.value = f.od_addr3.value;
+    f.od_b_addr_jibeon.value = f.od_addr_jibeon.value;
+    calculate_sendcost(String(f.od_b_zip.value));
+}
+</script><script>
+	var form_action_url = "/partyMemberInsertProc";
+	$(function() {
+		$("#od_settle_bank").on("click", function() {
+			$("[name=od_deposit_name]").val( $("[name=od_name]").val() );
+			$("#settle_bank").show();
+						$("#sod_frm_pt").show();
+					});
+		$("#od_settle_point").on("click", function() {
+			$("#settle_bank").hide();
+			$("#sod_frm_pt").hide();
+		});
+		$("#od_settle_iche,#od_settle_vbank,#od_settle_hp,#od_settle_easy_pay,#od_settle_kakaopay").bind("click", function() {
+			$("#settle_bank").hide();
+						$("#sod_frm_pt").show();
+					});
+	});
+	function forderform_check(f) {
 		
-	
-</div> <!-- .wrapper -->
+		// 재고체크
+		var stock_msg = order_stock_check();
+		if(stock_msg != "") {
+			alert(stock_msg);
+			return false;
+		}
+		errmsg = "";
+		errfld = "";
+		var deffld = "";
+		check_field(f.od_name, "주문하시는 분 이름을 입력하십시오.");
+		
+				var od_settle_bank = document.getElementById("od_settle_bank");
+		if (od_settle_bank) {
+			if (od_settle_bank.checked) {
+				check_field(f.od_bank_account, "계좌번호를 선택하세요.");
+				check_field(f.od_deposit_name, "입금자명을 입력하세요.");
+			}
+		}
+		// 배송비를 받지 않거나 더 받는 경우 아래식에 + 또는 - 로 대입
+		f.od_send_cost.value = parseInt(f.od_send_cost.value);
+		if (errmsg) {
+			alert(errmsg);
+			errfld.focus();
+			return false;
+		}
+		var settle_case = document.getElementsByName("od_settle_case");
+		var settle_check = true;
+		var settle_method = "";
+		for (i=0; i<settle_case.length; i++) {
+			if (settle_case[i].checked) {
+				settle_check = true;
+				settle_method = settle_case[i].value;
+				break;
+			}
+		}
+		if (!settle_check) {
+			alert("결제방식을 선택하십시오.");
+			return false;
+		}
+		var od_price = parseInt(f.od_price.value);
+		var send_cost = parseInt(f.od_send_cost.value);
+		var send_cost2 = parseInt(f.od_send_cost2.value);
+		var send_coupon = parseInt(f.od_send_coupon.value);
+		var max_point = 0;
+		if (typeof(f.max_temp_point) != "undefined")
+			max_point  = parseInt(f.max_temp_point.value);
+		var temp_point = 0;
+		if (typeof(f.od_temp_point) != "undefined") {
+			if (f.od_temp_point.value) {
+				var point_unit = parseInt(1);
+				temp_point = parseInt(f.od_temp_point.value);
+				if (temp_point > ${member.point}) {
+					alert("회원님의 포인트보다 많이 결제할 수 없습니다.");
+					f.od_temp_point.select();
+					return false;
+				}
+				if (settle_method == "포인트") {
+					;
+				} else {
+					if (temp_point < 0) {
+						alert("포인트를 0 이상 입력하세요.");
+						f.od_temp_point.select();
+						return false;
+					}
+					if (temp_point > (od_price + Math.round(od_price/10))) {
+						alert("서비스 금액 보다 많이 포인트결제할 수 없습니다.");
+						f.od_temp_point.select();
+						return false;
+					}
+					if (temp_point > max_point) {
+						alert(max_point + "점 이상 결제할 수 없습니다.");
+						f.od_temp_point.select();
+						return false;
+					}
+					if (parseInt(parseInt(temp_point / point_unit) * point_unit) != temp_point) {
+						alert("포인트를 "+String(point_unit)+"점 단위로 입력하세요.");
+						f.od_temp_point.select();
+						return false;
+					}
+				}
+				// pg 결제 금액에서 포인트 금액 차감
+				if(settle_method != "무통장" && settle_method != "포인트") {
+					f.good_mny.value = od_price + Math.round(od_price/10) + send_cost + send_cost2 - send_coupon - temp_point;
+				}
+			}
+		}
+		if (document.getElementById("od_settle_point")) {
+			if (document.getElementById("od_settle_point").checked) {
+				var tmp_point = parseInt(f.od_temp_point.value);
+				if (tmp_point > 0) {
+					;
+				} else {
+					alert("포인트를 입력해 주세요.");
+					f.od_temp_point.select();
+					return false;
+				}
+				var tot_point = od_price + Math.round(od_price/10)  +  send_cost + send_cost2 - send_coupon;
+				if (tot_point != tmp_point) {
+					alert("결제하실 금액과 포인트가 일치하지 않습니다.2");
+					f.od_temp_point.select();
+					return false;
+				}
+			}
+		}
+		var tot_price = od_price + Math.round(od_price/10) + send_cost + send_cost2 - send_coupon - temp_point;
+		if (document.getElementById("od_settle_iche")) {
+			if (document.getElementById("od_settle_iche").checked) {
+				if (tot_price < 150) {
+					alert("계좌이체는 150원 이상 결제가 가능합니다.");
+					return false;
+				}
+			}
+		}
+		if (document.getElementById("od_settle_card")) {
+			if (document.getElementById("od_settle_card").checked) {
+				if (tot_price < 1000) {
+					alert("신용카드는 1000원 이상 결제가 가능합니다.");
+					return false;
+				}
+			}
+		}
+		if (document.getElementById("od_settle_hp")) {
+			if (document.getElementById("od_settle_hp").checked) {
+				if (tot_price < 350) {
+					alert("휴대폰은 350원 이상 결제가 가능합니다.");
+					return false;
+				}
+			}
+		}
+		
+		
+		// 카카오페이 지불
+		if(settle_method == "KAKAOPAY") {
+						getTxnId(f);
+			return false;
+		}
+		// pay_method 설정
+		
+		// 결제정보설정
+						
+        
+            switch(settle_method)
+            {
+                case '신용카드':
+                    f.PayMethod.value = 'CARD';
+                    break;
+                case '계좌이체':
+                    f.PayMethod.value = 'BANK';
+                    break;
+                case '가상계좌':
+                    f.PayMethod.value = 'VBANK';
+                    break;
+                default:
+                    f.PayMethod.value = settle_method;
+                    break;
+            }
+            // 결제정보설정
+            f.Amt.value = f.good_mny.value;
+            f.BuyerName.value = f.od_name.value;
+            f.BuyerEmail.value = f.od_email.value;
+            f.BuyerTel.value = f.od_hp.value;
+            if(settle_method != '무통장' && settle_method != '포인트') {
+                var order_data = $(f).serialize();
+                var save_result = "";
+                $.ajax({
+                    type: "POST",
+                    data: order_data,
+                    url: g5_url+'/shop/ajax.orderdatasave.php',
+                    cache: false,
+                    async: false,
+                    success: function(data) {
+                        save_result = data;
+                    }
+                });
+                if(save_result) {
+                    alert(save_result);
+                    return false;
+                }
+                inno_pay(f);
+                return false;
+            } else {
+                f.action = '/partyMemberInsertProc';
+                f.target = '_self';
+                return true;
+            }
+        	}
+</script>
+
+<script data-ad-client="ca-pub-8150600701657072" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-163597728-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-163597728-1');
+</script>
+
+</div>
+</div>
 
 </body>
 </html>

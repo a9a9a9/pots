@@ -1,392 +1,90 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <body class="responsive is-pc">
 	<div class="wrap wrapper  ko">
 		<div class="body">
 			<div class="width-container">
-
 <div id="sct_hhtml" style="background-color:#242424;"></div>
-
-
-
 <div class="title-wrap">
 	<div class="title">
 		<a href="/index?formpath=myPartyJoined" class="text">참여파티</a>
-		<a href="/index?formpath=myPartyCreated" class="text" style="margin-left: 20px;"><span class="text-purple">생성파티</span></a>
+		<a href="/index?formpath=myPartyCreated" class="text" style="margin-left: 20px;"><span class="text-purple">생성파티</a>
+	</div>
+	<div class="title">
+		* 사용기간이 종료된 파티는 참여파티에 보이지 않습니다.
 	</div>
 </div>
-<div class="item-list">
-	
-
-<div class="item-row-my item-row disabled">
-		<div class="item-type">기타</div>
-	<div class="item-title">kg</div>
-	<div class="item-info">
-		<div class="item-date">					
-		파티					
-			<span class="pc-inline">종료</span>			(<strong>0</strong>일)
+<c:choose>
+	<c:when test="${empty created }">
+		<div class="empty">
+			<div class="icon"><img src="/img/icon-butsicon-big-glay.png" /></div>
+			<h5>등록된 내용이 없습니다.</h5>
 		</div>
-		<!-- <div class="item-price"><span class="Rajdhani">0</span>원</div> -->
-	</div>
-	<div class="item-members">
-						<span class="item-member">
-					<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small-glay.png" srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/icon-butsicon-small-glay.png 2x" alt="" />
-                </span>
-				<span class="item-finish">모집종료</span>
-			</div>
-				<div class="item-tip">	</div>
-			<div class="item-buttons">
-						<a href="./item.php?it_id=1659354235&amp;ca_id=10&amp;page=1" class="button border round button-purple">내역보기</a>
-						<a href="./partner/?ap=item&w=u&it_id=1659354235&fn=2" class="button border round button-red">수정</a>
-	</div>
-	<a href="./item.php?it_id=1659354235&amp;ca_id=10&amp;page=1" class="item-button"></a>
-</div>
-
-	<!-- <div class="item-row">
-		<div class="item-list item-col is-round-item">
-			<div style="background-color:#282828;">
-				<div class="is-item-content">
-										
-						<div class="item-title" style="font-size:16px;">
-					<label style="text-align:center;width:30px; height:30px; color:#dedede; font-size:16px; line-height: 32px;
-					background-image:url('https://buts.co.kr/img/buts/icon_color_.png'); 
-					background-repeat:no-repeat; background-position:center;">기</label>
-						kg					</div>		
-					<div class="item-top"></div>	
-					<div class="item-left">
-						<div class="item-text">
-							<label class="lb_title" style="color:rgba(149, 149, 149, 0.9)">ㆍ파티장 : 에이구 </label>
-						</div>
-					</div>			
-					<div class="item-left">
-						<div class="item-text">
-							<label class="lb_title" style="color:rgba(149, 149, 149, 0.9)">ㆍ파티 종료일 : 2022-08-19 까지 </label>
-						</div>
-					</div>			
-					<div class="item-left">
-						<div class="item-text">
-							<label class="lb_title" style="color:rgba(149, 149, 149, 0.9)">ㆍ파티기간 :  <b style="color:rgba(255, 255, 255, 0.9)">0일 (일 평균 10원)</b> </label>
-						</div>
-					</div>		
-					<div class="item-left" style="padding-bottom: 20px;">
-						<div class="item-text">
-							<label class="lb_title" style="color:rgba(149, 149, 149, 0.9)">ㆍ모집인원 : <b style="color:rgba(255, 255, 255, 0.9)">0 명</b> </label>
+	</c:when>
+	<c:otherwise>
+		<c:forEach var="list" items="${created }">
+			<c:if test="${list.party_left_date > 0}">
+				<div class="item-row-my item-row"> 
+					<div class="item-type">${list.party_subservice }</div>
+					<div class="item-title">${list.party_title }</div>
+					<div class="item-info">
+						<div class="item-date">					
+							파티			
+							<c:if test="${list.party_left_date > 0}">		
+								<span class="pc-inline">사용중</span>
+							</c:if>
+							(<strong>${list.party_left_date }</strong>일)
 						</div>
 					</div>
-					<div class="item-bottom"></div>						
-					<div class="item-left">
-						<div class="item-text">
-							<label class="lb_left">참여 금액 </label> <label class="lb_right" style="font-size:#65d6ff"><b style="color:#3bb0db; font-size:18px;">0</b>원</label>
-						</div>
-					</div>
-					<div class="item-left">
-							<div class="item-text" style="padding-bottom: 30px;padding-top: 30px;">
-							<a href="./item.php?it_id=1659354235&amp;ca_id=10&amp;page=1">
-								<div class="btn btn-in_color btn-block" style="padding: 15px;">상세내역보기</div>
-							</a>
-						</div>
+					<div class="item-members">
+						<c:if test="${list.party_member == list.party_now_member}">
+							<span class="item-member"></span>
+							<span class="item-finish">모집종료</span>
+						</c:if>
+						<c:if test="${list.party_member > list.party_now_member }">
+							<span class="item-member"></span>
+							<span class="item-finish" style="background:#84cdcf">모집중</span>								
+						</c:if> 
+					</div>			
+					<div class="item-buttons">
+						<a href="index?formpath=partyMain?party_num=${list.party_num }" class="button border round button-purple" style="margin-left:60px;">내역보기</a>								
 					</div>
 				</div>
-			</div>
-		</div>
-	</div> -->
-
-
-<div class="item-row-my item-row disabled">
-		<div class="item-type">디즈니</div>
-	<div class="item-title">디즈니플러스 한달찍먹 싸다쏴</div>
-	<div class="item-info">
-		<div class="item-date">					
-		파티					
-			<span class="pc-inline">종료</span>			(<strong>0</strong>일)
-		</div>
-		<!-- <div class="item-price"><span class="Rajdhani">0</span>원</div> -->
-	</div>
-	<div class="item-members">
-						<span class="item-member">
-					<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small-glay.png" srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/icon-butsicon-small-glay.png 2x" alt="" />
-                </span>
-				<span class="item-finish">모집종료</span>
-			</div>
-				<div class="item-tip">	</div>
-			<div class="item-buttons">
-						<a href="./item.php?it_id=1655529789&amp;ca_id=10&amp;page=1" class="button border round button-purple">내역보기</a>
-						<a href="./partner/?ap=item&w=u&it_id=1655529789&fn=2" class="button border round button-red">수정</a>
-	</div>
-	<a href="./item.php?it_id=1655529789&amp;ca_id=10&amp;page=1" class="item-button"></a>
-</div>
-
-	<!-- <div class="item-row">
-		<div class="item-list item-col is-round-item">
-			<div style="background-color:#282828;">
-				<div class="is-item-content">
-										
-						<div class="item-title" style="font-size:16px;">
-					<label style="text-align:center;width:30px; height:30px; color:#dedede; font-size:16px; line-height: 32px;
-					background-image:url('https://buts.co.kr/img/buts/icon_color_.png'); 
-					background-repeat:no-repeat; background-position:center;">디</label>
-						디즈니플러스 한달찍먹 싸다쏴					</div>		
-					<div class="item-top"></div>	
-					<div class="item-left">
-						<div class="item-text">
-							<label class="lb_title" style="color:rgba(149, 149, 149, 0.9)">ㆍ파티장 : 에이구 </label>
+				</c:if>
+					<c:if test="${list.party_left_date <= 0}"> 
+						<div class="item-row-my item-row disabled">
+							<div class="item-type">${list.party_subservice }</div>	
+							<div class="item-title">${list.party_title }</div>
+							<div class="item-info">
+								<div class="item-date">					
+									파티				
+									<span class="pc-inline">사용완료</span>
+									(<strong>0</strong>일)
+								</div>
+							</div>
+							<div class="item-members">
+								<span class="item-member">
+									<img src="/img/icon-butsicon-small-glay.png" srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/icon-butsicon-small-glay.png 2x" alt="" />
+							    </span>
+								<span class="item-finish">모집종료</span>
+							</div>
+							<div class="item-buttons">
+								<a href="index?formpath=partyMain?party_num=${list.party_num }" class="button border round button-purple" style="margin-left:60px; color:#84cdcf">내역보기</a>								
+							</div>							
 						</div>
-					</div>			
-					<div class="item-left">
-						<div class="item-text">
-							<label class="lb_title" style="color:rgba(149, 149, 149, 0.9)">ㆍ파티 종료일 : 2022-08-19 까지 </label>
-						</div>
-					</div>			
-					<div class="item-left">
-						<div class="item-text">
-							<label class="lb_title" style="color:rgba(149, 149, 149, 0.9)">ㆍ파티기간 :  <b style="color:rgba(255, 255, 255, 0.9)">0일 (일 평균 90원)</b> </label>
-						</div>
-					</div>		
-					<div class="item-left" style="padding-bottom: 20px;">
-						<div class="item-text">
-							<label class="lb_title" style="color:rgba(149, 149, 149, 0.9)">ㆍ모집인원 : <b style="color:rgba(255, 255, 255, 0.9)">0 명</b> </label>
-						</div>
-					</div>
-					<div class="item-bottom"></div>						
-					<div class="item-left">
-						<div class="item-text">
-							<label class="lb_left">참여 금액 </label> <label class="lb_right" style="font-size:#65d6ff"><b style="color:#3bb0db; font-size:18px;">0</b>원</label>
-						</div>
-					</div>
-					<div class="item-left">
-							<div class="item-text" style="padding-bottom: 30px;padding-top: 30px;">
-							<a href="./item.php?it_id=1655529789&amp;ca_id=10&amp;page=1">
-								<div class="btn btn-in_color btn-block" style="padding: 15px;">상세내역보기</div>
+					</c:if>
+				</c:forEach>
+				<div id="item_list-nav" class="item-nav"><a href="https://buts.co.kr/skin/apms/list/Miso-Basic4/list_partner.rows.php?lt=Buts&amp;ls=Miso-Basic4&amp;ca_id=10&amp;npg=0&amp;page=2"></a></div>
+					<div class="item-more">
+						<c:if test="${page != '마지막 페이지'}">
+							<a href="${page}" title="더보기">더보기
+								<span class="color" style="background:#84cdcf"></span>
 							</a>
-						</div>
+						</c:if>
 					</div>
-				</div>
-			</div>
+					</c:otherwise>
+				</c:choose>
 		</div>
-	</div> -->
-
-
-<div class="item-row-my item-row disabled">
-		<div class="item-type">디즈니</div>
-	<div class="item-title">디즈니플러스 한달만</div>
-	<div class="item-info">
-		<div class="item-date">					
-		파티					
-			<span class="pc-inline">종료</span>			(<strong>0</strong>일)
-		</div>
-		<!-- <div class="item-price"><span class="Rajdhani">0</span>원</div> -->
-	</div>
-	<div class="item-members">
-						<span class="item-member">
-					<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small-glay.png" srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/icon-butsicon-small-glay.png 2x" alt="" />
-                </span>
-				<span class="item-finish">모집종료</span>
-			</div>
-				<div class="item-tip">	</div>
-			<div class="item-buttons">
-						<a href="./item.php?it_id=1649722564&amp;ca_id=10&amp;page=1" class="button border round button-purple">내역보기</a>
-						<a href="./partner/?ap=item&w=u&it_id=1649722564&fn=2" class="button border round button-red">수정</a>
-	</div>
-	<a href="./item.php?it_id=1649722564&amp;ca_id=10&amp;page=1" class="item-button"></a>
-</div>
-
-	<!-- <div class="item-row">
-		<div class="item-list item-col is-round-item">
-			<div style="background-color:#282828;">
-				<div class="is-item-content">
-										
-						<div class="item-title" style="font-size:16px;">
-					<label style="text-align:center;width:30px; height:30px; color:#dedede; font-size:16px; line-height: 32px;
-					background-image:url('https://buts.co.kr/img/buts/icon_color_.png'); 
-					background-repeat:no-repeat; background-position:center;">디</label>
-						디즈니플러스 한달만					</div>		
-					<div class="item-top"></div>	
-					<div class="item-left">
-						<div class="item-text">
-							<label class="lb_title" style="color:rgba(149, 149, 149, 0.9)">ㆍ파티장 : 에이구 </label>
-						</div>
-					</div>			
-					<div class="item-left">
-						<div class="item-text">
-							<label class="lb_title" style="color:rgba(149, 149, 149, 0.9)">ㆍ파티 종료일 : 2022-08-19 까지 </label>
-						</div>
-					</div>			
-					<div class="item-left">
-						<div class="item-text">
-							<label class="lb_title" style="color:rgba(149, 149, 149, 0.9)">ㆍ파티기간 :  <b style="color:rgba(255, 255, 255, 0.9)">0일 (일 평균 83원)</b> </label>
-						</div>
-					</div>		
-					<div class="item-left" style="padding-bottom: 20px;">
-						<div class="item-text">
-							<label class="lb_title" style="color:rgba(149, 149, 149, 0.9)">ㆍ모집인원 : <b style="color:rgba(255, 255, 255, 0.9)">0 명</b> </label>
-						</div>
-					</div>
-					<div class="item-bottom"></div>						
-					<div class="item-left">
-						<div class="item-text">
-							<label class="lb_left">참여 금액 </label> <label class="lb_right" style="font-size:#65d6ff"><b style="color:#3bb0db; font-size:18px;">0</b>원</label>
-						</div>
-					</div>
-					<div class="item-left">
-							<div class="item-text" style="padding-bottom: 30px;padding-top: 30px;">
-							<a href="./item.php?it_id=1649722564&amp;ca_id=10&amp;page=1">
-								<div class="btn btn-in_color btn-block" style="padding: 15px;">상세내역보기</div>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> -->
-
-
-<div class="item-row-my item-row disabled">
-		<div class="item-type">디즈니</div>
-	<div class="item-title">디즈니플러스 한달찍먹</div>
-	<div class="item-info">
-		<div class="item-date">					
-		파티					
-			<span class="pc-inline">종료</span>			(<strong>0</strong>일)
-		</div>
-		<!-- <div class="item-price"><span class="Rajdhani">0</span>원</div> -->
-	</div>
-	<div class="item-members">
-						<span class="item-member">
-					<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small-glay.png" srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/icon-butsicon-small-glay.png 2x" alt="" />
-                </span>
-				<span class="item-finish">모집종료</span>
-			</div>
-				<div class="item-tip">	</div>
-			<div class="item-buttons">
-						<a href="./item.php?it_id=1636677901&amp;ca_id=10&amp;page=1" class="button border round button-purple">내역보기</a>
-						<a href="./partner/?ap=item&w=u&it_id=1636677901&fn=2" class="button border round button-red">수정</a>
-	</div>
-	<a href="./item.php?it_id=1636677901&amp;ca_id=10&amp;page=1" class="item-button"></a>
-</div>
-
-	<!-- <div class="item-row">
-		<div class="item-list item-col is-round-item">
-			<div style="background-color:#282828;">
-				<div class="is-item-content">
-										
-						<div class="item-title" style="font-size:16px;">
-					<label style="text-align:center;width:30px; height:30px; color:#dedede; font-size:16px; line-height: 32px;
-					background-image:url('https://buts.co.kr/img/buts/icon_color_.png'); 
-					background-repeat:no-repeat; background-position:center;">디</label>
-						디즈니플러스 한달찍먹					</div>		
-					<div class="item-top"></div>	
-					<div class="item-left">
-						<div class="item-text">
-							<label class="lb_title" style="color:rgba(149, 149, 149, 0.9)">ㆍ파티장 : 에이구 </label>
-						</div>
-					</div>			
-					<div class="item-left">
-						<div class="item-text">
-							<label class="lb_title" style="color:rgba(149, 149, 149, 0.9)">ㆍ파티 종료일 : 2022-08-19 까지 </label>
-						</div>
-					</div>			
-					<div class="item-left">
-						<div class="item-text">
-							<label class="lb_title" style="color:rgba(149, 149, 149, 0.9)">ㆍ파티기간 :  <b style="color:rgba(255, 255, 255, 0.9)">0일 (일 평균 83원)</b> </label>
-						</div>
-					</div>		
-					<div class="item-left" style="padding-bottom: 20px;">
-						<div class="item-text">
-							<label class="lb_title" style="color:rgba(149, 149, 149, 0.9)">ㆍ모집인원 : <b style="color:rgba(255, 255, 255, 0.9)">0 명</b> </label>
-						</div>
-					</div>
-					<div class="item-bottom"></div>						
-					<div class="item-left">
-						<div class="item-text">
-							<label class="lb_left">참여 금액 </label> <label class="lb_right" style="font-size:#65d6ff"><b style="color:#3bb0db; font-size:18px;">0</b>원</label>
-						</div>
-					</div>
-					<div class="item-left">
-							<div class="item-text" style="padding-bottom: 30px;padding-top: 30px;">
-							<a href="./item.php?it_id=1636677901&amp;ca_id=10&amp;page=1">
-								<div class="btn btn-in_color btn-block" style="padding: 15px;">상세내역보기</div>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> -->
-
-
-<div class="item-row-my item-row disabled">
-		<div class="item-type">디즈니</div>
-	<div class="item-title">디즈니플러스 두달</div>
-	<div class="item-info">
-		<div class="item-date">					
-		22.09.17					
-			<span class="pc-inline">까지</span>			(<strong>29</strong>일)
-		</div>
-		<!-- <div class="item-price"><span class="Rajdhani">2,610</span>원</div> -->
-	</div>
-	<div class="item-members">
-						<span class="item-member">
-					<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small-glay.png" srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/icon-butsicon-small-glay.png 2x" alt="" />
-                </span>
-				<span class="item-finish">모집종료</span>
-			</div>
-				<div class="item-tip">	</div>
-			<div class="item-buttons">
-						<a href="./item.php?it_id=1658071092&amp;ca_id=10&amp;page=1" class="button border round button-purple">내역보기</a>
-						<a href="./partner/?ap=item&w=u&it_id=1658071092&fn=2" class="button border round button-red">수정</a>
-	</div>
-	<a href="./item.php?it_id=1658071092&amp;ca_id=10&amp;page=1" class="item-button"></a>
-</div>
-
-	<!-- <div class="item-row">
-		<div class="item-list item-col is-round-item">
-			<div style="background-color:#282828;">
-				<div class="is-item-content">
-										
-						<div class="item-title" style="font-size:16px;">
-					<label style="text-align:center;width:30px; height:30px; color:#dedede; font-size:16px; line-height: 32px;
-					background-image:url('https://buts.co.kr/img/buts/icon_color_.png'); 
-					background-repeat:no-repeat; background-position:center;">디</label>
-						디즈니플러스 두달					</div>		
-					<div class="item-top"></div>	
-					<div class="item-left">
-						<div class="item-text">
-							<label class="lb_title" style="color:rgba(149, 149, 149, 0.9)">ㆍ파티장 : 에이구 </label>
-						</div>
-					</div>			
-					<div class="item-left">
-						<div class="item-text">
-							<label class="lb_title" style="color:rgba(149, 149, 149, 0.9)">ㆍ파티 종료일 : 2022-09-17 까지 </label>
-						</div>
-					</div>			
-					<div class="item-left">
-						<div class="item-text">
-							<label class="lb_title" style="color:rgba(149, 149, 149, 0.9)">ㆍ파티기간 :  <b style="color:rgba(255, 255, 255, 0.9)">29일 (일 평균 90원)</b> </label>
-						</div>
-					</div>		
-					<div class="item-left" style="padding-bottom: 20px;">
-						<div class="item-text">
-							<label class="lb_title" style="color:rgba(149, 149, 149, 0.9)">ㆍ모집인원 : <b style="color:rgba(255, 255, 255, 0.9)">0 명</b> </label>
-						</div>
-					</div>
-					<div class="item-bottom"></div>						
-					<div class="item-left">
-						<div class="item-text">
-							<label class="lb_left">참여 금액 </label> <label class="lb_right" style="font-size:#65d6ff"><b style="color:#3bb0db; font-size:18px;">2,610</b>원</label>
-						</div>
-					</div>
-					<div class="item-left">
-							<div class="item-text" style="padding-bottom: 30px;padding-top: 30px;">
-							<a href="./item.php?it_id=1658071092&amp;ca_id=10&amp;page=1">
-								<div class="btn btn-in_color btn-block" style="padding: 15px;">상세내역보기</div>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> -->
 <script>
 function date_up(var_it_id, var_it_reflesh_date, var_it_reflesh_cnt) {
 	var var_G5_TIME_YMD = '2022-08-19';
@@ -449,20 +147,15 @@ function date_up(var_it_id, var_it_reflesh_date, var_it_reflesh_cnt) {
 	}
 }	
 </script></div>
-	<div id="item_list-nav" class="item-nav"><a href="https://buts.co.kr/skin/apms/list/Miso-Basic4/list_partner.rows.php?lt=Buts&amp;ls=Miso-Basic4&amp;ca_id=10&amp;npg=0&amp;page=2"></a></div>
-			<div class="item-more">
-			<a href="#" title="더보기">
-				더보기
-				<span class="color"> 
-					<span class="sound_only">더보기</span>
-				</span>
-			</a>
-		</div>
-	
-<div class="button-align right">
-		<a href="https://buts.co.kr/shop/partner/?ap=item" class="button small button-red">등록</a>
-			<a href="https://buts.co.kr/shop/partner/" class="button small button-blue">관리</a>
-		</div>
+<script>
+	$(function(){
+		var result = "${pageNo}";
+		if(result === "2"){
+			var location = document.querySelector("#item_list-nav").offsetTop - 500;
+			window.scrollTo({top:location, behavior:'auto'});
+		}
+	});
+</script>
 
 <script>
 	$(function(){
@@ -525,32 +218,10 @@ function date_up(var_it_id, var_it_reflesh_date, var_it_reflesh_cnt) {
 
   gtag('config', 'UA-163597728-1');
 </script>
-
-<!-- Global site tag (gtag.js) - Google Ads: 914988072 --> <script async src="https://www.googletagmanager.com/gtag/js?id=AW-914988072"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-914988072'); </script><script src="https://buts.co.kr/js/sns.js"></script>
-
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-914988072"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-914988072'); </script><script src="https://buts.co.kr/js/sns.js"></script>
 		</div><!-- .width-container -->
 	</div><!-- .body -->
-<!--
-	<div class="side">
-		<a href="https://buts.co.kr/bbs/guide_buts.php">
-			<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/btn-quick-guid.png" srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/btn-quick-guid.png 2x" alt="" />
-			<span class="side-text">처음 오신분!</span>
-		</a>		
-		<a onclick="chatChannel();" href="javascript:;">
-			<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/btn-quick-talk.png" srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/btn-quick-talk.png 2x" alt="" />
-			<span class="side-text">질문 주세요!</span>
-		</a>
-		<script type="text/javascript">
-		// input your appkey
-		Kakao.init('c089c8172def97eb00c07217cae17495')
-		function chatChannel() {
-			Kakao.Channel.chat({
-			channelPublicId: '_xnSxgxdxb',
-			})
-		}
-		</script>
-	</div>
--->
+
 	
 </div>
 </body>
