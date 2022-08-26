@@ -10,7 +10,9 @@
 <div class="title-wrap">
 	<div class="title">
 		<a href="/index?formpath=myPartyJoined" class="text"><span class="text-purple">참여파티</span></a>
-		<a href="/index?formpath=myPartyCreated" class="text" style="margin-left: 20px;">생성파티</a>
+		<c:if test="${sessionScope.partner eq 'true' }">
+			<a href="/index?formpath=myPartyCreated" class="text" style="margin-left: 20px;">생성파티</a>
+		</c:if> 
 	</div>
 	<div class="title">
 		* 사용기간이 종료된 파티는 참여파티에 보이지 않습니다.
