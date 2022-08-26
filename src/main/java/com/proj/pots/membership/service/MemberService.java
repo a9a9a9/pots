@@ -61,7 +61,24 @@ public class MemberService {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String securePw = encoder.encode(login.getPw());
 		login.setPw(securePw);
-		member.setPoint(0);
+		member.setPoint(500);
+		
+		//충전 내용
+		PointDTO pointDto = new PointDTO();
+		String content = "회원가입 축하";
+		pointDto.setId(member.getId());
+		pointDto.setPoint_content(content);
+		pointDto.setPoint_charge(500); //충전 할 금액
+		
+		pointDto.setUse_point(0);
+		
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm (E)");
+		String dateConvert = sdf.format(date);
+		pointDto.setPoint_date(dateConvert);
+		
+		memberDao.insertContent(pointDto);
+		
 		memberDao.insertLogin(login);
 		memberDao.insertMember(member);
 		return "가입 완료";
@@ -70,7 +87,23 @@ public class MemberService {
 		
 		if(memberDao.isExistsnsId(member.getId()) > 0) 
 			return "중복 아이디 입니다.";
-	
+		
+		member.setPoint(500);
+		//충전 내용
+		PointDTO pointDto = new PointDTO();
+		String content = "회원가입 축하";
+		pointDto.setId(member.getId());
+		pointDto.setPoint_content(content);
+		pointDto.setPoint_charge(500); //충전 할 금액
+		
+		pointDto.setUse_point(0);
+		
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm (E)");
+		String dateConvert = sdf.format(date);
+		pointDto.setPoint_date(dateConvert);
+		
+		memberDao.insertContent(pointDto);
 		memberDao.insertMember(member);
 		return "가입 완료";
 	}

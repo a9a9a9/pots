@@ -27,10 +27,8 @@
 										<span class="icon">
 										<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-coin-star-big.png" srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/icon-coin-star-big.png 2x" alt="" /></span>
 										<span class="Rajdhani">9,900</span>
-										<span class="tip text-red">(이벤트 기간동안 1인당 1회만 결제가능)</span>
 										<span class="right">
-											<span class="benefit"><span class="text-purple">+990</span> 추가 포인트</span>
-											<span class="button round border button-purple">10% ↑</span>
+											<span class="benefit"><span class="text-purple">+9,900</span> 포인트</span>
 										</span>
 									</label>
 								</span>
@@ -44,8 +42,10 @@
 										<span class="icon"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-coin-star-big.png" srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/icon-coin-star-big.png 2x" alt="" /></span>
 										<span class="Rajdhani">50,000</span>
 										<span class="right">
-											<span class="benefit"><span class="text-purple">+1,500</span> 추가 포인트</span>
-											<span class="button round border button-purple">3% ↑</span>
+											<span class="benefit"><span class="text-purple">+50,000</span> 포인트</span>
+										
+<!-- 											<span class="benefit"><span class="text-purple">+1,500</span> 추가 포인트</span> -->
+<!-- 											<span class="button round border button-purple">3% ↑</span> -->
 										</span>
 									</label>
 								</span>
@@ -59,8 +59,9 @@
 										<span class="icon"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-coin-star-big.png" srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/icon-coin-star-big.png 2x" alt="" /></span>
 										<span class="Rajdhani">70,000</span>
 										<span class="right">
-											<span class="benefit"><span class="text-purple">+2,800</span> 추가 포인트</span>
-											<span class="button round border button-purple">4% ↑</span>
+										<span class="benefit"><span class="text-purple">+70,000</span> 포인트</span>
+<!-- 											<span class="benefit"><span class="text-purple">+2,800</span> 추가 포인트</span> -->
+<!-- 											<span class="button round border button-purple">4% ↑</span> -->
 										</span>
 									</label>
 								</span>
@@ -74,8 +75,9 @@
 										<span class="icon"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-coin-star-big.png" srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/icon-coin-star-big.png 2x" alt="" /></span>
 										<span class="Rajdhani">100,000</span>
 										<span class="right">
-											<span class="benefit"><span class="text-purple">+5,000</span> 추가 포인트</span>
-											<span class="button round border button-purple">5% ↑</span>
+										<span class="benefit"><span class="text-purple">+100,000</span> 포인트</span>
+<!-- 											<span class="benefit"><span class="text-purple">+5,000</span> 추가 포인트</span> -->
+<!-- 											<span class="button round border button-purple">5% ↑</span> -->
 										</span>
 									</label>
 								</span>
