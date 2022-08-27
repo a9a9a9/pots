@@ -149,8 +149,8 @@ public class PartyMngService {
 
 	public String notMyPartyNick(String nick) {
 		int length = nick.length();
-		String tmp  = nick.substring(0, 2);
-		for(int i = 2; i < length; i++) {
+		String tmp  = nick.substring(0, 1);
+		for(int i = 1; i < length; i++) {
 			tmp += "*";
 		}
 		return tmp;
@@ -315,6 +315,9 @@ public class PartyMngService {
 	
 	public ArrayList<PartyMemberDTO> partyMember(String party_num) throws ParseException {
 		ArrayList<PartyMemberDTO> members = mngDao.partyMember(party_num);
+		for(PartyMemberDTO m : members) {
+			m.setNick(notMyPartyNick(m.getNick()));
+		}
 		return members;
 	}
 	

@@ -65,6 +65,14 @@
 		return true;
 		
 	}
+	
+	function telNum() {
+		var tele = document.getElementById('tel').value;
+		var regex = /[^0-9]/g;				// 숫자가 아닌 문자열을 선택하는 정규식
+		var result = tele.replace(regex, "");
+		document.getElementById('tel').value = result;
+	}
+	
 </script>
 
 <body class="responsive is-pc">
@@ -114,7 +122,7 @@
 							</li>
 							<li>
 								<span class="subject">ㆍ 휴대폰 번호</span>
-								<input type="text" name="tel" value="" id="tel"  required placeholder="휴대폰 번호" maxlength="20">
+								<input type="text" name="tel" value="" id="tel" onkeyup="telNum()"required placeholder="휴대폰 번호" maxlength="20">
 							</li>
 							</ul>
 						</div>

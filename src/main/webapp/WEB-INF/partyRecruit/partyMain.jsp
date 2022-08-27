@@ -78,7 +78,7 @@
 			</c:otherwise>
 		</c:choose>
 		</span>
-		<c:if test="${p.party_available == '1' && p.party_left_date == 0}">
+		<c:if test="${p.party_available == '1' && p.party_left_date != 0}">
 		<span class="v-bar left">참여 비용 : <span class="price Rajdhani text-purple">${p.party_total_charge }</span><span class="lightgrey"> 원</span></span>
 		</c:if>
 		
