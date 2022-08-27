@@ -229,13 +229,7 @@ public class PartyMngService {
 				p.setParty_subservice("#기타");
 				p.setLogo("/img/partylogo/membership.png"); 
 			} 	
-			
-			
-			
-			
-			
 		}
-		
 		return list;
 	}
 
@@ -315,9 +309,6 @@ public class PartyMngService {
 	
 	public ArrayList<PartyMemberDTO> partyMember(String party_num) throws ParseException {
 		ArrayList<PartyMemberDTO> members = mngDao.partyMember(party_num);
-		for(PartyMemberDTO m : members) {
-			m.setNick(notMyPartyNick(m.getNick()));
-		}
 		return members;
 	}
 	
