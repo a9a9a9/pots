@@ -9,16 +9,13 @@
 <div class="title-wrap border mg-top-minus">
 	<div class="title">결제내역</div>
 </div>
-
 <div class="h3">진행 정보</div>
-
-			<div class="payment-name item-name mobile-block">
-			<span class="brand"></span>
-			<span class="name">
-									<a href="./item.php?it_id=1660890917" class="name">
-						기타					</a>
-							</span>
-			<span class="comment">kg</span>
+	<div class="payment-name item-name mobile-block">
+		<span class="brand"></span>
+		<span class="name">
+			<a href="./item.php?it_id=1660890917" class="name">${party.party_service }</a>
+		</span>
+		<span class="comment">${party.party_subservice }</span>
 		</div>
 	<div class="table-list table-list-payment">
 	<table>
@@ -33,18 +30,17 @@
 		</tr>
 		</thead>
 		<tbody>
-								<tr>
+			<tr>
 				<td class="pc-block">
 				<div class="item-name">
 					<span class="brand"><img src="${party.logo }" alt="" /></span>
-					
-											<a href="./item.php?it_id=1660890917" class="name">
-							${party.party_service }						</a>
-										<span class="comment">${party.party_title }</span>
+					<a href="./item.php?it_id=1660890917" class="name">
+						${party.party_service }						
+					</a>
+					<span class="comment">${party.party_title }</span>
 				</div>
 				</td>
 				<td>
-					
 				 	<strong>${myInfo.party_end}<!-- 2022.08.21	--></strong>	
 					</br>
 					<span class="comment">(총 ${myInfo.diff }일)</span>		 		

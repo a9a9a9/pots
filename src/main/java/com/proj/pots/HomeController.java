@@ -170,10 +170,10 @@ public class HomeController {
 //		return "myMenu/myPartyJoined";
 //	}
 	
-//	@RequestMapping(value = "/myPoint")
-//	public String myPoint() {
-//		return "myMenu/myPoint";
-//	}
+	@RequestMapping(value = "/myPoint")
+	public String myPoint() {
+		return "myMenu/myPoint";
+	}
 
 	@RequestMapping(value = "myPointCharge")
 	public String myPointCharge() {
