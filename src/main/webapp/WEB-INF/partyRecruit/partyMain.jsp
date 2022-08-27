@@ -28,13 +28,14 @@
 
 <div class="title-wrap border">
 	<div class="title">
-	<a href="./list.php?ca_id=10" class="text">${p.party_service }</a>		</div>
+	<a href="/" class="text">${p.party_service }</a>		</div>
 	<div class="title-right"><a href="/partyCreate" class="button border round button-purple">파티 만들기</a></div>
 </div>
 
 <div class="item-view-title">
 	<div class="symbol">
-		<img src="https://buts.co.kr/thema/Buts/colorset/category/1030.jpg" alt="" />
+		<img src="/img/partylogobyno/${p.party_subservice }.png"/>
+		
 	</div>
 		<span class="text">${p.party_subservice }</span>
 	<div class="subject">${p.party_title }</div>	
@@ -42,15 +43,12 @@
 
 <div class="item-view-row">
 	<span class="picture">
-		<img src="https://buts.co.kr/data/member_image/mo/momok22.gif" alt="">		
+		<img src="/img/profile${p.profile }.png" alt="">		
 	</span>
 	<span>${p.nick}<span class="item-view-grade text-purple">
 			
-			<a href="https://buts.co.kr/bbs/partner_level.php">
-				<img style="margin-top: -2px" src="https://buts.co.kr/thema/Buts/colorset/Basic/img/pt_level5.png" />
-					
-			</a>
-					</span>
+			<a>	</a>
+	</span>
 	</span>
 	
 	
@@ -80,7 +78,7 @@
 			</c:otherwise>
 		</c:choose>
 		</span>
-		<c:if test="${p.party_available == '1' || p.party_left_date == 0}">
+		<c:if test="${p.party_available == '1' && p.party_left_date == 0}">
 		<span class="v-bar left">참여 비용 : <span class="price Rajdhani text-purple">${p.party_total_charge }</span><span class="lightgrey"> 원</span></span>
 		</c:if>
 		

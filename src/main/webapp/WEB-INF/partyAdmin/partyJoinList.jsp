@@ -160,7 +160,7 @@
 								<tr>
 									<td><span class="lightgrey">${length - vs.index }</span></td>
 									<td><span class="lightgrey"> ${jl.mystartday } </span></td>
-									<td><a href="/partyMain?party_num=${jl.party_num }" class="item-name"> 
+									<td><a href="index?formpath=partyMain?party_num=${jl.party_num }" class="item-name"> 
 										<span class="brand"><img src="https://buts.co.kr/thema/Buts/colorset/category/6040.jpg" alt=""></span> 
 										<span class="name">${jl.party_title }</span> 
 										<span class="lightgrey">파티번호 : ${jl.party_num }</span>
