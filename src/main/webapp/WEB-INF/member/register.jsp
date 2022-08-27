@@ -46,13 +46,32 @@
 			result.innerHTML = "비밀번호 불일치"
 		}
 	}
+	
+	function emailCheck(f){
+		var msgChk = document.getElementById("msg1").innerText;
+		console.log(msgChk);
+		
+		
+		if(msgChk == "이메일 형식이 아닙니다."){
+			alert("아이디를 확인하세요.");
+			return false;
+		}
+		
+		if(msgChk == ""){
+			alert("아이디 중복확인은 필수입니다.");
+			return false;
+		}
+	
+		return true;
+		
+	}
 </script>
 
 <body class="responsive is-pc">
 	<div class="wrap wrapper  ko">
 		<div class="body">
 			<div class="width-container" style="height: auto;">
-				<form class="form-horizontal register-form" id="fregisterform" name="fregisterform" action="memberProc" method="post" enctype="multipart/form-data" autocomplete="off">
+				<form class="form-horizontal register-form" id="fregisterform" name="fregisterform" action="memberProc" onsubmit="return emailCheck(this)" method="post" enctype="multipart/form-data" autocomplete="off">
 					<div class="mw-800 form-signup mg-top-minus">	
 						
 					

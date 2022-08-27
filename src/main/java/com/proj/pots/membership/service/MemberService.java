@@ -3,6 +3,8 @@ package com.proj.pots.membership.service;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -29,6 +31,12 @@ public class MemberService {
 	public String isExistId(String id) {
 		if (id == null)
 			return "아이디를 입력 하세요.";
+		String regex = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
+	    Pattern p = Pattern.compile(regex);
+	    Matcher m = p.matcher(id);
+	    if(!m.matches()) {
+	    	return "이메일 형식이 아닙니다.";
+	    }
 		int count = memberDao.isExistId(id);
 		if(count == 1)
 			return "중복 아이디 입니다.";
