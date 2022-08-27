@@ -18,10 +18,15 @@ import com.proj.pots.member.dto.LoginDTO;
 public class LoginController {
 	@Autowired private ILoginService loginService;
 	
-	@PostMapping(value = "loginProc") 
+	@RequestMapping(value = "loginProc") 
 	public String loginProc(LoginDTO login, Model model, HttpSession session) {
+//		String id = (String) session.getAttribute("id");
 		String msg = loginService.loginProc(login);
 		String url = (String) session.getAttribute("url");
+		
+//		if(id != null) {
+//			return "redirect:/";
+//		}
 		if(msg.equals("로그인 성공")) {
 			return "redirect:/"+url;
 		}
