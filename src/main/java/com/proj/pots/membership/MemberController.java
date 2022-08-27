@@ -74,8 +74,8 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "memberProc")
-	public String memberProc(MemberDTO member, Model model, String pw, String pwCheck, RedirectAttributes ra) {
-		String msg = memberService.memberProc(member, pw, pwCheck);
+	public String memberProc(MemberDTO member, Model model, String pw, String pwConfirm, RedirectAttributes ra) {
+		String msg = memberService.memberProc(member, pw, pwConfirm);
 		if(msg.equals("가입 완료")) {
 			ra.addFlashAttribute("msg", msg);
 			return "redirect:/index?formpath=main";
