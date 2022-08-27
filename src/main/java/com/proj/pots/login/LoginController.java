@@ -28,6 +28,9 @@ public class LoginController {
 //			return "redirect:/";
 //		}
 		if(msg.equals("로그인 성공")) {
+			if(url.equals("logout")) {
+				return "redirect:/";
+			}
 			return "redirect:/"+url;
 		}
 		model.addAttribute("msg", msg);
@@ -38,7 +41,7 @@ public class LoginController {
 	public String logout(Model model, HttpSession session) {
 		session.invalidate();
 		model.addAttribute("msg", "로그 아웃");
-		return "forward:index?formpath=main";
+		return "forward:/index?formpath=main";
 	}
 	
 	   @RequestMapping(value = "PassProc")
