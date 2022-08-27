@@ -400,7 +400,9 @@ public class PartyMngController {
 					if(nick.equals(info.getNick())) myParty = true;
 				}
 			}
-		}else {
+		}
+
+		if(memberCheck.equals("") ) {
 			for(PartyMemberDTO m : members) {
 				m.setNick(mngSvc.notMyPartyNick(m.getNick()));
 			}
