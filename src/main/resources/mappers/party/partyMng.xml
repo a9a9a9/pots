@@ -110,7 +110,7 @@
 	 <select id="partySelect" resultType="PartyListDTO">
 	 	SELECT a.*, b.party_count AS party_now_member 
 		FROM 
-			(SELECT party.* , member.nick FROM party JOIN member ON party.id = member.id WHERE party_num=#{party_num})
+			(SELECT party.* , member.nick, member.profile FROM party JOIN member ON party.id = member.id WHERE party_num=#{party_num})
 			a 
 		LEFT JOIN 
 			(SELECT party_num, count(*) AS party_count FROM party_member GROUP BY party_num) 

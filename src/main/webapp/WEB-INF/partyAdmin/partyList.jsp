@@ -129,7 +129,7 @@
 									<input type="hidden" name="it_id[${vs.index }]" value="${pl.party_num }">
 								</td>
 								<td>
-									<a href="partyMain?party_num=${ pl.party_num}" class="item-name"> 
+									<a href="index?formpath=partyMain?party_num=${ pl.party_num}" class="item-name"> 
 									<span class="brand">
 									<img src="${pl.logo }" alt=""></span> 
 									<span class="name">${ pl.party_title}</span> 
