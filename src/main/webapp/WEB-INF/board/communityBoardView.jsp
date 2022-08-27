@@ -13,7 +13,7 @@
 		min-height: 500px; background-color: #ffffff; font-size: 17px;
 		font-family: 'Noto Sans KR', 'NanumGothic', '나눔고딕', ng, 'Malgun Gothic', Gulim, Dotum, Sans-Serif;
 		line-height: 35px; font-weight: 300; color: #333333; border: 0px;
-		padding-bottom: 40px;
+		padding-bottom: 40px; white-space: break-spaces;
 	}
 </style>
 <body class="responsive is-pc">
