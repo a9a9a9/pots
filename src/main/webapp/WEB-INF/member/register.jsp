@@ -65,6 +65,14 @@
 		return true;
 		
 	}
+	
+	function telNum() {
+		var tele = document.getElementById('tel').value;
+		var regex = /[^0-9]/g;				// 숫자가 아닌 문자열을 선택하는 정규식
+		var result = tele.replace(regex, "");
+		document.getElementById('tel').value = result;
+	}
+	
 </script>
 
 <body class="responsive is-pc">
@@ -114,7 +122,7 @@
 							</li>
 							<li>
 								<span class="subject">ㆍ 휴대폰 번호</span>
-								<input type="text" name="tel" value="" id="tel"  required placeholder="휴대폰 번호" maxlength="20">
+								<input type="text" name="tel" value="" id="tel" onkeyup="telNum()"required placeholder="휴대폰 번호" maxlength="20">
 							</li>
 							</ul>
 						</div>
@@ -127,19 +135,19 @@
 									<!-- <a href="javascript:showProfile()" class="button round border button-purple">파일 선택</a> -->
 									<div class="profile_select" style="margin-right: 20px; float: left;">
 										<input type="image" src="/img/profile1.png" disabled="disabled"><br>
-										<input type="radio" name="profile" id="profile" value="1" checked="checked" style="margin:5px 18px;" />
+										<input type="radio" name="profile" id="profile" value="1" checked="checked" style="margin:5px 22px;" />
 									</div>
 									<div class="profile_select" style="margin-right: 20px; float: left;">
 										<input type="image" src="/img/profile2.png" disabled="disabled"><br>
-										<input type="radio" name="profile" id="profile" value="2" style="margin:5px 18px;" />
+										<input type="radio" name="profile" id="profile" value="2" style="margin:5px 22px;" />
 									</div>
 									<div class="profile_select" style="margin-right: 20px; float: left;">
 										<input type="image" src="/img/profile3.png" disabled="disabled"><br>
-										<input type="radio" name="profile" id="profile" value="3" style="margin:5px 18px;" />
+										<input type="radio" name="profile" id="profile" value="3" style="margin:5px 22px;" />
 									</div>
 									<div class="profile_select" style="margin-right: 20px; float: left;">
 										<input type="image" src="/img/profile4.png" disabled="disabled"><br>
-										<input type="radio" name="profile" id="profile" value="4" style="margin:5px 18px;" />
+										<input type="radio" name="profile" id="profile" value="4" style="margin:5px 22px;" />
 									</div>
 								</div>
 							</li>

@@ -77,7 +77,7 @@ public class BoardServiceImpl implements IBoardService {
 		map.put("select", select);
 		
 		int totalCount = mapper.boardCount(map); 
-		int pageBlock = 5;
+		int pageBlock = 10;
 		int end = currentPage * pageBlock;
 		int begin = end+1 - pageBlock;
 		
@@ -99,7 +99,7 @@ public class BoardServiceImpl implements IBoardService {
 		map.put("select", select);
 		
 		int totalCount = mapper.noticeCount(map); 
-		int pageBlock = 5;
+		int pageBlock = 10;
 		int end = currentPage * pageBlock;
 		int begin = end+1 - pageBlock;
 		
