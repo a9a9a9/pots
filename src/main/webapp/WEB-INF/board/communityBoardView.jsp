@@ -23,7 +23,7 @@
 			
 				<div class="title-wrap border">
 					<div class="title">
-						<a href="" class="text">게시글</a>
+						<a href="${root}boardProc" class="text">게시글</a>
 					</div>
 				</div>
 				

@@ -65,7 +65,15 @@
 									<td>
 									<!-- 제목 -->
 										<div class="subject notice" id="${list.square_num}">
-										<a href="viewProc?writeNo=${list.square_num}">${list.square_title }</a> </div>
+										<c:choose>
+											<c:when test="${sessionScope.id == null }">
+												<a href="${root }index?formpath=login">${list.square_title }</a> 
+											</c:when>
+											<c:otherwise>
+												<a href="viewProc?writeNo=${list.square_num}">${list.square_title }</a> 
+											</c:otherwise>
+										</c:choose>
+										</div>
 									</td>
 									<!-- 작성일  -->
 									<td><c:out value="${fn:substring(list.square_date, 0, 6)}"/></td> 
@@ -83,11 +91,16 @@
 
 					<div class="write-right" style="position: relative; float: right;" >
 					<br><br><br>
-						<a href="${root}index?formpath=boardWrite" class="button small border button-purple">글쓰기</a>
+					<c:choose>
+						<c:when test="${sessionScope.id == null }">
+							<a href="${root }index?formpath=login" class="button small border button-purple">글쓰기</a>
+						</c:when>
+						<c:otherwise>
+							<a href="${root}index?formpath=boardWrite" class="button small border button-purple">글쓰기</a>
+						</c:otherwise>
+					</c:choose>
 					</div>
-
 					<div class="button-align right mg-top-0"></div>
-
 				</div>
 			</div>
 		</div>
