@@ -14,9 +14,10 @@ import com.proj.pots.member.dto.BoardDTO;
 public class BoardHomeController {
 	@Autowired HttpSession session;
 	public String checkSession(String url) {
+		
 		String id = (String)session.getAttribute("id");
 		if(id == null)
-			return "member/login";
+			return "redirect:/index?formpath=login";
 		return url;
 	}
 	@RequestMapping(value = "/view")

@@ -76,4 +76,11 @@
 		SELECT count(*) FROM point_list WHERE	id = #{id}
 	    </select>
 	
+	<update id="deleteUpdate">
+		UPDATE board_comment SET id='탈퇴한 회원', nick='탈퇴한 회원' WHERE id=#{id}
+	</update>
+	<update id="deleteUpdate2">
+		UPDATE board_square SET id='탈퇴한 회원', nick='탈퇴한 회원' WHERE id=#{id}
+	</update>
+	
 </mapper>

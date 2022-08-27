@@ -1,5 +1,7 @@
 package com.proj.pots.login;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +19,11 @@ public class LoginController {
 	@Autowired private ILoginService loginService;
 	
 	@PostMapping(value = "loginProc") 
-	public String loginProc(LoginDTO login, Model model) {
+	public String loginProc(LoginDTO login, Model model, HttpSession session) {
 		String msg = loginService.loginProc(login);
+		String url = (String) session.getAttribute("url");
 		if(msg.equals("로그인 성공")) {
-			return "redirect:/index?formpath=main";
+			return "redirect:/"+url;
 		}
 		model.addAttribute("msg", msg);
 		return "forward:/index?formpath=login";
