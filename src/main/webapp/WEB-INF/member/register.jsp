@@ -122,7 +122,8 @@
 							</li>
 							<li>
 								<span class="subject">ㆍ 휴대폰 번호</span>
-								<input type="text" name="tel" value="" id="tel" onkeyup="telNum()"required placeholder="휴대폰 번호" maxlength="20">
+								<input type="text" name="tel" value="" id="tel" onkeyup="telNum()"required placeholder="휴대폰 번호" maxlength="20" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+								<span class="lightgrey inline-break">하이픈(-)없이 숫자만 입력 가능</span>
 							</li>
 							</ul>
 						</div>
