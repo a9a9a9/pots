@@ -98,7 +98,7 @@
 						<c:when test="${nick1 eq nick2}">
 		                    <li class="right">
 	                            <div class="picture">
-	                            <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png" alt="" />
+	                            <img src="/img/icon-butsicon-middle.png" alt="" />
 	                            </div>
 	                            <div class="balloon">
 	                            <div class="speech"><span>${c_list.comment_content }</span></div>
@@ -113,7 +113,7 @@
 	                    <c:otherwise>
 	                        <li>
 		                        <div class="picture">
-		                        <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png" alt="" />
+		                        <img src="/img/icon-butsicon-middle.png" alt="" />
 		                        </div>
 		                        <div class="balloon">
 		                        	<div class="speech">${c_list.comment_content }</div>

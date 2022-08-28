@@ -51,4 +51,6 @@ public interface IPartyViewDAO {
 	
 	ArrayList<PartyMemberDTO> orderList(String id);
 
+
+
 }

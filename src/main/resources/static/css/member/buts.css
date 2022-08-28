@@ -154,7 +154,7 @@ a:visited {
 }
 
 a:hover {
-  color: #7e69fe;
+  color: #84cdcf;
 }
 
 img,
@@ -174,7 +174,7 @@ select {
 }
 
 select:focus {
-  border: solid 1px #7e69fe;
+  border: solid 1px #84cdcf;
 }
 
 textarea {
@@ -227,7 +227,9 @@ input[type='password'] {
 
 input[type='text']:focus,
 input[type='password']:focus {
-  border: solid 1px #A0D9E2;
+
+  border: solid 1px #84cdcf;
+
 }
 
 input[type='text']::-webkit-input-placeholder,
@@ -935,7 +937,7 @@ input[type='password']:disabled {
   margin: 0 6px;
   color: white;
   text-decoration: none;
-  background-color: #7e69fe;
+  background-color: #84cdcf;
   border-radius: 50%;
   cursor: default;
 }
@@ -1411,7 +1413,7 @@ input[type='password']:disabled {
 
 .header-menu .menu-li:hover .menu-a, .header-menu .menu-li.on .menu-a {
   color: #333333;
-  border-bottom: 3px solid #7e69fe;
+  border-bottom: 3px solid #84cdcf;
 }
 
 .header-menu .menu-a {
@@ -1465,8 +1467,8 @@ input[type='password']:disabled {
 }
 
 .header-menu .sub-li:hover .sub-a, .header-menu .sub-li.on .sub-a {
-  color: #7e69fe;
-  border: solid 1px #a89cf4;
+  color: #84cdcf;
+  border: solid 1px #84cdcf;
 }
 
 .header-menu .sub-a {
@@ -1534,7 +1536,7 @@ a.header-login {
   text-align: center;
   line-height: 32px;
   border-radius: 17px;
-  background-color: #7e69fe;
+  background-color: #84cdcf;
 }
 
 .header-user {
@@ -1573,8 +1575,8 @@ a.header-login {
   display: block;
   width: 100%;
   height: 100%;
-  border-top: 2px solid #7e69fe;
-  border-bottom: 2px solid #7e69fe;
+  border-top: 2px solid #84cdcf;
+  border-bottom: 2px solid #84cdcf;
 }
 
 .header-hamberger .line::before {
@@ -1585,7 +1587,7 @@ a.header-login {
   display: block;
   width: 100%;
   margin-top: -1px;
-  border-top: 2px solid #7e69fe;
+  border-top: 2px solid #84cdcf;
 }
 
 .header-profile {
@@ -1655,7 +1657,7 @@ a.header-login {
 
 .header-profile .name {
   font-size: 17px;
-  color: #7e69fe;
+  color: #84cdcf;
   text-align: center;
 }
 
@@ -1677,7 +1679,7 @@ a.header-login {
   margin: 12px 0 8px 0;
   border-radius: 6px;
   overflow: hidden;
-  border: 1px solid #7e69fe;
+  border: 1px solid #84cdcf;
   background-color: white;
 }
 
@@ -1686,18 +1688,18 @@ a.header-login {
   width: 100%;
   height: 30px;
   font-size: 13px;
-  color: #7e69fe;
+  color: #84cdcf;
   text-align: center;
   line-height: 30px;
 }
 
 .header-profile .buttons a:hover {
   color: white;
-  background-color: #7e69fe;
+  background-color: #84cdcf;
 }
 
 .header-profile .buttons a:nth-child(n + 2) {
-  border-left: 1px solid #7e69fe;
+  border-left: 1px solid #84cdcf;
 }
 
 .header-profile .point {
@@ -1719,7 +1721,7 @@ a.header-login {
 .header-profile .price {
   font-size: 17px;
   font-weight: 600;
-  color: #7e69fe;
+  color: #84cdcf;
   line-height: 20px;
 }
 
@@ -1731,17 +1733,17 @@ a.header-login {
   height: 18px;
   margin-left: 6px;
   font-size: 12px;
-  color: #7e69fe;
+  color: #84cdcf;
   text-align: center;
   line-height: 14px;
   border-radius: 2px;
   background-color: white;
-  border: 1px solid #7e69fe;
+  border: 1px solid #84cdcf;
 }
 
 .header-profile a.charge.fill {
   color: white;
-  background-color: #7e69fe;
+  background-color: #84cdcf;
 }
 
 .header-profile a.charge.fill:hover {
@@ -1749,7 +1751,7 @@ a.header-login {
 }
 
 .header-profile a.charge:hover {
-  color: #7e69fe;
+  color: #84cdcf;
 }
 
 .header-profile .right {
@@ -2169,7 +2171,7 @@ a.header-login {
 }
 
 .faq-tab a.active {
-  color: #7e69fe;
+  color: #84cdcf;
 }
 
 /* my point */
@@ -2227,7 +2229,7 @@ a.header-login {
   margin-left: 20px;
   font-size: 24px;
   font-weight: bold;
-  color: #7e69fe;
+  color: #84cdcf;
   vertical-align: middle;
 }
 
@@ -2410,7 +2412,7 @@ a.header-login {
 }
 
 .slide-navi:hover {
-  background-color: #7e69fe;
+  background-color: #84cdcf;
 }
 
 .slide-navi:hover::before, .slide-navi:hover::after {
@@ -2519,8 +2521,8 @@ a.header-login {
 
 .item-row .button.button-purple:hover {
   color: white;
-  background-color: #7e69fe;
-  border: 1px solid #7e69fe;
+  background-color: #84cdcf;
+  border: 1px solid #84cdcf;
 }
 
 .item-row .button.button-red:hover {
@@ -2530,15 +2532,15 @@ a.header-login {
 }
 
 .item-row:not(.disabled):hover {
-  border: 1px solid #a89cf4;
+  border: 1px solid #84cdcf;
 }
 
 .item-row:not(.disabled):hover .item-type {
-  color: #684adf;
+  color: #84cdcf;
 }
 
 .item-row:not(.disabled):hover .add {
-  border: 1px solid #7e69fe;
+  border: 1px solid #84cdcf;
 }
 
 .item-row:not(.disabled):hover .add .icon {
@@ -2547,7 +2549,7 @@ a.header-login {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #7e69fe;
+  background-color: #84cdcf;
 }
 
 .item-row:not(.disabled):hover .add::before, .item-row:not(.disabled):hover .add:after {
@@ -2645,7 +2647,7 @@ a.header-login {
   height: 100%;
   font-size: 14px;
   font-weight: 600;
-  color: #7e69fe;
+  color: #84cdcf;
   line-height: 32px;
   vertical-align: 1px;
   background-color: white;
@@ -2657,7 +2659,7 @@ a.header-login {
   top: 50%;
   left: 50%;
   display: block;
-  background-color: #7e69fe;
+  background-color: #84cdcf;
   z-index: 1;
 }
 
@@ -2714,7 +2716,7 @@ a.header-login {
   font-size: 16px;
   font-weight: 500;
   color: white;
-  background-color: #7e69fe;
+  background-color: #84cdcf;
   border-radius: 4px;
   overflow: hidden;
 }
@@ -2787,7 +2789,7 @@ a.header-login {
   color: white;
   text-align: center;
   line-height: 40px;
-  background-color: #7e69fe;
+  background-color: #84cdcf;
   border-radius: 5px;
 }
 
@@ -2871,7 +2873,7 @@ a.header-login {
 }
 
 .item-view-row .text-purple {
-  color: #7e69fe;
+  color: #84cdcf;
 }
 
 .item-view-row .lightgrey {
@@ -3018,7 +3020,7 @@ a.header-login {
 }
 
 .item-view-menu a:hover {
-  color: #7e69fe;
+  color: #84cdcf;
 }
 
 .item-view-caution {
@@ -3092,7 +3094,7 @@ a.header-login {
   width: calc(62% - 60px);
   margin-left: 57px;
   margin-bottom: 80px;
-  border-top: 2px solid #7e69fe;
+  border-top: 2px solid #84cdcf;
 }
 
 .item-view-button {
@@ -3119,7 +3121,7 @@ a.header-login {
   padding: 0 30px;
   font-size: 20px;
   color: #333333;
-  border: solid 1px #cec8f1;
+  border: solid 1px #84cdcf;
   background-color: #f9f9f9;
 }
 
@@ -3755,7 +3757,7 @@ a.header-login {
 .form-round {
   position: relative;
   padding: 25px 40px;
-  border: solid 1px #cec8f1;
+  border: solid 1px #84cdcf;
   border-radius: 20px;
 }
 
@@ -4718,7 +4720,7 @@ a.header-login {
 }
 
 .table-list tr.active td {
-  background-color: #faf9ff;
+  background-color: white;
 }
 
 .table-list strong {
@@ -4758,22 +4760,24 @@ a.header-login {
   padding-left: 44px;
 }
 
-.table-list .notice::before {
-  content: '알림';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  display: inline-block;
-  width: 35px;
-  height: 20px;
-  margin-top: -10px;
-  font-size: 11px;
-  color: #84cdcf;
-  text-align: center;
-  vertical-align: middle;
-  border: 1px solid #84cdcf;
-  border-radius: 4px;
-}
+
+/* .table-list .notice::before { */
+/*   content: '알림'; */
+/*   position: absolute; */
+/*   top: 50%; */
+/*   left: 0; */
+/*   display: inline-block; */
+/*   width: 35px; */
+/*   height: 20px; */
+/*   margin-top: -10px; */
+/*   font-size: 11px; */
+/*   color: #84cdcf; */
+/*   text-align: center; */
+/*   vertical-align: middle; */
+/*   border: 1px solid #84cdcf; */
+/*   border-radius: 4px; */
+/* } */
+
 
 .table-list .Rajdhani {
   margin-right: 2px;
@@ -5178,8 +5182,8 @@ a.header-login {
 }
 
 .accordion .select:hover, .accordion .select.active {
-  border: solid 1px #cec8f1;
-  background-color: #f9f8ff;
+  border: solid 1px #84cdcf;
+   background-color: #f9f8ff;
 }
 
 .accordion .select.active .subject {
@@ -5711,8 +5715,8 @@ a.header-login {
 }
 
 .dialog-select a.active {
-  color: #7e69fe;
-  border: solid 1px #7e69fe;
+  color: #84cdcf;
+  border: solid 1px #84cdcf;
 }
 
 .dialog-reject {
