@@ -84,7 +84,7 @@
 			
 			<c:choose>
 				<c:when test="${empty list}">
-					<div class="empty">
+					<div class="empty" style="margin-left:43%;">
 					<div class="icon"><img src="/img/icon-butsicon-big-glay.png" /></div>
 						<h5>등록된 내용이 없습니다.</h5>
 					</div>

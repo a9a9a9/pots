@@ -109,7 +109,7 @@
 							<ul class="form-list">
 							<li>
 								<span class="subject">ㆍ 이름</span>
-								<input type="text" id="name" name="name" required  placeholder="이름" size="10">
+								<input type="text" id="name" name="name" required  placeholder="이름" size="10" maxlength="10">
 							</li>
 							<li>
 								<span class="subject">ㆍ 닉네임</span>
@@ -122,7 +122,8 @@
 							</li>
 							<li>
 								<span class="subject">ㆍ 휴대폰 번호</span>
-								<input type="text" name="tel" value="" id="tel" onkeyup="telNum()"required placeholder="휴대폰 번호" maxlength="20">
+								<input type="text" name="tel" value="" id="tel" onkeyup="telNum()"required placeholder="휴대폰 번호" maxlength="20" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+								<span class="lightgrey inline-break">하이픈(-)없이 숫자만 입력 가능</span>
 							</li>
 							</ul>
 						</div>
@@ -135,19 +136,19 @@
 									<!-- <a href="javascript:showProfile()" class="button round border button-purple">파일 선택</a> -->
 									<div class="profile_select" style="margin-right: 20px; float: left;">
 										<input type="image" src="/img/profile1.png" disabled="disabled"><br>
-										<input type="radio" name="profile" id="profile" value="1" checked="checked" style="margin:5px 18px;" />
+										<input type="radio" name="profile" id="profile" value="1" checked="checked" style="margin:5px 22px;" />
 									</div>
 									<div class="profile_select" style="margin-right: 20px; float: left;">
 										<input type="image" src="/img/profile2.png" disabled="disabled"><br>
-										<input type="radio" name="profile" id="profile" value="2" style="margin:5px 18px;" />
+										<input type="radio" name="profile" id="profile" value="2" style="margin:5px 22px;" />
 									</div>
 									<div class="profile_select" style="margin-right: 20px; float: left;">
 										<input type="image" src="/img/profile3.png" disabled="disabled"><br>
-										<input type="radio" name="profile" id="profile" value="3" style="margin:5px 18px;" />
+										<input type="radio" name="profile" id="profile" value="3" style="margin:5px 22px;" />
 									</div>
 									<div class="profile_select" style="margin-right: 20px; float: left;">
 										<input type="image" src="/img/profile4.png" disabled="disabled"><br>
-										<input type="radio" name="profile" id="profile" value="4" style="margin:5px 18px;" />
+										<input type="radio" name="profile" id="profile" value="4" style="margin:5px 22px;" />
 									</div>
 								</div>
 							</li>

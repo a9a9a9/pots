@@ -365,6 +365,7 @@ public class PartyViewServiceImpl implements IPartyViewService{
 		pointDto.setPoint_charge(0); 
 		int minupoint = Integer.parseInt(usepoint);
 		pointDto.setUse_point(minupoint); //사용 된 금액
+		System.out.println("사용 된 금액 : " + minupoint);
 		
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm (E)");
@@ -377,6 +378,7 @@ public class PartyViewServiceImpl implements IPartyViewService{
 		
 		int point = pointc - minupoint;
 		session.setAttribute("point", point);
+		System.out.println("현재 포인트 : " + point);
 		
 		String compoint = String.format("%,d", point);
 		session.setAttribute("compoint", compoint);

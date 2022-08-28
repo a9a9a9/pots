@@ -152,7 +152,11 @@ public class HomeController {
 		String uri = req.getHeader("Referer");
 		System.out.println(uri);
 		String str[] = uri.split("/");
-		uri = str[3];
+		if(str.length <= 3) {
+			uri = "";
+		}else {
+			uri = str[3];
+		}
 		System.out.println(uri);
 		session.setAttribute("url", uri);
 		return "member/login";
