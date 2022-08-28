@@ -1,6 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+ <c:if test="${empty sessionScope.id}">
+  <script>
+  	alert('로그인 후 이용가능합니다.');
+  	document.location.href="/index?formpath=login";
+  </script>
+ </c:if>   
 <link rel="stylesheet" href="/css/partyAdmin/font-awesome.min.css">
 <body class="responsive is-pc">
 	<div class="wrap wrapper  ko">
@@ -75,11 +81,15 @@
 				<div class="page-number" style="border-top: 1px solid #333333">
 					<ul>
 						<li class="disabled">
-							<a href = "index?formpath=partyOrderList?nowPage=1"><i class="fa fa-angle-double-left"></i></a>
+							<a href = "index?formpath=partyOrderList?nowPage=1">
+								<img src="/img/double_arrow_left.png" style="width:13px; height:13px;">
+							</a>
 						</li>
 						
 						<li class="disabled">
-							<a href = "index?formpath=partyOrderList?nowPage=${paging.nowPage -1}"><i class="fa fa-angle-left"></i></a>
+							<a href = "index?formpath=partyOrderList?nowPage=${paging.nowPage -1}">
+								<img src="/img/arrow_left.png" style="width:13px; height:13px;">
+							</a>
 						</li>
 						
 						<c:forEach begin="1" end="${paging.endPage }" var="p">
@@ -96,11 +106,15 @@
 						</c:forEach>	
 						
 						<li class="disabled">
-							<a href="index?formpath=partyOrderList?nowPage=${paging.nowPage +1}"><i class="fa fa-angle-right"></i></a>
+							<a href="index?formpath=partyOrderList?nowPage=${paging.nowPage +1}">
+								<img src="/img/arrow_right.png" style="width:13px; height:13px;">
+							</a>
 						</li>
 						
 						<li class="disabled">
-							<a href="index?formpath=partyOrderList?nowPage=${paging.endPage}"><i class="fa fa-angle-double-right"></i></a>
+							<a href="index?formpath=partyOrderList?nowPage=${paging.endPage}">
+								<img src="/img/double_arrow_right.png" style="width:13px; height:13px;">
+							</a>
 						</li>
 					</ul>
 				</div>

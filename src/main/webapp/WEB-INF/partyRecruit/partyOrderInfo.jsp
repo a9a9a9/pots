@@ -1,6 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+ <c:if test="${empty sessionScope.id}">
+  <script>
+  	alert('로그인 후 이용가능합니다.');
+  	document.location.href="/index?formpath=login";
+  </script>
+ </c:if>   
 <body class="responsive is-pc">
 	<div class="wrap wrapper  ko">
 		<div class="body">
