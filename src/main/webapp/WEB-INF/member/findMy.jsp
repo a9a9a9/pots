@@ -57,7 +57,7 @@
 									</button>
 <!-- 								<input type="button" value="음성듣기" /> -->
 								</a>
-								<a onclick="javascript:refreshBtn()" class="refreshBtn" id="captcha_reload"> 
+								<a onclick="javascript:refreshBtn()" class="refreshBtn" id="captcha_reload" style="top:55px;left:200px;"> 
 									<button type="button" id="captcha_reload" style="top:55px;left:200px;">
 									<span></span>
 										새로고침
