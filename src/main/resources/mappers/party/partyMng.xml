@@ -64,7 +64,7 @@
 				<when test="sel1 == 'ser'">AND a.party_service=#{keynum}</when>
 				<when test="sel1 == 'sub'">AND a.party_subservice=#{keynum}</when>
 			</choose>
-			;
+			
 	</select>
 	
 	<select id="partyJoinList" resultType="PartyMemberDTO">
@@ -128,7 +128,7 @@
 	 </select>
 	 
 	 <select id="bill_total" resultType="int">
-	 	SELECT SUM(b.mycharge) AS sum
+	 	SELECT IFNULL(SUM(b.mycharge),0) AS sum
 			FROM (SELECT * FROM party WHERE id=#{id}) a 
 			LEFT JOIN party_member b 
 			ON a.party_num = b.party_num 

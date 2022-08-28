@@ -13,7 +13,7 @@
 
 	<!-- [[ 파트너 파티 관리 ]] -->
 
-	<form class="form" role="form" name="flist" action="partySearch" method="GET">
+	<form class="form" role="form" name="flist" action="partySearch" onsubmit="return searchChk(this)" method="GET">
 
 		<div class="partner-well">
 			<select name="sel1" id="sca">
@@ -54,6 +54,20 @@
 		</div>
 
 	</form>
+	
+	<script>
+		function searchChk(f){
+			var keyword = document.getElementById('stx');
+			if(keyword.value === ""){
+				alert('검색어를 입력해 주세요.');
+				keyword.focus();
+				return false;
+			}
+			return true;
+		} 
+		
+	
+	</script>
 
 
 	<div class="title">

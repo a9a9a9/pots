@@ -139,8 +139,19 @@ public class PartyMngService {
 	
 	public ArrayList<PartyListDTO> partySearch(Map<String, String> map) throws ParseException {
 		ArrayList<PartyListDTO> list = mngDao.partySearch(map);
-		if(list != null)
+		System.out.println(map.get("sel1") + map.get("sel2") + map.get("keyword"));
+		System.out.println("list" + list);
+		if(list != null) {
 			list = listSetter(list);
+			for(PartyListDTO l : list) {
+				System.out.println("서치작동: " +l.getId());
+			}
+		}else {
+			System.out.println("서치작동안함");
+		}
+		
+//		if(list != null)
+//			list = listSetter(list);
 		
 		return list;
 		
