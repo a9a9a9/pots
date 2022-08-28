@@ -109,7 +109,7 @@
 							<ul class="form-list">
 							<li>
 								<span class="subject">ㆍ 이름</span>
-								<input type="text" id="name" name="name" required  placeholder="이름" size="10">
+								<input type="text" id="name" name="name" required  placeholder="이름" size="10" maxlength="10">
 							</li>
 							<li>
 								<span class="subject">ㆍ 닉네임</span>

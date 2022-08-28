@@ -7,7 +7,6 @@
 		<div class="body">
 			<div class="width-container">
 				<div id="sct_hhtml" style="background-color:#242424;"></div>
-				
 				<div class="title-wrap">
 					<div class="title"><a href="${root}artProc" class="text">도서/음악</a><a href="${root}yes24Proc" class="button border round button-white">#YES24</a></div>
 					<c:if test="${sessionScope.partner eq 'true'}">
