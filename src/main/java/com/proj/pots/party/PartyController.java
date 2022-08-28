@@ -50,6 +50,7 @@ public class PartyController {
 				return "redirect:/partnerRegister";
 			}else {
 				session.setAttribute("partner", "true");
+				session.setAttribute("personal_num", partner.getPersonal_num());
 				session.setAttribute("account_num", partner.getAccount_num());
 				session.setAttribute("account_name", partner.getAccount_name());
 				return "redirect:/partyList";
@@ -141,13 +142,13 @@ public class PartyController {
 			String id = (String)session.getAttribute("id");
 			partyMember.setId(id);
 			Integer party_num = partyMember.getParty_num();
-			
 			String msg = service.partyMemberInsertProc(partyMember, Integer.toString(party_num));
 			System.out.println("메시지" + msg);
+			System.out.println("계좌이체: " + partyMember.getUse_account() + "\n 포인트: " + partyMember.getUse_point());
 			if(msg.equals("신청불가")) {
 				ra.addFlashAttribute("msg", "<script>alert('이미 모집이 완료된 파티입니다.')</script>");
 				return "redirect:/";
-			}	
+			}
 			return "redirect:/index?formpath=partyOrderInfo?party_num=" + party_num;
 		}
 		
