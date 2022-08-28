@@ -18,11 +18,19 @@ import com.proj.pots.member.dto.LoginDTO;
 public class LoginController {
 	@Autowired private ILoginService loginService;
 	
-	@PostMapping(value = "loginProc") 
+	@RequestMapping(value = "loginProc") 
 	public String loginProc(LoginDTO login, Model model, HttpSession session) {
+//		String id = (String) session.getAttribute("id");
 		String msg = loginService.loginProc(login);
 		String url = (String) session.getAttribute("url");
+		
+//		if(id != null) {
+//			return "redirect:/";
+//		}
 		if(msg.equals("로그인 성공")) {
+			if(url.equals("logout")) {
+				return "redirect:/";
+			}
 			return "redirect:/"+url;
 		}
 		model.addAttribute("msg", msg);
@@ -33,7 +41,7 @@ public class LoginController {
 	public String logout(Model model, HttpSession session) {
 		session.invalidate();
 		model.addAttribute("msg", "로그 아웃");
-		return "forward:index?formpath=main";
+		return "forward:/index?formpath=main";
 	}
 	
 	   @RequestMapping(value = "PassProc")

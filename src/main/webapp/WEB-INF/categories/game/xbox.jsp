@@ -36,6 +36,12 @@
 									<a href="${root}index?formpath=partyMain?party_num=${list.party_num}" class="item-button"></a>
 								</div>
 							</c:if>
+						</c:when>
+					</c:choose>
+					</c:forEach>
+					<c:forEach var="list" items="${list}">
+						<c:choose>
+						<c:when test="${!empty list}">
 							<c:if test="${list.party_available == '0' }">
 								<div class="item-row disabled">
 								<div class="item-type">${list.party_subservice}</div>
