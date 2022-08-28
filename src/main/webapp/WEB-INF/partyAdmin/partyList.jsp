@@ -60,7 +60,7 @@
 		<span class="text-purple">파티/판매</span> 목록
 
 		<div class="title2">
-			<span> <a class="text-purple" href="./?ap=list&amp;sort=d">최신순</a>
+			<span> <a class="text-purple">최신순</a>
 			<!-- </span> <span class=" v-bar left" style="top: -5px;"> </span> <span>
 				<a href="./?ap=list&amp;sort=p">모집중 파티</a>
 			</span> <span class=" v-bar left" style="top: -5px;"> </span> <span>
@@ -129,7 +129,7 @@
 									<input type="hidden" name="it_id[${vs.index }]" value="${pl.party_num }">
 								</td>
 								<td>
-									<a href="partyMain?party_num=${ pl.party_num}" class="item-name"> 
+									<a href="index?formpath=partyMain?party_num=${ pl.party_num}" class="item-name"> 
 									<span class="brand">
 									<img src="${pl.logo }" alt=""></span> 
 									<span class="name">${ pl.party_title}</span> 
@@ -149,8 +149,11 @@
 								</c:choose>
 								
 								<td class="text-center">${pl.party_regdate }</td>
+								
 								<td class="text-center">
-									<a href="partyUpdate/party_num" class="button round border button-purple">수정</a>
+								<c:if test="${pl.party_left_date > 0 }">
+									<a href="partyUpdate?party_num=${pl.party_num }" class="button round border button-purple">수정</a>
+								</c:if>
 								</td>
 							</tr>
 						</c:forEach>

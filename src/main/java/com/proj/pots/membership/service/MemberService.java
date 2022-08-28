@@ -3,6 +3,8 @@ package com.proj.pots.membership.service;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -29,6 +31,12 @@ public class MemberService {
 	public String isExistId(String id) {
 		if (id == null)
 			return "아이디를 입력 하세요.";
+		String regex = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
+	    Pattern p = Pattern.compile(regex);
+	    Matcher m = p.matcher(id);
+	    if(!m.matches()) {
+	    	return "이메일 형식이 아닙니다.";
+	    }
 		int count = memberDao.isExistId(id);
 		if(count == 1)
 			return "중복 아이디 입니다.";
@@ -50,9 +58,10 @@ public class MemberService {
 		return "사용 가능한 아이디입니다.";
 	} 
 	
-	public String memberProc(MemberDTO member, String pw, String pwCheck) {
+	public String memberProc(MemberDTO member, String pw, String pwConfirm) {
 		LoginDTO login = member;
 		
+		System.out.println(pw+pwConfirm);
 		if(login.getId() == null || login.getId().isEmpty())
 			return "아이디를 입력하세요.";
 		if(login.getPw() == null || login.getPw().isEmpty())
@@ -61,7 +70,7 @@ public class MemberService {
 			return "중복 아이디 입니다.";
 		if(memberDao.isExistNick(member.getNick()) > 0)
 			return "중복 닉네임 입니다.";
-		if(pw.equals(pwCheck)== false)
+		if(pw.equals(pwConfirm)== false)
 			return "비밀번호가 일치하지 않습니다.";
 		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -143,7 +152,6 @@ public class MemberService {
 
 	public String deleteCheckProc(LoginDTO check) {
 		String id = (String)session.getAttribute("id");
-		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		LoginDTO login = memberDao.memberPassword(id);
 		
@@ -152,6 +160,8 @@ public class MemberService {
 		if(encoder.matches(check.getPw(), login.getPw()) == false)
 			return "비밀번호가 다릅니다.";
 		
+		memberDao.deleteUpdate(id);
+		memberDao.deleteUpdate2(id);
 		memberDao.deleteLogin(id);
 		memberDao.deleteMember(id);
 		session.invalidate();

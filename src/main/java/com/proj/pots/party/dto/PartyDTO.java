@@ -5,7 +5,14 @@ public class PartyDTO {
 	private int party_num;
 	private String id;
 	private String nick;
+	private int profile;
 	
+	public int getProfile() {
+		return profile;
+	}
+	public void setProfile(int profile) {
+		this.profile = profile;
+	}
 	public int getParty_num() {
 		return party_num;
 	}

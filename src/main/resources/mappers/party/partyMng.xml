@@ -42,8 +42,8 @@
 		LEFT JOIN 
 			(SELECT party_num, count(*) AS party_count FROM party_member GROUP BY party_num) 
 			b 
-		ON a.party_num = b.party_num LIMIT 1
-		ORDER BY a.party_num DESC;
+		ON a.party_num = b.party_num 
+		ORDER BY a.party_num DESC LIMIT 1;
 	</select>
 	
 	<select id="partySearch" parameterType="Map" resultType="PartyListDTO">
@@ -110,7 +110,7 @@
 	 <select id="partySelect" resultType="PartyListDTO">
 	 	SELECT a.*, b.party_count AS party_now_member 
 		FROM 
-			(SELECT party.* , member.nick FROM party JOIN member ON party.id = member.id WHERE party_num=#{party_num})
+			(SELECT party.* , member.nick, member.profile FROM party JOIN member ON party.id = member.id WHERE party_num=#{party_num})
 			a 
 		LEFT JOIN 
 			(SELECT party_num, count(*) AS party_count FROM party_member GROUP BY party_num) 
@@ -166,6 +166,10 @@
 	
 	<update id="partyClose">
 		UPDATE party SET party_available = '0' WHERE party_num = #{party_num}
+	</update>
+	
+	<update id="partyUpdate" parameterType="PartyListDTO">
+		UPDATE party SET party_title=#{party_title}, party_id=#{party_id}, party_pw=#{party_pw}, party_tel=#{party_tel}, party_notice=#{party_notice} WHERE party_num=#{party_num}
 	</update>
 	
 </mapper>

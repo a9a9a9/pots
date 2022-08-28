@@ -149,8 +149,8 @@ public class PartyMngService {
 
 	public String notMyPartyNick(String nick) {
 		int length = nick.length();
-		String tmp  = nick.substring(0, 2);
-		for(int i = 2; i < length; i++) {
+		String tmp  = nick.substring(0, 1);
+		for(int i = 1; i < length; i++) {
 			tmp += "*";
 		}
 		return tmp;
@@ -229,13 +229,7 @@ public class PartyMngService {
 				p.setParty_subservice("#기타");
 				p.setLogo("/img/partylogo/membership.png"); 
 			} 	
-			
-			
-			
-			
-			
 		}
-		
 		return list;
 	}
 
@@ -293,21 +287,21 @@ public class PartyMngService {
 			else if (partyInfo.getParty_service().equals("30")) partyInfo.setParty_service("게임");
 			else partyInfo.setParty_service("기타");
 			
-			if(partyInfo.getParty_subservice().equals("1010")) partyInfo.setParty_subservice("#넷플릭스");
-			else if(partyInfo.getParty_subservice().equals("1020")) partyInfo.setParty_subservice("#왓챠");
-			else if(partyInfo.getParty_subservice().equals("1030")) partyInfo.setParty_subservice("#유튜브");
-			else if(partyInfo.getParty_subservice().equals("1040")) partyInfo.setParty_subservice("#웨이브");
-			else if(partyInfo.getParty_subservice().equals("1050")) partyInfo.setParty_subservice("#티빙");
-			else if(partyInfo.getParty_subservice().equals("1080")) partyInfo.setParty_subservice("#디즈니");
-			else if(partyInfo.getParty_subservice().equals("2010")) partyInfo.setParty_subservice("#리디북스");
-			else if(partyInfo.getParty_subservice().equals("2020")) partyInfo.setParty_subservice("#밀리의서재");
-			else if(partyInfo.getParty_subservice().equals("2030")) partyInfo.setParty_subservice("#YES24");
-			else if(partyInfo.getParty_subservice().equals("2040")) partyInfo.setParty_subservice("#스포티파이");
-			else if(partyInfo.getParty_subservice().equals("3010")) partyInfo.setParty_subservice("#닌텐도온라인");
-			else if(partyInfo.getParty_subservice().equals("3050")) partyInfo.setParty_subservice("#XBOX");
-			else if(partyInfo.getParty_subservice().equals("6050")) partyInfo.setParty_subservice("#멤버쉽");
-			else if(partyInfo.getParty_subservice().equals("6010")) partyInfo.setParty_subservice("#MSOffice");
-			else partyInfo.setParty_subservice("#기타");
+			if(partyInfo.getParty_subservice().equals("1010")) partyInfo.setParty_subservice("넷플릭스");
+			else if(partyInfo.getParty_subservice().equals("1020")) partyInfo.setParty_subservice("왓챠");
+			else if(partyInfo.getParty_subservice().equals("1030")) partyInfo.setParty_subservice("유튜브");
+			else if(partyInfo.getParty_subservice().equals("1040")) partyInfo.setParty_subservice("웨이브");
+			else if(partyInfo.getParty_subservice().equals("1050")) partyInfo.setParty_subservice("티빙");
+			else if(partyInfo.getParty_subservice().equals("1080")) partyInfo.setParty_subservice("디즈니");
+			else if(partyInfo.getParty_subservice().equals("2010")) partyInfo.setParty_subservice("리디북스");
+			else if(partyInfo.getParty_subservice().equals("2020")) partyInfo.setParty_subservice("밀리의서재");
+			else if(partyInfo.getParty_subservice().equals("2030")) partyInfo.setParty_subservice("YES24");
+			else if(partyInfo.getParty_subservice().equals("2040")) partyInfo.setParty_subservice("스포티파이");
+			else if(partyInfo.getParty_subservice().equals("3010")) partyInfo.setParty_subservice("닌텐도온라인");
+			else if(partyInfo.getParty_subservice().equals("3050")) partyInfo.setParty_subservice("XBOX");
+			else if(partyInfo.getParty_subservice().equals("6050")) partyInfo.setParty_subservice("멤버쉽");
+			else if(partyInfo.getParty_subservice().equals("6010")) partyInfo.setParty_subservice("MSOffice");
+			else partyInfo.setParty_subservice("기타");
 		}
 		
 		return partyInfo;
@@ -358,6 +352,11 @@ public class PartyMngService {
 		int i = mngDao.insertComment(comment);
 		return i;
 		
+	}
+
+	public int partyUpdate(PartyListDTO party) {
+		int i = mngDao.partyUpdate(party);
+		return i;
 	}
 
 	

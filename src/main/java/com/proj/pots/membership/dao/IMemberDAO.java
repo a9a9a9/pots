@@ -54,4 +54,8 @@ public interface IMemberDAO {
 
 	int pointCount(String id);
 
+	void deleteUpdate(String id);
+
+	void deleteUpdate2(String id);
+
 }

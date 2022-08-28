@@ -144,21 +144,21 @@ if(result === "접근할 수 없는 페이지 입니다."){
 							<div class="buttons">
 								<c:choose>
 									<c:when test="${sessionScope.partner eq 'false'}">
-										<a href="partnerRegister">파티장신청</a>
+										<a href="${root }partnerRegister">파티장신청</a>
 									</c:when>
 									<c:when test="${sessionScope.partner eq 'true'}">
-										<a href="partyList">파티관리</a>
+										<a href="${root }partyList">파티관리</a>
 									</c:when>
 								</c:choose>
 							</div>
 						</div>
 						<div class="block">
 							<ul class="menu">
-								<li><a href="#"
+								<li><a href="${root}index?formpath=myPartyJoined"
 									style="color: #84cdcf;">참여중인 파티</a></li>
 								<c:choose>
 									<c:when test="${sessionScope.partner eq 'true'}">
-										<li><a href="#">생성한 파티</a></li>
+										<li><a href="${root}index?formpath=myPartyCreated">생성한 파티</a></li>
 									</c:when>
 								</c:choose>
 								

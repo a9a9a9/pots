@@ -1,5 +1,8 @@
 package com.proj.pots;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -144,8 +147,14 @@ public class HomeController {
 		return "member/findMy";
 	}
 	
-	@RequestMapping(value = "/login")
-	public String login() {
+	@RequestMapping(value = "login")
+	public String login(HttpServletRequest req, HttpSession session) {
+		String uri = req.getHeader("Referer");
+		System.out.println(uri);
+		String str[] = uri.split("/");
+		uri = str[3];
+		System.out.println(uri);
+		session.setAttribute("url", uri);
 		return "member/login";
 	}
 	
@@ -170,10 +179,10 @@ public class HomeController {
 //		return "myMenu/myPartyJoined";
 //	}
 	
-//	@RequestMapping(value = "/myPoint")
-//	public String myPoint() {
-//		return "myMenu/myPoint";
-//	}
+	@RequestMapping(value = "/myPoint")
+	public String myPoint() {
+		return "myMenu/myPoint";
+	}
 
 	@RequestMapping(value = "myPointCharge")
 	public String myPointCharge() {

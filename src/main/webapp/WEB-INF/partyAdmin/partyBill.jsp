@@ -90,7 +90,7 @@ window.onload=function(){
 		<tr>
 			<td>
 				<span class="subject">입금 계좌</span>
-				<input type="text" class="account" disabled placeholder="${session.account_name } ${session.account_num}"/>
+				<input type="text" class="account" disabled placeholder="${sessionScope.account_name } ${sessionScope.account_num}"/>
 				<!-- <input type="text" class="account" placeholder="농협 8732-0204-056137" /> -->
 			</td>
 		</tr>
@@ -185,7 +185,7 @@ window.onload=function(){
 			//return false;
 		}
 
-		newWin = window.open("localhost/partyBillCheck", "_frm", "width=500,height=300,scrollbars=yes,resizable=yes,left=700,top=300");
+		newWin = window.open("localhost/partyBillCheck", "_frm", "width=680px,height=400px,scrollbars=yes,resizable=yes,left=700,top=300");
 
 		f.target = "_frm";
 		f.submit();
