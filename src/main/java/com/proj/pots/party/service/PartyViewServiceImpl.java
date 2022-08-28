@@ -349,13 +349,6 @@ public class PartyViewServiceImpl implements IPartyViewService{
 			}
 		}
 		
-		if(partyMember.getUse_account() == "" || partyMember.getUse_account() == null) {
-			partyMember.setUse_account("0");
-		} 
-		if(partyMember.getUse_point() == "" || partyMember.getUse_point() == null) {
-			partyMember.setUse_point("0");
-		}	
-		
 		partyViewDao.insertPartyMember(partyMember);
 		partyViewDao.updatePoint(partyMember);
 		
@@ -376,6 +369,7 @@ public class PartyViewServiceImpl implements IPartyViewService{
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm (E)");
 		String dateConvert = sdf.format(date);
+		
 		pointDto.setPoint_date(dateConvert);
 		memberDao.insertContent(pointDto);
 		

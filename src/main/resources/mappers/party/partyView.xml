@@ -107,7 +107,8 @@
 			b.party_subservice, b.party_title, a.use_account, a.use_point
 		FROM party_member AS a
 		JOIN  party AS b
-		ON a.party_num = b.party_num AND a.id =#{id};
+		ON a.party_num = b.party_num AND a.id =#{id} 
+		ORDER BY no_mem DESC;
 	 </select>
 			 	 
 </mapper>
