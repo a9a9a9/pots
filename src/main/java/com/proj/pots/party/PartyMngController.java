@@ -58,7 +58,7 @@ public class PartyMngController {
 		
 		// 페이지 
 		int total = list.size();			
-		int cntPerPage = 3;
+		int cntPerPage = 10;
 		
 		if (nowPage == null) {
 			nowPage = "1";
@@ -93,7 +93,7 @@ public class PartyMngController {
 		System.out.println(list);
 		// 페이지 
 		int total = list.size();			
-		int cntPerPage = 2;
+		int cntPerPage = 10;
 		
 		if (nowPage == null) {
 			nowPage = "1";
@@ -349,10 +349,14 @@ public class PartyMngController {
 		if(session.getAttribute("id") == null) {
 			return "redirect:/index?formpath=login";
 		}
-
+		
 		
 		
 		System.out.println("sel1: " +sel1 + " sel2: " + sel2 + " sw: " + searchWord);
+		
+		if(sel1.equals("") && searchWord.equals("")) {
+			return "redirect:/partyList";
+		}
 		
 		Map<String, String> searchMap = new HashMap<String, String>();
 		//searchMap.put("id", "admin");
@@ -360,11 +364,22 @@ public class PartyMngController {
 		
 		if(!sel1.equals("")) {
 			if(sel1.length() == 2) {
-				searchMap.put("sel1", "ser");
-				searchMap.put("keynum", sel1);
+				if(!searchWord.equals("")) {
+					searchMap.put("sel1", "ser");
+					searchMap.put("keynum", sel1);
+				}else {
+					searchMap.put("sel1", "ser1");
+					searchMap.put("keynum", sel1);
+				}
+				
 			}else if(sel1.length() == 4) {
-				searchMap.put("sel1", "sub");
-				searchMap.put("keynum", sel1);
+				if(!searchWord.equals("")) {
+					searchMap.put("sel1", "sub");
+					searchMap.put("keynum", sel1);
+				}else {
+					searchMap.put("sel1", "sub1");
+					searchMap.put("keynum", sel1);
+				}
 			}
 				
 		}
@@ -374,11 +389,12 @@ public class PartyMngController {
 		}
 		
 		
-		if(sel2 != null) searchMap.put("sel2", sel2);
-		else searchMap.put("sel2", "id");
 		
-		if(searchWord != null)
+		if(!searchWord.equals("")) {
 			searchMap.put("keyword", searchWord);
+			if(sel2 != null) searchMap.put("sel2", sel2);
+		}
+		
 			
 		System.out.println(searchMap.get("keynum") + " " + searchMap.get("sel2") + " " + searchMap.get("keyword"));	
 		
@@ -386,7 +402,7 @@ public class PartyMngController {
 		
 		// 페이징
 		int total = list.size();			
-		int cntPerPage = 2;
+		int cntPerPage = 10;
 		
 		if (nowPage == null) {
 			nowPage = "1";

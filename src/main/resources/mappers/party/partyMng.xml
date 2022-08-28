@@ -31,7 +31,8 @@
 		LEFT JOIN 
 			(SELECT party_num, count(*) AS party_count FROM party_member GROUP BY party_num) 
 			b 
-		ON a.party_num = b.party_num;
+		ON a.party_num = b.party_num
+		ORDER BY a.party_regdate DESC;
 	</select>
 	
 	<select id="latestParty" resultType="PartyListDTO">
@@ -63,6 +64,8 @@
 			<choose>
 				<when test="sel1 == 'ser'">AND a.party_service=#{keynum}</when>
 				<when test="sel1 == 'sub'">AND a.party_subservice=#{keynum}</when>
+				<when test="sel1 == 'ser1'">a.party_service=#{keynum}</when>
+				<when test="sel1 == 'sub1'">a.party_subservice=#{keynum}</when>
 			</choose>
 			
 	</select>
