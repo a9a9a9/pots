@@ -50,6 +50,7 @@ public class PartyController {
 				return "redirect:/partnerRegister";
 			}else {
 				session.setAttribute("partner", "true");
+				session.setAttribute("personal_num", partner.getPersonal_num());
 				session.setAttribute("account_num", partner.getAccount_num());
 				session.setAttribute("account_name", partner.getAccount_name());
 				return "redirect:/partyList";
