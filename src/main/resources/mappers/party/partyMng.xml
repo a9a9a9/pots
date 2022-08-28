@@ -31,7 +31,8 @@
 		LEFT JOIN 
 			(SELECT party_num, count(*) AS party_count FROM party_member GROUP BY party_num) 
 			b 
-		ON a.party_num = b.party_num;
+		ON a.party_num = b.party_num
+		ORDER BY a.party_regdate DESC;
 	</select>
 	
 	<select id="latestParty" resultType="PartyListDTO">
@@ -63,6 +64,8 @@
 			<choose>
 				<when test="sel1 == 'ser'">AND a.party_service=#{keynum}</when>
 				<when test="sel1 == 'sub'">AND a.party_subservice=#{keynum}</when>
+				<when test="sel1 == 'ser1'">a.party_service=#{keynum}</when>
+				<when test="sel1 == 'sub1'">a.party_subservice=#{keynum}</when>
 			</choose>
 			
 	</select>
@@ -123,7 +126,7 @@
 	 </select>
 	 
 	 <select id="partyComment" resultType="PartyCommentDTO">
-	 	SELECT party_num, id, nick, comment, comment_private, comment_date, comment_to_nick, DATE_FORMAT(comment_date, '%Y.%m.%d %H:%i') AS comment_date FROM party_comment WHERE party_num = #{party_num} ORDER BY no_cmnt DESC;
+	 	SELECT no_cmnt, party_num, id, nick, comment, comment_private, comment_date, comment_to_nick, DATE_FORMAT(comment_date, '%Y.%m.%d %H:%i') AS comment_date FROM party_comment WHERE party_num = #{party_num} ORDER BY no_cmnt DESC;
 	 
 	 </select>
 	 
@@ -149,6 +152,11 @@
 	 
 	 </select>
 	 
+	 <select id="selectComment" resultType="String">
+	 	SELECT no_cmnt FROM party_comment WHERE party_num=#{party_num} AND id=#{id} ORDER BY comment_date DESC LIMIT 1;
+	 
+	 </select>
+	 
 	 <insert id="insertComment" parameterType="PartyCommentDTO">
 	 INSERT INTO party_comment (party_num, id, nick, comment, comment_private, comment_date, comment_to_nick)
 	 	VALUES(#{party_num}, #{id}, #{nick}, #{comment}, #{comment_private}, #{comment_date}, #{comment_to_nick})
@@ -171,5 +179,9 @@
 	<update id="partyUpdate" parameterType="PartyListDTO">
 		UPDATE party SET party_title=#{party_title}, party_id=#{party_id}, party_pw=#{party_pw}, party_tel=#{party_tel}, party_notice=#{party_notice} WHERE party_num=#{party_num}
 	</update>
+	
+	<delete id="deleteComment">
+		DELETE FROM party_comment WHERE no_cmnt=#{no_cmnt}
+	</delete>
 	
 </mapper>

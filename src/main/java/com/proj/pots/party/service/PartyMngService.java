@@ -370,5 +370,23 @@ public class PartyMngService {
 		return i;
 	}
 
+	public int deleteComment(String no_cmnt) {
+		int i = mngDao.deleteComment(no_cmnt);
+		return i;
+	}
+
+	public int selectComment(String id, String party_num) {
+		int no_cmnt = -1;
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("party_num", party_num);
+		String result = mngDao.selectComment(map);
+		if(!result.equals("") || result != null) {
+			no_cmnt = Integer.parseInt(result);
+		}
+		return no_cmnt;
+		
+	}
+
 	
 }

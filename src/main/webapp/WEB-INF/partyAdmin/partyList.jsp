@@ -58,11 +58,18 @@
 	<script>
 		function searchChk(f){
 			var keyword = document.getElementById('stx');
-			if(keyword.value === ""){
-				alert('검색어를 입력해 주세요.');
-				keyword.focus();
-				return false;
-			}
+			var category = document.getElementById('sca');
+			
+				if(keyword.value == ""){
+					if(category != ""){
+						return true;
+					}
+					alert('검색어를 입력해 주세요.');
+					keyword.focus();
+					return false;
+				}
+			
+			
 			return true;
 		} 
 		
@@ -133,6 +140,7 @@
 				<!-- 등록된 내용이 있는 경우 -->
 					<c:forEach var="pl" items="${list }" begin="${paging.start }" end="${paging.end }" varStatus="vs">
 					<input type="hidden" name="${pl.party_num }" value="${pl.party_left_member }">
+					<input type="hidden" name="mc${pl.party_num }" value="${pl.party_member }">
 						<tr>
 								<td>
 									<div class="input-check" style="margin-right: -8px;">
@@ -251,8 +259,9 @@
 		    var list = $("input[name='chk']");
 		    for(var i = 0; i < list.length; i++){
 		        if(list[i].checked){ //선택되어 있으면 배열에 값을 저장함
-		        	var tmp = $("input[name='" + list[i].value + "']");
-		        	if(tmp != 0){
+		        	var tmp = $("input[name='" + list[i].value + "']").val();
+		        	var tmp2 = $("input[name='mc" + list[i].value + "']").val();
+		        	if(tmp != tmp2){
 		        		alert("모집 인원이 한 명 이상 존재할 경우 삭제할 수 없습니다.");
 		        		return false;
 		        	}
