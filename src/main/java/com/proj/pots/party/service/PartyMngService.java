@@ -354,5 +354,10 @@ public class PartyMngService {
 		
 	}
 
+	public int partyUpdate(PartyListDTO party) {
+		int i = mngDao.partyUpdate(party);
+		return i;
+	}
+
 	
 }
