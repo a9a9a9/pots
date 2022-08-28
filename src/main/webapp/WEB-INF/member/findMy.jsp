@@ -41,7 +41,7 @@
 						placeholder="이메일을 입력해주세요" maxlength="100">
 				</div>
 				
-
+				<fieldset id="captcha" class="captcha">
 						<label for="captcha" style="display: block;">자동 로그인 방지</label>
 						<div class="captcha">
 							<div class="form-group">
@@ -50,11 +50,20 @@
 								<div id="captchaAudio" style="display: none;"></div>
 							</div>
 							<div class="form-group">
-								<a onclick="javascript:refreshBtn()" class="refreshBtn" id="captcha_mp3"> <input
-									type="button" value="새로고침" />
-								</a> <a onclick="javascript:audio()" class="refreshBtn"> <input
-									type="button" value="음성듣기" />
+								<a onclick="javascript:audio()" class="refreshBtn"> 
+									<button type="button" id="captcha_mp3" style="top:25px;left:200px;">
+									<span></span>
+										음성듣기
+									</button>
+<!-- 								<input type="button" value="음성듣기" /> -->
 								</a>
+								<a onclick="javascript:refreshBtn()" class="refreshBtn" id="captcha_reload"> 
+									<button type="button" id="captcha_reload" style="top:55px;left:200px;">
+									<span></span>
+										새로고침
+									</button>
+<!-- 								<input type="button" value="새로고침" /> -->
+								</a> 
 							</div>
 							<div class="form-group">
 								<input type="text" class="captcha_box required" name="answer" id="answer" size="6" maxlength="6" 
@@ -62,6 +71,7 @@
 <!-- 									 class="form-control" -->
 							</div>
 						</div>
+				</fieldset>
 					</div>
 
 				</div>
