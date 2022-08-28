@@ -41,9 +41,9 @@
 	 
 	 <!-- 파티 날짜별 금액, 수수료 -->
 	 <select id="partyDay" resultType="PartyRegDTO">
-	 	SELECT TIMESTAMPDIFF(DAY, NOW(), party_end) as diff,
-	 		TIMESTAMPDIFF(DAY, NOW(), party_end) * party_charge AS pay,
-	 		TIMESTAMPDIFF(DAY, NOW(), party_end) * party_charge * 0.1 AS plus,
+	 	SELECT DATEDIFF(party_end, NOW()) as diff,
+	 		DATEDIFF(party_end, NOW()) * party_charge AS pay,
+	 		DATEDIFF(party_end, NOW()) * party_charge * 0.1 AS plus,
 	 		DATE_FORMAT(party_end, '%y.%m.%d') as party_end  
 	 	FROM party WHERE party_num = #{party_num};
 	 	
@@ -51,9 +51,9 @@
 	 
 	 <!-- 파티 회원 날짜별 금액 , 수수료 -->
 	 <select id="myPartyDay" resultType="PartyMemberDTO">
-	 	SELECT a.*, b.party_end, TIMESTAMPDIFF (DAY, a.mystartday, b.party_end) AS diff,
-	 		TIMESTAMPDIFF (DAY, a.mystartday, b.party_end) * b.party_charge AS pay, 
-	 		round(TIMESTAMPDIFF (DAY, a.mystartday, b.party_end) * b.party_charge * 0.1) AS plus 
+	 	SELECT a.*, b.party_end, DATEDIFF (b.party_end, a.mystartday) AS diff,
+	 		DATEDIFF (b.party_end, a.mystartday) * b.party_charge AS pay, 
+	 		round(DATEDIFF (b.party_end, a.mystartday) * b.party_charge * 0.1) AS plus 
 		FROM (select * from party_member where id=#{id} and party_num = #{party_num} ORDER BY mystartday DESC LIMIT 1) AS a
 		JOIN party AS b
 		ON a.party_num = b.party_num;
@@ -107,7 +107,8 @@
 			b.party_subservice, b.party_title, a.use_account, a.use_point
 		FROM party_member AS a
 		JOIN  party AS b
-		ON a.party_num = b.party_num AND a.id =#{id};
+		ON a.party_num = b.party_num AND a.id =#{id} 
+		ORDER BY no_mem DESC;
 	 </select>
 			 	 
 </mapper>

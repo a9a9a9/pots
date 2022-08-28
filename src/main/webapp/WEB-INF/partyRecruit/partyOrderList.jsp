@@ -16,7 +16,6 @@
 					</div>
 				</c:when>
 				<c:otherwise>
-				<c:forEach var="list" items="${orderList }" begin="${paging.start }" end="${paging.end }">
 				<div class="table-list scroll">
 					<table style="min-width: 760px">
 					<thead>
@@ -33,6 +32,7 @@
 						</tr>
 					</thead>
 						<tbody>
+							<c:forEach var="list" items="${orderList }" begin="${paging.start }" end="${paging.end }">
 								<tr>
 									<td>
 										<span class="lightgrey">
@@ -64,10 +64,10 @@
 									<td class="pc-table">-</td>
 									<td><span class="darkgrey">완료</span></td>
 								</tr>
+							</c:forEach>
 						</tbody>
 				</table>
 			</div>
-			</c:forEach>
 			</c:otherwise>
 			</c:choose>
 			<c:if test="${not empty orderList}" >

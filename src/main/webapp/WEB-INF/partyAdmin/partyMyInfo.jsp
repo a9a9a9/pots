@@ -90,7 +90,7 @@ ${msg }
 		
 			<li id="li_saupja">
 				<span class="subject">ㆍ 주민번호</span>
-				<input type="text" name="personal_num" id="pt_company_saupja" style="width: 100%; max-width: 200px" value="${sessionScope.personal_num }">
+				<input type="text" name="personal_num" id="pt_company_saupja" style="width: 100%; max-width: 200px" value="">
 			</li>
 			<li>
 				<span class="subject" >ㆍ 출금계좌</span>

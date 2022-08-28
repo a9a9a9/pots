@@ -96,7 +96,7 @@
 		<ul>
 		<li>
 			<div class="subject">ㆍ 총구매액</div>
-			<div class="right"><fmt:formatNumber type="number" maxFractionDigits="3" value="${myInfo.pay }" />원</div>
+			<div class="right"><fmt:formatNumber type="number" maxFractionDigits="3" value="${myInfo.use_account + myInfo.use_point}" />원</div>
 		</li>
 		<li>
 			<div class="subject">ㆍ 수수료(10%)</div>
@@ -116,7 +116,7 @@
 		<li class="total">
 			<div class="subject text-purple">결제한 금액</div>
 			<div class="right"><span class="Rajdhani text-purple">
-				<fmt:formatNumber type="number" maxFractionDigits="3" value="${(myInfo.pay+myInfo.plus) - (myInfo.use_account + myInfo.use_point)}"/>원
+				<fmt:formatNumber type="number" maxFractionDigits="3" value="${myInfo.use_account + myInfo.use_point}"/>원
 			</span></div>
 		</li>
 		</ul>
