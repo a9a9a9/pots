@@ -361,6 +361,28 @@ function fitem_submit(f) {
 							}
 						}
 					
+					function commentDelete(str) {
+						const this_cmnt = document.getElementById(str); 
+						var sendData = {"no_cmnt" : str};
+						var url = "commentDelete";
+						
+						 $.ajax({
+							    url : url,                    // 전송 URL
+							    method : 'POST',                // POST 방식
+							    data : JSON.stringify(sendData) ,
+							    dataType : 'json' ,
+							    contentType: 'application/json',
+							    
+				                success: function(jdata){
+				                	console.log(jdata);
+				                    if(jdata = 1) {
+										this_cmnt.remove();
+				                    }else {
+				                    	alert('삭제실패');
+				                    }
+				                }
+							});
+					}				
 
 					function commentSubmit(){
 						var url = "commentInsert";    // Controller로 보내고자 하는 URL
@@ -404,18 +426,19 @@ function fitem_submit(f) {
 							    contentType: 'application/json',
 							    
 				                success: function(jdata){
-				                    if(jdata = 1) {
+				                    if(jdata != -1) {
 				                       // alert("등록되었습니다.");
-				                        html += "<li class='right' id='c_139350'>"
-			    						html += "<div class='picture'><img src='https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-middle.png'/></div>"
+				                        html += "<li class='right' id='" + jdata + "'>"
+			    						html += "<div class='picture'><img src='/img/icon-butsicon-middle.png'/></div>"
 			    						html += "<div class='balloon'>"
 			    						html += "<div class='to'>" + comment_to + "님 에게</div>"
 			    						html += "<div class='speech'>"
 			    						if(comment_private == 1)		
-			    						html += "<img src='https://buts.co.kr/skin/apms/item/Miso-Basic4/img/icon_secret.gif'>"
+			    						html += "<img src='/img/icon_secret.gif'>"
 			    								
 			    						html += comment
-			    						html += "</div> </div> <div class='option'><span class='v-bar'>" + mynick + "</span> <span class='v-bar'>" + comment_date + "</span></div>"
+			    						html += "</div> </div> <div class='option'><span class='v-bar'>" + mynick + "</span> <span class='v-bar'>" + comment_date + "</span>"
+			    						html += "<a onclick='commentDelete(" + jdata + ")'>삭제</a></div>"
 			    						html += "</li>"
 			    						
 			    						$("#it_vc").prepend(html);
@@ -462,7 +485,7 @@ function fitem_submit(f) {
 					
 					<c:choose>
 						<c:when test="${c.nick == sessionScope.nick }">
-						<li class="right" id="c_139350">
+						<li class="right" id="${c.no_cmnt }">
 							<div class="picture">
 								<img src="/img/icon-butsicon-middle.png"/>
 							</div>
@@ -477,6 +500,7 @@ function fitem_submit(f) {
 							</div>
 							<div class="option">
 								<span class="v-bar">${c.nick }</span> <span class="v-bar">${c.comment_date }</span>
+								<a onclick="commentDelete(${c.no_cmnt})">삭제</a>
 							</div>
 						</li>
 						

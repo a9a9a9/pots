@@ -49,7 +49,7 @@ public class PartyMngController {
 		// 리스트 가져오기
 		//String id = "admin";
 		if(ptChk() != null) {
-			ra.addFlashAttribute("msg", "<script>alert('접근할 수 없는 페이지 입니다.')</script>");
+			ra.addFlashAttribute("msg", "접근할 수 없는 페이지 입니다.");
 			return "redirect:/index?formpath=main";
 		
 		}
@@ -81,7 +81,7 @@ public class PartyMngController {
 	public String partyList(Model model, String nowPage, PageVO vo, RedirectAttributes ra) throws ParseException {
 		
 		if(ptChk() != null) {
-			ra.addFlashAttribute("msg", "<script>alert('접근할 수 없는 페이지 입니다.')</script>");
+			ra.addFlashAttribute("msg", "접근할 수 없는 페이지 입니다.");
 			return "redirect:/index?formpath=main";
 		
 		}
@@ -116,7 +116,7 @@ public class PartyMngController {
 	public String joinSearch(String fr_date, String to_date, String sel, String searchWord, Model model, PageVO vo, String nowPage, RedirectAttributes ra) throws ParseException {
 		
 		if(ptChk() != null) {
-			ra.addFlashAttribute("msg", "<script>alert('접근할 수 없는 페이지 입니다.')</script>");
+			ra.addFlashAttribute("msg", "접근할 수 없는 페이지 입니다.");
 			return "redirect:/index?formpath=main";
 		
 		}
@@ -213,7 +213,7 @@ public class PartyMngController {
 	@RequestMapping(value = "/closeproc", method=RequestMethod.POST)
     public String closeproc (@RequestBody ArrayList<String> array, RedirectAttributes ra) {
 		if(ptChk() != null) {
-			ra.addFlashAttribute("msg", "<script>alert('접근할 수 없는 페이지 입니다.')</script>");
+			ra.addFlashAttribute("msg", "접근할 수 없는 페이지 입니다.");
 			return "redirect:/index?formpath=main";
 		
 		}
@@ -261,7 +261,8 @@ public class PartyMngController {
 	    return map;
 	}
 	
-	@ResponseBody
+	//댓글 등록
+	@ResponseBody 
 	@RequestMapping(value = "commentInsert", method=RequestMethod.POST)
     public int commentInsert (@RequestBody Map<String, String> map) {
 		String id = (String)session.getAttribute("id");
@@ -278,9 +279,27 @@ public class PartyMngController {
         	comment.setNick(nick);
         	comment.setComment_date(map.get("comment_date"));
         	i = mngSvc.insertComment(comment);
+        	if(i == 1) {
+        		String party_num = map.get("party_num");
+        		i = mngSvc.selectComment(id, party_num);
+        	}
+        	
+        }
+        return i;
+    }
+	
+	@ResponseBody 
+	@RequestMapping(value = "commentDelete", method=RequestMethod.POST)
+    public int commentDelete (@RequestBody Map<String, String> map) {
+		
+		int i = -1;
+        if(map != null && map.get("no_cmnt") != null) {
+        	
+        	i = mngSvc.deleteComment(map.get("no_cmnt"));
         	return i;
         	
         }
+        System.out.println("삭제결과" + i);
         return i;
     }
 	
@@ -289,7 +308,7 @@ public class PartyMngController {
 	@GetMapping(value = "/partyCreate")
 	public String partyCreate(RedirectAttributes ra) {
 		if(ptChk() != null) {
-			ra.addFlashAttribute("msg", "<script>alert('접근할 수 없는 페이지 입니다.')</script>");
+			ra.addFlashAttribute("msg", "접근할 수 없는 페이지 입니다.");
 			return "redirect:/index?formpath=main";
 		}
 		if(session.getAttribute("id") == null) {
@@ -324,7 +343,7 @@ public class PartyMngController {
 			(String sel1, String sel2, String searchWord, Model model, String nowPage, PageVO vo, RedirectAttributes ra) 
 				throws ParseException {
 		if(ptChk() != null) {
-			ra.addFlashAttribute("msg", "<script>alert('접근할 수 없는 페이지 입니다.')</script>");
+			ra.addFlashAttribute("msg", "접근할 수 없는 페이지 입니다.");
 			return "redirect:/index?formpath=main";
 		}
 		if(session.getAttribute("id") == null) {
@@ -437,7 +456,7 @@ public class PartyMngController {
 	@RequestMapping(value = "/partyBill")
 	public String partyBill(Model model, String nowPage, PageVO vo, RedirectAttributes ra) {
 		if(ptChk() != null) {
-			ra.addFlashAttribute("msg", "<script>alert('접근할 수 없는 페이지 입니다.')</script>");
+			ra.addFlashAttribute("msg", "접근할 수 없는 페이지 입니다.");
 			return "redirect:/index?formpath=main";
 		
 		}

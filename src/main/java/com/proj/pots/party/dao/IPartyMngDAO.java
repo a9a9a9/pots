@@ -47,4 +47,8 @@ public interface IPartyMngDAO {
 	int insertComment(PartyCommentDTO comment);
 
 	int partyUpdate(PartyListDTO party);
+
+	int deleteComment(String no_cmnt);
+
+	String selectComment(Map<String, String> map);
 }
