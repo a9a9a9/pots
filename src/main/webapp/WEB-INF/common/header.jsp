@@ -129,18 +129,6 @@ if(result === "접근할 수 없는 페이지 입니다."){
 								<div class="credit-percent">
 									<div class="credit-bar credit-1" style="right: 50%"></div>
 								</div>-->
-							<div class="grade">
-								<a href="#">팟츠 신용 <span
-									class="text-purple">개인</span>
-
-								</a> <a href="javascript:;" class="ttip"> 
-								<img src="/img/tip.png"
-									srcset="/img/tip2.png 2x"
-									alt=""> <span class="ttip-text"
-									style="right: -29px; width: 160px">
-									첫 가입시 9등급이며, 팟츠 사용도 및 거래 점수에 따라 등급이 변할 수 있습니다.</span>
-								</a>
-							</div>
 							<div class="buttons">
 								<c:choose>
 									<c:when test="${sessionScope.partner eq 'false'}">
