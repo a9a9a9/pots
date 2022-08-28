@@ -35,7 +35,7 @@ public class BoardController {
 	public String commentProc(CommentDTO com, Model model) {
 		service.commentProc(com);
 		int writeNo = com.getSquare_num();
-		return "forward:viewProc?writeNo="+writeNo;
+		return "redirect:viewProc?writeNo="+writeNo;
 	}
 	@RequestMapping(value = "boardProc")
 	public String boardProc(Model model, @RequestParam(value="currentPage", required = false, defaultValue = "1")int currentPage,

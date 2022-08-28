@@ -38,10 +38,10 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "logout")
-	public String logout(Model model, HttpSession session) {
+	public String logout(RedirectAttributes ra, HttpSession session) {
 		session.invalidate();
-		model.addAttribute("msg", "로그 아웃");
-		return "forward:/index?formpath=main";
+		ra.addFlashAttribute("msg", "로그 아웃");
+		return "redirect:/index?formpath=main";
 	}
 	
 	   @RequestMapping(value = "PassProc")

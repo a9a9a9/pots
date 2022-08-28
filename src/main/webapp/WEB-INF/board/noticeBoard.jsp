@@ -27,7 +27,6 @@
 							<form action="${root}noticeProc" method="post">
 								<!-- 검색 -->
 								<select name="select">
-									<option value="">선택</option>
 									<option value="title">제목</option>
 									<option value="content">내용</option>
 								</select> 

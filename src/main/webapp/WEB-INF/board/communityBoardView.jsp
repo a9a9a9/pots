@@ -85,7 +85,7 @@
 			                </div>
 			                <textarea id="wr_content" name="comment_content" maxlength="10000" required class="required" placeholder="궁금한 점이 있으면 물어보세요!"></textarea>
 <!-- 			                <div class="opentalk"><span class="input-check"> </span></div> -->
-			                <input type="submit" id="btn_submit" class="button-apply" value="등록" style="border: solid 1px #333333;">
+			                <input type="submit" id="btn_submit" class="button-apply" value="등록" style="border: 0;">
    	 			  		</div>
 	   				 </form>
 		   				 
