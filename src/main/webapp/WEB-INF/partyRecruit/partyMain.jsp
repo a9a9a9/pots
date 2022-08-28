@@ -508,14 +508,14 @@ function fitem_submit(f) {
 						
 						<c:when test="${c.nick == p.nick }">
 						
-						<li id="c_139245">
+						<li class="left" id="c_131787">
 							<div class="picture">
 								<img
 									src="/img/icon-butsicon-middle.png"
 									alt="" />
 							</div>
 							<div class="balloon">
-								<div class="to">${c.comment_to_nick }님 에게</div>
+								<div class="to" style="color: #ffffff;">${c.comment_to_nick }님 에게</div>
 								<div class="speech">
 									<c:if test="${c.comment_private == '1'}">
 										<img src="/img/icon_secret.gif">
@@ -530,14 +530,14 @@ function fitem_submit(f) {
 						</c:when>
 						
 						<c:otherwise>
-						<li class="left" id="c_131787">
+						<li id="c_139245">
 							<div class="picture">
 								<img
 									src="/img/icon-butsicon-middle.png"
 									alt="" />
 							</div>
 							<div class="balloon">
-								<div class="to" style="color: #ffffff;">${c.comment_to_nick }님 에게</div>
+								<div class="to">${c.comment_to_nick }님 에게</div>
 								<div class="speech">
 									<c:if test="${c.comment_private == '1'}">
 										<img src="/img/icon_secret.gif">
