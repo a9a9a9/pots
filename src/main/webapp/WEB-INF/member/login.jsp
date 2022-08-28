@@ -44,7 +44,7 @@
 <!-- 						</div> -->
 						<div class="right">
 							<a href="${root }index?formpath=registerAgree" class="v-bar">회원가입</a>
-							<a href="${root }index?formpath=findMy">아이디/비밀번호찾기</a>
+							<a href="${root }index?formpath=findMy">비밀번호찾기</a>
 						</div>
 						<br>
 					</div>

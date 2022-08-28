@@ -284,7 +284,7 @@ public class MemberController {
 		if(msg.equals("충전 완료")) {
 		model.addAttribute("msg", msg);
 		
-			return "forward:/index?formpath=main";
+			return "forward:/index?formpath=myPoint";
 		}else {
 			return "redirect:index?formpaty=myPointCharge";
 		}
