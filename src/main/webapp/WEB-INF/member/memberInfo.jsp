@@ -30,9 +30,7 @@
 						</div>
 						<div class="profile">
 							<span class="name"><a href="#" onclick="return false;"><span class="member"> ${member.nick}</span></a></span>
-							<div class="right">
-								<span class="text-purple">신용 개인등급</span><span style="color:#888888;">(일반 등급)</span>
-							</div>
+							
 						</div>
 						<div class="gage"></div>
 						<div class="point">

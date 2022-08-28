@@ -349,6 +349,8 @@ public class PartyViewServiceImpl implements IPartyViewService{
 			}
 		}
 		
+		insertuse(partyMember.getUse_point());
+		
 		partyViewDao.insertPartyMember(partyMember);
 		partyViewDao.updatePoint(partyMember);
 		
