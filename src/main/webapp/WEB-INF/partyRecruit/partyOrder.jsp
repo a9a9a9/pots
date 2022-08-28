@@ -285,7 +285,7 @@
 			document.getElementById("od_temp_point").value = '0';
 			return false;		
 		}
-		else if (parseInt(str_val) > parseInt(mb_point)) {
+		else if (parseInt(str_val) > parseInt(${member.point})) {
 			alert("회원님의 포인트보다 많이 결제할 수 없습니다.");
 			document.getElementById("point_s").style.display = "";	
 			document.getElementById("point_c").style.display = "none";	
@@ -301,13 +301,11 @@
 			return false;
 		}
 		else{
-			var od_last_price = parseInt(${myDay.pay + myDay.plus}) - parseInt(str_val);
+			var od_last_price = parseInt(tot_price) - parseInt(str_val);
 			document.getElementById("od_last_price").innerHTML = number_format(od_last_price);	
 			//$('input[name=use_account]').attr('value', number_format(od_last_price));
 			$('input[name=use_account]').val(od_last_price);
-			console.log($('input[name=use_account]').val(od_last_price));
-			
-			//alert(number_format(od_last_price));
+			alert(number_format(od_last_price));
 		}	
 	}
 </script>

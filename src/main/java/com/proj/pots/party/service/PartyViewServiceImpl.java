@@ -349,9 +349,6 @@ public class PartyViewServiceImpl implements IPartyViewService{
 			}
 		}
 		
-		Integer.parseInt(partyMember.getUse_account());
-		Integer.parseInt(partyMember.getUse_point());
-		
 		if(partyMember.getUse_account() == "" || partyMember.getUse_account() == null) {
 			partyMember.setUse_account("0");
 		} 
