@@ -54,15 +54,15 @@
 	 	SELECT a.*, b.party_end, TIMESTAMPDIFF (DAY, a.mystartday, b.party_end) AS diff,
 	 		TIMESTAMPDIFF (DAY, a.mystartday, b.party_end) * b.party_charge AS pay, 
 	 		round(TIMESTAMPDIFF (DAY, a.mystartday, b.party_end) * b.party_charge * 0.1) AS plus 
-		FROM (select * from party_member where id=#{id} and party_num = #{party_num}) AS a
+		FROM (select * from party_member where id=#{id} and party_num = #{party_num} ORDER BY mystartday DESC LIMIT 1) AS a
 		JOIN party AS b
-		ON a.party_num = b.party_num LIMIT 1;
+		ON a.party_num = b.party_num;
 	 </select>
 	 
 	 <select id="payMethod" parameterType="PartyDTO" resultType="PartyMemberDTO">
 	 	SELECT use_account , use_point
 		FROM party_member
- 		WHERE id=#{id} AND party_num=#{party_num} LIMIT 1;
+ 		WHERE id=#{id} AND party_num=#{party_num} ORDER BY mystartday DESC LIMIT 1;
 	 </select>
 	 
 	 <select id="partyAvailableChk" resultType="PartyListDTO">
