@@ -486,6 +486,25 @@ public class PartyMngController {
 		return "partyAdmin/billComplete";
 	}
 	
+	@GetMapping(value="/partyUpdate")
+	public String partyUpdateForm(String party_num, Model model) throws ParseException {
+		
+		PartyListDTO info = mngSvc.partyInfo(party_num);
+		model.addAttribute("p", info);
+		
+		return "partyAdmin/partyUpdate";
+	}
+	
+	@PostMapping(value="/partyUpdate")
+	public String partyInfoUpdate(PartyListDTO party, Model model){
+		int i = mngSvc.partyUpdate(party);
+		if(i == 1) {
+			return "redirect:/index?formpath=partyMain?party_num="+party.getParty_num();
+		}
+		
+		model.addAttribute("msg", "업데이트를 진행할 수 없었습니다.");
+		return "foward:/partyUpdate?party_num="+party.getParty_num();
+	}
 
 
 }

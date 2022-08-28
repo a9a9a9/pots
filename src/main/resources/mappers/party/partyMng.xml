@@ -168,4 +168,8 @@
 		UPDATE party SET party_available = '0' WHERE party_num = #{party_num}
 	</update>
 	
+	<update id="partyUpdate" parameterType="PartyListDTO">
+		UPDATE party SET party_title=#{party_title}, party_id=#{party_id}, party_pw=#{party_pw}, party_tel=#{party_tel}, party_notice=#{party_notice} WHERE party_num=#{party_num}
+	</update>
+	
 </mapper>
