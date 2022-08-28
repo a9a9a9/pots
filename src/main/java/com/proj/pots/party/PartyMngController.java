@@ -135,6 +135,7 @@ public class PartyMngController {
 		
 		//String id = "admin";
 		String id = (String) session.getAttribute("id");
+		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("id", id);
 		map.put("keyword", searchWord);
@@ -320,14 +321,23 @@ public class PartyMngController {
 
 	@RequestMapping(value="partySearch")
 	public String partySearch
-			(String sel1, String sel2, String searchWord, Model model, String nowPage, PageVO vo) 
+			(String sel1, String sel2, String searchWord, Model model, String nowPage, PageVO vo, RedirectAttributes ra) 
 				throws ParseException {
-		if(ptChk() != null) return "redirect:/index?formpath=main";
+		if(ptChk() != null) {
+			ra.addFlashAttribute("msg", "<script>alert('접근할 수 없는 페이지 입니다.')</script>");
+			return "redirect:/index?formpath=main";
+		}
+		if(session.getAttribute("id") == null) {
+			return "redirect:/index?formpath=login";
+		}
+
+		
+		
 		System.out.println("sel1: " +sel1 + " sel2: " + sel2 + " sw: " + searchWord);
 		
 		Map<String, String> searchMap = new HashMap<String, String>();
-		searchMap.put("id", "admin");
-		//searchMap.put("id", (String) session.getAttribute("id"));
+		//searchMap.put("id", "admin");
+		searchMap.put("id", (String) session.getAttribute("id"));
 		
 		if(!sel1.equals("")) {
 			if(sel1.length() == 2) {

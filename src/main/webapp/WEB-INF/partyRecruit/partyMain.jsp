@@ -29,7 +29,9 @@
 <div class="title-wrap border">
 	<div class="title">
 	<a href="/" class="text">${p.party_service }</a>		</div>
+	<c:if test="${sessionScope.partner }">
 	<div class="title-right"><a href="/partyCreate" class="button border round button-purple">파티 만들기</a></div>
+	</c:if>
 </div>
 
 <div class="item-view-title">
