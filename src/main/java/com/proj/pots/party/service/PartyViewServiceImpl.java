@@ -228,13 +228,16 @@ public class PartyViewServiceImpl implements IPartyViewService{
 	@Override
 	public PartyMemberDTO payMethod(PartyDTO my) {
 		PartyMemberDTO method = partyViewDao.payMethod(my);
+		System.out.println(">>>>>"+method.getUse_account());
+		System.out.println(">>>>>"+method.getUse_point());
 		
-		if(!method.getUse_account().equals("0") || !method.getUse_account().equals("") || !(method.getUse_account() == null)) {
+		
+		if(!method.getUse_account().equals("0")) {
 			method.setUse_account("계좌이체");
 		}else {
 			method.setUse_account("");
 		}
-		if(!method.getUse_point().equals("0") || !method.getUse_point().equals("") || !(method.getUse_point() == null)) {
+		if(!method.getUse_point().equals("0")) {
 			method.setUse_point("포인트");
 		}else {
 			method.setUse_point("");
@@ -342,15 +345,19 @@ public class PartyViewServiceImpl implements IPartyViewService{
 			}
 		}
 		
+		Integer.parseInt(partyMember.getUse_account());
+		Integer.parseInt(partyMember.getUse_point());
+		
 		if(partyMember.getUse_account() == "" || partyMember.getUse_account() == null) {
 			partyMember.setUse_account("0");
 		} 
 		if(partyMember.getUse_point() == "" || partyMember.getUse_point() == null) {
 			partyMember.setUse_point("0");
-		}
-			
+		}	
+		
 		partyViewDao.insertPartyMember(partyMember);
 		partyViewDao.updatePoint(partyMember);
+		
 		return "신청완료";
 	}
 }
