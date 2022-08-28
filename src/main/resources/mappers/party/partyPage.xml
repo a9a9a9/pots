@@ -4,7 +4,7 @@
 <mapper namespace="com.proj.pots.main.dao.IPartyPageDAO">
 	<select id="listProc" resultType="PartyListDTO">
 		SELECT d.* FROM(
-			SELECT ROW_NUMBER() OVER(ORDER BY party_regdate DESC) AS rn, c.* FROM
+			SELECT ROW_NUMBER() OVER(ORDER BY party_available DESC, party_regdate DESC) AS rn, c.* FROM
 				(SELECT a.* , b.party_count AS party_now_member , DATE_FORMAT(party_end, '%y.%m.%d') AS party_end_form
 				FROM party a LEFT JOIN (SELECT party_num, count(*) AS party_count FROM party_member GROUP BY party_num)b 
 				ON a.party_num = b.party_num WHERE party_service = #{sub}
@@ -18,7 +18,7 @@
 	
 	<select id="sublistProc" resultType="PartyListDTO">
 		SELECT d.* FROM(
-			SELECT ROW_NUMBER() OVER(ORDER BY party_regdate DESC) AS rn, c.* FROM
+			SELECT ROW_NUMBER() OVER(ORDER BY party_available DESC, party_regdate DESC) AS rn, c.* FROM
 				(SELECT a.* , b.party_count AS party_now_member , DATE_FORMAT(party_end, '%y.%m.%d') AS party_end_form
 				FROM party a LEFT JOIN (SELECT party_num, count(*) AS party_count FROM party_member GROUP BY party_num)b 
 				ON a.party_num = b.party_num WHERE party_subservice = #{sub}
@@ -36,7 +36,7 @@
 				(SELECT a.* , b.party_count AS party_now_member , DATE_FORMAT(party_end, '%y.%m.%d') AS party_end_form
 				FROM party a LEFT JOIN (SELECT party_num, count(*) AS party_count FROM party_member GROUP BY party_num)b 
 				ON a.party_num = b.party_num
-				)c WHERE party_end > NOW()
+				)c WHERE party_end > NOW() AND party_available = '1'
 			)d WHERE rn BETWEEN #{b} and #{e};
 	</select>
 	
