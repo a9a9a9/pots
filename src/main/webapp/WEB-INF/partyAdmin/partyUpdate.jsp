@@ -336,7 +336,7 @@ ${msg }
 				
 
 				<div class="button-align centerbutton-align center">
-					<!-- <a href="partyMain" target="blank" class="button button-purple" >파티방보기</a> -->
+					<a href="index?formpath=partyMain?party_num=${p.party_num }" target="blank" class="button button-purple" >파티방보기</a>
 					<a href="partyList"class="button border button-purple">목록</a> 
 					<input type="submit" value="등록" class="button button-purple">
 				</div>
@@ -660,7 +660,7 @@ ${msg }
 					}
 
 					
-					function fn_check(val_c) {
+					/* function fn_check(val_c) {
 						var default_chk = '';
 						var var_display = '';
 						var var_it_explan = '';
@@ -696,9 +696,10 @@ ${msg }
 						}
 
 						document.getElementById('div_idpw').style.display = var_display;
-						/* fn_chkbox(default_chk); */
+						 fn_chkbox(default_chk);
 					}
-
+					*/
+					
 					fn_check('3');
 
 					/* function fn_chkbox(var_chk) {

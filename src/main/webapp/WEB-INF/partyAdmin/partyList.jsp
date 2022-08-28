@@ -149,8 +149,11 @@
 								</c:choose>
 								
 								<td class="text-center">${pl.party_regdate }</td>
+								
 								<td class="text-center">
-									<a href="partyUpdate/party_num" class="button round border button-purple">수정</a>
+								<c:if test="${pl.party_left_date > 0 }">
+									<a href="partyUpdate?party_num=${pl.party_num }" class="button round border button-purple">수정</a>
+								</c:if>
 								</td>
 							</tr>
 						</c:forEach>

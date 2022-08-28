@@ -32,6 +32,7 @@ public class PartyMngController {
 	@Autowired private PartyMngService mngSvc;
 	@Autowired HttpSession session;
 	
+	
 	@RequestMapping
 	public String ptChk() {
 		String partner = (String) session.getAttribute("partner");
@@ -49,7 +50,7 @@ public class PartyMngController {
 		//String id = "admin";
 		if(ptChk() != null) {
 			ra.addFlashAttribute("msg", "<script>alert('접근할 수 없는 페이지 입니다.')</script>");
-			return "redirect:/";
+			return "redirect:/index?formpath=main";
 		
 		}
 		String id = (String) session.getAttribute("id");
@@ -81,7 +82,7 @@ public class PartyMngController {
 		
 		if(ptChk() != null) {
 			ra.addFlashAttribute("msg", "<script>alert('접근할 수 없는 페이지 입니다.')</script>");
-			return "redirect:/";
+			return "redirect:/index?formpath=main";
 		
 		}
 		// 리스트 가져오기
@@ -116,7 +117,7 @@ public class PartyMngController {
 		
 		if(ptChk() != null) {
 			ra.addFlashAttribute("msg", "<script>alert('접근할 수 없는 페이지 입니다.')</script>");
-			return "redirect:/";
+			return "redirect:/index?formpath=main";
 		
 		}
 		System.out.println(fr_date + " " + to_date + " "  + sel + " "  + searchWord);
@@ -176,13 +177,13 @@ public class PartyMngController {
 	
 	@RequestMapping(value = "/partyCancelReq")
 	public String partyCancelReq() {
-		if(ptChk() != null) return "redirect:/";
+		if(ptChk() != null) return "redirect:/index?formpath=main";
 		return "partyAdmin/partyCancelReq";
 	}
 	
 	@RequestMapping(value = "/partyCancelList")
 	public String partyCancelList() {
-		if(ptChk() != null) return "redirect:/";
+		if(ptChk() != null) return "redirect:/index?formpath=main";
 		return "partyAdmin/partyCancelList";
 	}
 	
@@ -196,7 +197,7 @@ public class PartyMngController {
 	@ResponseBody
 	@RequestMapping(value = "/deleteproc", method=RequestMethod.POST)
     public String deleteproc (@RequestBody ArrayList<String> array) {
-		if(ptChk() != null) return "redirect:/";
+		if(ptChk() != null) return "redirect:/index?formpath=main";
         if(array.size() != 0) {
         	for(String s : array) {
         		int i = mngSvc.partyDelete(s);
@@ -212,7 +213,7 @@ public class PartyMngController {
     public String closeproc (@RequestBody ArrayList<String> array, RedirectAttributes ra) {
 		if(ptChk() != null) {
 			ra.addFlashAttribute("msg", "<script>alert('접근할 수 없는 페이지 입니다.')</script>");
-			return "redirect:/";
+			return "redirect:/index?formpath=main";
 		
 		}
         if(array.size() != 0) {
@@ -288,7 +289,7 @@ public class PartyMngController {
 	public String partyCreate(RedirectAttributes ra) {
 		if(ptChk() != null) {
 			ra.addFlashAttribute("msg", "<script>alert('접근할 수 없는 페이지 입니다.')</script>");
-			return "redirect:/";
+			return "redirect:/index?formpath=main";
 		}
 		if(session.getAttribute("id") == null) {
 			return "redirect:/index?formpath=login";
@@ -299,7 +300,7 @@ public class PartyMngController {
 	// 파티 생성 등록
 	@PostMapping(value = "partyReg")
 	public String partyReg(PartyRegDTO partyDto, Model model) {
-		if(ptChk() != null) return "redirect:/";
+		if(ptChk() != null) return "redirect:/index?formpath=main";
 		if(partyDto.getParty_adult() == null)
 			partyDto.setParty_adult("0");
 		
@@ -321,7 +322,7 @@ public class PartyMngController {
 	public String partySearch
 			(String sel1, String sel2, String searchWord, Model model, String nowPage, PageVO vo) 
 				throws ParseException {
-		if(ptChk() != null) return "redirect:/";
+		if(ptChk() != null) return "redirect:/index?formpath=main";
 		System.out.println("sel1: " +sel1 + " sel2: " + sel2 + " sw: " + searchWord);
 		
 		Map<String, String> searchMap = new HashMap<String, String>();
@@ -427,7 +428,7 @@ public class PartyMngController {
 	public String partyBill(Model model, String nowPage, PageVO vo, RedirectAttributes ra) {
 		if(ptChk() != null) {
 			ra.addFlashAttribute("msg", "<script>alert('접근할 수 없는 페이지 입니다.')</script>");
-			return "redirect:/";
+			return "redirect:/index?formpath=main";
 		
 		}
 		//id = "admin";
@@ -462,7 +463,7 @@ public class PartyMngController {
 	public String billProc(String pp_amount, Model model, RedirectAttributes ra) {
 		if(ptChk() != null) {
 			ra.addFlashAttribute("msg", "<script>alert('접근할 수 없는 페이지 입니다.'); window.close();</script>");
-			return "redirect:/";
+			return "redirect:/index?formpath=main";
 		
 		}
 		model.addAttribute("money", pp_amount);
@@ -473,7 +474,7 @@ public class PartyMngController {
 	public String billComplete(int bill_charge, RedirectAttributes ra) {
 		if(ptChk() != null) {
 			ra.addFlashAttribute("msg", "<script>alert('접근할 수 없는 페이지 입니다.'); window.close();</script>");
-			return "redirect:/";
+			return "redirect:/index?formpath=main";
 		}
 		
 		PartyBillDTO billDto = new PartyBillDTO();
@@ -487,16 +488,30 @@ public class PartyMngController {
 	}
 	
 	@GetMapping(value="/partyUpdate")
-	public String partyUpdateForm(String party_num, Model model) throws ParseException {
-		
+	public String partyUpdateForm(String party_num, Model model, RedirectAttributes ra, HttpSession session) throws ParseException {
+		if(ptChk() != null) {
+			ra.addFlashAttribute("msg", "<script>alert('접근할 수 없는 페이지 입니다.');</script>");
+			return "redirect:/index?formpath=main";
+		}
+		String id = (String) session.getAttribute("id");
 		PartyListDTO info = mngSvc.partyInfo(party_num);
+		if(!info.getId().equals(id)) {
+			ra.addFlashAttribute("msg", "<script>alert('접근할 수 없는 페이지 입니다.');</script>");
+			return "redirect:/index?formpath=main";
+		}
 		model.addAttribute("p", info);
 		
 		return "partyAdmin/partyUpdate";
 	}
 	
 	@PostMapping(value="/partyUpdate")
-	public String partyInfoUpdate(PartyListDTO party, Model model){
+	public String partyInfoUpdate(PartyListDTO party, Model model, RedirectAttributes ra){
+		String id = (String) session.getAttribute("id");
+		if(ptChk() != null || !party.getId().equals(id)) {
+			ra.addFlashAttribute("msg", "<script>alert('접근할 수 없는 페이지 입니다.');</script>");
+			return "redirect:/index?formpath=main";
+		}
+		
 		int i = mngSvc.partyUpdate(party);
 		if(i == 1) {
 			return "redirect:/index?formpath=partyMain?party_num="+party.getParty_num();
