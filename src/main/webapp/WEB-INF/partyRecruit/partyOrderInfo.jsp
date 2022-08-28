@@ -81,7 +81,9 @@
 			</li>
 			<li>
 				<div class="subject">ㆍ 결제방식</div>
-				<div class="right">${method.use_account } ${method.use_point } </div>
+				<div class="right">
+					${method.use_account } ${method.use_point }
+				</div>
 			</li>
 					
 		</ul>
@@ -103,18 +105,18 @@
 		</li>
 		<li>
 			<div class="subject">ㆍ 포인트 사용</div>
-			<div class="right">-<fmt:formatNumber type="number" maxFractionDigits="3" value="${myInfo.plus}" />P</div>  
+			<div class="right">-<fmt:formatNumber type="number" maxFractionDigits="3" value="${myInfo.use_point}" />P</div>  
 		</li>
 				<li>
 			<div class="subject">ㆍ 미결제액</div>
 			<div class="right">
-				<fmt:formatNumber type="number" maxFractionDigits="3" value="${(myInfo.pay + myInfo.plus) - (myInfo.use_account+myInfo.use_point)}"/>원			
+				<fmt:formatNumber type="number" maxFractionDigits="3" value="${(myInfo.pay+myInfo.plus) - (myInfo.use_account + myInfo.use_point)}"/>원			
 			</div>
 		</li>
 		<li class="total">
 			<div class="subject text-purple">결제한 금액</div>
 			<div class="right"><span class="Rajdhani text-purple">
-				<fmt:formatNumber type="number" maxFractionDigits="3" value="${(myInfo.use_account+myInfo.use_point)}"/>원
+				<fmt:formatNumber type="number" maxFractionDigits="3" value="${(myInfo.pay+myInfo.plus) - (myInfo.use_account + myInfo.use_point)}"/>원
 			</span></div>
 		</li>
 		</ul>
@@ -189,31 +191,8 @@ $(function(){
 
   gtag('config', 'UA-163597728-1');
 </script>
-
-<!-- Global site tag (gtag.js) - Google Ads: 914988072 --> <script async src="https://www.googletagmanager.com/gtag/js?id=AW-914988072"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-914988072'); </script><script src="https://buts.co.kr/js/sns.js"></script>
-
-		</div><!-- .width-container -->
-	</div><!-- .body -->
-<!--
-	<div class="side">
-		<a href="https://buts.co.kr/bbs/guide_buts.php">
-			<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/btn-quick-guid.png" srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/btn-quick-guid.png 2x" alt="" />
-			<span class="side-text">처음 오신분!</span>
-		</a>		
-		<a onclick="chatChannel();" href="javascript:;">
-			<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/btn-quick-talk.png" srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/btn-quick-talk.png 2x" alt="" />
-			<span class="side-text">질문 주세요!</span>
-		</a>
-		<script type="text/javascript">
-		// input your appkey
-		Kakao.init('c089c8172def97eb00c07217cae17495')
-		function chatChannel() {
-			Kakao.Channel.chat({
-			channelPublicId: '_xnSxgxdxb',
-			})
-		}
-		</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-914988072"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-914988072'); </script><script src="https://buts.co.kr/js/sns.js"></script>
+		</div>
 	</div>
--->
 </div>
 </body>

@@ -45,4 +45,6 @@ public interface IPartyMngDAO {
 	int partyClose(String party_num);
 
 	int insertComment(PartyCommentDTO comment);
+
+	int partyUpdate(PartyListDTO party);
 }

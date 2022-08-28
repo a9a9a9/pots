@@ -20,6 +20,7 @@
 <script>
 	window.onload = function() {
 		document.getElementById('partyList').classList.add('active');
+
 	}
 </script>
 <c:if test="${msg != null}">
@@ -31,7 +32,7 @@ ${msg }
 		<div class="partner-body">
 
 <script>
-		jQuery(function($) {
+		/* jQuery(function($) {
 			$.datepicker.regional["ko"] = {
 				closeText : "닫기",
 				prevText : "이전달",
@@ -68,7 +69,7 @@ ${msg }
 				maxDate : "+365d"
 			});
 		});
-		
+		 */
 		function check_cash() {
 			var i_it_price = $.trim($("#it_price").val());
 			var i_it_stock_qty = $.trim($("#it_stock_qty").val());
@@ -230,8 +231,9 @@ ${msg }
 
 			<div style="clear: both;"></div>
 
-			<form name="fitemform" action="partyReg" method="post" onsubmit="return fitemformcheck(this)">
+			<form name="fitemform" action="partyUpdate" method="post" onsubmit="return fitemformcheck(this)">
 			<input type="hidden" name="id" value="${sessionScope.id }"/>
+			<input type="hidden" name="party_num" value="${p.party_num }">
 				<!-- [[ 파트너 서비스 등록 ]] -->
 
 				<div class="title">
@@ -242,19 +244,15 @@ ${msg }
 					<div class="form-list border partner-fomr-list">
 						<ul>
 							<li>
-								<div class="subject">ㆍ 서비스</div>
+								<div class="subject" style="color:#c0c0c0;">ㆍ 서비스</div>
 								<div class="bo_w_select write_div">
-									<select name="party_service" id="ca_id_s" required onchange="category_main_change(this.form)" class="width-200">
-										<option value="">기본 분류를 선택하세요</option>
-										<option value="10">영상</option>
-										<option value="20">도서/음악</option>
-										<option value="30">게임</option>
-										<option value="60">기타</option>
+									<select name="party_service" id="ca_id_s" disabled required class="width-200">
+										<option value="10">${p.party_service }</option>
 									</select>
 								</div>
 								<div class="bo_w_select write_div">
-									<select name="party_subservice" id="ca_id" required onchange="category_sub_change2(this.form)" class="width-200">
-										<option value="">기본 분류를 먼저 선택하세요</option>
+									<select name="party_subservice" id="ca_id" disabled class="width-200">
+										<option value="1010">${p.party_subservice }</option>
 									</select>
 								</div>
 
@@ -262,21 +260,12 @@ ${msg }
 							<li>
 								<div class="subject">ㆍ 제목</div> 
 								<input type="hidden" name="pt_tag" id="pt_tag"> 
-								<input type="text" name="party_title" id="it_name" required class="width-400" size="50" placeholder="제목을 입력해 주세요">
+								<input type="text" name="party_title" id="it_name" required class="width-400" size="50" value="${p.party_title }">
 							</li>
 							<li>
-								<div class="subject">ㆍ 모집인원</div>
+								<div class="subject" style="color:#c0c0c0;">ㆍ 모집인원</div>
 								<select name="party_member" id="it_stock_qty"class="width-100">
-								<option value="0">본인제외</option>
-								<option value="0">0</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-								<option value="6">6</option>
-								<option value="7">7</option>
-								<option value="8">8</option>
+								<option value="${p.party_member }">${p.party_member }</option>
 								</select>
 								명
 							</li>
@@ -284,12 +273,10 @@ ${msg }
 								<div class="subject">ㆍ 계정 정보</div> 
 								
 								<div id="div_idpw" style="display: block;">
-									<input type="text" name="party_id" id="pt_link1"
-										class="width-200" size="20" maxlength="35"
-										placeholder="계정 아이디(이메일)"> 
+									<input type="text" name="party_id" id="pt_link1" class="width-200" size="20" maxlength="35" value="${p.party_id }"> 
 									<input type="text"
 										name="party_pw" id="pt_link2" class="width-200"
-										size="20" maxlength="20" placeholder="패스워드"> <br>
+										size="20" maxlength="20" value="${p.party_pw }"> <br>
 								</div>
 							</li>
 							<li>
@@ -297,23 +284,23 @@ ${msg }
 								<div>
 									<input type="text" class="width-200" name="party_tel"
 										id="kakao_id" placeholder="연락받을 곳을 입력해 주세요." required
-										value="${sessionScope.tel }">
+										value="${p.party_tel }">
 									<div class="lightgrey">이슈 발생 시 대응 가능한 문의정보를 입력해 주세요.</div>
 								</div>
 							</li>
 							<li>
-								<div class="subject w100">ㆍ 진행 기간</div> 
-								<input type="text" name="party_start" id="start_day" value="${sysDate }" class="width-100" readonly="" size="8" maxlength="8"> ~
-								<input type="text" name="party_end" value="종료날짜" id="pt_day" style="width:100px;" required size="8" maxlength="8">
+								<div class="subject w100" style="color:#c0c0c0;">ㆍ 진행 기간</div> 
+								<input type="text" name="party_start" id="start_day" value="${sysDate }" class="width-100" readonly size="8" maxlength="8"> ~
+								<input type="text" name="party_end"  id="pt_day" value="${p.party_end }" style="width:100px;" readonly required size="8" maxlength="8">
 								<button type="button" id="btn_enddate" class="button round button-purple" onclick="check_day()">
 								기간확인</button> 
 								<span id="lb_enddate" class="text-purple"></span>
 							</li>
 							<li>
-								<div class="subject w100">ㆍ 참여 금액</div> 
+								<div class="subject w100" style="color:#c0c0c0;">ㆍ 참여 금액</div> 
 								1인 당 1일 
 								<input type="text" name="party_charge" id="it_price"
-								class="width-100" required size="10" placeholder=" 금액입력" maxlength="4"> 
+								class="width-100" required size="10" value="${p.party_charge }" readonly maxlength="4"> 
 								원 * 예상 
 								<span id="sp_count" class="text-purple"></span> 
 								수령 금액
@@ -331,31 +318,25 @@ ${msg }
 							</li>
 							<li>
 								<div class="subject w100">ㆍ 공지사항 입력</div> 
-								<textarea name="party_notice" id="it_explan" rows="10" style="white-space:pre;" ></textarea> 
-								<br>
-								* 개인 연락처 또는 카카오톡, 개인간 거래 유도 행위는 불법으로 간주하며, 적발시 사전동의 없이 파티장 권한이
-								중지 됩니다. <br> * 작성된 정보는 벗츠에 수집되며 진행 중인 파티에 문제가 발생한 경우에 확인 및
-								해결을 위해 활용 될 수 있습니다. <span style="color: red"> <br>
-									* 파티 생성 후 15일이 경과 될때까지 참여자가 없을 경우 파티는 자동 삭제 처리 됩니다.
-							</span>
+								<textarea name="party_notice" id="it_explan" rows="10" style="white-space:pre;">${p.party_notice }</textarea> 
 							</li>
 						</ul>
 					</div>
 				</div>
 
-				<input type="hidden" name="it_maker" value="" id="it_maker" class="frm_input sm"> 
+				<!-- <input type="hidden" name="it_maker" value="" id="it_maker" class="frm_input sm"> 
 				<input type="hidden" name="it_origin" value="" id="it_origin" class="frm_input sm">
 				<input type="hidden" name="it_brand" value="" id="it_brand" class="frm_input sm"> 
 				<input type="hidden" name="it_model" value="" id="it_model" class="frm_input sm"> 
 				<input type="hidden" name="it_use" value="1" id="it_use"> 
 				<input type="hidden" name="it_id" value="1659696660" id="it_id">
 				
-				
+				 -->
 				
 				
 
 				<div class="button-align centerbutton-align center">
-					<!-- <a href="partyMain" target="blank" class="button button-purple" >파티방보기</a> -->
+					<a href="index?formpath=partyMain?party_num=${p.party_num }" target="blank" class="button button-purple" >파티방보기</a>
 					<a href="partyList"class="button border button-purple">목록</a> 
 					<input type="submit" value="등록" class="button button-purple">
 				</div>
@@ -365,12 +346,6 @@ ${msg }
 					function fitemformcheck(f) {
 						console.log("잘 안되는거 같은데요 보이나요");
 						
-						if (!f.ca_id.value) {
-							alert("기본분류를 선택하십시오.");
-							f.ca_id.focus();
-							return false;
-						}
-
 						var var_it_name = f.it_name.value.replace(
 								/[a-zA-Z0-9가-힣 \/\(\)\-\[\]]/g, "");
 						if (var_it_name.length > 0) {
@@ -400,160 +375,6 @@ ${msg }
 							f.kakao_id.focus();
 							return false;
 						}
-
-						if (f.pt_day.value == "종료날짜") {
-							alert("진행기간을 입력해 주십시오.");
-							f.pt_day.focus();
-							return false;
-						} else if (f.pt_day.value == "종료") {
-							alert("진행기간을 입력해 주십시오.");
-							f.pt_day.focus();
-							return false;
-						}
-
-						if (f.it_price.value < 10) {
-							alert("10원 미만은 등록할수 없습니다.\n파티모집 금액을 변경해 주세요.");
-							f.it_price.focus();
-							return false;
-						}
-
-						//넷플릭스 최저가적용
-						if (f.ca_id.value == "1010") {
-							if (f.it_price.value < 150) {
-								alert("하루 최저 사용금액은 150원 이하로는 하실 수 없습니다.\n다시한번 확인 부탁 드립니다.");
-								f.it_price.focus();
-								return false;
-							} else if (f.it_price.value > 200) {
-								alert("하루 최고 사용금액은 200원 이상으로는 하실 수 없습니다.\n다시한번 확인 부탁 드립니다.");
-								f.it_price.focus();
-								return false;
-							}
-						} else if (f.ca_id.value == "1020") { //왓챠 최저가적용
-							if (f.it_price.value < 100) {
-								alert("하루 최저 사용금액은 100원 이하로는 하실 수 없습니다.\n다시한번 확인 부탁 드립니다.");
-								f.it_price.focus();
-								return false;
-							}
-						} else if (f.ca_id.value == "1030") { //유튜브 최저가적용
-							if (f.it_price.value < 50) {
-								alert("하루 최저 사용금액은 50 이하로는 하실 수 없습니다.\n다시한번 확인 부탁 드립니다.");
-								f.it_price.focus();
-								return false;
-							}
-						} else if (f.ca_id.value == "1040") { //웨이브 최저가적용
-							if (f.it_price.value < 120) {
-								alert("하루 최저 사용금액은 120원 이하로는 하실 수 없습니다.\n다시한번 확인 부탁 드립니다.");
-								f.it_price.focus();
-								return false;
-							}
-						} else if (f.ca_id.value == "1050") { //티빙 최저가적용
-							if (f.it_price.value < 120) {
-								alert("하루 최저 사용금액은 120원 이하로는 하실 수 없습니다.\n다시한번 확인 부탁 드립니다.");
-								f.it_price.focus();
-								return false;
-							}
-						} else if (f.ca_id.value == "1080") { //디즈니 최저가적용
-							if (f.it_price.value < 80) {
-								alert("하루 최저 사용금액은 80원 이하로는 하실 수 없습니다.\n다시한번 확인 부탁 드립니다.");
-								f.it_price.focus();
-								return false;
-							}
-						}
-
-						if (f.it_price.value > 300) {
-							alert("하루 최고 사용금액은 300원을 넘을수 없습니다.\n다시한번 확인 부탁 드립니다.");
-							f.it_price.focus();
-							return false;
-						}
-
-						if (f.it_stock_qty.value < 1) {
-							alert("모집인원을 0명이상 선택해 주십시오.");
-							f.it_stock_qty.focus();
-							return false;
-						}
-
-						
-						/* var var_plus = '0';
-						var pt_level = '9';
-						var pt_type = '2';
-						if (pt_type == "1") {
-							var level_plus_cont = 0;
-							if (pt_level == 1) {
-								level_plus_cont = 7;
-							} else if (pt_level == 2) {
-								level_plus_cont = 4;
-							} else if (pt_level == 3) {
-								level_plus_cont = 3;
-							} else if (pt_level == 4) {
-								level_plus_cont = 2;
-							} else if (pt_level == 5) {
-								level_plus_cont = 2;
-							} else if (pt_level == 6) {
-								level_plus_cont = 1;
-							} else if (pt_level == 7) {
-								level_plus_cont = 5;
-							}//여기 이하 주 이용수
-							else if (pt_level == 8) {
-								level_plus_cont = 3;
-							} else if (pt_level == 9) {
-								level_plus_cont = 1;
-							} else {
-								level_plus_cont = 0;
-							}
-
-							var ajax_url = "https://buts.co.kr/shop/partner/ajax.plus_count.php";
-
-							$.ajax({
-								type : "POST",
-								url : ajax_url,
-								data : {
-									'ca_id' : f.ca_id.value,
-									'pt_level' : pt_level
-								},
-								cache : false,
-								async : false,
-								dataType : "json",
-								success : function(data, textStatus) {
-									error = data.error;
-								}
-							});
-
-							if (error >= level_plus_cont) {
-								if (var_plus > 0) {
-									if (pt_level < 7) {
-										if (!confirm("하루 "
-												+ level_plus_cont
-												+ "회만 무료로 등록 하실수 있습니다.\r\n벗츠PLUS를 사용 하시겠습니까?")) {
-											return false;
-										}
-									} else if (pt_level < 10) {
-										if (!confirm("주 "
-												+ level_plus_cont
-												+ "회만 무료로 등록 하실수 있습니다.\r\n벗츠PLUS를 사용 하시겠습니까?")) {
-											return false;
-										}
-									} else {
-										alert('이용하실수 없습니다. 자세한 안내는 벗츠 운영팀에 문의 부탁 드립니다.');
-										return false;
-									}
-								} else {
-									if (pt_level < 7) {
-										alert('하루 '
-												+ level_plus_cont
-												+ '회만 무료로 사용하실수 있습니다.\r\n추가로 이용 원하실 경우 벗츠PLUS를 구매 후 이용 부탁드립니다.');
-										return false;
-									} else if (pt_level < 10) {
-										alert('주 '
-												+ level_plus_cont
-												+ '회만 무료로 사용하실수 있습니다.\r\n추가로 이용 원하실 경우 벗츠PLUS를 구매 후 이용 부탁드립니다.');
-										return false;
-									} else {
-										alert('이용하실수 없습니다. 자세한 안내는 벗츠 운영팀에 문의 부탁 드립니다.');
-										return false;
-									}
-								}
-							}
-						} */
 
 						return true;
 					}
@@ -839,7 +660,7 @@ ${msg }
 					}
 
 					
-					function fn_check(val_c) {
+					/* function fn_check(val_c) {
 						var default_chk = '';
 						var var_display = '';
 						var var_it_explan = '';
@@ -875,9 +696,10 @@ ${msg }
 						}
 
 						document.getElementById('div_idpw').style.display = var_display;
-						/* fn_chkbox(default_chk); */
+						 fn_chkbox(default_chk);
 					}
-
+					*/
+					
 					fn_check('3');
 
 					/* function fn_chkbox(var_chk) {
@@ -896,7 +718,7 @@ ${msg }
 					function fn_contact(var_no) {
 						if (var_no == "1") {
 							document.getElementById('kakao_id').disabled = true;
-							document.getElementById('kakao_id').value = '010-4336-0856';
+							document.getElementById('kakao_id').value = ${sessionScope.tel};
 						} else {
 							document.getElementById('kakao_id').disabled = false;
 							document.getElementById('kakao_id').value = '';

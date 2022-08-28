@@ -38,6 +38,6 @@ public interface IPartyViewService {
 
 	ArrayList<PartyMemberDTO> orderList(String id);
 
-	String partyMemberInsertProc(PartyMemberDTO partyMember, String party_num);
+	public String partyMemberInsertProc(PartyMemberDTO partyMember, String party_num);
 	
 }
