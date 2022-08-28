@@ -234,8 +234,7 @@ public class PartyViewServiceImpl implements IPartyViewService{
 		PartyMemberDTO method = partyViewDao.payMethod(my);
 		System.out.println(">>>>>"+method.getUse_account());
 		System.out.println(">>>>>"+method.getUse_point());
-		
-		
+
 		if(!method.getUse_account().equals("0")) {
 			method.setUse_account("계좌이체");
 		}else {
@@ -347,6 +346,13 @@ public class PartyViewServiceImpl implements IPartyViewService{
 			if(tmp == 1) {
 				partyViewDao.updateParty(party_num);
 			}
+		}
+		
+		if(partyMember.getUse_point().equals("") || partyMember.getUse_point() == null) {
+			partyMember.setUse_point("0");
+		}
+		if(partyMember.getUse_account().equals("") || partyMember.getUse_account() == null) {
+			partyMember.setUse_point("0");
 		}
 		
 		insertuse(partyMember.getUse_point());

@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<link rel="stylesheet" href="/css/partyAdmin/font-awesome.min.css">
 <body class="responsive is-pc">
 	<div class="wrap wrapper  ko">
 		<div class="body">
@@ -49,7 +50,7 @@
 									</td>
 									<td>
 										<div class="item-name">
-											<a href="index?formpath=partyOrderInfo">
+											<a href="index?formpath=partyOrderInfo?party_num=${list.party_num }">
 												<span class="brand"><img src="${list.logo }" alt="" /></span>
 												<span class="name">${list.party_subservice }</span>
 												<span class="comment">${list.party_title }</span>
@@ -140,107 +141,6 @@
 
 		</div>
 	</div>	
-</div> <!-- .wrapper -->
-
-<!-- .wrapper -->
-<div class="at-go" style="position: fixed; bottom: 20px; right: 20px; width: 40px; height: 40px;">
-	<div class="side">
-		<a href="https://buts.co.kr/bbs/guide_buts.php"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/side_img01.png" alt="" /></a>		
-		<a onclick="chatChannel();" href="javascript:;"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/side_img02.png" alt="" /></a>
-	</div>
-</div>
-
-<!--[if lt IE 9]>
-<script type="text/javascript" src="https://buts.co.kr/thema/Buts/assets/js/respond.js"></script>
-<![endif]-->
-
-<!-- JavaScript -->
-<script>
-var sub_show = "slide";
-var sub_hide = "";
-var menu_startAt = "0";
-var menu_sub = "";
-var menu_subAt = "0";
-</script>
-<script src="https://buts.co.kr/thema/Buts/assets/bs3/js/bootstrap.min.js"></script>
-<script src="https://buts.co.kr/thema/Buts/assets/js/jquery.magnific-popup.min.js"></script>
-<script src="https://buts.co.kr/thema/Buts/assets/js/sly.min.js"></script>
-<script src="https://buts.co.kr/thema/Buts/assets/js/custom.js"></script>
-<script src="https://buts.co.kr/thema/Buts/assets/js/buts.js"></script>
-
-<script>
-var sidebar_url = "https://buts.co.kr/thema/Buts/widget/basic-sidebar";
-var sidebar_time = "30";
-</script>
-<script src="https://buts.co.kr/thema/Buts/widget/basic-sidebar/sidebar.js"></script>
-
-
-<!-- Channel Plugin Scripts -->
-<script>
-  (function() {
-    var w = window;
-    if (w.ChannelIO) {
-      return (window.console.error || window.console.log || function(){})('ChannelIO script included twice.');
-    }
-    var ch = function() {
-      ch.c(arguments);
-    };
-    ch.q = [];
-    ch.c = function(args) {
-      ch.q.push(args);
-    };
-    w.ChannelIO = ch;
-    function l() {
-      if (w.ChannelIOInitialized) {
-        return;
-      }
-      w.ChannelIOInitialized = true;
-      var s = document.createElement('script');
-      s.type = 'text/javascript';
-      s.async = true;
-      s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
-      s.charset = 'UTF-8';
-      var x = document.getElementsByTagName('script')[0];
-      x.parentNode.insertBefore(s, x);
-    }
-    if (document.readyState === 'complete') {
-      l();
-    } else if (window.attachEvent) {
-      window.attachEvent('onload', l);
-    } else {
-      window.addEventListener('DOMContentLoaded', l, false);
-      window.addEventListener('load', l, false);
-    }
-  })();
-  ChannelIO('boot', {
-    "pluginKey": "d3d063c0-7d5d-48f8-8535-0ac91305c985", //please fill with your plugin key
-    "memberId": "lhg1042", //fill with user id
-    "profile": {
-      "name": "이혜규", //fill with user name
-      "mobileNumber": "010-9256-1042",
-      "email": "lhg1042@nate.com",
-      "description": "ㅇㅆㅇ" //fill with user name
-    }
-  });
-</script>
-<!-- End Channel Plugin -->
-
-
-<!-- ie6,7에서 사이드뷰가 게시판 목록에서 아래 사이드뷰에 가려지는 현상 수정 -->
-<!--[if lte IE 7]>
-<script>
-$(function() {
-    var $sv_use = $(".sv_use");
-    var count = $sv_use.length;
-
-    $sv_use.each(function() {
-        $(this).css("z-index", count);
-        $(this).css("position", "relative");
-        count = count - 1;
-    });
-});
-</script>
-<![endif]-->
-
+</div> 
 </body>
 </html>

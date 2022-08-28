@@ -127,12 +127,16 @@ public class PartyController {
 
 			model.addAttribute("party", service.selectParty(party_num));
 			model.addAttribute("myInfo", service.myPartyDay(id, party_num));
+			
 			PartyDTO my = new PartyDTO();
 			my.setId(id);
 			my.setParty_num(Integer.parseInt(party_num));
-
+			
 			//model.addAttribute("partyMember", service.myPartyInfo(id, party_num); 
 			model.addAttribute("method", service.payMethod(my));
+			
+			System.out.println("결제방식:" + service.payMethod(my).getUse_account() + ", " + service.payMethod(my).getUse_point());
+			
 			return "partyRecruit/partyOrderInfo";
 		}
 

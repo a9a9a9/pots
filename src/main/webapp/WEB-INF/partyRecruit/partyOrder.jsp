@@ -180,7 +180,7 @@
 				보유 포인트
 				<span class="text-purple"><fmt:formatNumber type="number" maxFractionDigits="3" value="${member.point }"/>P</span>
 				<input type="hidden" name="max_temp_point" value="${myDay.pay + myDay.plus } }">
-				<input type="text" name="use_point" id="od_temp_point" onBlur="onlyNumber(this);" class="point" value="" >
+				<input type="text" name="use_point" id="od_temp_point" onBlur="onlyNumber(this);" class="point" value="0" >
 				<input type="button" id="point_s" value="전액사용" onclick="change_view('1');" class="all button mini button-purple">
 				<input type="button" id="point_c" value="취소" onclick="change_view('2');" style="display:none;" class="all button mini button-purple">
 				<input type="radio" id="od_settle_point" name="od_settle_case" value="포인트" style="display:none;" >
@@ -210,7 +210,7 @@
 			<span id="od_last_price" class="Rajdhani text-purple">
 				<fmt:formatNumber type="number" maxFractionDigits="3" value="${myDay.pay + myDay.plus }"/>
 			</span><span class="won">원</span>
-			<input type="hidden" id="use_account" name="use_account" value="">
+			<input type="hidden" id="use_account" name="use_account" value="${myDay.pay + myDay.plus }">
 			</div>
 		</li>
 		</ul>
@@ -303,9 +303,7 @@
 		else{
 			var od_last_price = parseInt(tot_price) - parseInt(str_val);
 			document.getElementById("od_last_price").innerHTML = number_format(od_last_price);	
-			//$('input[name=use_account]').attr('value', number_format(od_last_price));
-			$('input[name=use_account]').val(od_last_price);
-			//alert(number_format(od_last_price));
+			$('#use_account').val(od_last_price);
 		}	
 	}
 </script>
