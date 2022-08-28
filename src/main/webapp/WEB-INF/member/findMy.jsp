@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:url var="root" value="/" />
@@ -14,25 +13,21 @@
 </script>
 
 <body class="responsive is-pc">
-	<h1
-		style="display: inline-block !important; position: absolute; top: 0; left: 0; margin: 0 !important; padding: 0 !important; font-size: 0; line-height: 0; border: 0 !important; overflow: hidden !important">
-		회원정보 찾기 &gt; Buts</h1>
+	<div class="body">
+		<div class="width-container">
+
 	<div class="ko">
-<!-- 		<form role="form" name="fpasswordlost" action="captchaProc" -->
-<!-- 			method="post" autocomplete="off"> -->
-			<!-- [[ 아이디/비번찾기 ]]  	onsubmit="return fpasswordlost_submit(this);" -->
 		<form role="form" name="fpasswordlost" action="captchaProc"
 			method="post" autocomplete="off">
 			<input type="hidden" id="getAnswer" name="rand" value="captchaImg"/>
 			<div class="mw-400 form-pd form-password">
 				<div class="form-title center">
-					<span class="text-purple">아이디 / 패스워드</span> 찾기
+					<span class="text-purple">패스워드</span> 찾기
 				</div>
 		
 				<div class="form-captcha">
 				<p class="form-text center">
-					회원가입 시 등록하신 <span class="text-purple">이메일 주소를 입력</span>해 주세요. <br>해당
-					이메일로 아이디와 비밀번호 정보를 보내드립니다.
+					회원가입 시 등록하신 <span class="text-purple">이메일 주소를 입력</span>해 주세요.
 				</p>
 					<div class="form-group">
 				<div class="password-email">
@@ -41,8 +36,7 @@
 						placeholder="이메일을 입력해주세요" maxlength="100">
 				</div>
 				
-
-						<label for="captcha" style="display: block;">자동 로그인 방지</label>
+				<fieldset id="captcha" class="captcha">
 						<div class="captcha">
 							<div class="form-group">
 								<img id="captchaImg" title="캡차 이미지" src="captchaImg.do"
@@ -50,24 +44,36 @@
 								<div id="captchaAudio" style="display: none;"></div>
 							</div>
 							<div class="form-group">
-								<a onclick="javascript:refreshBtn()" class="refreshBtn" id="captcha_mp3"> <input
-									type="button" value="새로고침" />
-								</a> <a onclick="javascript:audio()" class="refreshBtn"> <input
-									type="button" value="음성듣기" />
+								<a onclick="javascript:audio()" class="refreshBtn"> 
+									<button type="button" id="captcha_mp3" style="left:200px;">
+									<span></span>
+										음성듣기
+									</button>
+<!-- 								<input type="button" value="음성듣기" /> -->
 								</a>
+								<a onclick="javascript:refreshBtn()" class="refreshBtn" id="captcha_reload" style="top:29px;left:200px;"> 
+									<button type="button" id="captcha_reload">
+									<span></span>
+										새로고침
+									</button>
+<!-- 								<input type="button" value="새로고침" /> -->
+								</a> 
 							</div>
 							<div class="form-group">
 								<input type="text" class="captcha_box required" name="answer" id="answer" size="6" maxlength="6" 
 									style="color: black;" />
 <!-- 									 class="form-control" -->
+						<label for="captcha" style="display: block;">자동등록방지 숫자를 순서대로 입력하세요.</label>
 							</div>
 						</div>
+				</fieldset>
 					</div>
 
 				</div>
 				<div class="button-align center">
-					<button type="button" class="button small border button-purple"
-						onclick="window.close();">닫기</button>
+					<a class="button small border button-purple"
+						href="${root}index?formpath=main">취소</a>
+						
 					<button type="submit" class="button small button-purple">확인</button>
 				</div>
 			</div>
@@ -146,6 +152,7 @@ $(function() {
 <![endif]-->
 
 
-
+</div>
+</div>
 </body>
 

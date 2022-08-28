@@ -66,7 +66,9 @@
 							</li>
 							<li>
 								<span class="subject">ㆍ 휴대폰 번호</span>
-								<input type="text" name="tel" value="" id="tel"  required placeholder="휴대폰 번호" maxlength="20">
+								<input type="text" name="tel" value="" id="tel" onkeyup="telNum()"required placeholder="휴대폰 번호" maxlength="20" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+								<span class="lightgrey inline-break">하이픈(-)없이 숫자만 입력 가능</span>
+							
 							</li>
 							</ul>
 						</div>
@@ -112,8 +114,8 @@
 							</ul>
 						</div>
 						<div class="button-align center">
-<!-- 							<a href="reset" class="button">취소</a> -->
-							<button type="reset"  class="button">취소</button>
+							<a href="${root}index?formpath=main" class="button">취소</a>
+<%-- 							<input type="button" onclick="${root}index?formpath=main"   class="button">취소 --%>
 							<button type="submit" id="btn_submit" class="button button-purple" accesskey="s">회원 가입</button>
 						</div>
 					</div>
