@@ -305,7 +305,7 @@
 			document.getElementById("od_last_price").innerHTML = number_format(od_last_price);	
 			//$('input[name=use_account]').attr('value', number_format(od_last_price));
 			$('input[name=use_account]').val(od_last_price);
-			alert(number_format(od_last_price));
+			//alert(number_format(od_last_price));
 		}	
 	}
 </script>
