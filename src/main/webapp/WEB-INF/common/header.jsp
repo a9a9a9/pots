@@ -20,7 +20,7 @@
 <!-- 스크립트 -->
 <script>
 var result = "${msg}";
-if(result === "접근할 수 없는 페이지 입니다."){
+if(result === '접근할 수 없는 페이지 입니다.'){
 	${msg }
 }
 </script>

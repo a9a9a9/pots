@@ -27,7 +27,6 @@
 							<form action="${root}boardProc" method="post">
 								<!-- 검색 -->
 								<select name="select">
-									<option value="">선택</option>
 									<option value="title">제목</option>
 									<option value="nick">닉네임</option>
 								</select> 
