@@ -62,7 +62,7 @@ ${msg }
 <body class="partner-body">
 <form class="form" name="fregister" id="fregister" action="accountModifyProc" method="post" onsubmit="return fregister_submit(this);">
 <div class="dialog" style="border-top: 2px solid #84cdcf">
-	<div class="dialog-title"><span class="text-purple">파트너</span> 신청</div>
+	<div class="dialog-title"><span class="text-purple">파트너</span>수정</div>
 	<div class="dialog-body" style="padding-top: 30px; border-top: 1px solid #333">
 					<input type="hidden" name="pt_partner" value="1">
 			<input type="hidden" name="pt_marketer" value="0">

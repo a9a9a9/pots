@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
     <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:import url="partyIndex.jsp"/> 
 <style>
@@ -33,7 +34,8 @@ window.onload=function(){
 			<tbody>
 			<tr>
 				<td><span class="subject">1.판매총액</span></td>
-				<td>${billMap.bill_total }원</td>
+				<fmt:formatNumber var="billTotal" value="${billMap.bill_total }"  maxFractionDigits="3" type="number" />
+				<td>${billTotal }원</td>
 				<td class="text-left"><span class="lightgrey">총 판매합산 금액(수수료 제외)</span></td>
 			</tr>
 			<!--
@@ -45,7 +47,8 @@ window.onload=function(){
 				-->
 			<tr>
 				<td><span class="subject">2.지급금액</span></td>
-				<td>${billMap.bill_paid }원</td>
+				<fmt:formatNumber var="billPaid" value="${billMap.bill_paid }"  maxFractionDigits="3" type="number" />
+				<td>${billPaid}원</td>
 				<td class="text-left"><span class="lightgrey">신청금액 기준</span></td>
 			</tr>
 			<tr class=" bg-grey">
@@ -60,17 +63,20 @@ window.onload=function(){
 				</tr>
 				<tr class=" bg-grey">
 					<td><span class="subject">5.미발생 판매금</span></td>
-					<td>${billMap.bill_now }원</td>
+					<fmt:formatNumber var="billNow" value="${billMap.bill_now }"  maxFractionDigits="3" type="number" />
+					<td>${billNow }원</td>
 					<td class="text-left"><span class="lightgrey">진행 중 파티의 남은 기간에 해당하는 비용</span></td>
 				</tr>
 				<tr class="bg-grey">
 					<td><span class="subject">6.지급 요청 금액</span></td>
-					<td><span class="text-purple">${billMap.bill_request }원</span></td>
+					<fmt:formatNumber var="billRequest" value="${billMap.bill_request }"  maxFractionDigits="3" type="number" />
+					<td><span class="text-purple">${billRequest }원</span></td>
 					<td class="text-left"></td>
 				</tr>
 				<tr class="emphasis bg-grey">
 					<td><span class="subject">7.출금 가능 금액</span></td>
-					<td><span class="text-purple">${billMap.bill_available }원</span></td>
+					<fmt:formatNumber var="billAvailable" value="${billMap.bill_available }"  maxFractionDigits="3" type="number" />
+					<td><span class="text-purple">${billAvailable }원</span></td>
 					<td class="text-left">1-2-3-4-5-6 = 7</td>
 				</tr>
 			</tbody>
@@ -100,7 +106,7 @@ window.onload=function(){
 				<span class="lightgrey">※ 정산유형 : 개인 파티장은 수수료가 없습니다.</span><br />
 				<span class="lightgrey">※ 전문 파티장은 판매 수수료를 제한 금액에 대해 출금신청이 가능합니다.</span>
 			</p>
-			<div class="withdraw-price">최대 <strong>${billMap.bill_available }</strong>원까지 신청할 수 있습니다.${billMap.bill_today }</div>			
+			<div class="withdraw-price">최대 <strong>${billAvailable }</strong>원까지 신청할 수 있습니다.</div>			
 			<div class="withdraw-account">
 				<form class="form" role="form" name="frm_amount" action="billProc" onsubmit="return frm_submit(this);" method="post">
 				<input type="hidden" name="ap" value="paylist">

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:import url="partyIndex.jsp" />
 <script>
 	window.onload = function() {
@@ -161,7 +162,7 @@
 									<td><span class="lightgrey">${length - vs.index }</span></td>
 									<td><span class="lightgrey"> ${jl.mystartday } </span></td>
 									<td><a href="index?formpath=partyMain?party_num=${jl.party_num }" class="item-name"> 
-										<span class="brand"><img src="https://buts.co.kr/thema/Buts/colorset/category/6040.jpg" alt=""></span> 
+										<span class="brand"><img src="/img/partylogobyno/${jl.party_subservice }.png" alt=""></span> 
 										<span class="name">${jl.party_title }</span> 
 										<span class="lightgrey">파티번호 : ${jl.party_num }</span>
 									</a></td>
@@ -174,12 +175,16 @@
 											<td>사용</td>
 										</c:otherwise>
 									</c:choose>
+									
 									<td><strong>${jl.party_left_date }</strong>일</td>
-		
-									<td>${jl.mycharge }원</td>
+		<fmt:formatNumber var="mycharge" value="${jl.mycharge }"  maxFractionDigits="3" type="number" />
+									<td>${mycharge }원</td>
 									<td><span class="text-red">0</span>원</td>
-									<td>0원(0%)</td>
-									<td><span class="text-purple">${jl.mycharge }</span>원</td>
+									<fmt:parseNumber var="pcharge" value="${(jl.mycharge * 0.1) }" integerOnly="true" />
+									<fmt:formatNumber var="p_charge" value="${pcharge }"  maxFractionDigits="3" type="number" />
+									<td>${p_charge }원(10%)</td>
+									<fmt:formatNumber var="mytotalcharge" value="${jl.mycharge+ pcharge }"  maxFractionDigits="3" type="number" />
+									<td><span class="text-purple">${mytotalcharge}</span>원</td>
 								</tr>
 						</c:forEach>
 							</tbody>

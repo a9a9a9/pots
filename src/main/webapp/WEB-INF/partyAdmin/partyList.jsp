@@ -159,9 +159,19 @@
 								</a></td>
 								<td><strong>${pl.party_total_charge }</strong>원(<strong>${ pl.party_charge}</strong>원)</td>
 								<td><strong>${pl.party_left_member }명(총 ${pl.party_member }명)</strong></td>
-								<td><strong>${pl.party_left_date }</strong>일</td>
+								<td><strong>${pl.party_left_date }</strong>일 
 								<c:choose>
-									<c:when test="${pl.party_left_date <= 0 }">
+									<c:when test="${pl.party_available == 0 }">
+									(종료)
+									</c:when>
+									<c:otherwise>
+									(모집중)
+									</c:otherwise>
+								</c:choose>
+								</td>
+								
+								<c:choose>
+									<c:when test="${pl.party_left_date <= 0}">
 										<td><span class="lightgrey"> 종료 </span></td>
 									
 									</c:when>

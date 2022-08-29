@@ -24,7 +24,7 @@
 	</insert>
 	
 	<select id="partyList" resultType="PartyListDTO">
-		SELECT a.*, b.party_count AS party_now_member 
+		SELECT a.*, b.party_count AS party_now_member, DATEDIFF(a.party_end, NOW()) AS party_left_date
 		FROM 
 			(SELECT * FROM party WHERE id=#{id}) 
 			a 
