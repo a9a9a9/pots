@@ -1,7 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:import url="partyIndex.jsp"/> 
+<style>
+.table-list{
+	margin-top: 20px;
+}
+
+</style>
+<script>
+window.onload=function(){
+	document.getElementById('partyBill').classList.add('active');
+}
+</script>
 <!-- body -->
 	<div class="partner-body">
 
@@ -9,7 +22,7 @@
 <div class="title"><span class="text-purple">출금</span> 관리</div>
 
 <div class="form-half left">
-	<div class="table-list" style="border-top: 1px solid #7e69fe">
+	<div class="table-list" style="border-top: 1px solid #84cdcf">
 		<table>
 			<thead>
 			<tr>
@@ -21,7 +34,8 @@
 			<tbody>
 			<tr>
 				<td><span class="subject">1.판매총액</span></td>
-				<td>0원</td>
+				<fmt:formatNumber var="billTotal" value="${billMap.bill_total }"  maxFractionDigits="3" type="number" />
+				<td>${billTotal }원</td>
 				<td class="text-left"><span class="lightgrey">총 판매합산 금액(수수료 제외)</span></td>
 			</tr>
 			<!--
@@ -33,7 +47,8 @@
 				-->
 			<tr>
 				<td><span class="subject">2.지급금액</span></td>
-				<td>0원</td>
+				<fmt:formatNumber var="billPaid" value="${billMap.bill_paid }"  maxFractionDigits="3" type="number" />
+				<td>${billPaid}원</td>
 				<td class="text-left"><span class="lightgrey">신청금액 기준</span></td>
 			</tr>
 			<tr class=" bg-grey">
@@ -48,17 +63,20 @@
 				</tr>
 				<tr class=" bg-grey">
 					<td><span class="subject">5.미발생 판매금</span></td>
-					<td>0원</td>
+					<fmt:formatNumber var="billNow" value="${billMap.bill_now }"  maxFractionDigits="3" type="number" />
+					<td>${billNow }원</td>
 					<td class="text-left"><span class="lightgrey">진행 중 파티의 남은 기간에 해당하는 비용</span></td>
 				</tr>
 				<tr class="bg-grey">
 					<td><span class="subject">6.지급 요청 금액</span></td>
-					<td><span class="text-purple">0원</span></td>
+					<fmt:formatNumber var="billRequest" value="${billMap.bill_request }"  maxFractionDigits="3" type="number" />
+					<td><span class="text-purple">${billRequest }원</span></td>
 					<td class="text-left"></td>
 				</tr>
 				<tr class="emphasis bg-grey">
 					<td><span class="subject">7.출금 가능 금액</span></td>
-					<td><span class="text-purple">0원</span></td>
+					<fmt:formatNumber var="billAvailable" value="${billMap.bill_available }"  maxFractionDigits="3" type="number" />
+					<td><span class="text-purple">${billAvailable }원</span></td>
 					<td class="text-left">1-2-3-4-5-6 = 7</td>
 				</tr>
 			</tbody>
@@ -67,7 +85,7 @@
 </div>
 
 <div class="form-half right form-half-withdraw">
-	<div class="table-list" style="border-top: 1px solid #7e69fe">
+	<div class="table-list" style="border-top: 1px solid #84cdcf">
 	<table>
 		<thead>
 		<tr>
@@ -78,7 +96,7 @@
 		<tr>
 			<td>
 				<span class="subject">입금 계좌</span>
-				<input type="text" class="account" disabled placeholder="신한은행 110486730257 " />
+				<input type="text" class="account" disabled placeholder="${sessionScope.account_name } ${sessionScope.account_num}"/>
 				<!-- <input type="text" class="account" placeholder="농협 8732-0204-056137" /> -->
 			</td>
 		</tr>
@@ -88,9 +106,9 @@
 				<span class="lightgrey">※ 정산유형 : 개인 파티장은 수수료가 없습니다.</span><br />
 				<span class="lightgrey">※ 전문 파티장은 판매 수수료를 제한 금액에 대해 출금신청이 가능합니다.</span>
 			</p>
-			<div class="withdraw-price">최대 <strong>0</strong>원까지 신청할 수 있습니다.</div>			
+			<div class="withdraw-price">최대 <strong>${billAvailable }</strong>원까지 신청할 수 있습니다.</div>			
 			<div class="withdraw-account">
-				<form class="form" role="form" name="frm_amount" action="./payconfirm.php" onsubmit="return frm_submit(this);" method="post">
+				<form class="form" role="form" name="frm_amount" action="billProc" onsubmit="return frm_submit(this);" method="post">
 				<input type="hidden" name="ap" value="paylist">
 				<input type="hidden" name="pp_field" value="0">
 					<select name="pp_means" id="pp_means">
@@ -128,11 +146,16 @@
 	}
 
 	function frm_submit(f) {
-		var pp_netsale = "0";
+		var pp_netsale = ${billMap.bill_available};
 		var pp_amount = f.pp_amount.value;
 		var pp_unit = String(frm_right(pp_amount, 3));
-
-
+		var bill_a = ${billMap.bill_today};
+		
+		if(bill_a == 1){
+			alert("하루 출금 허용 횟수 초과");
+			return false;
+		}
+		
 		if (pp_netsale > 0) {
 			;
 		} else {
@@ -149,13 +172,15 @@
 			return false;
 		}
 
-		var day_price = "0";
+		var day_price = ${billMap.bill_available};
 
-		if (pp_amount > parseInt(day_price)) {
+		if (pp_amount > day_price) {
 			alert("출금가능한 잔액보다 큰 금액을 신청하셨습니다.");
 			f.pp_amount.focus();
 			return false;
 		}
+		
+		
 
 
 		if(pp_unit == "000") {
@@ -166,7 +191,7 @@
 			//return false;
 		}
 
-		newWin = window.open("about:blank", "_frm", "width=500,height=600,scrollbars=yes,resizable=yes");
+		newWin = window.open("localhost/partyBillCheck", "_frm", "width=680px,height=400px,scrollbars=yes,resizable=yes,left=700,top=300");
 
 		f.target = "_frm";
 		f.submit();
@@ -174,34 +199,107 @@
 		return false;
 	}
 </script>
-
-<div class="table-list scroll padding">
-	<table >
-	<thead>
-		<tr>
+<c:choose>
+	<c:when test="${empty bill}">
+		<div class="table-list scroll padding">
+			<table>
+				<thead>
+					<tr>
 						<th scope="col">상태</th>
-			<th scope="col">접수번호</th>
-			<th scope="col">신청일</th>
-			<th scope="col">출금방법</th>
-			<th scope="col">신청금액(수수료)</th>
-			<th scope="col">실지급액</th>
-			<th scope="col">메모</th>
-			<th scope="col">비고</th>
-		</tr>
-	</thead>
-	<tbody>
-							<tr>
+						<th scope="col">접수번호</th>
+						<th scope="col">신청일</th>
+						<th scope="col">출금방법</th>
+						<th scope="col">신청금액(수수료)</th>
+						<th scope="col">실지급액</th>
+						<th scope="col">메모</th>
+						<th scope="col">비고</th>
+					</tr>
+			</thead>
+			<tbody>
+				<tr>
 				<td colspan="10">
 					<div class="empty">
-						<div class="icon"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-big-glay.png" /></div>
+						<div class="icon"><img src="/img/icon-butsicon-big-glay.png" /></div>
 						<h5>등록된 내용이 없습니다.</h5>
 					</div>
 				</td>
-			</tr>
+				</tr>
 			</tbody>
-	</table>
+		</table>
+	</div>
+	</c:when>
+	<c:otherwise>
+		<!-- 등록된 내용이 있는 경우 -->
+		<div class="table-list scroll padding">
+		<table>
+			<thead>
+				<tr>
+					<th scope="col">no</th>
+					<th scope="col">상태</th>
+					<th scope="col">접수번호</th>
+					<th scope="col">신청일</th>
+					<th scope="col">출금방법</th>
+					<th scope="col">신청금액(수수료)</th>
+					<th scope="col">실지급액</th>
+					<th scope="col">메모</th>
+					<th scope="col">비고</th>
+				</tr>
+			</thead>
+			<tbody>
+			<c:set var="length" value="${fn:length(bill)  }"/>
+				<c:forEach var="bill" items="${bill }" begin="${paging.start }" end="${paging.end }" varStatus="vs">
+					<tr>
+						<td><span class="lightgrey">${length - vs.count + 1}</span></td>
+						<td>${bill.bill_state }</td>  
+						<td><span class="lightgrey">${bill.bill_num }</span></td>
+						<td><span class="lightgrey">${bill.bill_date }</span></td>
+						<td>${bill.bill_method }</td>
+						<td>${bill.bill_charge }</td>
+						<td><span class="text-purple">${bill.bill_pay }</span>원</td>
+						<td>${bill.bill_memo }</td>
+						<td>${bill.bill_etc }</td>
+					</tr>
+				</c:forEach>		
+			</tbody>
+		</table>
+	</div>
+	<!-- 끝 -->
+	</c:otherwise>
+</c:choose>
+<c:if test="${not empty bill}" >
+<div class="page-number" style="border-top: 0">
+	<ul>
+		<li class="disabled">
+			<a href = "/partyCommentList?nowPage=1"><i class="fa fa-angle-double-left"></i></a>
+		</li>
+		
+		<li class="disabled">
+			<a href = "/partyCommentList?nowPage=${paging.nowPage -1}"><i class="fa fa-angle-left"></i></a>
+		</li>
+		
+		<c:forEach begin="1" end="${paging.endPage }" var="p">
+			<c:choose>
+				<c:when test="${p == paging.nowPage }">
+					<li class="active">
+						<a>${p }</a>
+					</li>
+				</c:when>
+				<c:when test="${p != paging.nowPage }">
+					<li><a href="/partyCommentList?nowPage=${p }">${p }</a></li>
+				</c:when>
+			</c:choose>
+		</c:forEach>	
+		
+		<li class="disabled">
+			<a href = "/partyCommentList?nowPage=${paging.nowPage + 1}"><i class="fa fa-angle-right"></i></a>
+		</li>
+		
+		<li class="disabled">
+			<a href = "/partyCommentList?nowPage=${paging.endPage}"><i class="fa fa-angle-double-right"></i></a>
+		</li>
+	</ul>
 </div>
-
+</c:if>
 <script>
 $(function () {
   $('[data-toggle="popover"]').popover()
@@ -214,7 +312,7 @@ $(function () {
 </div><!-- /#wrapper -->
 
 <!-- JavaScript -->
-<script type="text/javascript" src="https://buts.co.kr/shop/partner/skin/Basic/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script>
 $(function () {
   var $window = $(window),
@@ -294,6 +392,7 @@ $(function () {
   })();
   ChannelIO('boot', {
     "pluginKey": "d3d063c0-7d5d-48f8-8535-0ac91305c985"
+    
   });
 </script>
 <!-- End Channel Plugin -->

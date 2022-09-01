@@ -2,33 +2,120 @@
     pageEncoding="UTF-8"%>
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:import url="partyIndex.jsp"/> 
+<script>
+window.onload=function(){
+	document.getElementById('partyCommentList').classList.add('active');
+}
+</script>
+
 <!-- body -->
-	<div class="partner-body">
+<div class="partner-body">
+
 <!-- [[ 파트너 문의관리 ]] -->
 <form class="form" role="form" name="flist">
-<input type="hidden" name="page" value="1">
+	<input type="hidden" name="page" value="1">
 </form>
 
 <div class="title"><span class="text-purple">댓글</span> 보기</div>
-
 <div class="table-list scroll">
-  <table style="min-width: 1000px">
-	<thead>
-	  <tr>
-		<th width="10%" scope="col">문의자</th>
-		<th width="10%" scope="col">작성일</th>
-		<th scope="col">제목</th>
-	  </tr>
-	</thead>
-	<tbody>
+	<c:choose>
+		<c:when test="${empty list}" >
+			<table style="min-width: 1000px">
+				<thead>
+				  <tr>
+					<th width="10%" scope="col">문의자</th>
+					<th width="10%" scope="col">작성일</th>
+					<th scope="col">제목</th>
+				  </tr>
+				</thead>
+			</table>
+			<div class="empty">
+				<div class="icon"><img src="/img/icon-butsicon-big-glay.png" /></div>
+				<h5>등록된 문의가 없습니다.</h5>
+			</div>
+		</c:when>
+		<c:otherwise>
+			<table style="min-width: 1000px">
+				<thead>
+			  	<tr>
+					<th width="10%" scope="col">문의자</th>
+					<th width="10%" scope="col">작성일</th>
+					<th scope="col">제목</th>
+			  	</tr>
+				</thead>
+			<tbody>
+				<c:forEach var="comment" items="${list }" begin="${paging.start }" end="${paging.end }">
+					<tr>
+						<td>${comment.nick }</td>
+						<td>
+							<span class="lightgrey">${comment.comment_date }</span>
+						</td>
+						<td>
+							<a href="/index?formpath=partyMain?party_num=${comment.party_num}" class="item-name">
+								<span class="name"> 
+									<c:choose>
+										<c:when test="${comment.comment_private == 1}">
+											<i class="fa fa-lock orange"></i>
+											${comment.comment }<br>
+											<span class="lightgrey"> ${comment.party_title } </span>
+										</c:when>
+										<c:otherwise>
+											${comment.comment }<br>
+											<span class="lightgrey"> ${comment.party_title } </span>
+										</c:otherwise>
+									</c:choose>
+								</span>
+							</a>
+						</td>
+					</tr>
+				</c:forEach>
 			</tbody>
-  </table>
+		</table>
+	</c:otherwise>
+</c:choose> 
 </div>
+<c:if test="${not empty list}" >
+<div class="page-number" style="border-top: 0">
+	<ul>
+		<li class="disabled">
+			<a href = "/partyCommentList?nowPage=1"><i class="fa fa-angle-double-left"></i></a>
+		</li>
+		
+		<li class="disabled">
+			<a href = "/partyCommentList?nowPage=${paging.nowPage -1}"><i class="fa fa-angle-left"></i></a>
+		</li>
+		
+		<c:forEach begin="1" end="${paging.endPage }" var="p">
+			<c:choose>
+				<c:when test="${p == paging.nowPage }">
+					<li class="active">
+						<a>${p }</a>
+					</li>
+				</c:when>
+				<c:when test="${p != paging.nowPage }">
+					<li><a href="/partyCommentList?nowPage=${p }">${p }</a></li>
+				</c:when>
+			</c:choose>
+		</c:forEach>	
+		
+		<li class="disabled">
+			<a href = "/partyCommentList?nowPage=${paging.nowPage + 1}"><i class="fa fa-angle-right"></i></a>
+		</li>
+		
+		<li class="disabled">
+			<a href = "/partyCommentList?nowPage=${paging.endPage}"><i class="fa fa-angle-double-right"></i></a>
+		</li>
+	</ul>
+</div>
+</c:if>
 
-<div class="empty">
-	<div class="icon"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-big-glay.png" /></div>
-	<h5>등록된 문의가 없습니다.</h5>
-</div>
+<script>
+function more_iq(id) {
+	$("#" + id).toggle();
+}
+</script>	</div>
+
+<!-- 끝 -->
 
 
 
@@ -36,11 +123,12 @@
 function more_iq(id) {
 	$("#" + id).toggle();
 }
-</script>	</div><!-- /#page-wrapper -->
+</script>	
+</div><!-- /#page-wrapper -->
 </div><!-- /#wrapper -->
 
 <!-- JavaScript -->
-<script type="text/javascript" src="https://buts.co.kr/shop/partner/skin/Basic/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script>
 $(function () {
   var $window = $(window),
@@ -122,22 +210,5 @@ $(function () {
     "pluginKey": "d3d063c0-7d5d-48f8-8535-0ac91305c985"
   });
 </script>
-<!-- End Channel Plugin -->
-<!-- ie6,7에서 사이드뷰가 게시판 목록에서 아래 사이드뷰에 가려지는 현상 수정 -->
-<!--[if lte IE 7]>
-<script>
-$(function() {
-    var $sv_use = $(".sv_use");
-    var count = $sv_use.length;
-
-    $sv_use.each(function() {
-        $(this).css("z-index", count);
-        $(this).css("position", "relative");
-        count = count - 1;
-    });
-});
-</script>
-<![endif]-->
-
 </body>
 </html>

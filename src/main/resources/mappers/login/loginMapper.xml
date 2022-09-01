@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.proj.pots.login.dao.ILoginDAO">
+
+	<select id="loginProc" parameterType="LoginDTO" resultType="LoginDTO">
+		SELECT * FROM login WHERE id=#{id}
+	</select>
+	
+	<select id="checkPartner" resultType="PartnerInfoDTO" parameterType="String">
+		SELECT * FROM partner_info WHERE id=#{id}
+	</select>
+	
+	<update id="updatepass" parameterType="LoginDTO">
+		UPDATE login SET pw = #{pw} WHERE id = #{id}
+	</update>
+</mapper>
