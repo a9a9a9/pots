@@ -32,7 +32,7 @@
 			<a href="http://www.youtube.com/watch?v=U9q-iiHgWPk" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/U9q-iiHgWPk/mqdefault.jpg" alt="" /></a>
 			<a href="http://www.youtube.com/watch?v=H-L5Ivk4XPI" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/H-L5Ivk4XPI/mqdefault.jpg" alt="" /></a>
 			<a href="http://www.youtube.com/watch?v=hh_549VGJU8" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/hh_549VGJU8/mqdefault.jpg" alt="" /></a>
-			<a href="http://www.youtube.com/watch?v=_R2pVwDrfSA" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/_R2pVwDrfSA/mqdefault.jpg" alt="" /></a>
+			<a href="http://www.youtube.com/watch?v=BrDpqKr1Ix8" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/BrDpqKr1Ix8/mqdefault.jpg" alt="" /></a>
 		</div>
 	
 	<div class="title-wrap">

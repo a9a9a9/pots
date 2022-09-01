@@ -10,7 +10,7 @@
 				
 				<div class="title">팟츠 추천 영상</div>
 				<div class="recommand-list">
-					<a href="http://www.youtube.com/watch?v=_R2pVwDrfSA" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/_R2pVwDrfSA/mqdefault.jpg" alt="" /></a>
+					<a href="http://www.youtube.com/watch?v=BrDpqKr1Ix8" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/BrDpqKr1Ix8/mqdefault.jpg" alt="" /></a>
 					<a href="http://www.youtube.com/watch?v=t1BQaaGpWMA" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/t1BQaaGpWMA/mqdefault.jpg" alt="" /></a>
 					<a href="http://www.youtube.com/watch?v=hP3pFx7dBvQ" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/hP3pFx7dBvQ/mqdefault.jpg" alt="" /></a>
 					<a href="http://www.youtube.com/watch?v=HgHest9Qcso" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/HgHest9Qcso/mqdefault.jpg" alt="" /></a>
