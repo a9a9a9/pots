@@ -2,11 +2,11 @@ package com.proj.pots.party.dto;
 
 public class PartyMemberDTO extends PartyListDTO{
 
-	private int no_mem;
+	private int no_mem;			//파티 멤버 번호(가입순)
 	private String mycharge;		//결제한 금액
-	private String mystartday;	//파티 가입일
-	private String use_account;
-	private String use_point;
+	private String mystartday;		//파티 가입일
+	private String use_account;		//파티 결제(계좌번호)
+	private String use_point;		//파티 결제(포인트)
 	
 	private String day;
 	private String time;
