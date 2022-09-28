@@ -5,23 +5,23 @@ public class PartyRegDTO extends PartyDTO{
 	private String party_regdate;		//파티생성날짜
 	private String party_service;		//서비스 기본분류
 	private String party_subservice;	//서비스 소분류
-	private String party_title;			//제목
-	private int party_member;			//모집인원
-	private String party_id;			//계정 아이디(이메일)
-	private String party_pw;			//계정 비밀번호
-	private String party_tel;			//연락처
-	private String party_start;			//진행기간 시작날짜
-	private String party_end;			//진행기간 종료날짜
+	private String party_title;		//제목
+	private int party_member;		//모집인원
+	private String party_id;		//계정 아이디(이메일)
+	private String party_pw;		//계정 비밀번호
+	private String party_tel;		//연락처
+	private String party_start;		//진행기간 시작날짜
+	private String party_end;		//진행기간 종료날짜
 	private int party_charge;		//참여금액
-	private String party_adult;			//19세 이상
+	private String party_adult;		//19세 이상
 	private String party_notice;		//공지사항
-	private String party_available;     //파티모집가능여부
-	private String party_end_form;
+	private String party_available;     	//파티모집가능여부
+	private String party_end_form;		
 	
-	private String  diff;
-	private String logo;
-	private int pay;
-	private int plus;
+	private String  diff;			//파티 종료일 - 현재 (남은일수)
+	private String logo;			//파티 로고
+	private int pay;			//파티 금액
+	private int plus;			// 수수료
 	
 	
 	public String getParty_end_form() {
