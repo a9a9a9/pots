@@ -2,10 +2,10 @@ package com.proj.pots.party.dto;
 
 public class PartyDTO {
 
-	private int party_num;
-	private String id;
-	private String nick;
-	private int profile;
+	private int party_num;  //파티번호
+	private String id;	// 파티장 아이디
+	private String nick;	//파티장 닉네임
+	private int profile;	//파티장 프로필 이미지
 	
 	public int getProfile() {
 		return profile;
