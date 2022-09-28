@@ -4,9 +4,9 @@ import com.proj.pots.member.dto.MemberDTO;
 
 public class PartnerInfoDTO extends MemberDTO{
 
-	private String personal_num;
-	private String account_name;
-	private String account_num;
+	private String personal_num; //파트너 주민등록번호
+	private String account_name; //파트너 은행명
+	private String account_num;  //파트너 계좌명
 	
 	public String getPersonal_num() {
 		return personal_num;
