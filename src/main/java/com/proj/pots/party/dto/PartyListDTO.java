@@ -2,11 +2,11 @@ package com.proj.pots.party.dto;
 
 public class PartyListDTO extends PartyRegDTO{
 	
-	private String party_total_charge;
-	private int party_now_member;
-	private int party_left_member;
-	private String party_left_date;
-	private int party_remain; 
+	private String party_total_charge;	//파티 총 금액
+	private int party_now_member;		//파티 현재 멤버 수
+	private int party_left_member;		//파티 남은 멤버 수
+	private String party_left_date;		//파티 이용 기간
+	private int party_remain; 		// 파티 남은 기간
 
 	public String getParty_total_charge() {
 		return party_total_charge;
