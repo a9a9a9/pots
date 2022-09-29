@@ -2,44 +2,48 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.proj.pots.party.dao.IPartyViewDAO">
-
-	<select id="comment" parameterType="String" resultType="PartyCommentDTO">
-	 	SELECT a.nick, a.comment_date, a.comment, a.comment_private, b.party_title, b.party_num
-	 	FROM party_comment as a
-	 	JOIN party as b
-	 	ON a.party_num = b.party_num AND b.id = #{id} AND a.id != #{id}<!-- id 세션 값 --> 
-	 	ORDER BY comment_date DESC 
-	 </select>
 	 
-	 <select id="selectAccount" parameterType="String" resultType="PartnerInfoDTO">
-	 	SELECT * FROM partner_info WHERE id = #{id}
-	 </select> 
-	 
-	 <insert id="insertAccount" parameterType="PartnerInfoDTO">
-	 	INSERT INTO partner_info
-	 	VALUES (#{id}, #{personal_num}, #{account_name}, #{account_num})
-	 </insert>
-	 
-	 <insert id="insertPartyMember" parameterType="PartyMemberDTO">
-	 	INSERT INTO party_member(id, nick, party_num, mycharge, mystartday, use_account, use_point)
-	 	VALUES (#{id}, #{nick}, #{party_num}, #{mycharge}, NOW(), #{use_account}, #{use_point})
-	 </insert>
-	 
-	 <update id="updateAccount" parameterType="PartnerInfoDTO">
-	 	UPDATE partner_info 
-	 	SET personal_num=#{personal_num}, account_name=#{account_name}, account_num=#{account_num} 
-	 	WHERE id = #{id}
-	 </update>
-	 
+	 <!-- 파티 정보 -->
 	 <select id="selectParty" resultType="PartyRegDTO"> 
 	 	SELECT * FROM party WHERE party_num = #{party_num}
 	 </select> 
 	 
+	 <!-- 파티 수정 -->
+	  <update id="updateParty">
+	 	UPDATE party SET party_available='0' WHERE party_num=#{party_num}
+	 </update>
+	 
+	 <!-- 파티 가입 -->
+	  <insert id="insertPartyMember" parameterType="PartyMemberDTO">
+	 	INSERT INTO party_member(id, nick, party_num, mycharge, mystartday, use_account, use_point)
+	 	VALUES (#{id}, #{nick}, #{party_num}, #{mycharge}, NOW(), #{use_account}, #{use_point})
+	 </insert>
+	 
+	  <!-- 생성한 파티정보 -->
+	 <select id="createdParty" parameterType="String" resultType="PartyListDTO">
+	 	SELECT a.party_num, a.party_title, a.party_subservice, a.party_member, a.party_end, a.party_available, 
+	 			DATEDIFF(a.party_end, NOW()) AS party_left_date, b.party_count AS party_now_member
+		FROM (SELECT * FROM party WHERE id = #{id}) a
+	    LEFT JOIN (SELECT party_num, count(*) AS party_count FROM party_member GROUP BY party_num ) b 
+	    ON a.party_num = b.party_num
+	    ORDER BY a.party_regdate DESC;
+	 </select>
+	 
+	 <!-- 가입한 파티정보 -->
+	 <select id="joinedParty" parameterType="String" resultType="PartyListDTO">
+	 	SELECT a.party_num, b.party_subservice, b.party_title, b.party_end,
+			DATEDIFF(b.party_end, NOW()) AS party_remain, b.party_id, b.party_pw
+		FROM party_member AS a
+		JOIN party AS b
+		ON a.party_num = b.party_num AND a.id=#{id};
+	 </select>
+	 
+	 <!-- 파티 회원 정보 -->
 	 <select id="partyMember" parameterType="String" resultType="PartyMemberDTO">
 	 	SELECT * FROM party_member WHERE id = #{id} 
 	 </select>
 	 
-	 <!-- 파티 날짜별 금액, 수수료 -->
+	 <!-- 파티 날짜별 금액, 수수료 (파티 전체 기간 계산) -->
 	 <select id="partyDay" resultType="PartyRegDTO">
 	 	SELECT DATEDIFF(party_end, NOW()) as diff,
 	 		DATEDIFF(party_end, NOW()) * party_charge AS pay,
@@ -49,7 +53,7 @@
 	 	
 	 </select>
 	 
-	 <!-- 파티 회원 날짜별 금액 , 수수료 -->
+	 <!-- 파티 회원 날짜별 금액 , 수수료 (가입한 날짜부터 계산) -->
 	 <select id="myPartyDay" resultType="PartyMemberDTO">
 	 	SELECT a.*, b.party_end, DATEDIFF (b.party_end, a.mystartday) AS diff,
 	 		DATEDIFF (b.party_end, a.mystartday) * b.party_charge AS pay, 
@@ -59,12 +63,7 @@
 		ON a.party_num = b.party_num;
 	 </select>
 	 
-	 <select id="payMethod" parameterType="PartyDTO" resultType="PartyMemberDTO">
-	 	SELECT use_account , use_point
-		FROM party_member
- 		WHERE id=#{id} AND party_num=#{party_num} ORDER BY mystartday DESC LIMIT 1;
-	 </select>
-	 
+	 <!-- 파티에 가입한 회원 수 -->
 	 <select id="partyAvailableChk" resultType="PartyListDTO">
 		SELECT a.party_num, a.party_member, b.party_count AS party_now_member 
 		FROM 
@@ -76,32 +75,47 @@
 		ON a.party_num = b.party_num;
 	 </select> 
 	 
-	 <update id="updateParty">
-	 	UPDATE party SET party_available='0' WHERE party_num=#{party_num}
+	 <!-- 생성한 파티들의 모든 댓글 리스트 -->
+	 <select id="comment" parameterType="String" resultType="PartyCommentDTO">
+	 	SELECT a.nick, a.comment_date, a.comment, a.comment_private, b.party_title, b.party_num
+	 	FROM party_comment as a
+	 	JOIN party as b
+	 	ON a.party_num = b.party_num AND b.id = #{id} AND a.id != #{id}<!-- id 세션 값 --> 
+	 	ORDER BY comment_date DESC 
+	 </select>
+	 
+	 <!-- 파트너 가입 시 계좌 정보 등록 -->
+	 <insert id="insertAccount" parameterType="PartnerInfoDTO">
+	 	INSERT INTO partner_info
+	 	VALUES (#{id}, #{personal_num}, #{account_name}, #{account_num})
+	 </insert>
+	 
+	 <!--파트너 계좌 정보 수정 -->
+	 <update id="updateAccount" parameterType="PartnerInfoDTO">
+	 	UPDATE partner_info 
+	 	SET personal_num=#{personal_num}, account_name=#{account_name}, account_num=#{account_num} 
+	 	WHERE id = #{id}
 	 </update>
 	 
+	 <!-- 파트너 계좌 정보 -->
+	 <select id="selectAccount" parameterType="String" resultType="PartnerInfoDTO">
+	 	SELECT * FROM partner_info WHERE id = #{id}
+	 </select> 
+	 
+	 <!-- 파티 결제 방식 -->
+	 <select id="payMethod" parameterType="PartyDTO" resultType="PartyMemberDTO">
+	 	SELECT use_account , use_point
+		FROM party_member
+ 		WHERE id=#{id} AND party_num=#{party_num} ORDER BY mystartday DESC LIMIT 1;
+	 </select>
+	 
+	 <!-- 포인트 수정 -->
 	 <update id="updatePoint" parameterType="PartyMemberDTO">
 	 	UPDATE member SET point = point - ${use_point} 
 	 	WHERE id = #{id}
 	 </update>
 	 
-	 <select id="createdParty" parameterType="String" resultType="PartyListDTO">
-	 	SELECT a.party_num, a.party_title, a.party_subservice, a.party_member, a.party_end, a.party_available, 
-	 			DATEDIFF(a.party_end, NOW()) AS party_left_date, b.party_count AS party_now_member
-		FROM (SELECT * FROM party WHERE id = #{id}) a
-	    LEFT JOIN (SELECT party_num, count(*) AS party_count FROM party_member GROUP BY party_num ) b 
-	    ON a.party_num = b.party_num
-	    ORDER BY a.party_regdate DESC;
-	 </select>
-	 
-	 <select id="joinedParty" parameterType="String" resultType="PartyListDTO">
-	 	SELECT a.party_num, b.party_subservice, b.party_title, b.party_end,
-			DATEDIFF(b.party_end, NOW()) AS party_remain, b.party_id, b.party_pw
-		FROM party_member AS a
-		JOIN party AS b
-		ON a.party_num = b.party_num AND a.id=#{id};
-	 </select>
-	 
+	 <!-- 결제 리스트 -->
 	 <select id="orderList" parameterType="String" resultType="PartyMemberDTO">
 	 	SELECT DATE_FORMAT(a.mystartday, '%y-%m-%d') AS day, DATE_FORMAT(a.mystartday, '%H:%i') AS time, DAYOFWEEK(mystartday) AS week, 
 			b.party_subservice, b.party_title, a.use_account, a.use_point, a.party_num
